@@ -1,0 +1,44 @@
+{
+  "hardware": "NVIDIA L4 (x86 EC2 host), not Jetson Orin",
+  "val_settings": "ultralytics val, imgsz=640, rect=False, batch=1, conf=0.001, iou=0.7",
+  "backends": {
+    "pt-fp32": {
+      "box_map50": 0.9847623154079201,
+      "box_map50_95": 0.9334080187184032,
+      "mask_map50": 0.9806456957523948,
+      "mask_map50_95": 0.8103314043733261
+    },
+    "pt-fp16": {
+      "box_map50": 0.984120085374248,
+      "box_map50_95": 0.9317831482896357,
+      "mask_map50": 0.9805804489832223,
+      "mask_map50_95": 0.8214864106292888
+    },
+    "onnx-ort-cuda": {
+      "box_map50": 0.9847797048184961,
+      "box_map50_95": 0.933410196446608,
+      "mask_map50": 0.9806662250385166,
+      "mask_map50_95": 0.8103464337052196
+    },
+    "trt-fp16": {
+      "box_map50": 0.9848402455514415,
+      "box_map50_95": 0.9340559308762362,
+      "mask_map50": 0.9806733577593763,
+      "mask_map50_95": 0.8098632109694915
+    },
+    "trt-int8": {
+      "box_map50": 0.9842955079719591,
+      "box_map50_95": 0.9244368930358463,
+      "mask_map50": 0.9830436481563251,
+      "mask_map50_95": 0.8089836110689151
+    }
+  },
+  "onnx_decoder_vs_pt": {
+    "frames": 40,
+    "dets_a": 109,
+    "dets_b": 109,
+    "matched": 109,
+    "mean_mask_iou": 0.9108456810699933,
+    "note": "ultralytics val on the ONNX file uses its own decoder; this compares our numpy decoder against the pt backend"
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "hardware": "NVIDIA L4 (x86 EC2 host), not Jetson Orin",
+  "frame": "data/yolo_synth/images/val/val_00000_front.jpg",
+  "frame_hw": [
+    480,
+    640
+  ],
+  "gpu_state_at_start": {
+    "nvidia_smi": "NVIDIA L4, 0 %, 4759 MiB, 2040 MHz",
+    "other_compute_processes": 1
+  },
+  "backends": {
+    "pt-fp32": {
+      "inference_only": {
+        "median_ms": 7.044,
+        "p90_ms": 7.485,
+        "p99_ms": 8.383
+      },
+      "end_to_end": {
+        "median_ms": 10.746,
+        "p90_ms": 11.419,
+        "p99_ms": 13.01
+      },
+      "n_detections_on_frame": 2,
+      "warmup": 30,
+      "iters": 300,
+      "path": "checkpoints/yolo11n-seg-langgrasp.pt",
+      "input_hw": [
+        480,
+        640
+      ],
+      "note": "ultralytics pt predictor letterboxes 640x480 to 480x640 (auto pad to stride), so it runs fewer pixels than the static 640x640 exports"
+    },
+    "pt-fp16": {
+      "inference_only": {
+        "median_ms": 7.607,
+        "p90_ms": 8.616,
+        "p99_ms": 8.673
+      },
+      "end_to_end": {
+        "median_ms": 11.399,
+        "p90_ms": 13.232,
+        "p99_ms": 13.327
+      },
+      "n_detections_on_frame": 2,
+      "warmup": 30,
+      "iters": 300,
+      "path": "checkpoints/yolo11n-seg-langgrasp.pt",
+      "input_hw": [
+        480,
+        640
+      ],
+      "note": "ultralytics pt predictor letterboxes 640x480 to 480x640 (auto pad to stride), so it runs fewer pixels than the static 640x640 exports"
+    },
+    "onnx-ort-cuda": {
+      "inference_only": {
+        "median_ms": 3.294,
+        "p90_ms": 3.756,
+        "p99_ms": 3.816
+      },
+      "end_to_end": {
+        "median_ms": 5.056,
+        "p90_ms": 6.051,
+        "p99_ms": 6.139
+      },
+      "n_detections_on_frame": 2,
+      "warmup": 30,
+      "iters": 300,
+      "path": "checkpoints/yolo11n-seg-langgrasp.onnx",
+      "input_hw": [
+        640,
+        640
+      ],
+      "providers": [
+        "CUDAExecutionProvider",
+        "CPUExecutionProvider"
+      ],
+      "note": "letterbox, NMS and mask decoding in numpy (langgrasp.perception.segmentation); NMS is not in the graph"
+    },
+    "trt-fp16": {
+      "inference_only": {
+        "median_ms": 0.813,
+        "p90_ms": 0.816,
+        "p99_ms": 0.82
+      },
+      "end_to_end": {
+        "median_ms": 4.575,
+        "p90_ms": 5.429,
+        "p99_ms": 5.466
+      },
+      "n_detections_on_frame": 2,
+      "warmup": 30,
+      "iters": 300,
+      "path": "checkpoints/yolo11n-seg-langgrasp-fp16.engine",
+      "input_hw": [
+        640,
+        640
+      ]
+    },
+    "trt-int8": {
+      "inference_only": {
+        "median_ms": 0.703,
+        "p90_ms": 0.705,
+        "p99_ms": 0.72
+      },
+      "end_to_end": {
+        "median_ms": 4.489,
+        "p90_ms": 4.573,
+        "p99_ms": 4.782
+      },
+      "n_detections_on_frame": 2,
+      "warmup": 30,
+      "iters": 300,
+      "path": "checkpoints/yolo11n-seg-langgrasp-int8.engine",
+      "input_hw": [
+        640,
+        640
+      ]
+    }
+  },
+  "gpu_state_at_end": {
+    "nvidia_smi": "NVIDIA L4, 14 %, 5430 MiB, 2040 MHz",
+    "other_compute_processes": 2
+  }
+}

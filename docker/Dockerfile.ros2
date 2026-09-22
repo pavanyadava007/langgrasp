@@ -1,0 +1,21 @@
+# ROS 2 Humble + MuJoCo (CPU only, no torch) for the langgrasp_ros smoke pipeline.
+# The repo is mounted at run time (see docker/ros2_smoke.sh); this image only carries the dependencies.
+# Verified: built and run on an x86 EC2 host (see docs/ROS2.md). Not a Jetson image.
+FROM ros:humble
+
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        python3-pip python3-colcon-common-extensions \
+        ros-humble-vision-msgs ros-humble-diagnostic-msgs \
+        libegl1 libgl1-mesa-dri libgles2 libosmesa6 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Base deps of the langgrasp package (pyproject.toml [project].dependencies) without the ML extras.
+RUN pip3 install --no-cache-dir -U pip setuptools wheel && pip3 install --no-cache-dir "numpy>=1.26,<2.3" "mujoco==3.8.1" "scipy>=1.11" pyyaml opencv-python-headless "imageio[ffmpeg]" pillow
+
+WORKDIR /ws
+ENV MUJOCO_GL=egl
+COPY ros2_entrypoint.sh /ws/ros2_entrypoint.sh
+RUN chmod +x /ws/ros2_entrypoint.sh
+ENTRYPOINT ["/ws/ros2_entrypoint.sh"]
+CMD ["bash"]

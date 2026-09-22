@@ -1,0 +1,117 @@
+{
+  "clean": {
+    "n_scenes": 60,
+    "cameras": [
+      "front",
+      "side"
+    ],
+    "noise": false,
+    "n_objects": 314,
+    "per_kind": {
+      "can": {
+        "n": 102,
+        "xy_err_mm_mean": 0.716572238270791,
+        "xy_err_mm_median": 0.5911758931757909,
+        "xy_err_mm_p95": 1.6475446572795913,
+        "xy_err_mm_max": 2.0228555237352,
+        "frac_xy_err_lt_8mm": 1.0,
+        "z_err_mm_mean": 0.28228677456768925,
+        "z_err_mm_max": 0.3892255672274074,
+        "width_mm_mean": 21.379436179611766,
+        "aspect_mean": 1.3266134609008502
+      },
+      "cube": {
+        "n": 126,
+        "xy_err_mm_mean": 0.4450287134095231,
+        "xy_err_mm_median": 0.2500789185024549,
+        "xy_err_mm_p95": 0.9514688036750135,
+        "xy_err_mm_max": 5.794455651275321,
+        "frac_xy_err_lt_8mm": 1.0,
+        "z_err_mm_mean": 0.16444092544035882,
+        "z_err_mm_max": 0.21712774169871907,
+        "width_mm_mean": 23.8203352860652,
+        "aspect_mean": 1.1820889664454934,
+        "psi_err_deg_mean": 0.7040355283172284,
+        "psi_err_deg_median": 0.2204875997733062,
+        "psi_err_deg_p95": 1.0603164976576955,
+        "psi_err_deg_max": 44.25079127885879,
+        "frac_psi_err_lt_15deg": 0.9920634920634921
+      },
+      "screwdriver": {
+        "n": 86,
+        "xy_err_mm_mean": 5.3976575621460565,
+        "xy_err_mm_median": 2.832655971721043,
+        "xy_err_mm_p95": 16.645021549729595,
+        "xy_err_mm_max": 85.40128020139673,
+        "frac_xy_err_lt_8mm": 0.872093023255814,
+        "z_err_mm_mean": 0.2034053336273277,
+        "z_err_mm_max": 3.5145008039311243,
+        "width_mm_mean": 16.523572852513194,
+        "aspect_mean": 6.697311094612698,
+        "psi_err_deg_mean": 2.117028340786131,
+        "psi_err_deg_median": 2.145253461674625,
+        "psi_err_deg_p95": 4.859901498130522,
+        "psi_err_deg_max": 5.146211586319318,
+        "frac_psi_err_lt_15deg": 1.0
+      }
+    }
+  },
+  "realsense_like_noise": {
+    "n_scenes": 60,
+    "cameras": [
+      "front",
+      "side"
+    ],
+    "noise": true,
+    "n_objects": 314,
+    "per_kind": {
+      "can": {
+        "n": 102,
+        "xy_err_mm_mean": 1.7780727489456618,
+        "xy_err_mm_median": 1.6327683355040348,
+        "xy_err_mm_p95": 2.94596044146547,
+        "xy_err_mm_max": 3.6905988656108133,
+        "frac_xy_err_lt_8mm": 1.0,
+        "z_err_mm_mean": 1.9032307189525854,
+        "z_err_mm_max": 3.0042132575436065,
+        "width_mm_mean": 24.085855574324675,
+        "aspect_mean": 1.2119373662912423
+      },
+      "cube": {
+        "n": 126,
+        "xy_err_mm_mean": 1.1224636067353593,
+        "xy_err_mm_median": 1.0642899381341309,
+        "xy_err_mm_p95": 1.9187717057334177,
+        "xy_err_mm_max": 6.443479437288008,
+        "frac_xy_err_lt_8mm": 1.0,
+        "z_err_mm_mean": 1.2001023970683968,
+        "z_err_mm_max": 1.7634640231949419,
+        "width_mm_mean": 25.06562182428865,
+        "aspect_mean": 1.1742955674995161,
+        "psi_err_deg_mean": 1.571009608628861,
+        "psi_err_deg_median": 0.8603366630424767,
+        "psi_err_deg_p95": 3.7464265514013775,
+        "psi_err_deg_max": 44.32088838214901,
+        "frac_psi_err_lt_15deg": 0.9920634920634921
+      },
+      "screwdriver": {
+        "n": 86,
+        "xy_err_mm_mean": 5.73339558418318,
+        "xy_err_mm_median": 3.1608632168163657,
+        "xy_err_mm_p95": 17.327310023825873,
+        "xy_err_mm_max": 84.98390331680383,
+        "frac_xy_err_lt_8mm": 0.8953488372093024,
+        "z_err_mm_mean": 0.9465749137660054,
+        "z_err_mm_max": 3.0739394444928587,
+        "width_mm_mean": 17.69858475302061,
+        "aspect_mean": 6.361485190101587,
+        "psi_err_deg_mean": 2.0243352172420033,
+        "psi_err_deg_median": 2.027368996934052,
+        "psi_err_deg_p95": 4.425052519465372,
+        "psi_err_deg_max": 4.935451860880889,
+        "frac_psi_err_lt_15deg": 1.0
+      }
+    }
+  },
+  "note": "Ground-truth masks from the sim label map; errors vs env.grasp_point. z error compares grasp_z with the oracle centre height. Noise model is synthetic (see realsense_like_noise docstring), not a validated sensor model."
+}

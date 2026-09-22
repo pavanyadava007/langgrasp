@@ -1,0 +1,62 @@
+{
+  "hardware": "NVIDIA L4 (x86 EC2 host, x86_64), not Jetson",
+  "backend": "faster-whisper (CTranslate2), beam_size=1, language=en, vad_filter=False",
+  "dataset": "hf-internal-testing/librispeech_asr_dummy clean/validation, first n_samples items (read speech, not robot commands)",
+  "latency_definition": "wall-clock of model.transcribe + segment iteration on one clip, median over n_runs after warmup",
+  "note": "command-domain accuracy not measured, no recorded robot commands",
+  "results": {
+    "tiny": {
+      "median_ms": 139.80613400053699,
+      "p90_ms": 173.30067879811395,
+      "min_ms": 133.32834400353022,
+      "load_ms": 2614.7621889977017,
+      "wer_on_samples": 0.09972130847953217,
+      "n_samples": 8,
+      "n_runs": 5,
+      "warmup_runs": 2,
+      "audio_seconds_timed_clip": 5.855,
+      "device": "cuda",
+      "compute_type": "float16",
+      "example": {
+        "reference": "MISTER QUILTER IS THE APOSTLE OF THE MIDDLE CLASSES AND WE ARE GLAD TO WELCOME HIS GOSPEL",
+        "hypothesis": "Mr. Quilter is the apostle of the middle classes and we are glad to welcome his gospel."
+      }
+    },
+    "base": {
+      "median_ms": 193.5277039956418,
+      "p90_ms": 208.3447844008333,
+      "min_ms": 136.60538499971153,
+      "load_ms": 1862.412886999664,
+      "wer_on_samples": 0.09429340815273476,
+      "n_samples": 8,
+      "n_runs": 5,
+      "warmup_runs": 2,
+      "audio_seconds_timed_clip": 5.855,
+      "device": "cuda",
+      "compute_type": "float16",
+      "example": {
+        "reference": "MISTER QUILTER IS THE APOSTLE OF THE MIDDLE CLASSES AND WE ARE GLAD TO WELCOME HIS GOSPEL",
+        "hypothesis": "Mr. Quilter is the apostle of the middle classes, and we are glad to welcome his gospel."
+      }
+    },
+    "small": {
+      "median_ms": 295.07831299997633,
+      "p90_ms": 320.08343459892785,
+      "min_ms": 236.29686899948865,
+      "load_ms": 3256.4488100033486,
+      "wer_on_samples": 0.09743372678018575,
+      "n_samples": 8,
+      "n_runs": 5,
+      "warmup_runs": 2,
+      "audio_seconds_timed_clip": 5.855,
+      "device": "cuda",
+      "compute_type": "float16",
+      "example": {
+        "reference": "MISTER QUILTER IS THE APOSTLE OF THE MIDDLE CLASSES AND WE ARE GLAD TO WELCOME HIS GOSPEL",
+        "hypothesis": "Mr. Quilter is the apostle of the middle classes, and we are glad to welcome his gospel."
+      }
+    }
+  },
+  "wer_caveat": "WER uses langgrasp.language.stt.word_error_rate (word Levenshtein after lowercasing and punctuation stripping). LibriSpeech references spell out words ('MISTER') while Whisper writes 'Mr.', which counts as an error; the residual WER is dominated by this normalisation mismatch on 8 short read-speech clips, not by misrecognitions. It is not a command-domain number.",
+  "vram_note": "single model resident at a time; small fp16 on CTranslate2 stays far below the 3 GB shared-GPU budget (not separately measured)"
+}

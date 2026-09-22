@@ -1,0 +1,48 @@
+[project]
+name = "langgrasp"
+version = "0.1.0"
+description = "Language-guided pick-and-place on a simulated SO-101 arm: open-vocab grounding, YOLO11-seg, depth fusion, ACT, PPO, safety watchdog, measured latency."
+requires-python = ">=3.10"
+authors = [{name = "Pavan Yadav Annappa", email = "pavanyadava07@gmail.com"}]
+license = {text = "MIT"}
+dependencies = [
+  "numpy>=1.26",
+  "mujoco==3.8.1",
+  "scipy>=1.11",
+  "pyyaml",
+  "opencv-python-headless",
+  "imageio[ffmpeg]",
+  "pillow",
+]
+
+[project.optional-dependencies]
+perception = ["ultralytics>=8.3", "transformers==4.57.6", "huggingface_hub", "onnx>=1.16", "onnxruntime-gpu>=1.18", "tensorrt-cu12>=10.3,<11"]
+learning = ["torch>=2.7", "torchvision", "lerobot==0.4.4", "gymnasium>=1.0", "datasets", "pyarrow", "pandas"]
+speech = ["faster-whisper>=1.0"]
+dev = ["pytest", "ruff"]
+
+[project.scripts]
+langgrasp = "langgrasp.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+exclude = ["ros2_ws"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "B"]
+ignore = ["E501", "B008"]
+
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["langgrasp*"]
+
+[tool.setuptools.package-data]
+langgrasp = ["sim/assets/**/*"]

@@ -1,0 +1,40 @@
+# LangGrasp on Jetson (JetPack 6.x, L4T r36.4.x): ROS 2 Humble + the langgrasp_ros package + CPU-side deps.
+#
+# STATUS: NOT built or tested here. No Jetson is available on this project; the only verified container path is
+# docker/Dockerfile.ros2 on an x86 EC2 host (see docs/ROS2.md). Everything below is a best-effort transcription
+# of the x86 recipe onto the dustynv/jetson-containers ROS base and must be treated as unverified.
+#
+# Notes for whoever builds it on the device:
+#   - dustynv/ros:humble-ros-base-l4t-r36.4.0 ships ROS 2 Humble built for arm64 + JetPack 6 CUDA; it does not
+#     ship vision_msgs (built from source below).
+#   - torch / torchvision / TensorRT wheels for JetPack come from the NVIDIA index, not PyPI; they are NOT
+#     installed here (the oracle-mode ROS pipeline needs neither). Add them via jetson-containers `packages/pytorch`.
+#   - mujoco publishes manylinux aarch64 wheels, so the CPU sim builds; EGL rendering on Jetson uses the Tegra
+#     driver (MUJOCO_GL=egl) and is unverified.
+#   - Tag pins: base image tag, mujoco==3.8.1, numpy<2.3; unpinned apt packages are whatever the L4T apt mirror serves.
+FROM dustynv/ros:humble-ros-base-l4t-r36.4.0
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    MUJOCO_GL=egl \
+    ROS_DISTRO=humble
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        python3-pip git libegl1 libgles2 libosmesa6 \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN pip3 install --no-cache-dir -U pip setuptools wheel \
+    && pip3 install --no-cache-dir "numpy>=1.26,<2.3" "mujoco==3.8.1" "scipy>=1.11" pyyaml opencv-python-headless "imageio[ffmpeg]" pillow
+
+# vision_msgs is not part of the dustynv base image: build it from source into the overlay workspace.
+WORKDIR /ws/ros2_ws/src
+RUN git clone -b ros2 https://github.com/ros-perception/vision_msgs.git
+COPY ros2_ws/src/langgrasp_ros ./langgrasp_ros
+COPY pyproject.toml LICENSE /ws/langgrasp/
+COPY langgrasp /ws/langgrasp/langgrasp
+RUN pip3 install --no-cache-dir --no-deps /ws/langgrasp
+
+WORKDIR /ws/ros2_ws
+RUN bash -lc "source /opt/ros/humble/install/setup.bash 2>/dev/null || source /opt/ros/humble/setup.bash; colcon build --symlink-install"
+
+# RMW_IMPLEMENTATION / ROS_DOMAIN_ID are set at run time (docs/DOCKER.md).
+CMD ["bash", "-lc", "source /ws/ros2_ws/install/setup.bash && ros2 launch langgrasp_ros langgrasp_sim.launch.py"]

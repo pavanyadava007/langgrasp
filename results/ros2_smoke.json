@@ -1,0 +1,131 @@
+{
+  "hardware": "ROS 2 Humble in Docker on x86 EC2 host, CPU only, not Jetson",
+  "machine": "x86_64",
+  "rmw": "default (rmw_fastrtps_cpp on Humble)",
+  "run_seconds": 31.5,
+  "latency": {
+    "since_capture_ms": {
+      "camera": {
+        "n": 150,
+        "median_ms": 72.7882925,
+        "p90_ms": 85.9855678,
+        "max_ms": 156.750922
+      },
+      "detections": {
+        "n": 1,
+        "median_ms": 58.873607,
+        "p90_ms": 58.873607,
+        "max_ms": 58.873607
+      },
+      "target_point": {
+        "n": 1,
+        "median_ms": 59.129493,
+        "p90_ms": 59.129493,
+        "max_ms": 59.129493
+      },
+      "grasp_pose": {
+        "n": 1,
+        "median_ms": 59.369829,
+        "p90_ms": 59.369829,
+        "max_ms": 59.369829
+      },
+      "joint_command": {
+        "n": 69,
+        "median_ms": 3.907088,
+        "p90_ms": 9.9435692,
+        "max_ms": 113.535389
+      },
+      "joint_command_safe": {
+        "n": 69,
+        "median_ms": 5.431106,
+        "p90_ms": 11.5149422,
+        "max_ms": 114.354249
+      }
+    },
+    "per_stage_ms": {
+      "camera->detections": {
+        "n": 1,
+        "median_ms": 1.507938,
+        "p90_ms": 1.507938,
+        "max_ms": 1.507938
+      },
+      "detections->target_point": {
+        "n": 1,
+        "median_ms": 0.255886,
+        "p90_ms": 0.255886,
+        "max_ms": 0.255886
+      },
+      "target_point->grasp_pose": {
+        "n": 1,
+        "median_ms": 0.240336,
+        "p90_ms": 0.240336,
+        "max_ms": 0.240336
+      },
+      "grasp_pose->joint_command": {
+        "n": 1,
+        "median_ms": 54.16556,
+        "p90_ms": 54.16556,
+        "max_ms": 54.16556
+      },
+      "joint_command->joint_command_safe": {
+        "n": 69,
+        "median_ms": 1.039966,
+        "p90_ms": 1.89863,
+        "max_ms": 6.113382
+      }
+    },
+    "end_to_end_ms": {
+      "n": 1,
+      "median_ms": 56.98858,
+      "p90_ms": 56.98858,
+      "max_ms": 56.98858
+    },
+    "n_messages": {
+      "camera": 150,
+      "detections": 1,
+      "target_point": 1,
+      "grasp_pose": 1,
+      "joint_command": 69,
+      "joint_command_safe": 69
+    }
+  },
+  "sim_status_last": {
+    "t": 300,
+    "target": "screwdriver_0",
+    "grasped": false,
+    "lifted": false,
+    "in_tray": true,
+    "n_commands": 69,
+    "render": true,
+    "render_mode": "egl",
+    "image_hw": [
+      240,
+      320
+    ],
+    "render_rgbd_ms_median": 47.214463502314175,
+    "n_frames": 150
+  },
+  "policy_state_last": "{\"state\": \"done\", \"ticks\": 69, \"ik_ok\": true, \"max_pos_err_m\": 0.23556839257449055}",
+  "policy_done": {
+    "state": "done",
+    "ticks": 69,
+    "ik_ok": true,
+    "max_pos_err_m": 0.23556839257449055
+  },
+  "safety_last": {
+    "level": 0,
+    "message": "ok",
+    "values": {
+      "state": "RUN",
+      "reduced_speed": "False",
+      "n_clipped_limit": "7",
+      "n_clipped_vel": "51",
+      "last_camera": "1790117635.988",
+      "last_joint_states": "1790117636.029",
+      "last_command": "1790117635.799",
+      "n_commands": "69",
+      "n_blocked": "0"
+    }
+  },
+  "note": "stamps are capture times from the sim driver clock; per-stage = arrival delta between consecutive stages for the same capture stamp; the policy stage includes the IK for the first waypoint"
+}

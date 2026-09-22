@@ -1,0 +1,39 @@
+{
+  "weights_in": "checkpoints/yolo11n-seg.pt",
+  "weights_out": "checkpoints/yolo11n-seg-langgrasp.pt",
+  "epochs_requested": 25,
+  "epochs": 25,
+  "time_box_minutes": 35.0,
+  "imgsz": 640,
+  "batch": 32,
+  "train_images": 1602,
+  "val_images": 300,
+  "minutes": 5.25,
+  "minutes_source": "cumulative 'time' column of ultralytics results.csv (training only)",
+  "box_map50": 0.9848906622826717,
+  "box_map50_95": 0.9347030190963251,
+  "mask_map50": 0.9842815916500806,
+  "mask_map50_95": 0.8127176651437181,
+  "per_class": {
+    "cube": {
+      "box_map50": 0.9944924201878957,
+      "box_map50_95": 0.955942125928179,
+      "mask_map50": 0.9944924201878957,
+      "mask_map50_95": 0.8292324729011071
+    },
+    "screwdriver": {
+      "box_map50": 0.973220057189152,
+      "box_map50_95": 0.8953130463900134,
+      "mask_map50": 0.9713928452913787,
+      "mask_map50_95": 0.7950159436272749
+    },
+    "can": {
+      "box_map50": 0.9869595094709672,
+      "box_map50_95": 0.9528538849707836,
+      "mask_map50": 0.9869595094709672,
+      "mask_map50_95": 0.8139045789027725
+    }
+  },
+  "hardware": "NVIDIA L4 (x86 EC2 host), not Jetson Orin; shared with other training jobs during this run",
+  "results_csv": "runs/segment/runs/yolo/yolo11n-seg-langgrasp/results.csv"
+}

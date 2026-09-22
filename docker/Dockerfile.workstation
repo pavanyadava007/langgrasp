@@ -1,0 +1,26 @@
+# LangGrasp workstation image: CUDA 12.6 + PyTorch 2.7.1, full extras [perception,learning,speech,dev].
+#
+# STATUS: NOT built or tested here. Reason: the base image alone is a multi-GB pull and the resulting image is
+# well above the 3 GB disk budget of the shared build host (19 GB free at the time of writing). The dependency
+# list mirrors pyproject.toml exactly, so a `docker build` on a workstation with disk to spare is expected to
+# work, but "expected" is not "verified".
+#
+# Build:  docker build -t langgrasp:workstation -f docker/Dockerfile.workstation .
+# Run:    docker run --rm --gpus all -it -v $PWD:/ws/langgrasp langgrasp:workstation python -c "import langgrasp"
+FROM pytorch/pytorch:2.7.1-cuda12.6-cudnn9-runtime
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    MUJOCO_GL=egl \
+    PYTHONUNBUFFERED=1
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        git ffmpeg libegl1 libgl1-mesa-dri libgles2 libosmesa6 libglib2.0-0 \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /ws/langgrasp
+# Copy only the metadata first so dependency layers cache; the sources are mounted or copied afterwards.
+COPY pyproject.toml LICENSE ./
+COPY langgrasp ./langgrasp
+RUN pip install --no-cache-dir -e ".[perception,learning,speech,dev]"
+
+CMD ["python", "-c", "import langgrasp, torch; print('langgrasp ok, cuda', torch.cuda.is_available())"]

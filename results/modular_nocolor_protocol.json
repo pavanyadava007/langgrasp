@@ -1,0 +1,8046 @@
+{
+ "approach": "modular_nocolor",
+ "notes": "color_check=False yolo_mask=True depth_noise=True seg=checkpoints/yolo11n-seg-langgrasp.pt backend=pt",
+ "hardware": "NVIDIA L4 (x86 EC2 host, x86_64), simulation only, not Jetson",
+ "n_per_stratum": {
+  "seen": 40,
+  "unseen": 40,
+  "langvar": 40
+ },
+ "minutes": 1.6039763609568278,
+ "summary": {
+  "n_trials": 120,
+  "strata": {
+   "all": {
+    "grasp": {
+     "k": 97,
+     "n": 120,
+     "p": 0.8083333333333333,
+     "lo": 0.7287868300416364,
+     "hi": 0.8687506694738739
+    },
+    "place": {
+     "k": 96,
+     "n": 120,
+     "p": 0.8,
+     "lo": 0.7196316465662729,
+     "hi": 0.8617561908001696
+    },
+    "grounding": {
+     "k": 107,
+     "n": 120,
+     "p": 0.8916666666666667,
+     "lo": 0.8234449199472613,
+     "hi": 0.9355892010589275
+    }
+   },
+   "seen": {
+    "grasp": {
+     "k": 35,
+     "n": 40,
+     "p": 0.875,
+     "lo": 0.7388757932976187,
+     "hi": 0.9454058022645873
+    },
+    "place": {
+     "k": 35,
+     "n": 40,
+     "p": 0.875,
+     "lo": 0.7388757932976187,
+     "hi": 0.9454058022645873
+    },
+    "grounding": {
+     "k": 40,
+     "n": 40,
+     "p": 1.0,
+     "lo": 0.9123754607496077,
+     "hi": 1.0
+    }
+   },
+   "unseen": {
+    "grasp": {
+     "k": 34,
+     "n": 40,
+     "p": 0.85,
+     "lo": 0.7092737396097997,
+     "hi": 0.9293890829149256
+    },
+    "place": {
+     "k": 34,
+     "n": 40,
+     "p": 0.85,
+     "lo": 0.7092737396097997,
+     "hi": 0.9293890829149256
+    },
+    "grounding": {
+     "k": 35,
+     "n": 40,
+     "p": 0.875,
+     "lo": 0.7388757932976187,
+     "hi": 0.9454058022645873
+    }
+   },
+   "langvar": {
+    "grasp": {
+     "k": 28,
+     "n": 40,
+     "p": 0.7,
+     "lo": 0.545696893456796,
+     "hi": 0.8192532908430471
+    },
+    "place": {
+     "k": 27,
+     "n": 40,
+     "p": 0.675,
+     "lo": 0.52017458088898,
+     "hi": 0.7991568303733828
+    },
+    "grounding": {
+     "k": 32,
+     "n": 40,
+     "p": 0.8,
+     "lo": 0.6524239261814333,
+     "hi": 0.8950013502683314
+    }
+   }
+  },
+  "lang_variants": {
+   "attribute": {
+    "grasp": {
+     "k": 7,
+     "n": 11,
+     "p": 0.6363636363636364,
+     "lo": 0.35379677689163724,
+     "hi": 0.8483377638586862
+    },
+    "place": {
+     "k": 7,
+     "n": 11,
+     "p": 0.6363636363636364,
+     "lo": 0.35379677689163724,
+     "hi": 0.8483377638586862
+    },
+    "grounding": {
+     "k": 7,
+     "n": 11,
+     "p": 0.6363636363636364,
+     "lo": 0.35379677689163724,
+     "hi": 0.8483377638586862
+    }
+   },
+   "plain": {
+    "grasp": {
+     "k": 69,
+     "n": 80,
+     "p": 0.8625,
+     "lo": 0.7703270280036946,
+     "hi": 0.9214536632044886
+    },
+    "place": {
+     "k": 69,
+     "n": 80,
+     "p": 0.8625,
+     "lo": 0.7703270280036946,
+     "hi": 0.9214536632044886
+    },
+    "grounding": {
+     "k": 75,
+     "n": 80,
+     "p": 0.9375,
+     "lo": 0.8618967084664824,
+     "hi": 0.9730110223020145
+    }
+   },
+   "spatial": {
+    "grasp": {
+     "k": 10,
+     "n": 13,
+     "p": 0.7692307692307693,
+     "lo": 0.49743126004873084,
+     "hi": 0.918206209075343
+    },
+    "place": {
+     "k": 9,
+     "n": 13,
+     "p": 0.6923076923076923,
+     "lo": 0.4236888781333764,
+     "hi": 0.8731950283838191
+    },
+    "grounding": {
+     "k": 13,
+     "n": 13,
+     "p": 1.0,
+     "lo": 0.7718981569447083,
+     "hi": 1.0
+    }
+   },
+   "synonym": {
+    "grasp": {
+     "k": 11,
+     "n": 16,
+     "p": 0.6875,
+     "lo": 0.4440393186673406,
+     "hi": 0.8583556494803894
+    },
+    "place": {
+     "k": 11,
+     "n": 16,
+     "p": 0.6875,
+     "lo": 0.4440393186673406,
+     "hi": 0.8583556494803894
+    },
+    "grounding": {
+     "k": 12,
+     "n": 16,
+     "p": 0.75,
+     "lo": 0.5050123107060135,
+     "hi": 0.8981809801576265
+    }
+   }
+  },
+  "lighting": {
+   "degraded": {
+    "grasp": {
+     "k": 26,
+     "n": 31,
+     "p": 0.8387096774193549,
+     "lo": 0.6736529727502113,
+     "hi": 0.9290748009456006
+    },
+    "place": {
+     "k": 26,
+     "n": 31,
+     "p": 0.8387096774193549,
+     "lo": 0.6736529727502113,
+     "hi": 0.9290748009456006
+    },
+    "grounding": {
+     "k": 29,
+     "n": 31,
+     "p": 0.9354838709677419,
+     "lo": 0.7928101168125354,
+     "hi": 0.9821255922249368
+    }
+   },
+   "nominal": {
+    "grasp": {
+     "k": 71,
+     "n": 89,
+     "p": 0.797752808988764,
+     "lo": 0.7028015582268841,
+     "hi": 0.868063226524779
+    },
+    "place": {
+     "k": 70,
+     "n": 89,
+     "p": 0.7865168539325843,
+     "lo": 0.6904695876500676,
+     "hi": 0.8588531297524761
+    },
+    "grounding": {
+     "k": 78,
+     "n": 89,
+     "p": 0.8764044943820225,
+     "lo": 0.7920937020326948,
+     "hi": 0.9295655541628038
+    }
+   }
+  },
+  "kinds": {
+   "bar": {
+    "grasp": {
+     "k": 20,
+     "n": 21,
+     "p": 0.9523809523809523,
+     "lo": 0.7733018341376452,
+     "hi": 0.9915442305280766
+    },
+    "place": {
+     "k": 20,
+     "n": 21,
+     "p": 0.9523809523809523,
+     "lo": 0.7733018341376452,
+     "hi": 0.9915442305280766
+    }
+   },
+   "can": {
+    "grasp": {
+     "k": 30,
+     "n": 32,
+     "p": 0.9375,
+     "lo": 0.7985253275199642,
+     "hi": 0.9826897968048427
+    },
+    "place": {
+     "k": 30,
+     "n": 32,
+     "p": 0.9375,
+     "lo": 0.7985253275199642,
+     "hi": 0.9826897968048427
+    }
+   },
+   "cube": {
+    "grasp": {
+     "k": 22,
+     "n": 26,
+     "p": 0.8461538461538461,
+     "lo": 0.6646841558168644,
+     "hi": 0.9385006600107053
+    },
+    "place": {
+     "k": 22,
+     "n": 26,
+     "p": 0.8461538461538461,
+     "lo": 0.6646841558168644,
+     "hi": 0.9385006600107053
+    }
+   },
+   "screwdriver": {
+    "grasp": {
+     "k": 25,
+     "n": 41,
+     "p": 0.6097560975609756,
+     "lo": 0.45726583898692563,
+     "hi": 0.7434406478467289
+    },
+    "place": {
+     "k": 24,
+     "n": 41,
+     "p": 0.5853658536585366,
+     "lo": 0.433668353568366,
+     "hi": 0.7224366917466984
+    }
+   }
+  },
+  "aborts": {
+   "no_grasp": 7
+  },
+  "latency_ms": {
+   "parse": {
+    "n": 119,
+    "median_ms": 0.09085200144909322,
+    "p90_ms": 0.11588499619392678,
+    "p99_ms": 0.2187236613826819,
+    "mean_ms": 0.09716740321952991,
+    "max_ms": 0.3982900016126223
+   },
+   "capture": {
+    "n": 119,
+    "median_ms": 8.312537000165321,
+    "p90_ms": 10.54106500087073,
+    "p99_ms": 15.218904638604727,
+    "mean_ms": 8.903086772729043,
+    "max_ms": 15.275416997610591
+   },
+   "grounding": {
+    "n": 119,
+    "median_ms": 333.8896860004752,
+    "p90_ms": 581.0758359977626,
+    "p99_ms": 622.1661497624882,
+    "mean_ms": 367.5583203024443,
+    "max_ms": 638.8963630015496
+   },
+   "segmentation": {
+    "n": 119,
+    "median_ms": 15.436531997693237,
+    "p90_ms": 21.56225900107529,
+    "p99_ms": 32.999291063169935,
+    "mean_ms": 16.611083193440987,
+    "max_ms": 34.22036599658895
+   },
+   "depth_fusion": {
+    "n": 119,
+    "median_ms": 3.482156003883574,
+    "p90_ms": 5.146161596348975,
+    "p99_ms": 7.0891561976168305,
+    "mean_ms": 3.6150188571206066,
+    "max_ms": 7.9772780009079725
+   },
+   "execute": {
+    "n": 119,
+    "median_ms": 377.23228499817196,
+    "p90_ms": 480.0161018036306,
+    "p99_ms": 583.3712111189376,
+    "mean_ms": 387.07114865509607,
+    "max_ms": 648.1686059996719
+   },
+   "end_to_end": {
+    "n": 119,
+    "median_ms": 759.7741080026026,
+    "p90_ms": 1094.2589488025988,
+    "p99_ms": 1201.8505884190379,
+    "mean_ms": 779.4315649326494,
+    "max_ms": 1215.0199339957908
+   }
+  }
+ },
+ "trials": [
+  {
+   "seed": 5000,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the blue cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.808119002613239,
+    "capture": 116.75852399639552,
+    "grounding": 312.8422059962759,
+    "segmentation": 13.797997999063227,
+    "depth_fusion": 2.6044330006698146,
+    "execute": 318.3437999978196,
+    "end_to_end": 779.4846520046121
+   },
+   "extra": {
+    "box": [
+     239.7628936767578,
+     201.53402709960938,
+     273.9515380859375,
+     239.86141967773438
+    ],
+    "score": 0.7469433546066284,
+    "grounding_info": {
+     "query": "blue cube",
+     "fallback": false,
+     "latency_ms": 312.45468700217316
+    },
+    "select_info": {
+     "n_candidates": 3,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      -0.06447944641113282,
+      -0.21519024658203126,
+      0.014066868100072905
+     ],
+     "psi": -0.22477520686324315,
+     "width": 0.024782330497272173,
+     "long_axis": [
+      -0.7307069097617288,
+      -0.6826913006816951,
+      0.0
+     ],
+     "aspect": 1.0367292746560495,
+     "n": 828,
+     "grasp_z": 0.014066868100072905,
+     "median_z": 0.023447426057563003,
+     "max_z": 0.02813373620014581,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 5001,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the blue cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.07887199899414554,
+    "capture": 7.447821997629944,
+    "grounding": 297.1904239966534,
+    "segmentation": 12.890935002360493,
+    "depth_fusion": 2.159852003387641,
+    "execute": 283.6597920031636,
+    "end_to_end": 616.8617469957098
+   },
+   "extra": {
+    "box": [
+     356.60467529296875,
+     196.39788818359375,
+     386.60400390625,
+     232.6956329345703
+    ],
+    "score": 0.7812610268592834,
+    "grounding_info": {
+     "query": "blue cube",
+     "fallback": false,
+     "latency_ms": 296.9272859991179
+    },
+    "select_info": {
+     "n_candidates": 3,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": true
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      0.05392268753051758,
+      -0.20808905029296876,
+      0.014075196093525444
+     ],
+     "psi": 0.13715053245215447,
+     "width": 0.024363179352526295,
+     "long_axis": [
+      -0.41051672823493807,
+      0.9118530670230166,
+      0.0
+     ],
+     "aspect": 1.070295883268754,
+     "n": 770,
+     "grasp_z": 0.014075196093525444,
+     "median_z": 0.023967982719379388,
+     "max_z": 0.02815039218705089,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 5002,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.08489200263284147,
+    "capture": 7.9198940002243035,
+    "grounding": 310.80336699960753,
+    "segmentation": 12.958418003108818,
+    "depth_fusion": 4.104209998331498,
+    "execute": 351.9168009952409,
+    "end_to_end": 701.4822650016868
+   },
+   "extra": {
+    "box": [
+     229.38523864746094,
+     187.6714324951172,
+     340.8427429199219,
+     290.646728515625
+    ],
+    "score": 0.9276583790779114,
+    "grounding_info": {
+     "query": "red screwdriver",
+     "fallback": false,
+     "latency_ms": 310.65401199884946
+    },
+    "select_info": {
+     "n_candidates": 1,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      -0.06539968102713746,
+      -0.20703689831584313,
+      0.012148939466287562
+     ],
+     "psi": -2.3634130904873825,
+     "width": 0.019060151712858207,
+     "long_axis": [
+      -0.7019840813492955,
+      0.7121926351291381,
+      0.0
+     ],
+     "aspect": 7.298357998453175,
+     "n": 1647,
+     "grasp_z": 0.012148939466287562,
+     "median_z": 0.019617262491514853,
+     "max_z": 0.024297878932575123,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 5003,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the blue screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "no_grasp",
+   "latency_ms": {
+    "parse": 0.10134300100617111,
+    "capture": 9.800250001717359,
+    "grounding": 301.9393790018512,
+    "segmentation": 12.854903005063534,
+    "depth_fusion": 2.4454800004605204,
+    "execute": 351.9168009952409,
+    "end_to_end": 340.8144999993965
+   },
+   "extra": {
+    "box": [
+     286.7019958496094,
+     181.21551513671875,
+     403.8999938964844,
+     276.47705078125
+    ],
+    "score": 0.7982326745986938,
+    "grounding_info": {
+     "query": "blue screwdriver",
+     "fallback": false,
+     "latency_ms": 301.7241939960513
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": true
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": null
+   }
+  },
+  {
+   "seed": 5004,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the green cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.08662199979880825,
+    "capture": 7.447441996191628,
+    "grounding": 289.0121239979635,
+    "segmentation": 12.781042998540215,
+    "depth_fusion": 2.151292996131815,
+    "execute": 338.5009440025897,
+    "end_to_end": 663.3963650019723
+   },
+   "extra": {
+    "box": [
+     215.9219512939453,
+     206.96511840820312,
+     253.8980712890625,
+     249.90980529785156
+    ],
+    "score": 0.824192464351654,
+    "grounding_info": {
+     "query": "green cube",
+     "fallback": false,
+     "latency_ms": 288.7986589994398
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      -0.08665127563476563,
+      -0.22607081604003906,
+      0.014035300455318644
+     ],
+     "psi": 0.7699220682498069,
+     "width": 0.024719015604603746,
+     "long_axis": [
+      -0.984282359474449,
+      0.17660191626200325,
+      0.0
+     ],
+     "aspect": 1.0904341608534815,
+     "n": 865,
+     "grasp_z": 0.014035300455318644,
+     "median_z": 0.023447426057563003,
+     "max_z": 0.02807060091063729,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 5005,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the blue cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.08447199797956273,
+    "capture": 7.517033998738043,
+    "grounding": 289.74380099680275,
+    "segmentation": 13.138129994331393,
+    "depth_fusion": 2.1477729969774373,
+    "execute": 268.8650920026703,
+    "end_to_end": 595.3899009982706
+   },
+   "extra": {
+    "box": [
+     307.63873291015625,
+     194.01377868652344,
+     343.362548828125,
+     235.54115295410156
+    ],
+    "score": 0.7482694387435913,
+    "grounding_info": {
+     "query": "blue cube",
+     "fallback": false,
+     "latency_ms": 289.4318740000017
+    },
+    "select_info": {
+     "n_candidates": 4,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      0.006147083759307862,
+      -0.20812110900878905,
+      0.013915364098808447
+     ],
+     "psi": 0.7456126672405365,
+     "width": 0.02510272286253607,
+     "long_axis": [
+      -0.9968434570678004,
+      0.0793922042842773,
+      0.0
+     ],
+     "aspect": 1.0754243018295981,
+     "n": 842,
+     "grasp_z": 0.013915364098808447,
+     "median_z": 0.02349786262988174,
+     "max_z": 0.027830728197616894,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 5006,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.07702199945924804,
+    "capture": 7.507654001528863,
+    "grounding": 307.66967000090517,
+    "segmentation": 15.450578997842968,
+    "depth_fusion": 3.0308340064948425,
+    "execute": 306.58506299369037,
+    "end_to_end": 656.1976380035048
+   },
+   "extra": {
+    "box": [
+     299.96856689453125,
+     167.81752014160156,
+     327.81854248046875,
+     226.209716796875
+    ],
+    "score": 0.3698672354221344,
+    "grounding_info": {
+     "query": "red can",
+     "fallback": false,
+     "latency_ms": 307.5215360004222
+    },
+    "select_info": {
+     "n_candidates": 1,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:can",
+    "grasp": {
+     "center": [
+      -0.00601267147064209,
+      -0.19994056701660157,
+      0.03259700786941154
+     ],
+     "psi": 0.0,
+     "width": 0.024671741919157227,
+     "long_axis": [
+      -0.9997317140846839,
+      0.02316246647704166,
+      0.0
+     ],
+     "aspect": 1.009832818327752,
+     "n": 1237,
+     "grasp_z": 0.03259700786941154,
+     "median_z": 0.04593321567152131,
+     "max_z": 0.06259700786941154,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 5007,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the blue can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.08107200119411573,
+    "capture": 7.558224999229424,
+    "grounding": 293.6480259959353,
+    "segmentation": 13.047339001786895,
+    "depth_fusion": 2.3068560039973818,
+    "execute": 360.2812460012501,
+    "end_to_end": 692.004773998633
+   },
+   "extra": {
+    "box": [
+     211.96368408203125,
+     157.19021606445312,
+     245.08938598632812,
+     215.91119384765625
+    ],
+    "score": 0.7445226311683655,
+    "grounding_info": {
+     "query": "blue can",
+     "fallback": false,
+     "latency_ms": 293.4899719984969
+    },
+    "select_info": {
+     "n_candidates": 1,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:can",
+    "grasp": {
+     "center": [
+      -0.09485614776611329,
+      -0.18521327209472657,
+      0.03230337876412037
+     ],
+     "psi": 0.5016103860580596,
+     "width": 0.02336971028357495,
+     "long_axis": [
+      -0.9980601844951317,
+      -0.06225647055161135,
+      0.0
+     ],
+     "aspect": 1.0159656575430482,
+     "n": 1241,
+     "grasp_z": 0.03230337876412037,
+     "median_z": 0.044463710146619706,
+     "max_z": 0.06230337876412037,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 5008,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "no_grasp",
+   "latency_ms": {
+    "parse": 0.08311299461638555,
+    "capture": 7.560163998277858,
+    "grounding": 297.24439599522157,
+    "segmentation": 13.271684998471756,
+    "depth_fusion": 4.357746001915075,
+    "execute": 360.2812460012501,
+    "end_to_end": 337.20289199845865
+   },
+   "extra": {
+    "box": [
+     287.1743469238281,
+     176.87025451660156,
+     428.93109130859375,
+     233.16619873046875
+    ],
+    "score": 0.7005999088287354,
+    "grounding_info": {
+     "query": "red screwdriver",
+     "fallback": false,
+     "latency_ms": 297.03337099635974
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "box",
+    "grasp": null
+   }
+  },
+  {
+   "seed": 5009,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.07872200512792915,
+    "capture": 7.396401997539215,
+    "grounding": 293.64101700048195,
+    "segmentation": 12.99952800036408,
+    "depth_fusion": 2.141031996870879,
+    "execute": 320.29404700006125,
+    "end_to_end": 650.4835189989535
+   },
+   "extra": {
+    "box": [
+     283.5932312011719,
+     229.22879028320312,
+     310.6424560546875,
+     265.38885498046875
+    ],
+    "score": 0.7784250378608704,
+    "grounding_info": {
+     "query": "red cube",
+     "fallback": false,
+     "latency_ms": 293.48919299809495
+    },
+    "select_info": {
+     "n_candidates": 1,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      -0.022439971923828125,
+      -0.24990812683105468,
+      0.014043340494249795
+     ],
+     "psi": 0.0037368144835445705,
+     "width": 0.02371111555312895,
+     "long_axis": [
+      -0.005375622116642857,
+      0.9999855512390461,
+      0.0
+     ],
+     "aspect": 1.0692060453276213,
+     "n": 776,
+     "grasp_z": 0.014043340494249795,
+     "median_z": 0.023908941468897327,
+     "max_z": 0.02808668098849959,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 5010,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the blue screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.10556299821473658,
+    "capture": 8.815405999484938,
+    "grounding": 297.5358219991904,
+    "segmentation": 12.808022001991048,
+    "depth_fusion": 3.682089998619631,
+    "execute": 400.53264999733074,
+    "end_to_end": 737.4130929965759
+   },
+   "extra": {
+    "box": [
+     229.98699951171875,
+     212.4200897216797,
+     378.60516357421875,
+     259.33038330078125
+    ],
+    "score": 0.8279744386672974,
+    "grounding_info": {
+     "query": "blue screwdriver",
+     "fallback": false,
+     "latency_ms": 297.3840080012451
+    },
+    "select_info": {
+     "n_candidates": 1,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      -0.056413410777462335,
+      -0.24119659257007398,
+      0.01225203909041089
+     ],
+     "psi": -1.2731044008777062,
+     "width": 0.01847948708417633,
+     "long_axis": [
+      -0.9560160264139536,
+      -0.29331443408000746,
+      0.0
+     ],
+     "aspect": 5.410018269238932,
+     "n": 1549,
+     "grasp_z": 0.01225203909041089,
+     "median_z": 0.019325178623908812,
+     "max_z": 0.02450407818082178,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 5011,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the green screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.10567300341790542,
+    "capture": 8.788596001977567,
+    "grounding": 292.8061359998537,
+    "segmentation": 12.939576998178381,
+    "depth_fusion": 3.714341000886634,
+    "execute": 312.58553900261177,
+    "end_to_end": 645.047974998306
+   },
+   "extra": {
+    "box": [
+     248.544921875,
+     232.9894256591797,
+     405.10626220703125,
+     259.7185974121094
+    ],
+    "score": 0.7423129081726074,
+    "grounding_info": {
+     "query": "green screwdriver",
+     "fallback": false,
+     "latency_ms": 292.5962809968041
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": true
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      0.05145886318688388,
+      -0.24869488066899872,
+      0.011984061258943449
+     ],
+     "psi": -1.6320743133305537,
+     "width": 0.01795734316070994,
+     "long_axis": [
+      -0.9981230916079615,
+      0.06123964401402722,
+      0.0
+     ],
+     "aspect": 6.079674971272135,
+     "n": 1635,
+     "grasp_z": 0.011984061258943449,
+     "median_z": 0.019116971737450306,
+     "max_z": 0.023968122517886898,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 5012,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the yellow can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.11135300155729055,
+    "capture": 8.912217999750283,
+    "grounding": 301.3238149942481,
+    "segmentation": 12.95875699725002,
+    "depth_fusion": 2.5152609960059635,
+    "execute": 329.3693009982235,
+    "end_to_end": 669.0417419958976
+   },
+   "extra": {
+    "box": [
+     292.18389892578125,
+     183.19752502441406,
+     320.3487854003906,
+     241.88987731933594
+    ],
+    "score": 0.6409276127815247,
+    "grounding_info": {
+     "query": "yellow can",
+     "fallback": false,
+     "latency_ms": 301.1103600001661
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:can",
+    "grasp": {
+     "center": [
+      -0.013295148849487305,
+      -0.22059820556640625,
+      0.03241702863513943
+     ],
+     "psi": 0.09586687502401858,
+     "width": 0.024677767781999642,
+     "long_axis": [
+      -0.9980801246378551,
+      0.06193597341516314,
+      0.0
+     ],
+     "aspect": 1.0358478341689354,
+     "n": 1227,
+     "grasp_z": 0.03241702863513943,
+     "median_z": 0.04791103982993883,
+     "max_z": 0.06241702863513943,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 5013,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the green can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.08113299554679543,
+    "capture": 7.502754000597633,
+    "grounding": 288.99637299764436,
+    "segmentation": 14.399752006283961,
+    "depth_fusion": 3.0213840000214987,
+    "execute": 325.33554199471837,
+    "end_to_end": 652.2598220035434
+   },
+   "extra": {
+    "box": [
+     285.51190185546875,
+     205.12220764160156,
+     315.2249755859375,
+     264.11846923828125
+    ],
+    "score": 0.4339113235473633,
+    "grounding_info": {
+     "query": "green can",
+     "fallback": false,
+     "latency_ms": 288.7893980005174
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:can",
+    "grasp": {
+     "center": [
+      -0.018893774032592774,
+      -0.248873291015625,
+      0.03251138047299765
+     ],
+     "psi": -0.051214967962447844,
+     "width": 0.023761692673175367,
+     "long_axis": [
+      -0.9971078364828021,
+      -0.07599975279292387,
+      0.0
+     ],
+     "aspect": 0.9937464623650024,
+     "n": 1211,
+     "grasp_z": 0.03251138047299765,
+     "median_z": 0.04929896665914402,
+     "max_z": 0.06251138047299765,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 5014,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the blue screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.07577199721708894,
+    "capture": 7.42160200024955,
+    "grounding": 286.6242960008094,
+    "segmentation": 12.512804998550564,
+    "depth_fusion": 3.6671100024250336,
+    "execute": 269.417985000473,
+    "end_to_end": 593.4532350001973
+   },
+   "extra": {
+    "box": [
+     219.72592163085938,
+     201.4962921142578,
+     369.018310546875,
+     233.1279296875
+    ],
+    "score": 0.7650874257087708,
+    "grounding_info": {
+     "query": "blue screwdriver",
+     "fallback": false,
+     "latency_ms": 286.41623000294203
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      0.017032729248787622,
+      -0.21211949397078264,
+      0.012137899998944823
+     ],
+     "psi": -1.7622018928173677,
+     "width": 0.01778836833813669,
+     "long_axis": [
+      -0.9817378115274527,
+      0.19023897975254161,
+      0.0
+     ],
+     "aspect": 5.997391230645326,
+     "n": 1519,
+     "grasp_z": 0.012137899998944823,
+     "median_z": 0.019184190302794446,
+     "max_z": 0.024275799997889647,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 5015,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the green cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.07998200453585014,
+    "capture": 7.544574997154996,
+    "grounding": 304.2288560027373,
+    "segmentation": 13.721235001867171,
+    "depth_fusion": 2.0576010065269656,
+    "execute": 284.39717100263806,
+    "end_to_end": 630.3557569990517
+   },
+   "extra": {
+    "box": [
+     357.78485107421875,
+     173.07460021972656,
+     386.38934326171875,
+     208.52484130859375
+    ],
+    "score": 0.7397915124893188,
+    "grounding_info": {
+     "query": "green cube",
+     "fallback": false,
+     "latency_ms": 303.8756559981266
+    },
+    "select_info": {
+     "n_candidates": 4,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      0.05600205230712891,
+      -0.1748660888671875,
+      0.013936343528162162
+     ],
+     "psi": 0.0971487876147279,
+     "width": 0.024302849469624292,
+     "long_axis": [
+      -0.4667541673063289,
+      0.8843871026321989,
+      0.0
+     ],
+     "aspect": 1.0666720379319532,
+     "n": 736,
+     "grasp_z": 0.013936343528162162,
+     "median_z": 0.023594136826611878,
+     "max_z": 0.027872687056324324,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 5016,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the yellow can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.07564199768239632,
+    "capture": 7.441401998221409,
+    "grounding": 295.81814099947223,
+    "segmentation": 12.598446999618318,
+    "depth_fusion": 2.2147739946376532,
+    "execute": 287.41098499449436,
+    "end_to_end": 619.0291090024402
+   },
+   "extra": {
+    "box": [
+     375.5267028808594,
+     155.3007354736328,
+     406.4970703125,
+     213.16500854492188
+    ],
+    "score": 0.6472342610359192,
+    "grounding_info": {
+     "query": "yellow can",
+     "fallback": false,
+     "latency_ms": 295.5570539998007
+    },
+    "select_info": {
+     "n_candidates": 3,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:can",
+    "grasp": {
+     "center": [
+      0.07356821441650391,
+      -0.18288165283203126,
+      0.03238531176209322
+     ],
+     "psi": -0.08865595025370832,
+     "width": 0.023819681428470282,
+     "long_axis": [
+      -0.9767120796834627,
+      0.21455422018782375,
+      0.0
+     ],
+     "aspect": 1.0233886649887098,
+     "n": 1206,
+     "grasp_z": 0.03238531176209322,
+     "median_z": 0.04493862824597833,
+     "max_z": 0.06238531176209322,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 5017,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.07480099884560332,
+    "capture": 8.256461995188147,
+    "grounding": 314.16912900022,
+    "segmentation": 13.224262002040632,
+    "depth_fusion": 2.0308500024839304,
+    "execute": 286.16977400088217,
+    "end_to_end": 637.3868489972665
+   },
+   "extra": {
+    "box": [
+     309.846435546875,
+     195.43673706054688,
+     340.1466369628906,
+     233.00808715820312
+    ],
+    "score": 0.7324267625808716,
+    "grounding_info": {
+     "query": "red cube",
+     "fallback": false,
+     "latency_ms": 313.88448100187816
+    },
+    "select_info": {
+     "n_candidates": 3,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      0.0053741359710693356,
+      -0.20698162841796874,
+      0.013934130887811409
+     ],
+     "psi": 0.18049640867039285,
+     "width": 0.02429422875783655,
+     "long_axis": [
+      -0.3085688456921229,
+      0.9512020119134688,
+      0.0
+     ],
+     "aspect": 1.0551490489437914,
+     "n": 759,
+     "grasp_z": 0.013934130887811409,
+     "median_z": 0.023877161879361286,
+     "max_z": 0.027868261775622818,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 5018,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the blue screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.07806199573678896,
+    "capture": 7.519683997088578,
+    "grounding": 285.80935599893564,
+    "segmentation": 12.44280399987474,
+    "depth_fusion": 3.7595820031128824,
+    "execute": 334.8189829994226,
+    "end_to_end": 657.7760159998434
+   },
+   "extra": {
+    "box": [
+     189.21250915527344,
+     204.06338500976562,
+     335.680419921875,
+     254.29470825195312
+    ],
+    "score": 0.8562989234924316,
+    "grounding_info": {
+     "query": "blue screwdriver",
+     "fallback": false,
+     "latency_ms": 285.6600930026616
+    },
+    "select_info": {
+     "n_candidates": 1,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      -0.01847032644954466,
+      -0.23396391691882468,
+      0.012163688978086144
+     ],
+     "psi": -1.9021414753083254,
+     "width": 0.01826600950338613,
+     "long_axis": [
+      -0.9456056017659259,
+      0.3253153022974806,
+      0.0
+     ],
+     "aspect": 5.5527352661493365,
+     "n": 1574,
+     "grasp_z": 0.012163688978086144,
+     "median_z": 0.019302533276761014,
+     "max_z": 0.024327377956172288,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 5019,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the yellow can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.0724220008123666,
+    "capture": 7.227456997497939,
+    "grounding": 294.37292499642354,
+    "segmentation": 12.951826996868476,
+    "depth_fusion": 2.4496990008628927,
+    "execute": 361.1779769998975,
+    "end_to_end": 691.1197020017426
+   },
+   "extra": {
+    "box": [
+     226.73997497558594,
+     182.6634979248047,
+     259.5548095703125,
+     241.55221557617188
+    ],
+    "score": 0.6433649659156799,
+    "grounding_info": {
+     "query": "yellow can",
+     "fallback": false,
+     "latency_ms": 294.17115899559576
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:can",
+    "grasp": {
+     "center": [
+      -0.07659367370605469,
+      -0.2200126953125,
+      0.03231384573717358
+     ],
+     "psi": 0.23868927480776891,
+     "width": 0.024085064656252056,
+     "long_axis": [
+      -0.9932252291760972,
+      -0.11620518115854009,
+      0.0
+     ],
+     "aspect": 1.0133585390343107,
+     "n": 1269,
+     "grasp_z": 0.03231384573717358,
+     "median_z": 0.046182305871878715,
+     "max_z": 0.06231384573717358,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 5020,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the yellow screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.07788200309732929,
+    "capture": 7.473792997188866,
+    "grounding": 293.62907700124197,
+    "segmentation": 12.874075000581797,
+    "depth_fusion": 3.650938997452613,
+    "execute": 319.28319400321925,
+    "end_to_end": 650.5739499989431
+   },
+   "extra": {
+    "box": [
+     210.15728759765625,
+     184.5971221923828,
+     345.2574157714844,
+     246.74160766601562
+    ],
+    "score": 0.7324670553207397,
+    "grounding_info": {
+     "query": "yellow screwdriver",
+     "fallback": false,
+     "latency_ms": 293.36458099714946
+    },
+    "select_info": {
+     "n_candidates": 3,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": true
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      -0.008662376126194131,
+      -0.22312720388511195,
+      0.012137899998944823
+     ],
+     "psi": -2.0537925881574512,
+     "width": 0.01727034456976361,
+     "long_axis": [
+      -0.8856073322159072,
+      0.46443476735212635,
+      0.0
+     ],
+     "aspect": 6.072831450703262,
+     "n": 1445,
+     "grasp_z": 0.012137899998944823,
+     "median_z": 0.019173134673937553,
+     "max_z": 0.024275799997889647,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 5021,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the yellow screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.09615300223231316,
+    "capture": 7.526452995080035,
+    "grounding": 299.0594009970664,
+    "segmentation": 14.855039997200947,
+    "depth_fusion": 4.380500002298504,
+    "execute": 343.03420299693244,
+    "end_to_end": 707.2773250038153
+   },
+   "extra": {
+    "box": [
+     191.0281982421875,
+     224.8191680908203,
+     347.7001647949219,
+     253.5087432861328
+    ],
+    "score": 0.8304760456085205,
+    "grounding_info": {
+     "query": "yellow screwdriver",
+     "fallback": false,
+     "latency_ms": 298.8913970038993
+    },
+    "select_info": {
+     "n_candidates": 1,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      -0.005887064411668717,
+      -0.23939837091459468,
+      0.012058094268011438
+     ],
+     "psi": -1.5449691873474811,
+     "width": 0.01736209676445129,
+     "long_axis": [
+      -0.9996664979728975,
+      -0.025824268249121925,
+      0.0
+     ],
+     "aspect": 7.21146580605484,
+     "n": 1718,
+     "grasp_z": 0.012058094268011438,
+     "median_z": 0.019245493921591805,
+     "max_z": 0.024116188536022876,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 5022,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the green screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.08287299715448171,
+    "capture": 7.522787003836129,
+    "grounding": 298.7908819995937,
+    "segmentation": 14.462831000855658,
+    "depth_fusion": 4.60054499853868,
+    "execute": 285.178692000045,
+    "end_to_end": 626.672967999184
+   },
+   "extra": {
+    "box": [
+     193.63809204101562,
+     184.98629760742188,
+     343.1477355957031,
+     231.02500915527344
+    ],
+    "score": 0.8423777222633362,
+    "grounding_info": {
+     "query": "green screwdriver",
+     "fallback": false,
+     "latency_ms": 298.63142899557715
+    },
+    "select_info": {
+     "n_candidates": 1,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      -0.00954821470066564,
+      -0.19058659048829876,
+      0.012112796607061854
+     ],
+     "psi": -1.3738214580084978,
+     "width": 0.01861738331872327,
+     "long_axis": [
+      -0.980663093221885,
+      -0.19570359626865408,
+      0.0
+     ],
+     "aspect": 6.3640454971901645,
+     "n": 1532,
+     "grasp_z": 0.012112796607061854,
+     "median_z": 0.018822365979855094,
+     "max_z": 0.02422559321412371,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 5023,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.07460199412889779,
+    "capture": 7.440264998876955,
+    "grounding": 286.92293600033736,
+    "segmentation": 13.010943999688607,
+    "depth_fusion": 2.507762997993268,
+    "execute": 307.8016959989327,
+    "end_to_end": 630.9775449990411
+   },
+   "extra": {
+    "box": [
+     334.1131896972656,
+     186.41635131835938,
+     363.6429138183594,
+     245.41250610351562
+    ],
+    "score": 0.3525668680667877,
+    "grounding_info": {
+     "query": "red can",
+     "fallback": false,
+     "latency_ms": 286.7699630005518
+    },
+    "select_info": {
+     "n_candidates": 1,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:can",
+    "grasp": {
+     "center": [
+      0.028970993041992188,
+      -0.22450921630859375,
+      0.0323605612261704
+     ],
+     "psi": 0.22527493239703977,
+     "width": 0.023347054600377663,
+     "long_axis": [
+      -0.9689812071059702,
+      0.2471344174239126,
+      0.0
+     ],
+     "aspect": 1.0006522959205826,
+     "n": 1215,
+     "grasp_z": 0.0323605612261704,
+     "median_z": 0.048130529299200475,
+     "max_z": 0.0623605612261704,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 5024,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the green can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.07874199945945293,
+    "capture": 7.486807000532281,
+    "grounding": 309.5933500007959,
+    "segmentation": 14.361836998432409,
+    "depth_fusion": 3.0445160009549,
+    "execute": 305.65246399783064,
+    "end_to_end": 653.7647240038496
+   },
+   "extra": {
+    "box": [
+     368.70556640625,
+     193.7409210205078,
+     400.9338073730469,
+     252.7480010986328
+    ],
+    "score": 0.41888129711151123,
+    "grounding_info": {
+     "query": "green can",
+     "fallback": false,
+     "latency_ms": 309.36708499939414
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:can",
+    "grasp": {
+     "center": [
+      0.06392854690551758,
+      -0.23389627075195313,
+      0.032738553874958526
+     ],
+     "psi": 0.005457749179953897,
+     "width": 0.02382689838748555,
+     "long_axis": [
+      -0.9618680319431865,
+      0.27351396513842025,
+      0.0
+     ],
+     "aspect": 1.0034855817548853,
+     "n": 1255,
+     "grasp_z": 0.032738553874958526,
+     "median_z": 0.04772677796887842,
+     "max_z": 0.06273855387495852,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 5025,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.07462199573637918,
+    "capture": 7.323642996198032,
+    "grounding": 312.11382399487775,
+    "segmentation": 13.49465500243241,
+    "depth_fusion": 2.435210997646209,
+    "execute": 323.9163290054421,
+    "end_to_end": 672.9936129995622
+   },
+   "extra": {
+    "box": [
+     290.34356689453125,
+     189.63107299804688,
+     319.3972473144531,
+     248.1570281982422
+    ],
+    "score": 0.35380446910858154,
+    "grounding_info": {
+     "query": "red can",
+     "fallback": false,
+     "latency_ms": 311.96272099623457
+    },
+    "select_info": {
+     "n_candidates": 1,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:can",
+    "grasp": {
+     "center": [
+      -0.014743512153625488,
+      -0.22845039367675782,
+      0.03255783445182946
+     ],
+     "psi": 0.09196494455288873,
+     "width": 0.023954492626319934,
+     "long_axis": [
+      -0.9965802891982072,
+      0.08263006221477405,
+      0.0
+     ],
+     "aspect": 1.0131421363114135,
+     "n": 1233,
+     "grasp_z": 0.03255783445182946,
+     "median_z": 0.04750651644596088,
+     "max_z": 0.06255783445182946,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 5026,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the blue screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.07916200411273167,
+    "capture": 7.432614002027549,
+    "grounding": 295.41074900043895,
+    "segmentation": 13.518757994461339,
+    "depth_fusion": 3.7247319996822625,
+    "execute": 331.96054799918784,
+    "end_to_end": 665.809113997966
+   },
+   "extra": {
+    "box": [
+     192.23358154296875,
+     198.65371704101562,
+     338.2429504394531,
+     229.92523193359375
+    ],
+    "score": 0.7589585781097412,
+    "grounding_info": {
+     "query": "blue screwdriver",
+     "fallback": false,
+     "latency_ms": 295.20582300028764
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      -0.015142647373246252,
+      -0.2090247647689688,
+      0.012133811713315096
+     ],
+     "psi": -1.7610221321458104,
+     "width": 0.017867445894862298,
+     "long_axis": [
+      -0.9819615647333357,
+      0.18908063197075198,
+      0.0
+     ],
+     "aspect": 6.012331875248881,
+     "n": 1499,
+     "grasp_z": 0.012133811713315096,
+     "median_z": 0.019030071157108197,
+     "max_z": 0.02426762342663019,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 5027,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.09994200081564486,
+    "capture": 8.936622994951904,
+    "grounding": 327.210470000864,
+    "segmentation": 14.375478000147268,
+    "depth_fusion": 3.8013250014046207,
+    "execute": 467.4249029994826,
+    "end_to_end": 835.2090639964445
+   },
+   "extra": {
+    "box": [
+     208.269775390625,
+     174.68402099609375,
+     388.400390625,
+     253.29345703125
+    ],
+    "score": 0.4435576796531677,
+    "grounding_info": {
+     "query": "red screwdriver",
+     "fallback": false,
+     "latency_ms": 326.98480500403093
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": true
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      -0.07824870652695759,
+      -0.23059685491540843,
+      0.01207783473272823
+     ],
+     "psi": -1.115812645635875,
+     "width": 0.018239899696015787,
+     "long_axis": [
+      -0.8982681995745704,
+      -0.43944765516846257,
+      0.0
+     ],
+     "aspect": 5.772017495792906,
+     "n": 1542,
+     "grasp_z": 0.01207783473272823,
+     "median_z": 0.01936234000165915,
+     "max_z": 0.02415566946545646,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 5028,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the blue can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.08240200259024277,
+    "capture": 7.559908997791354,
+    "grounding": 306.9918260007398,
+    "segmentation": 12.761418001900893,
+    "depth_fusion": 2.4950129954959266,
+    "execute": 294.339610998577,
+    "end_to_end": 638.0724140035454
+   },
+   "extra": {
+    "box": [
+     349.3255310058594,
+     160.96978759765625,
+     378.69793701171875,
+     218.9741668701172
+    ],
+    "score": 0.7187176942825317,
+    "grounding_info": {
+     "query": "blue can",
+     "fallback": false,
+     "latency_ms": 306.7763609942631
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:can",
+    "grasp": {
+     "center": [
+      0.0452122802734375,
+      -0.19068328857421876,
+      0.03269130038029375
+     ],
+     "psi": 0.4113621151438358,
+     "width": 0.02269148215880646,
+     "long_axis": [
+      -0.9776960902573695,
+      0.21002465354203909,
+      0.0
+     ],
+     "aspect": 1.045997328506834,
+     "n": 1214,
+     "grasp_z": 0.03269130038029375,
+     "median_z": 0.04519293523764256,
+     "max_z": 0.06269130038029375,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 5029,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the blue cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.09208299888996407,
+    "capture": 7.681441005843226,
+    "grounding": 328.8315309982863,
+    "segmentation": 16.987392998998985,
+    "depth_fusion": 3.069796002819203,
+    "execute": 351.42001300118864,
+    "end_to_end": 724.8087730040425
+   },
+   "extra": {
+    "box": [
+     356.0194396972656,
+     218.0823974609375,
+     391.9595947265625,
+     260.0259704589844
+    ],
+    "score": 0.6820231676101685,
+    "grounding_info": {
+     "query": "blue cube",
+     "fallback": false,
+     "latency_ms": 328.18207499803975
+    },
+    "select_info": {
+     "n_candidates": 6,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      0.05503754806518555,
+      -0.23914692687988282,
+      0.014358782134954423
+     ],
+     "psi": -0.4790816411326433,
+     "width": 0.024865936069661712,
+     "long_axis": [
+      -0.8624635391119271,
+      -0.5061191991048447,
+      0.0
+     ],
+     "aspect": 1.0547582254123165,
+     "n": 847,
+     "grasp_z": 0.014358782134954423,
+     "median_z": 0.023692518308108312,
+     "max_z": 0.028717564269908846,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 5030,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the blue cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.10539199865888804,
+    "capture": 7.616869996127207,
+    "grounding": 330.13097300135996,
+    "segmentation": 14.305907003290486,
+    "depth_fusion": 2.2034540015738457,
+    "execute": 292.44647399900714,
+    "end_to_end": 667.9526279986021
+   },
+   "extra": {
+    "box": [
+     330.0314025878906,
+     219.5741729736328,
+     365.0304870605469,
+     261.7241516113281
+    ],
+    "score": 0.7617715001106262,
+    "grounding_info": {
+     "query": "blue cube",
+     "fallback": false,
+     "latency_ms": 329.6785819984507
+    },
+    "select_info": {
+     "n_candidates": 4,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": true
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      0.028157447814941405,
+      -0.24118016052246094,
+      0.013969514752685023
+     ],
+     "psi": 0.4135320588000324,
+     "width": 0.024687934970563964,
+     "long_axis": [
+      -0.8261991662552077,
+      0.56337814803132,
+      0.0
+     ],
+     "aspect": 1.0812459094344706,
+     "n": 870,
+     "grasp_z": 0.013969514752685023,
+     "median_z": 0.023557279978543566,
+     "max_z": 0.027939029505370045,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 5031,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the green screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.10959299834212288,
+    "capture": 9.337102994322777,
+    "grounding": 329.48492700234056,
+    "segmentation": 13.894245996198151,
+    "depth_fusion": 3.804834996117279,
+    "execute": 372.85389700264204,
+    "end_to_end": 748.052702001587
+   },
+   "extra": {
+    "box": [
+     222.92507934570312,
+     180.31027221679688,
+     340.44354248046875,
+     274.95611572265625
+    ],
+    "score": 0.8379455208778381,
+    "grounding_info": {
+     "query": "green screwdriver",
+     "fallback": false,
+     "latency_ms": 329.3117529974552
+    },
+    "select_info": {
+     "n_candidates": 1,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      -0.06446328986046342,
+      -0.24861473795948577,
+      0.012250527011933294
+     ],
+     "psi": 2.3693378341285056,
+     "width": 0.019471564072931193,
+     "long_axis": [
+      0.697752226556576,
+      0.7163391866534599,
+      0.0
+     ],
+     "aspect": 4.86249496994947,
+     "n": 1472,
+     "grasp_z": 0.012250527011933294,
+     "median_z": 0.01943961223925106,
+     "max_z": 0.024501054023866587,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 5032,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the blue can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.10093300079461187,
+    "capture": 9.030016000906471,
+    "grounding": 323.2472109957598,
+    "segmentation": 13.10907800507266,
+    "depth_fusion": 2.529483004764188,
+    "execute": 331.0559050005395,
+    "end_to_end": 693.4167819999857
+   },
+   "extra": {
+    "box": [
+     292.85491943359375,
+     187.082763671875,
+     321.8716125488281,
+     246.28228759765625
+    ],
+    "score": 0.7264420390129089,
+    "grounding_info": {
+     "query": "blue can",
+     "fallback": false,
+     "latency_ms": 323.0749070062302
+    },
+    "select_info": {
+     "n_candidates": 1,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:can",
+    "grasp": {
+     "center": [
+      -0.012818960189819336,
+      -0.2269412384033203,
+      0.03255859801440106
+     ],
+     "psi": 0.0006070675704834549,
+     "width": 0.02336568182408938,
+     "long_axis": [
+      -0.9834408937618562,
+      0.1812291601174642,
+      0.0
+     ],
+     "aspect": 0.9798911718133526,
+     "n": 1241,
+     "grasp_z": 0.03255859801440106,
+     "median_z": 0.04594972119328167,
+     "max_z": 0.06255859801440106,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 5033,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the green cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.08665199857205153,
+    "capture": 7.773063996864948,
+    "grounding": 346.3839080068283,
+    "segmentation": 15.325521999329794,
+    "depth_fusion": 3.177899001457263,
+    "execute": 363.4340130010969,
+    "end_to_end": 758.0360510037281
+   },
+   "extra": {
+    "box": [
+     293.8384704589844,
+     171.24111938476562,
+     326.61993408203125,
+     210.14041137695312
+    ],
+    "score": 0.794855535030365,
+    "grounding_info": {
+     "query": "green cube",
+     "fallback": false,
+     "latency_ms": 346.0153279957012
+    },
+    "select_info": {
+     "n_candidates": 5,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      -0.010543824195861817,
+      -0.17356910705566406,
+      0.013905866617168219
+     ],
+     "psi": 0.48611911089220516,
+     "width": 0.024514050475280824,
+     "long_axis": [
+      -0.861560949591766,
+      0.5076541442148726,
+      0.0
+     ],
+     "aspect": 1.1064861762495004,
+     "n": 785,
+     "grasp_z": 0.013905866617168219,
+     "median_z": 0.023166095608936565,
+     "max_z": 0.027811733234336437,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 5034,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the yellow screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.0846820039441809,
+    "capture": 8.994105002784636,
+    "grounding": 348.38702699926216,
+    "segmentation": 19.593567994888872,
+    "depth_fusion": 4.475802001252305,
+    "execute": 372.5788699957775,
+    "end_to_end": 773.1107660001726
+   },
+   "extra": {
+    "box": [
+     284.3955993652344,
+     199.93545532226562,
+     410.3874206542969,
+     289.99853515625
+    ],
+    "score": 0.8079259395599365,
+    "grounding_info": {
+     "query": "yellow screwdriver",
+     "fallback": false,
+     "latency_ms": 348.0536490023951
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      0.06265526453023909,
+      -0.22111899991781528,
+      0.012084105669382698
+     ],
+     "psi": -0.9335669705841743,
+     "width": 0.0191630241105576,
+     "long_axis": [
+      -0.8037472929791136,
+      -0.5949708304015812,
+      0.0
+     ],
+     "aspect": 6.234664194137603,
+     "n": 1548,
+     "grasp_z": 0.012084105669382698,
+     "median_z": 0.019479308896859282,
+     "max_z": 0.024168211338765396,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 5035,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the yellow screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.12173299910500646,
+    "capture": 8.323417998326477,
+    "grounding": 333.8896860004752,
+    "segmentation": 16.151182004250586,
+    "depth_fusion": 3.970387995650526,
+    "execute": 444.2649659977178,
+    "end_to_end": 823.1453130065347
+   },
+   "extra": {
+    "box": [
+     207.2755584716797,
+     177.7241668701172,
+     323.9405517578125,
+     273.45556640625
+    ],
+    "score": 0.8707036375999451,
+    "grounding_info": {
+     "query": "yellow screwdriver",
+     "fallback": false,
+     "latency_ms": 333.6827809980605
+    },
+    "select_info": {
+     "n_candidates": 1,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      -0.08804435006560943,
+      -0.19102799413586147,
+      0.012082683955284279
+     ],
+     "psi": -2.2746338473299703,
+     "width": 0.018910084474177892,
+     "long_axis": [
+      -0.7623643630067387,
+      0.6471480340828747,
+      0.0
+     ],
+     "aspect": 6.935804505375134,
+     "n": 1518,
+     "grasp_z": 0.012082683955284279,
+     "median_z": 0.019474740672962954,
+     "max_z": 0.024165367910568558,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 5036,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the blue screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.11942299897782505,
+    "capture": 8.64332600031048,
+    "grounding": 338.79807899938896,
+    "segmentation": 20.493769996392075,
+    "depth_fusion": 4.147312996792607,
+    "execute": 540.319558000192,
+    "end_to_end": 930.1752479950665
+   },
+   "extra": {
+    "box": [
+     251.05215454101562,
+     185.82569885253906,
+     396.1709289550781,
+     211.22308349609375
+    ],
+    "score": 0.7976383566856384,
+    "grounding_info": {
+     "query": "blue screwdriver",
+     "fallback": false,
+     "latency_ms": 338.5512419990846
+    },
+    "select_info": {
+     "n_candidates": 1,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      -0.038186940465730214,
+      -0.18621665593239706,
+      0.01205228123203464
+     ],
+     "psi": -1.4759771949725757,
+     "width": 0.018319030760281706,
+     "long_axis": [
+      -0.9955080331154874,
+      -0.09467711446032478,
+      0.0
+     ],
+     "aspect": 6.32471918672826,
+     "n": 1475,
+     "grasp_z": 0.01205228123203464,
+     "median_z": 0.0191858050113769,
+     "max_z": 0.02410456246406928,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 5037,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.09600300109013915,
+    "capture": 7.641920004971325,
+    "grounding": 334.5278929991764,
+    "segmentation": 20.051309002155904,
+    "depth_fusion": 2.2595159971388057,
+    "execute": 372.8469180059619,
+    "end_to_end": 755.315583999618
+   },
+   "extra": {
+    "box": [
+     358.69091796875,
+     159.951171875,
+     389.2690734863281,
+     218.16488647460938
+    ],
+    "score": 0.34289735555648804,
+    "grounding_info": {
+     "query": "red can",
+     "fallback": false,
+     "latency_ms": 334.3154569956823
+    },
+    "select_info": {
+     "n_candidates": 1,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:can",
+    "grasp": {
+     "center": [
+      0.055714767456054685,
+      -0.18860514831542968,
+      0.03262543061011744
+     ],
+     "psi": -0.09168676905465167,
+     "width": 0.023908857214912684,
+     "long_axis": [
+      -0.9700847937719604,
+      0.24276633393535613,
+      0.0
+     ],
+     "aspect": 0.974478631149129,
+     "n": 1225,
+     "grasp_z": 0.03262543061011744,
+     "median_z": 0.045028489495464286,
+     "max_z": 0.06262543061011744,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 5038,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the blue can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.1176129953819327,
+    "capture": 8.174113005225081,
+    "grounding": 342.73073700023815,
+    "segmentation": 20.07721999689238,
+    "depth_fusion": 2.4326310012838803,
+    "execute": 408.7546009977814,
+    "end_to_end": 799.249076997512
+   },
+   "extra": {
+    "box": [
+     226.73883056640625,
+     176.771728515625,
+     259.2978515625,
+     235.31982421875
+    ],
+    "score": 0.7347132563591003,
+    "grounding_info": {
+     "query": "blue can",
+     "fallback": false,
+     "latency_ms": 342.4467100048787
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:can",
+    "grasp": {
+     "center": [
+      -0.07723202514648438,
+      -0.21278057861328126,
+      0.032680782699904626
+     ],
+     "psi": 0.4532424538142039,
+     "width": 0.02367842748006902,
+     "long_axis": [
+      -0.9941805350149014,
+      -0.10772680166738659,
+      0.0
+     ],
+     "aspect": 0.9990809858072169,
+     "n": 1265,
+     "grasp_z": 0.032680782699904626,
+     "median_z": 0.045294007470245645,
+     "max_z": 0.06268078269990462,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 5039,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the yellow cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.08229200466303155,
+    "capture": 9.245879999070894,
+    "grounding": 346.87396999652265,
+    "segmentation": 18.251304005389102,
+    "depth_fusion": 2.3501489995396696,
+    "execute": 375.2051460032817,
+    "end_to_end": 766.4805710010114
+   },
+   "extra": {
+    "box": [
+     230.99545288085938,
+     172.34918212890625,
+     263.7391357421875,
+     210.8341522216797
+    ],
+    "score": 0.8147975206375122,
+    "grounding_info": {
+     "query": "yellow cube",
+     "fallback": false,
+     "latency_ms": 346.61666300235083
+    },
+    "select_info": {
+     "n_candidates": 3,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      -0.07743678283691406,
+      -0.17469279479980468,
+      0.013892852553669344
+     ],
+     "psi": 0.43560074264713755,
+     "width": 0.0244102156512422,
+     "long_axis": [
+      -0.768248697970898,
+      0.6401514961835361,
+      0.0
+     ],
+     "aspect": 1.0749571725955138,
+     "n": 754,
+     "grasp_z": 0.013892852553669344,
+     "median_z": 0.02334309154395281,
+     "max_z": 0.027785705107338687,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 6000,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the purple screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "purple",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.08868200529832393,
+    "capture": 7.636681002622936,
+    "grounding": 361.459173996991,
+    "segmentation": 15.03672300168546,
+    "depth_fusion": 3.7370430000009947,
+    "execute": 439.8204760000226,
+    "end_to_end": 848.7980919962865
+   },
+   "extra": {
+    "box": [
+     328.0942077636719,
+     170.2887725830078,
+     394.79656982421875,
+     287.1847229003906
+    ],
+    "score": 0.8982818722724915,
+    "grounding_info": {
+     "query": "purple screwdriver",
+     "fallback": false,
+     "latency_ms": 361.2571389967343
+    },
+    "select_info": {
+     "n_candidates": 1,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      0.032508119626661156,
+      -0.2575888733471374,
+      0.012148745407371625
+     ],
+     "psi": 2.741877734519564,
+     "width": 0.02011659005015807,
+     "long_axis": [
+      0.3891557495634253,
+      0.9211719723166399,
+      0.0
+     ],
+     "aspect": 4.543995488005896,
+     "n": 1403,
+     "grasp_z": 0.012148745407371625,
+     "median_z": 0.019901747839801698,
+     "max_z": 0.02429749081474325,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 6001,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the pink can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "pink",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.10846299846889451,
+    "capture": 9.721613001602236,
+    "grounding": 342.4270589966909,
+    "segmentation": 17.928196000866592,
+    "depth_fusion": 3.6122500023338944,
+    "execute": 428.57624500175007,
+    "end_to_end": 819.8098989960272
+   },
+   "extra": {
+    "box": [
+     225.0741729736328,
+     161.7701416015625,
+     257.0391540527344,
+     219.66445922851562
+    ],
+    "score": 0.6545650959014893,
+    "grounding_info": {
+     "query": "pink can",
+     "fallback": false,
+     "latency_ms": 342.03815000364557
+    },
+    "select_info": {
+     "n_candidates": 3,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:can",
+    "grasp": {
+     "center": [
+      -0.08123186492919922,
+      -0.190344970703125,
+      0.03245946401994957
+     ],
+     "psi": 0.28892900982378666,
+     "width": 0.023918704987078834,
+     "long_axis": [
+      -0.9991379145618261,
+      -0.04151418655164985,
+      0.0
+     ],
+     "aspect": 1.011347247854661,
+     "n": 1231,
+     "grasp_z": 0.03245946401994957,
+     "median_z": 0.04427696200563036,
+     "max_z": 0.06245946401994957,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 6002,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the purple screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "purple",
+   "grounding_correct": false,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "no_grasp",
+   "latency_ms": {
+    "parse": 0.08350199641427025,
+    "capture": 7.79123399843229,
+    "grounding": 334.8965019977186,
+    "segmentation": 21.664279003744014,
+    "depth_fusion": 2.8976920002605766,
+    "execute": 428.57624500175007,
+    "end_to_end": 385.5890249978984
+   },
+   "extra": {
+    "box": [
+     278.4979553222656,
+     213.0017852783203,
+     415.1031188964844,
+     302.02593994140625
+    ],
+    "score": 0.8074929118156433,
+    "grounding_info": {
+     "query": "purple screwdriver",
+     "fallback": false,
+     "latency_ms": 334.5179929965525
+    },
+    "select_info": {
+     "n_candidates": 3,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": true
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": null
+   }
+  },
+  {
+   "seed": 6003,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.08705199434189126,
+    "capture": 7.5222759987809695,
+    "grounding": 336.5268699999433,
+    "segmentation": 14.376525999978185,
+    "depth_fusion": 3.775163997488562,
+    "execute": 473.62973299459554,
+    "end_to_end": 849.8539369975333
+   },
+   "extra": {
+    "box": [
+     267.1053771972656,
+     206.13204956054688,
+     317.0312194824219,
+     272.5461730957031
+    ],
+    "score": 0.7653249502182007,
+    "grounding_info": {
+     "query": "red bar",
+     "fallback": false,
+     "latency_ms": 336.3172639947152
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      -0.027160524294207292,
+      -0.24057613940133998,
+      0.014256061911038814
+     ],
+     "psi": 2.7202635040483587,
+     "width": 0.025131662345216566,
+     "long_axis": [
+      0.40897372426592876,
+      0.9125461593037669,
+      0.0
+     ],
+     "aspect": 2.340741630700391,
+     "n": 1711,
+     "grasp_z": 0.014256061911038814,
+     "median_z": 0.02429749081474325,
+     "max_z": 0.02851212382207763,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 6004,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the purple cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "purple",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.08301200432470068,
+    "capture": 8.48083000164479,
+    "grounding": 345.42586099996697,
+    "segmentation": 14.421356994716916,
+    "depth_fusion": 2.3687390057602897,
+    "execute": 322.24140600010287,
+    "end_to_end": 707.340758999635
+   },
+   "extra": {
+    "box": [
+     303.0149230957031,
+     220.94076538085938,
+     339.63909912109375,
+     263.9553527832031
+    ],
+    "score": 0.739608883857727,
+    "grounding_info": {
+     "query": "purple cube",
+     "fallback": false,
+     "latency_ms": 345.084193002549
+    },
+    "select_info": {
+     "n_candidates": 4,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      0.0013527431488037109,
+      -0.24387786865234376,
+      0.013852448444548027
+     ],
+     "psi": 0.6887512484901457,
+     "width": 0.024569924065940746,
+     "long_axis": [
+      -0.9721696003920276,
+      0.23427818522774455,
+      0.0
+     ],
+     "aspect": 1.0706031952059296,
+     "n": 864,
+     "grasp_z": 0.013852448444548027,
+     "median_z": 0.023692518308108312,
+     "max_z": 0.027704896889096053,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 6005,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the blue bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.1277230039704591,
+    "capture": 8.163432001310866,
+    "grounding": 346.62260999903083,
+    "segmentation": 20.05207600450376,
+    "depth_fusion": 4.390339003293775,
+    "execute": 423.5798940062523,
+    "end_to_end": 822.6986650042818
+   },
+   "extra": {
+    "box": [
+     363.45135498046875,
+     213.9614715576172,
+     413.1933288574219,
+     282.0149230957031
+    ],
+    "score": 0.635903537273407,
+    "grounding_info": {
+     "query": "blue bar",
+     "fallback": false,
+     "latency_ms": 346.1679079991882
+    },
+    "select_info": {
+     "n_candidates": 4,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      0.06766471366531543,
+      -0.25018894943756304,
+      0.014138531688166778
+     ],
+     "psi": -2.7725691801449797,
+     "width": 0.024926240047797553,
+     "long_axis": [
+      -0.36070481727958364,
+      0.9326800280864291,
+      0.0
+     ],
+     "aspect": 2.3850918156542114,
+     "n": 1773,
+     "grasp_z": 0.014138531688166778,
+     "median_z": 0.024245925853759842,
+     "max_z": 0.028277063376333556,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 6006,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the blue bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.1276829934795387,
+    "capture": 9.260237995476928,
+    "grounding": 331.90067499526776,
+    "segmentation": 14.0428580052685,
+    "depth_fusion": 3.1351280049420893,
+    "execute": 423.7637990008807,
+    "end_to_end": 796.874833999027
+   },
+   "extra": {
+    "box": [
+     220.06080627441406,
+     186.6999969482422,
+     283.2701416015625,
+     246.2509002685547
+    ],
+    "score": 0.621655285358429,
+    "grounding_info": {
+     "query": "blue bar",
+     "fallback": false,
+     "latency_ms": 331.6377789960825
+    },
+    "select_info": {
+     "n_candidates": 3,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      -0.06977987100400393,
+      -0.21012503697026802,
+      0.013995408720808964
+     ],
+     "psi": -0.8602908501538593,
+     "width": 0.026100502648338172,
+     "long_axis": [
+      -0.7580322923762053,
+      -0.6522170219450542,
+      0.0
+     ],
+     "aspect": 2.249344722389918,
+     "n": 1807,
+     "grasp_z": 0.013995408720808964,
+     "median_z": 0.023800807381026357,
+     "max_z": 0.027990817441617927,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 6007,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the yellow bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.08118199912132695,
+    "capture": 7.6706399995600805,
+    "grounding": 331.1715469972114,
+    "segmentation": 19.340828999702353,
+    "depth_fusion": 3.0867169989505783,
+    "execute": 413.91570499399677,
+    "end_to_end": 792.4241139990045
+   },
+   "extra": {
+    "box": [
+     272.8486022949219,
+     213.01931762695312,
+     312.9479064941406,
+     279.5531005859375
+    ],
+    "score": 0.7115148305892944,
+    "grounding_info": {
+     "query": "yellow bar",
+     "fallback": false,
+     "latency_ms": 330.87715999863576
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:can",
+    "grasp": {
+     "center": [
+      -0.027293257213908927,
+      -0.24879982602645426,
+      0.014098080690066545
+     ],
+     "psi": -2.877779439152688,
+     "width": 0.024229483087717846,
+     "long_axis": [
+      -0.26076372612714643,
+      0.9654026512995946,
+      0.0
+     ],
+     "aspect": 2.443139058942828,
+     "n": 1556,
+     "grasp_z": 0.014098080690066545,
+     "median_z": 0.024599662597028782,
+     "max_z": 0.02819616138013309,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 6008,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the blue bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.08312200225191191,
+    "capture": 9.20539799699327,
+    "grounding": 350.2093790011713,
+    "segmentation": 19.912972005840857,
+    "depth_fusion": 3.846006002277136,
+    "execute": 410.6282749999082,
+    "end_to_end": 808.8341120019322
+   },
+   "extra": {
+    "box": [
+     290.0572509765625,
+     218.7825164794922,
+     357.0059814453125,
+     271.99176025390625
+    ],
+    "score": 0.6088265180587769,
+    "grounding_info": {
+     "query": "blue bar",
+     "fallback": false,
+     "latency_ms": 349.82919000322
+    },
+    "select_info": {
+     "n_candidates": 3,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      0.004095056600408117,
+      -0.2475315435594168,
+      0.014059500603045096
+     ],
+     "psi": -1.9602310049528207,
+     "width": 0.02563422025929873,
+     "long_axis": [
+      -0.9251238408657608,
+      0.3796654831055656,
+      0.0
+     ],
+     "aspect": 2.2790589776514976,
+     "n": 1917,
+     "grasp_z": 0.014059500603045096,
+     "median_z": 0.02401139092947452,
+     "max_z": 0.02811900120609019,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 6009,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the purple cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "purple",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.11484299466246739,
+    "capture": 9.57845700031612,
+    "grounding": 334.5104710024316,
+    "segmentation": 13.869842994608916,
+    "depth_fusion": 2.1695039977203123,
+    "execute": 447.40521499625174,
+    "end_to_end": 821.5367450029589
+   },
+   "extra": {
+    "box": [
+     367.73577880859375,
+     231.17474365234375,
+     405.7372741699219,
+     275.0097961425781
+    ],
+    "score": 0.8101954460144043,
+    "grounding_info": {
+     "query": "purple cube",
+     "fallback": false,
+     "latency_ms": 334.2936560002272
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      0.0668704605102539,
+      -0.2568056945800781,
+      0.014101160819789857
+     ],
+     "psi": -0.7188967007122158,
+     "width": 0.024866691660723292,
+     "long_axis": [
+      -0.9699565336203312,
+      -0.24327828281051206,
+      0.0
+     ],
+     "aspect": 1.0496806161153989,
+     "n": 896,
+     "grasp_z": 0.014101160819789857,
+     "median_z": 0.023524230713980798,
+     "max_z": 0.028202321639579715,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 6010,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the green bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.09014299575937912,
+    "capture": 8.239762995799538,
+    "grounding": 338.2743640031549,
+    "segmentation": 17.205365002155304,
+    "depth_fusion": 4.758317998494022,
+    "execute": 397.0492380030919,
+    "end_to_end": 783.9376440024353
+   },
+   "extra": {
+    "box": [
+     312.28228759765625,
+     175.62210083007812,
+     373.6888427734375,
+     231.9177703857422
+    ],
+    "score": 0.6873409152030945,
+    "grounding_info": {
+     "query": "green bar",
+     "fallback": false,
+     "latency_ms": 337.80646300147055
+    },
+    "select_info": {
+     "n_candidates": 4,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      0.024393946026296222,
+      -0.19328084742764845,
+      0.014037224434974054
+     ],
+     "psi": -0.9527906082556017,
+     "width": 0.026062403881432654,
+     "long_axis": [
+      -0.8150355850818315,
+      -0.5794109034617113,
+      0.0
+     ],
+     "aspect": 2.2547548189499715,
+     "n": 1718,
+     "grasp_z": 0.014037224434974054,
+     "median_z": 0.02384541564245718,
+     "max_z": 0.02807444886994811,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 6011,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the orange can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "orange",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.08367199916392565,
+    "capture": 7.644798999535851,
+    "grounding": 319.60066100145923,
+    "segmentation": 15.228488002321683,
+    "depth_fusion": 3.7009419975220226,
+    "execute": 382.6894630037714,
+    "end_to_end": 749.6699359980994
+   },
+   "extra": {
+    "box": [
+     282.031494140625,
+     176.63885498046875,
+     310.55224609375,
+     235.07382202148438
+    ],
+    "score": 0.783254086971283,
+    "grounding_info": {
+     "query": "orange can",
+     "fallback": false,
+     "latency_ms": 319.2340030000196
+    },
+    "select_info": {
+     "n_candidates": 3,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:can",
+    "grasp": {
+     "center": [
+      -0.024015893936157228,
+      -0.21217929077148437,
+      0.03258461230418844
+     ],
+     "psi": 0.0,
+     "width": 0.023303234038684652,
+     "long_axis": [
+      -0.9948085249690035,
+      0.1017644272277661,
+      0.0
+     ],
+     "aspect": 0.9878624774054798,
+     "n": 1192,
+     "grasp_z": 0.03258461230418844,
+     "median_z": 0.044787363628030874,
+     "max_z": 0.06258461230418844,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 6012,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the pink can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "pink",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.08565199823351577,
+    "capture": 7.582866994198412,
+    "grounding": 338.5212799985311,
+    "segmentation": 13.542066000809427,
+    "depth_fusion": 3.7596330002998,
+    "execute": 437.9063689993927,
+    "end_to_end": 818.1894630033639
+   },
+   "extra": {
+    "box": [
+     215.2942657470703,
+     203.36309814453125,
+     249.94464111328125,
+     262.09320068359375
+    ],
+    "score": 0.7951845526695251,
+    "grounding_info": {
+     "query": "pink can",
+     "fallback": false,
+     "latency_ms": 338.31189399643335
+    },
+    "select_info": {
+     "n_candidates": 1,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:can",
+    "grasp": {
+     "center": [
+      -0.08513603973388671,
+      -0.24571253967285156,
+      0.03269001752509715
+     ],
+     "psi": 0.35837905788892765,
+     "width": 0.02371524575059515,
+     "long_axis": [
+      -0.9999370769472556,
+      0.011217938588612164,
+      0.0
+     ],
+     "aspect": 0.9798780829714097,
+     "n": 1265,
+     "grasp_z": 0.03269001752509715,
+     "median_z": 0.04863358297088349,
+     "max_z": 0.06269001752509715,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 6013,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the green bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.08296200394397601,
+    "capture": 9.819392005738337,
+    "grounding": 342.50655899813864,
+    "segmentation": 15.893353003775701,
+    "depth_fusion": 3.170037998643238,
+    "execute": 369.4022740019136,
+    "end_to_end": 761.8395370009239
+   },
+   "extra": {
+    "box": [
+     267.9029541015625,
+     217.7425994873047,
+     315.2200012207031,
+     285.6556701660156
+    ],
+    "score": 0.6806755065917969,
+    "grounding_info": {
+     "query": "green bar",
+     "fallback": false,
+     "latency_ms": 342.04395699634915
+    },
+    "select_info": {
+     "n_candidates": 4,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      -0.027095561506595943,
+      -0.25574794748220614,
+      0.01416536704508281
+     ],
+     "psi": 2.7862857400385534,
+     "width": 0.024937098175296123,
+     "long_axis": [
+      0.3478781252741591,
+      0.9375397644664126,
+      0.0
+     ],
+     "aspect": 2.3718104021461492,
+     "n": 1743,
+     "grasp_z": 0.01416536704508281,
+     "median_z": 0.02432757918136136,
+     "max_z": 0.02833073409016562,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 6014,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the orange can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "orange",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.1308230057475157,
+    "capture": 9.793543002160732,
+    "grounding": 341.5305040034582,
+    "segmentation": 13.888522997149266,
+    "depth_fusion": 2.348529000300914,
+    "execute": 419.5463350042701,
+    "end_to_end": 802.3805519987945
+   },
+   "extra": {
+    "box": [
+     231.1732177734375,
+     175.35183715820312,
+     263.2803039550781,
+     233.5227813720703
+    ],
+    "score": 0.7637162208557129,
+    "grounding_info": {
+     "query": "orange can",
+     "fallback": false,
+     "latency_ms": 341.27064700442133
+    },
+    "select_info": {
+     "n_candidates": 3,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": true
+    },
+    "mask_source": "yolo:can",
+    "grasp": {
+     "center": [
+      -0.0732108154296875,
+      -0.20985009765625,
+      0.03283678058632347
+     ],
+     "psi": -0.2427430553953034,
+     "width": 0.02382598407586666,
+     "long_axis": [
+      -0.9999746703966349,
+      -0.007117483062253703,
+      0.0
+     ],
+     "aspect": 1.0443608573554062,
+     "n": 1253,
+     "grasp_z": 0.03283678058632347,
+     "median_z": 0.04469997785909707,
+     "max_z": 0.06283678058632347,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 6015,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the orange can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "orange",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.08459200034849346,
+    "capture": 8.421468999586068,
+    "grounding": 326.9019719955395,
+    "segmentation": 17.792730002838653,
+    "depth_fusion": 3.589649000787176,
+    "execute": 519.8695889994269,
+    "end_to_end": 897.8592549974564
+   },
+   "extra": {
+    "box": [
+     205.81475830078125,
+     210.66322326660156,
+     241.2766876220703,
+     269.96697998046875
+    ],
+    "score": 0.791987955570221,
+    "grounding_info": {
+     "query": "orange can",
+     "fallback": false,
+     "latency_ms": 326.60427499649813
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:can",
+    "grasp": {
+     "center": [
+      -0.09323937225341797,
+      -0.25522187805175783,
+      0.03243508723521563
+     ],
+     "psi": 0.3336046023743018,
+     "width": 0.023738010319895156,
+     "long_axis": [
+      -0.9921533138806277,
+      0.12502720406251036,
+      0.0
+     ],
+     "aspect": 1.0171717836753078,
+     "n": 1255,
+     "grasp_z": 0.03243508723521563,
+     "median_z": 0.050213062587379065,
+     "max_z": 0.06243508723521563,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 6016,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the green bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.09651300206314772,
+    "capture": 9.305471001425758,
+    "grounding": 409.3060829982278,
+    "segmentation": 16.919599001994357,
+    "depth_fusion": 4.732107998279389,
+    "execute": 350.94936799578136,
+    "end_to_end": 809.3923459964572
+   },
+   "extra": {
+    "box": [
+     295.2223815917969,
+     201.73562622070312,
+     333.18670654296875,
+     266.90521240234375
+    ],
+    "score": 0.6832653284072876,
+    "grounding_info": {
+     "query": "green bar",
+     "fallback": false,
+     "latency_ms": 409.04130499984603
+    },
+    "select_info": {
+     "n_candidates": 3,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      -0.004786889566960481,
+      -0.23338262986961758,
+      0.014064646301177292
+     ],
+     "psi": 2.9416195481620635,
+     "width": 0.0246610409249569,
+     "long_axis": [
+      0.19864297225180613,
+      0.9800719206134662,
+      0.0
+     ],
+     "aspect": 2.418199908927826,
+     "n": 1530,
+     "grasp_z": 0.014064646301177292,
+     "median_z": 0.024498406660571348,
+     "max_z": 0.028129292602354583,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 6017,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the yellow bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.08356200123671442,
+    "capture": 7.432773993059527,
+    "grounding": 326.22451500355965,
+    "segmentation": 15.827880997676402,
+    "depth_fusion": 3.813014001934789,
+    "execute": 304.0862580019166,
+    "end_to_end": 672.8977970051346
+   },
+   "extra": {
+    "box": [
+     328.8232727050781,
+     177.23049926757812,
+     391.2106628417969,
+     231.67929077148438
+    ],
+    "score": 0.7594274282455444,
+    "grounding_info": {
+     "query": "yellow bar",
+     "fallback": false,
+     "latency_ms": 326.07011000072816
+    },
+    "select_info": {
+     "n_candidates": 1,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      0.042685506901240386,
+      -0.194157476963848,
+      0.014061347939851686
+     ],
+     "psi": -1.0363572563432513,
+     "width": 0.02606531836289585,
+     "long_axis": [
+      -0.8605544788254383,
+      -0.5093584091516288,
+      0.0
+     ],
+     "aspect": 2.247126169674153,
+     "n": 1702,
+     "grasp_z": 0.014061347939851686,
+     "median_z": 0.02374777980985321,
+     "max_z": 0.028122695879703372,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 6018,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the orange screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "orange",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.08122200233628973,
+    "capture": 7.700710993958637,
+    "grounding": 323.68621200294,
+    "segmentation": 14.970080999773927,
+    "depth_fusion": 5.254808995232452,
+    "execute": 354.7661819975474,
+    "end_to_end": 720.4759439991903
+   },
+   "extra": {
+    "box": [
+     258.322021484375,
+     178.41561889648438,
+     391.860595703125,
+     252.86761474609375
+    ],
+    "score": 0.8220246434211731,
+    "grounding_info": {
+     "query": "orange screwdriver",
+     "fallback": false,
+     "latency_ms": 323.45896599872503
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      -0.03232597692078614,
+      -0.18886957874730553,
+      0.012050668283956567
+     ],
+     "psi": -2.0694510095552747,
+     "width": 0.018262662014693728,
+     "long_axis": [
+      -0.8782267469792416,
+      0.47824447815971605,
+      0.0
+     ],
+     "aspect": 6.812336709801397,
+     "n": 1525,
+     "grasp_z": 0.012050668283956567,
+     "median_z": 0.019074023957287467,
+     "max_z": 0.024101336567913134,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 6019,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.0860820000525564,
+    "capture": 8.065039997745771,
+    "grounding": 333.6967499999446,
+    "segmentation": 14.183420003973879,
+    "depth_fusion": 3.437754996411968,
+    "execute": 348.3866440001293,
+    "end_to_end": 722.4842840005294
+   },
+   "extra": {
+    "box": [
+     352.2039489746094,
+     179.89956665039062,
+     398.0331115722656,
+     243.68911743164062
+    ],
+    "score": 0.5687183141708374,
+    "grounding_info": {
+     "query": "red bar",
+     "fallback": false,
+     "latency_ms": 333.26515900262166
+    },
+    "select_info": {
+     "n_candidates": 4,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      0.058281545993581416,
+      -0.20394522817930885,
+      0.013992213079420168
+     ],
+     "psi": 2.7048291159536477,
+     "width": 0.024861192510174858,
+     "long_axis": [
+      0.4230090446816494,
+      0.906125459369462,
+      0.0
+     ],
+     "aspect": 2.379969910965666,
+     "n": 1510,
+     "grasp_z": 0.013992213079420168,
+     "median_z": 0.024348588226349277,
+     "max_z": 0.027984426158840336,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 6020,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the green bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.10138299694517627,
+    "capture": 8.539442002074793,
+    "grounding": 316.8541330014705,
+    "segmentation": 15.19422799901804,
+    "depth_fusion": 3.767802998481784,
+    "execute": 365.57243899733294,
+    "end_to_end": 724.781481003447
+   },
+   "extra": {
+    "box": [
+     212.02755737304688,
+     191.5417938232422,
+     278.0716247558594,
+     240.21966552734375
+    ],
+    "score": 0.7238187789916992,
+    "grounding_info": {
+     "query": "green bar",
+     "fallback": false,
+     "latency_ms": 316.55029600369744
+    },
+    "select_info": {
+     "n_candidates": 3,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      -0.0770529724301899,
+      -0.20968741301869298,
+      0.013987875156290297
+     ],
+     "psi": -1.9043702617848082,
+     "width": 0.025710954788291874,
+     "long_axis": [
+      -0.944878195378044,
+      0.32742204553012466,
+      0.0
+     ],
+     "aspect": 2.289847162030397,
+     "n": 1805,
+     "grasp_z": 0.013987875156290297,
+     "median_z": 0.023803307219836534,
+     "max_z": 0.027975750312580594,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 6021,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the purple cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "purple",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.10275299428030849,
+    "capture": 8.813517997623421,
+    "grounding": 327.3537019995274,
+    "segmentation": 13.779221000731923,
+    "depth_fusion": 2.519312001822982,
+    "execute": 484.0208009991329,
+    "end_to_end": 850.4550009965897
+   },
+   "extra": {
+    "box": [
+     354.5358581542969,
+     223.55441284179688,
+     391.1047668457031,
+     266.4381103515625
+    ],
+    "score": 0.7583553791046143,
+    "grounding_info": {
+     "query": "purple cube",
+     "fallback": false,
+     "latency_ms": 327.0760550003615
+    },
+    "select_info": {
+     "n_candidates": 3,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      0.05332683563232422,
+      -0.24663426208496095,
+      0.013948758588989035
+     ],
+     "psi": -0.5873256239018323,
+     "width": 0.02481383741402613,
+     "long_axis": [
+      -0.9159847867035812,
+      -0.40121299895142354,
+      0.0
+     ],
+     "aspect": 1.0440443326427478,
+     "n": 871,
+     "grasp_z": 0.013948758588989035,
+     "median_z": 0.023705567063532218,
+     "max_z": 0.02789751717797807,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 6022,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the pink can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "pink",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.09474200487602502,
+    "capture": 7.635048998054117,
+    "grounding": 336.79422700515715,
+    "segmentation": 15.350130997831002,
+    "depth_fusion": 2.8485410002758726,
+    "execute": 366.1230629950296,
+    "end_to_end": 747.7865109976847
+   },
+   "extra": {
+    "box": [
+     328.71002197265625,
+     190.27777099609375,
+     357.8974914550781,
+     248.37704467773438
+    ],
+    "score": 0.7110905051231384,
+    "grounding_info": {
+     "query": "pink can",
+     "fallback": false,
+     "latency_ms": 336.4549780017114
+    },
+    "select_info": {
+     "n_candidates": 3,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:can",
+    "grasp": {
+     "center": [
+      0.02314255142211914,
+      -0.22936154174804688,
+      0.032361436199094214
+     ],
+     "psi": -0.023376325070658233,
+     "width": 0.02394311415599113,
+     "long_axis": [
+      -0.9663374145920879,
+      0.25727806194753383,
+      0.0
+     ],
+     "aspect": 1.0288046215588242,
+     "n": 1248,
+     "grasp_z": 0.032361436199094214,
+     "median_z": 0.04497848848001801,
+     "max_z": 0.06236143619909421,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 6023,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the pink screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "pink",
+   "grounding_correct": false,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.11869299487443641,
+    "capture": 8.953901997301728,
+    "grounding": 339.7960750007769,
+    "segmentation": 13.605936997919343,
+    "depth_fusion": 3.7506130029214546,
+    "execute": 339.020209001319,
+    "end_to_end": 719.7023179978714
+   },
+   "extra": {
+    "box": [
+     206.1772918701172,
+     224.583984375,
+     358.5841369628906,
+     271.56121826171875
+    ],
+    "score": 0.7702471613883972,
+    "grounding_info": {
+     "query": "pink screwdriver",
+     "fallback": false,
+     "latency_ms": 339.5871199973044
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": true
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      0.004262958985133815,
+      -0.2562961702047472,
+      0.01216378959068068
+     ],
+     "psi": -1.8604841032575044,
+     "width": 0.01796360127866581,
+     "long_axis": [
+      -0.958333109819993,
+      0.28565302487938243,
+      0.0
+     ],
+     "aspect": 5.785447360882028,
+     "n": 1615,
+     "grasp_z": 0.01216378959068068,
+     "median_z": 0.019219420969226686,
+     "max_z": 0.02432757918136136,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 6024,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.08166200132109225,
+    "capture": 7.749912001600023,
+    "grounding": 332.46772499842336,
+    "segmentation": 13.898584998969454,
+    "depth_fusion": 3.476516001683194,
+    "execute": 318.5398999994504,
+    "end_to_end": 690.5778270011069
+   },
+   "extra": {
+    "box": [
+     338.35064697265625,
+     184.9765625,
+     395.7339172363281,
+     248.20529174804688
+    ],
+    "score": 0.7803572416305542,
+    "grounding_info": {
+     "query": "red bar",
+     "fallback": false,
+     "latency_ms": 332.2437000024365
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      0.04835420150376693,
+      -0.2099924752685524,
+      0.013918616504412918
+     ],
+     "psi": -2.470923873616801,
+     "width": 0.025659976660205627,
+     "long_axis": [
+      -0.6215100523568646,
+      0.7834061876315296,
+      0.0
+     ],
+     "aspect": 2.307744497773783,
+     "n": 1729,
+     "grasp_z": 0.013918616504412918,
+     "median_z": 0.023967982719379388,
+     "max_z": 0.027837233008825835,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 6025,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the green bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.0820420027594082,
+    "capture": 7.547246998001356,
+    "grounding": 337.4248879990773,
+    "segmentation": 18.69635399634717,
+    "depth_fusion": 3.8013640005374327,
+    "execute": 384.4132219965104,
+    "end_to_end": 769.322487001773
+   },
+   "extra": {
+    "box": [
+     241.34274291992188,
+     216.4012908935547,
+     282.7499694824219,
+     282.98016357421875
+    ],
+    "score": 0.664002537727356,
+    "grounding_info": {
+     "query": "green bar",
+     "fallback": false,
+     "latency_ms": 337.1349619992543
+    },
+    "select_info": {
+     "n_candidates": 3,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      -0.056425679107218074,
+      -0.25282016388948364,
+      0.014142669268974284
+     ],
+     "psi": 2.936827909271601,
+     "width": 0.025088060907558912,
+     "long_axis": [
+      0.20333682461422178,
+      0.9791088477568801,
+      0.0
+     ],
+     "aspect": 2.3548708007545485,
+     "n": 1710,
+     "grasp_z": 0.014142669268974284,
+     "median_z": 0.024407312584296015,
+     "max_z": 0.028285338537948568,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 6026,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "red",
+   "grounding_correct": false,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.10374200064688921,
+    "capture": 8.070518997556064,
+    "grounding": 333.1527139962418,
+    "segmentation": 13.840343002812006,
+    "depth_fusion": 3.60425999679137,
+    "execute": 361.2392579962034,
+    "end_to_end": 734.8249320057221
+   },
+   "extra": {
+    "box": [
+     262.03204345703125,
+     175.0297088623047,
+     373.5966491699219,
+     269.72698974609375
+    ],
+    "score": 0.6271793246269226,
+    "grounding_info": {
+     "query": "red bar",
+     "fallback": false,
+     "latency_ms": 332.87480699800653
+    },
+    "select_info": {
+     "n_candidates": 3,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": true
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      -0.026656791380995495,
+      -0.24235267103145186,
+      0.012148745407371625
+     ],
+     "psi": 2.3791662523956605,
+     "width": 0.01944648742090991,
+     "long_axis": [
+      0.6906781583619188,
+      0.7231622788570959,
+      0.0
+     ],
+     "aspect": 4.611592957166129,
+     "n": 1412,
+     "grasp_z": 0.012148745407371625,
+     "median_z": 0.019533021235991654,
+     "max_z": 0.02429749081474325,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 6027,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the pink can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "pink",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.08656200225232169,
+    "capture": 7.841804996132851,
+    "grounding": 329.1410530000576,
+    "segmentation": 16.354583996871952,
+    "depth_fusion": 2.876371996535454,
+    "execute": 325.66495799983386,
+    "end_to_end": 701.0077949962579
+   },
+   "extra": {
+    "box": [
+     349.9536437988281,
+     158.1926727294922,
+     379.2564697265625,
+     216.18751525878906
+    ],
+    "score": 0.7642322778701782,
+    "grounding_info": {
+     "query": "pink can",
+     "fallback": false,
+     "latency_ms": 328.86392599903047
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:can",
+    "grasp": {
+     "center": [
+      0.04615147018432617,
+      -0.1859826354980469,
+      0.03249383483312426
+     ],
+     "psi": -0.30907768768299926,
+     "width": 0.023808150084421262,
+     "long_axis": [
+      -0.9811320146214529,
+      0.1933390024926402,
+      0.0
+     ],
+     "aspect": 0.9872792288592261,
+     "n": 1204,
+     "grasp_z": 0.03249383483312426,
+     "median_z": 0.04497924042732565,
+     "max_z": 0.06249383483312426,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 6028,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the blue bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.0830630015116185,
+    "capture": 7.549916997959372,
+    "grounding": 334.18339900526917,
+    "segmentation": 15.007553003670182,
+    "depth_fusion": 3.857455994875636,
+    "execute": 486.792718002107,
+    "end_to_end": 862.3129109982983
+   },
+   "extra": {
+    "box": [
+     206.33798217773438,
+     186.00762939453125,
+     272.1336669921875,
+     235.72703552246094
+    ],
+    "score": 0.6817566752433777,
+    "grounding_info": {
+     "query": "blue bar",
+     "fallback": false,
+     "latency_ms": 333.87052200123435
+    },
+    "select_info": {
+     "n_candidates": 3,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      -0.08389057806430882,
+      -0.20285374141768536,
+      0.014066549464245518
+     ],
+     "psi": -1.2248916349518097,
+     "width": 0.02593050790261259,
+     "long_axis": [
+      -0.9407691037532541,
+      -0.3390479220158989,
+      0.0
+     ],
+     "aspect": 2.2273506513362467,
+     "n": 1781,
+     "grasp_z": 0.014066549464245518,
+     "median_z": 0.023803307219836534,
+     "max_z": 0.028133098928491036,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 6029,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the blue bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.08106199675239623,
+    "capture": 7.56938799895579,
+    "grounding": 328.3161720028147,
+    "segmentation": 16.837656999996398,
+    "depth_fusion": 4.0671809983905405,
+    "execute": 333.8279500021599,
+    "end_to_end": 708.333506998315
+   },
+   "extra": {
+    "box": [
+     258.1349182128906,
+     205.4170379638672,
+     319.5557861328125,
+     268.0426025390625
+    ],
+    "score": 0.5912247896194458,
+    "grounding_info": {
+     "query": "blue bar",
+     "fallback": false,
+     "latency_ms": 327.95458400505595
+    },
+    "select_info": {
+     "n_candidates": 3,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      -0.031421817438427306,
+      -0.23650434729605582,
+      0.014132762496841977
+     ],
+     "psi": -2.3064542874937892,
+     "width": 0.02587910765831177,
+     "long_axis": [
+      -0.7413893728667553,
+      0.6710751059309525,
+      0.0
+     ],
+     "aspect": 2.284245222100563,
+     "n": 1801,
+     "grasp_z": 0.014132762496841977,
+     "median_z": 0.023980376985955065,
+     "max_z": 0.028265524993683955,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 6030,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the purple screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "purple",
+   "grounding_correct": true,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.09300300007453188,
+    "capture": 7.8530149985454045,
+    "grounding": 325.0940020006965,
+    "segmentation": 15.872103002038784,
+    "depth_fusion": 3.3191710026585497,
+    "execute": 352.1597130020382,
+    "end_to_end": 721.7642589966999
+   },
+   "extra": {
+    "box": [
+     196.12081909179688,
+     196.59750366210938,
+     335.7591247558594,
+     259.6028137207031
+    ],
+    "score": 0.7909727692604065,
+    "grounding_info": {
+     "query": "purple screwdriver",
+     "fallback": false,
+     "latency_ms": 324.868637995678
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": true
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      -0.028920997619628908,
+      -0.2071895751953125,
+      0.01224735184644391
+     ],
+     "psi": 1.1096844316965901,
+     "width": 0.05638662384843619,
+     "long_axis": [
+      -0.9004413248299425,
+      0.43497749428964466,
+      0.0
+     ],
+     "aspect": 1.81576540324229,
+     "n": 1571,
+     "grasp_z": 0.01224735184644391,
+     "median_z": 0.01797160556895394,
+     "max_z": 0.02449470369288782,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 6031,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the yellow bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.09410200436832383,
+    "capture": 8.287504999316297,
+    "grounding": 331.2166150062694,
+    "segmentation": 15.762319999339525,
+    "depth_fusion": 4.248456003551837,
+    "execute": 322.3672460007947,
+    "end_to_end": 696.6034159995615
+   },
+   "extra": {
+    "box": [
+     287.642578125,
+     178.04800415039062,
+     338.4170227050781,
+     240.68467712402344
+    ],
+    "score": 0.7291144728660583,
+    "grounding_info": {
+     "query": "yellow bar",
+     "fallback": false,
+     "latency_ms": 331.0574510032893
+    },
+    "select_info": {
+     "n_candidates": 1,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      -0.007467994852546588,
+      -0.20056636816266266,
+      0.014061368659458756
+     ],
+     "psi": -2.5964606322629695,
+     "width": 0.02491352020239683,
+     "long_axis": [
+      -0.5185309810258028,
+      0.8550588410842955,
+      0.0
+     ],
+     "aspect": 2.3951742334893464,
+     "n": 1593,
+     "grasp_z": 0.014061368659458756,
+     "median_z": 0.024155690222100124,
+     "max_z": 0.028122737318917512,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 6032,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the blue bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.09768299787538126,
+    "capture": 8.889400996849872,
+    "grounding": 336.24245900136884,
+    "segmentation": 17.566593996889424,
+    "depth_fusion": 5.123366994666867,
+    "execute": 404.4367289970978,
+    "end_to_end": 791.5275589984958
+   },
+   "extra": {
+    "box": [
+     218.54820251464844,
+     201.08242797851562,
+     270.36309814453125,
+     267.1707763671875
+    ],
+    "score": 0.6211413145065308,
+    "grounding_info": {
+     "query": "blue bar",
+     "fallback": false,
+     "latency_ms": 335.97512199776247
+    },
+    "select_info": {
+     "n_candidates": 3,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      -0.07540651736901367,
+      -0.23355510318856568,
+      0.014132299205652302
+     ],
+     "psi": 2.7416251141186727,
+     "width": 0.025269457578631367,
+     "long_axis": [
+      0.3893884439764981,
+      0.921073634242975,
+      0.0
+     ],
+     "aspect": 2.3308864680791914,
+     "n": 1752,
+     "grasp_z": 0.014132299205652302,
+     "median_z": 0.023988174796028883,
+     "max_z": 0.028264598411304603,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 6033,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the pink can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "pink",
+   "grounding_correct": false,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.09872200462268665,
+    "capture": 8.929932002502028,
+    "grounding": 325.5114540006616,
+    "segmentation": 16.42354799696477,
+    "depth_fusion": 3.140708002320025,
+    "execute": 493.32542099728016,
+    "end_to_end": 864.4927060013288
+   },
+   "extra": {
+    "box": [
+     382.7500915527344,
+     209.73855590820312,
+     416.6998291015625,
+     269.0059814453125
+    ],
+    "score": 0.7471552491188049,
+    "grounding_info": {
+     "query": "pink can",
+     "fallback": false,
+     "latency_ms": 325.20595700043486
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": true
+    },
+    "mask_source": "yolo:can",
+    "grasp": {
+     "center": [
+      0.07783812713623046,
+      -0.2540178527832031,
+      0.03272707025359814
+     ],
+     "psi": -0.8079532736176565,
+     "width": 0.02367273496605199,
+     "long_axis": [
+      -0.935833685652176,
+      0.35244192826430915,
+      0.0
+     ],
+     "aspect": 0.9938577370412379,
+     "n": 1277,
+     "grasp_z": 0.03272707025359814,
+     "median_z": 0.04861788142540607,
+     "max_z": 0.06272707025359814,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 6034,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the green bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.0848319978103973,
+    "capture": 7.677580004383344,
+    "grounding": 328.69593299983535,
+    "segmentation": 16.735454999434296,
+    "depth_fusion": 4.854831000557169,
+    "execute": 420.7198320000316,
+    "end_to_end": 798.1233010068536
+   },
+   "extra": {
+    "box": [
+     343.8366394042969,
+     214.2459716796875,
+     397.5622253417969,
+     281.43853759765625
+    ],
+    "score": 0.660660445690155,
+    "grounding_info": {
+     "query": "green bar",
+     "fallback": false,
+     "latency_ms": 328.3709050010657
+    },
+    "select_info": {
+     "n_candidates": 4,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      0.0502966862248488,
+      -0.2509728318302319,
+      0.014221528024163457
+     ],
+     "psi": -2.6557327737892864,
+     "width": 0.024917002236849874,
+     "long_axis": [
+      -0.4669689011180297,
+      0.8842737389454806,
+      0.0
+     ],
+     "aspect": 2.358526903566216,
+     "n": 1798,
+     "grasp_z": 0.014221528024163457,
+     "median_z": 0.024163751110982123,
+     "max_z": 0.028443056048326913,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 6035,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the green bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.09687199781183153,
+    "capture": 9.060844997293316,
+    "grounding": 332.3396430059802,
+    "segmentation": 15.703489996667486,
+    "depth_fusion": 4.151922999881208,
+    "execute": 384.73300100304186,
+    "end_to_end": 762.8458979961579
+   },
+   "extra": {
+    "box": [
+     352.9029846191406,
+     184.23272705078125,
+     405.1405334472656,
+     249.1243133544922
+    ],
+    "score": 0.6789138317108154,
+    "grounding_info": {
+     "query": "green bar",
+     "fallback": false,
+     "latency_ms": 331.93048300017836
+    },
+    "select_info": {
+     "n_candidates": 3,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      0.060500885571609514,
+      -0.20975627977991332,
+      0.01409144906193612
+     ],
+     "psi": -2.646421660314026,
+     "width": 0.025352276882471752,
+     "long_axis": [
+      -0.4751821130578311,
+      0.8798874697538853,
+      0.0
+     ],
+     "aspect": 2.3436059693341016,
+     "n": 1686,
+     "grasp_z": 0.01409144906193612,
+     "median_z": 0.024193729550236104,
+     "max_z": 0.02818289812387224,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 6036,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the pink cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "pink",
+   "grounding_correct": false,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.11045300198020414,
+    "capture": 8.339547006471548,
+    "grounding": 320.3378149992204,
+    "segmentation": 15.334331001213286,
+    "depth_fusion": 2.5887750016408972,
+    "execute": 316.6919950017473,
+    "end_to_end": 680.3149429979385
+   },
+   "extra": {
+    "box": [
+     293.4241027832031,
+     178.77880859375,
+     324.051025390625,
+     216.8014678955078
+    ],
+    "score": 0.7307523488998413,
+    "grounding_info": {
+     "query": "pink cube",
+     "fallback": false,
+     "latency_ms": 320.1100799997221
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": true
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      -0.011287503242492676,
+      -0.18379486083984375,
+      0.01386979221065018
+     ],
+     "psi": -0.26072185617734656,
+     "width": 0.02441722327248002,
+     "long_axis": [
+      0.6008518100146593,
+      0.7993604333478783,
+      0.0
+     ],
+     "aspect": 1.0282396481695928,
+     "n": 758,
+     "grasp_z": 0.01386979221065018,
+     "median_z": 0.02350093620399668,
+     "max_z": 0.02773958442130036,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 6037,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the purple screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "purple",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.10349300282541662,
+    "capture": 8.8652100021136,
+    "grounding": 336.36344200203894,
+    "segmentation": 16.329404003045056,
+    "depth_fusion": 5.237340003077406,
+    "execute": 426.58073699567467,
+    "end_to_end": 811.0656520002522
+   },
+   "extra": {
+    "box": [
+     249.5257568359375,
+     232.29612731933594,
+     405.6312561035156,
+     264.8313293457031
+    ],
+    "score": 0.8207517862319946,
+    "grounding_info": {
+     "query": "purple screwdriver",
+     "fallback": false,
+     "latency_ms": 336.1909469967941
+    },
+    "select_info": {
+     "n_candidates": 1,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      -0.03251926371911636,
+      -0.252233936459692,
+      0.012269888490395231
+     ],
+     "psi": -1.3935667677545038,
+     "width": 0.018143913299780056,
+     "long_axis": [
+      -0.9843359073502984,
+      -0.17630320899196555,
+      0.0
+     ],
+     "aspect": 6.130159131152136,
+     "n": 1651,
+     "grasp_z": 0.012269888490395231,
+     "median_z": 0.019590696655890416,
+     "max_z": 0.024539776980790462,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 6038,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the blue bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.08201199671020731,
+    "capture": 7.607018000271637,
+    "grounding": 338.9132270021946,
+    "segmentation": 15.100564000022132,
+    "depth_fusion": 4.481941999983974,
+    "execute": 343.65351300220937,
+    "end_to_end": 723.8123409988475
+   },
+   "extra": {
+    "box": [
+     269.9000244140625,
+     190.5537567138672,
+     313.3365478515625,
+     255.46011352539062
+    ],
+    "score": 0.6097024083137512,
+    "grounding_info": {
+     "query": "blue bar",
+     "fallback": false,
+     "latency_ms": 338.70562099764356
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      -0.02959314835904601,
+      -0.2184927821800002,
+      0.014123959964238115
+     ],
+     "psi": -2.780004633161454,
+     "width": 0.02463355393440856,
+     "long_axis": [
+      -0.3537600117411953,
+      0.9353362251580281,
+      0.0
+     ],
+     "aspect": 2.4375708130296077,
+     "n": 1520,
+     "grasp_z": 0.014123959964238115,
+     "median_z": 0.024516809839744413,
+     "max_z": 0.02824791992847623,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 6039,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the pink cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "pink",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.09770200267666951,
+    "capture": 8.857148997776676,
+    "grounding": 317.01816400163807,
+    "segmentation": 13.874304997443687,
+    "depth_fusion": 2.238786000816617,
+    "execute": 355.8798869999009,
+    "end_to_end": 713.4132930004853
+   },
+   "extra": {
+    "box": [
+     293.4535217285156,
+     198.7111053466797,
+     323.564453125,
+     236.0310821533203
+    ],
+    "score": 0.7612109780311584,
+    "grounding_info": {
+     "query": "pink cube",
+     "fallback": false,
+     "latency_ms": 316.7217560039717
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": true
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      -0.011823267936706542,
+      -0.2116656494140625,
+      0.013988918716491277
+     ],
+     "psi": 0.17653109496531938,
+     "width": 0.024095683988341214,
+     "long_axis": [
+      -0.2817360980345367,
+      0.9594919338192865,
+      0.0
+     ],
+     "aspect": 1.068479232990004,
+     "n": 765,
+     "grasp_z": 0.013988918716491277,
+     "median_z": 0.023712019199045697,
+     "max_z": 0.027977837432982555,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 7000,
+   "stratum": "langvar",
+   "lang_variant": "spatial",
+   "lighting": "nominal",
+   "command": "pick the red screwdriver on the right",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "no_grasp",
+   "latency_ms": {
+    "parse": 0.0820420027594082,
+    "capture": 8.865009003784508,
+    "grounding": 337.87552900321316,
+    "segmentation": 15.436531997693237,
+    "depth_fusion": 2.698026000871323,
+    "execute": 355.8798869999009,
+    "end_to_end": 380.995168001391
+   },
+   "extra": {
+    "box": [
+     312.7170715332031,
+     175.7577667236328,
+     419.428466796875,
+     286.5258483886719
+    ],
+    "score": 0.8349229097366333,
+    "grounding_info": {
+     "query": "red screwdriver",
+     "fallback": false,
+     "latency_ms": 337.6221930011525
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": true,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": null
+   }
+  },
+  {
+   "seed": 7001,
+   "stratum": "langvar",
+   "lang_variant": "synonym",
+   "lighting": "nominal",
+   "command": "pick the yellow cylinder",
+   "target": "can_0",
+   "kind": "can",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.08378200436709449,
+    "capture": 8.09413100068923,
+    "grounding": 347.1786299996893,
+    "segmentation": 18.88223899732111,
+    "depth_fusion": 3.092666003794875,
+    "execute": 408.82799699465977,
+    "end_to_end": 806.8521570021403
+   },
+   "extra": {
+    "box": [
+     236.01010131835938,
+     205.56480407714844,
+     268.4515686035156,
+     264.3508605957031
+    ],
+    "score": 0.7269600033760071,
+    "grounding_info": {
+     "query": "yellow cylinder",
+     "fallback": false,
+     "latency_ms": 346.7890309984796
+    },
+    "select_info": {
+     "n_candidates": 3,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:can",
+    "grasp": {
+     "center": [
+      -0.06537489318847656,
+      -0.2488880920410156,
+      0.0324330312978964
+     ],
+     "psi": 0.6631459532944426,
+     "width": 0.02323430196910943,
+     "long_axis": [
+      -0.9999987793536874,
+      -0.0015624631629322454,
+      0.0
+     ],
+     "aspect": 0.9845652706494119,
+     "n": 1256,
+     "grasp_z": 0.0324330312978964,
+     "median_z": 0.04885345823817233,
+     "max_z": 0.0624330312978964,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 7002,
+   "stratum": "langvar",
+   "lang_variant": "synonym",
+   "lighting": "nominal",
+   "command": "pick the yellow driver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "yellow",
+   "grounding_correct": false,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "no_grasp",
+   "latency_ms": {
+    "parse": 0.07750200165901333,
+    "capture": 8.777506998740137,
+    "grounding": 333.38287899823627,
+    "segmentation": 16.052437997132074,
+    "depth_fusion": 6.583613001566846,
+    "execute": 408.82799699465977,
+    "end_to_end": 378.6718999981531
+   },
+   "extra": {
+    "box": [
+     187.0915985107422,
+     0.16169071197509766,
+     367.2394104003906,
+     163.25811767578125
+    ],
+    "score": 0.5108070373535156,
+    "grounding_info": {
+     "query": "yellow driver",
+     "fallback": false,
+     "latency_ms": 333.11032300116494
+    },
+    "select_info": {
+     "n_candidates": 3,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "box",
+    "grasp": null
+   }
+  },
+  {
+   "seed": 7003,
+   "stratum": "langvar",
+   "lang_variant": "spatial",
+   "lighting": "degraded",
+   "command": "pick the red screwdriver on the right",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.07083200034685433,
+    "capture": 9.818514001381118,
+    "grounding": 343.5363199969288,
+    "segmentation": 15.822061999642756,
+    "depth_fusion": 5.007484003726859,
+    "execute": 377.23228499817196,
+    "end_to_end": 768.0176950016175
+   },
+   "extra": {
+    "box": [
+     254.22286987304688,
+     180.8596649169922,
+     351.4075927734375,
+     294.45440673828125
+    ],
+    "score": 0.8034107685089111,
+    "grounding_info": {
+     "query": "red screwdriver",
+     "fallback": false,
+     "latency_ms": 343.2059010010562
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": true,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      0.007010736474705861,
+      -0.19898631606132336,
+      0.012146074727240505
+     ],
+     "psi": 2.5261978889263936,
+     "width": 0.01983364095828464,
+     "long_axis": [
+      0.5772809106155028,
+      0.8165456204272582,
+      0.0
+     ],
+     "aspect": 6.683369538714573,
+     "n": 1514,
+     "grasp_z": 0.012146074727240505,
+     "median_z": 0.0196490127642297,
+     "max_z": 0.02429214945448101,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 7004,
+   "stratum": "langvar",
+   "lang_variant": "spatial",
+   "lighting": "nominal",
+   "command": "pick the red can on the left",
+   "target": "can_0",
+   "kind": "can",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.09936199785443023,
+    "capture": 8.939011000620667,
+    "grounding": 349.76303500297945,
+    "segmentation": 15.187766999588348,
+    "depth_fusion": 2.5175519986078143,
+    "execute": 430.4513909955858,
+    "end_to_end": 824.1610149998451
+   },
+   "extra": {
+    "box": [
+     288.93359375,
+     151.42593383789062,
+     316.3988037109375,
+     209.05419921875
+    ],
+    "score": 0.3173268735408783,
+    "grounding_info": {
+     "query": "red can",
+     "fallback": false,
+     "latency_ms": 349.5451589988079
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": true,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:can",
+    "grasp": {
+     "center": [
+      -0.018229486465454102,
+      -0.17560379028320314,
+      0.03232052229837498
+     ],
+     "psi": 0.005834053841982101,
+     "width": 0.024141523209476785,
+     "long_axis": [
+      -0.9889930518119638,
+      0.14796196628748312,
+      0.0
+     ],
+     "aspect": 1.021790378385266,
+     "n": 1181,
+     "grasp_z": 0.03232052229837498,
+     "median_z": 0.044543209673166995,
+     "max_z": 0.06232052229837498,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 7005,
+   "stratum": "langvar",
+   "lang_variant": "attribute",
+   "lighting": "nominal",
+   "command": "pick the blue object",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "blue",
+   "grounding_correct": false,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.10181200195802376,
+    "capture": 9.682380004960578,
+    "grounding": 362.3622089944547,
+    "segmentation": 17.37940000020899,
+    "depth_fusion": 4.811908998817671,
+    "execute": 648.1686059996719,
+    "end_to_end": 1062.517692000256
+   },
+   "extra": {
+    "box": [
+     199.89500427246094,
+     193.32376098632812,
+     342.71685791015625,
+     252.0481719970703
+    ],
+    "score": 0.5847086906433105,
+    "grounding_info": {
+     "query": "object",
+     "fallback": false,
+     "latency_ms": 711.3427350050188
+    },
+    "select_info": {
+     "n_candidates": 5,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": true
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      -0.08732163976732306,
+      -0.2294699957007026,
+      0.012115310961282183
+     ],
+     "psi": -1.143280737151755,
+     "width": 0.018844793607272713,
+     "long_axis": [
+      -0.909998621547642,
+      -0.41461127430569383,
+      0.0
+     ],
+     "aspect": 5.4385714721117715,
+     "n": 1549,
+     "grasp_z": 0.012115310961282183,
+     "median_z": 0.019150504801901558,
+     "max_z": 0.024230621922564366,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 7006,
+   "stratum": "langvar",
+   "lang_variant": "attribute",
+   "lighting": "nominal",
+   "command": "pick the green object",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.12640299974009395,
+    "capture": 10.143150997464545,
+    "grounding": 350.3174020006554,
+    "segmentation": 15.90544300415786,
+    "depth_fusion": 5.010913999285549,
+    "execute": 448.32505799422506,
+    "end_to_end": 848.7960710044717
+   },
+   "extra": {
+    "box": [
+     207.20892333984375,
+     175.44317626953125,
+     333.05340576171875,
+     262.42486572265625
+    ],
+    "score": 0.6387606859207153,
+    "grounding_info": {
+     "query": "object",
+     "fallback": false,
+     "latency_ms": 711.6167660060455
+    },
+    "select_info": {
+     "n_candidates": 5,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      -0.08600624916317652,
+      -0.1859155453863738,
+      0.012058927840578649
+     ],
+     "psi": -2.1861885422870007,
+     "width": 0.018638116394369506,
+     "long_axis": [
+      -0.816547092012532,
+      0.57727882909897,
+      0.0
+     ],
+     "aspect": 7.386322427489967,
+     "n": 1588,
+     "grasp_z": 0.012058927840578649,
+     "median_z": 0.019476241275370176,
+     "max_z": 0.024117855681157298,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 7007,
+   "stratum": "langvar",
+   "lang_variant": "attribute",
+   "lighting": "nominal",
+   "command": "grab the green one",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "green",
+   "grounding_correct": false,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.23780600167810917,
+    "capture": 8.312537000165321,
+    "grounding": 371.17845800094074,
+    "segmentation": 15.40289099648362,
+    "depth_fusion": 4.132162001042161,
+    "execute": 442.26032799633685,
+    "end_to_end": 857.7311629996984
+   },
+   "extra": {
+    "box": [
+     222.3300323486328,
+     175.5640869140625,
+     324.8360595703125,
+     280.79736328125
+    ],
+    "score": 0.595411479473114,
+    "grounding_info": {
+     "query": "object",
+     "fallback": false,
+     "latency_ms": 720.4460349967121
+    },
+    "select_info": {
+     "n_candidates": 6,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      -0.06675690541140693,
+      -0.253238317558627,
+      0.012153157161603811
+     ],
+     "psi": 2.5285612664872987,
+     "width": 0.019833720481665363,
+     "long_axis": [
+      0.5753494945992808,
+      0.8179076714790932,
+      0.0
+     ],
+     "aspect": 4.747085981011218,
+     "n": 1491,
+     "grasp_z": 0.012153157161603811,
+     "median_z": 0.019534689104851677,
+     "max_z": 0.024306314323207623,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 7008,
+   "stratum": "langvar",
+   "lang_variant": "synonym",
+   "lighting": "nominal",
+   "command": "pick the green cylinder",
+   "target": "can_0",
+   "kind": "can",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.0801819987827912,
+    "capture": 8.192783003323711,
+    "grounding": 334.6671340041212,
+    "segmentation": 15.27936699858401,
+    "depth_fusion": 2.800228998239618,
+    "execute": 322.2325969982194,
+    "end_to_end": 701.2817300055758
+   },
+   "extra": {
+    "box": [
+     339.712890625,
+     158.98683166503906,
+     368.11309814453125,
+     216.70925903320312
+    ],
+    "score": 0.6670963168144226,
+    "grounding_info": {
+     "query": "green cylinder",
+     "fallback": false,
+     "latency_ms": 334.3697259988403
+    },
+    "select_info": {
+     "n_candidates": 3,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:can",
+    "grasp": {
+     "center": [
+      0.03490547180175781,
+      -0.18721578979492187,
+      0.03249864157326751
+     ],
+     "psi": -0.14729145040901237,
+     "width": 0.024042355228556724,
+     "long_axis": [
+      -0.9833542400336837,
+      0.1816987578597509,
+      0.0
+     ],
+     "aspect": 1.0050035496545153,
+     "n": 1226,
+     "grasp_z": 0.03249864157326751,
+     "median_z": 0.045563443203184145,
+     "max_z": 0.06249864157326751,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 7009,
+   "stratum": "langvar",
+   "lang_variant": "synonym",
+   "lighting": "nominal",
+   "command": "pick the green driver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "green",
+   "grounding_correct": false,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "no_grasp",
+   "latency_ms": {
+    "parse": 0.0814219965832308,
+    "capture": 7.640739000635222,
+    "grounding": 329.98910899914335,
+    "segmentation": 16.391166995163076,
+    "depth_fusion": 7.096114997693803,
+    "execute": 322.2325969982194,
+    "end_to_end": 379.67017899791244
+   },
+   "extra": {
+    "box": [
+     196.67556762695312,
+     0.1446533203125,
+     367.01812744140625,
+     168.60342407226562
+    ],
+    "score": 0.6217596530914307,
+    "grounding_info": {
+     "query": "green driver",
+     "fallback": false,
+     "latency_ms": 329.6151699978509
+    },
+    "select_info": {
+     "n_candidates": 3,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "box",
+    "grasp": null
+   }
+  },
+  {
+   "seed": 7010,
+   "stratum": "langvar",
+   "lang_variant": "synonym",
+   "lighting": "nominal",
+   "command": "pick the blue block",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.1154529963969253,
+    "capture": 7.903256002464332,
+    "grounding": 340.0309870048659,
+    "segmentation": 15.63800700387219,
+    "depth_fusion": 2.5219629969797097,
+    "execute": 385.7599399998435,
+    "end_to_end": 768.2039569990593
+   },
+   "extra": {
+    "box": [
+     226.54930114746094,
+     225.7233123779297,
+     257.4139099121094,
+     261.9261474609375
+    ],
+    "score": 0.6970981955528259,
+    "grounding_info": {
+     "query": "blue block",
+     "fallback": false,
+     "latency_ms": 339.58053599781124
+    },
+    "select_info": {
+     "n_candidates": 4,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      -0.07850580596923828,
+      -0.24556094360351563,
+      0.014094295028940149
+     ],
+     "psi": -0.0018057929175707699,
+     "width": 0.02486902455495809,
+     "long_axis": [
+      0.18916433673478786,
+      0.9819454433458551,
+      0.0
+     ],
+     "aspect": 1.0307029483288443,
+     "n": 832,
+     "grasp_z": 0.014094295028940149,
+     "median_z": 0.023892240629816708,
+     "max_z": 0.028188590057880297,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 7011,
+   "stratum": "langvar",
+   "lang_variant": "attribute",
+   "lighting": "nominal",
+   "command": "grab the yellow one",
+   "target": "can_0",
+   "kind": "can",
+   "color": "yellow",
+   "grounding_correct": false,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.10387200018158183,
+    "capture": 8.93790100235492,
+    "grounding": 341.17523500026437,
+    "segmentation": 14.625932002672926,
+    "depth_fusion": 4.5502430002670735,
+    "execute": 381.6122370044468,
+    "end_to_end": 765.0279469962697
+   },
+   "extra": {
+    "box": [
+     269.3186340332031,
+     175.0082550048828,
+     392.137451171875,
+     266.99365234375
+    ],
+    "score": 0.5707842111587524,
+    "grounding_info": {
+     "query": "object",
+     "fallback": false,
+     "latency_ms": 680.318050995993
+    },
+    "select_info": {
+     "n_candidates": 6,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      0.047159243533366875,
+      -0.18631291741666975,
+      0.012137921239183502
+     ],
+     "psi": -0.8988114910409251,
+     "width": 0.019639356612291728,
+     "long_axis": [
+      -0.7825875675395366,
+      -0.6225405200728313,
+      0.0
+     ],
+     "aspect": 6.462190607426994,
+     "n": 1475,
+     "grasp_z": 0.012137921239183502,
+     "median_z": 0.01920273188920063,
+     "max_z": 0.024275842478367005,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 7012,
+   "stratum": "langvar",
+   "lang_variant": "spatial",
+   "lighting": "nominal",
+   "command": "pick the red screwdriver on the left",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": false,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.06598199979634956,
+    "capture": 7.5648679994628765,
+    "grounding": 326.6097159939818,
+    "segmentation": 14.181580001604743,
+    "depth_fusion": 3.2463509996887296,
+    "execute": 390.40420499804895,
+    "end_to_end": 759.7741080026026
+   },
+   "extra": {
+    "box": [
+     231.70266723632812,
+     167.3783416748047,
+     295.9932861328125,
+     287.9144592285156
+    ],
+    "score": 0.8103382587432861,
+    "grounding_info": {
+     "query": "red screwdriver",
+     "fallback": false,
+     "latency_ms": 326.3741589980782
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": true,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      -0.061982681274414066,
+      -0.24579025268554688,
+      0.012264770749333524
+     ],
+     "psi": 0.2235394834726896,
+     "width": 0.05190957534763602,
+     "long_axis": [
+      0.26404993543193567,
+      0.9645090106361841,
+      0.0
+     ],
+     "aspect": 1.7699966716148945,
+     "n": 1453,
+     "grasp_z": 0.012264770749333524,
+     "median_z": 0.019302919932791207,
+     "max_z": 0.024529541498667047,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 7013,
+   "stratum": "langvar",
+   "lang_variant": "spatial",
+   "lighting": "nominal",
+   "command": "pick the yellow screwdriver on the right",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.09502199827693403,
+    "capture": 8.564401003241073,
+    "grounding": 327.0983879992855,
+    "segmentation": 14.961211003537755,
+    "depth_fusion": 4.603052999300417,
+    "execute": 387.59616499737604,
+    "end_to_end": 761.2581139983376
+   },
+   "extra": {
+    "box": [
+     265.44879150390625,
+     181.65524291992188,
+     407.651123046875,
+     237.3213348388672
+    ],
+    "score": 0.7552706003189087,
+    "grounding_info": {
+     "query": "yellow screwdriver",
+     "fallback": false,
+     "latency_ms": 326.8549620042904
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": true,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      0.05660244243176067,
+      -0.21049719358749813,
+      0.012077154637752274
+     ],
+     "psi": -1.9931850917707203,
+     "width": 0.018090944086352874,
+     "long_axis": [
+      -0.9121122922179074,
+      0.4099404424852408,
+      0.0
+     ],
+     "aspect": 5.858794726785146,
+     "n": 1493,
+     "grasp_z": 0.012077154637752274,
+     "median_z": 0.01916499706214647,
+     "max_z": 0.02415430927550455,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 7014,
+   "stratum": "langvar",
+   "lang_variant": "synonym",
+   "lighting": "nominal",
+   "command": "pick the blue driver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "blue",
+   "grounding_correct": false,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "no_grasp",
+   "latency_ms": {
+    "parse": 0.09659199713496491,
+    "capture": 8.825488002912607,
+    "grounding": 351.2460049969377,
+    "segmentation": 18.056936998618767,
+    "depth_fusion": 7.9772780009079725,
+    "execute": 387.59616499737604,
+    "end_to_end": 405.2932519989554
+   },
+   "extra": {
+    "box": [
+     185.6165313720703,
+     0.13475418090820312,
+     367.09417724609375,
+     169.1006622314453
+    ],
+    "score": 0.6045610308647156,
+    "grounding_info": {
+     "query": "blue driver",
+     "fallback": false,
+     "latency_ms": 350.8237639980507
+    },
+    "select_info": {
+     "n_candidates": 4,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "box",
+    "grasp": null
+   }
+  },
+  {
+   "seed": 7015,
+   "stratum": "langvar",
+   "lang_variant": "spatial",
+   "lighting": "nominal",
+   "command": "pick the red cube on the right",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.09985300130210817,
+    "capture": 9.626589002436958,
+    "grounding": 331.7904319992522,
+    "segmentation": 13.78965000185417,
+    "depth_fusion": 2.2310849963105284,
+    "execute": 347.56807400117395,
+    "end_to_end": 721.8683890023385
+   },
+   "extra": {
+    "box": [
+     359.78204345703125,
+     233.17446899414062,
+     389.9884033203125,
+     271.7654113769531
+    ],
+    "score": 0.7199209332466125,
+    "grounding_info": {
+     "query": "red cube",
+     "fallback": false,
+     "latency_ms": 331.55546600028174
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": true,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      0.054935268402099606,
+      -0.2561146545410156,
+      0.014080980364363366
+     ],
+     "psi": -0.14099170956091633,
+     "width": 0.023414505838658554,
+     "long_axis": [
+      0.104843086031234,
+      0.9944887768655044,
+      0.0
+     ],
+     "aspect": 1.109008326902084,
+     "n": 798,
+     "grasp_z": 0.014080980364363366,
+     "median_z": 0.02409553489813887,
+     "max_z": 0.02816196072872673,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 7016,
+   "stratum": "langvar",
+   "lang_variant": "spatial",
+   "lighting": "nominal",
+   "command": "pick the red screwdriver on the left",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.08273200364783406,
+    "capture": 8.648294002341572,
+    "grounding": 340.54628900048556,
+    "segmentation": 17.065772000933066,
+    "depth_fusion": 4.264856004738249,
+    "execute": 318.30973899923265,
+    "end_to_end": 707.0266410009935
+   },
+   "extra": {
+    "box": [
+     205.95639038085938,
+     176.81643676757812,
+     345.3747253417969,
+     230.4744110107422
+    ],
+    "score": 0.80781090259552,
+    "grounding_info": {
+     "query": "red screwdriver",
+     "fallback": false,
+     "latency_ms": 340.2438720004284
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": true,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      -0.007884715074601156,
+      -0.19974695159559988,
+      0.012115948630084809
+     ],
+     "psi": -1.9470976735029168,
+     "width": 0.0177762465245274,
+     "long_axis": [
+      -0.9300301865881523,
+      0.36748313163301344,
+      0.0
+     ],
+     "aspect": 4.8147032339897144,
+     "n": 1358,
+     "grasp_z": 0.012115948630084809,
+     "median_z": 0.019169065868042012,
+     "max_z": 0.024231897260169617,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 7017,
+   "stratum": "langvar",
+   "lang_variant": "synonym",
+   "lighting": "nominal",
+   "command": "pick the yellow tool",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.08236199937527999,
+    "capture": 8.018118001928087,
+    "grounding": 359.218202996999,
+    "segmentation": 14.67184299690416,
+    "depth_fusion": 2.732647997618187,
+    "execute": 269.2035939980997,
+    "end_to_end": 669.4387110037496
+   },
+   "extra": {
+    "box": [
+     223.19227600097656,
+     178.43968200683594,
+     342.1937561035156,
+     266.3713073730469
+    ],
+    "score": 0.6981784105300903,
+    "grounding_info": {
+     "query": "yellow tool",
+     "fallback": false,
+     "latency_ms": 358.91957500280114
+    },
+    "select_info": {
+     "n_candidates": 3,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      -0.006466056823730469,
+      -0.21146260070800782,
+      0.012081328840347311
+     ],
+     "psi": 0.8279374347005293,
+     "width": 0.05881884752012287,
+     "long_axis": [
+      -0.6987246931965911,
+      0.7153906646842199,
+      0.0
+     ],
+     "aspect": 1.4916176599730544,
+     "n": 1430,
+     "grasp_z": 0.012081328840347311,
+     "median_z": 0.019302533276761014,
+     "max_z": 0.024162657680694623,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 7018,
+   "stratum": "langvar",
+   "lang_variant": "synonym",
+   "lighting": "nominal",
+   "command": "pick the yellow cylinder",
+   "target": "can_0",
+   "kind": "can",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.08089199400274083,
+    "capture": 8.274615000118501,
+    "grounding": 516.7502210024395,
+    "segmentation": 33.311885003058705,
+    "depth_fusion": 3.3298130001639947,
+    "execute": 383.07540300593246,
+    "end_to_end": 963.5433219955303
+   },
+   "extra": {
+    "box": [
+     320.08544921875,
+     155.31321716308594,
+     347.5975036621094,
+     213.02090454101562
+    ],
+    "score": 0.7447247505187988,
+    "grounding_info": {
+     "query": "yellow cylinder",
+     "fallback": false,
+     "latency_ms": 516.5318660001503
+    },
+    "select_info": {
+     "n_candidates": 1,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:can",
+    "grasp": {
+     "center": [
+      0.014949313163757324,
+      -0.18234393310546876,
+      0.0323865939765611
+     ],
+     "psi": -0.0019616460979894335,
+     "width": 0.024060902377443568,
+     "long_axis": [
+      -0.9998787394270143,
+      0.015572618336186643,
+      0.0
+     ],
+     "aspect": 1.0024794761434968,
+     "n": 1198,
+     "grasp_z": 0.0323865939765611,
+     "median_z": 0.045418322443846665,
+     "max_z": 0.0623865939765611,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 7019,
+   "stratum": "langvar",
+   "lang_variant": "attribute",
+   "lighting": "nominal",
+   "command": "grab the blue one",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.10210299660684541,
+    "capture": 14.09133000561269,
+    "grounding": 609.9056879975251,
+    "segmentation": 20.45853700110456,
+    "depth_fusion": 2.753578002739232,
+    "execute": 456.08440000069095,
+    "end_to_end": 1124.14452899975
+   },
+   "extra": {
+    "box": [
+     270.82958984375,
+     199.92489624023438,
+     306.193603515625,
+     240.56459045410156
+    ],
+    "score": 0.5867291688919067,
+    "grounding_info": {
+     "query": "object",
+     "fallback": false,
+     "latency_ms": 1125.842127999931
+    },
+    "select_info": {
+     "n_candidates": 5,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": true
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      -0.0319251594543457,
+      -0.2152795867919922,
+      0.014157411023718897
+     ],
+     "psi": -0.5528632208422573,
+     "width": 0.025202195280911874,
+     "long_axis": [
+      -0.9459157040013496,
+      -0.3244125165951999,
+      0.0
+     ],
+     "aspect": 1.0328417222373782,
+     "n": 839,
+     "grasp_z": 0.014157411023718897,
+     "median_z": 0.023649602278971782,
+     "max_z": 0.028314822047437793,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 7020,
+   "stratum": "langvar",
+   "lang_variant": "synonym",
+   "lighting": "nominal",
+   "command": "pick the blue cylinder",
+   "target": "can_0",
+   "kind": "can",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.11490299948491156,
+    "capture": 10.49675000103889,
+    "grounding": 581.0271329974057,
+    "segmentation": 21.53675400040811,
+    "depth_fusion": 3.363082003488671,
+    "execute": 450.04924100067,
+    "end_to_end": 1091.1775010026759
+   },
+   "extra": {
+    "box": [
+     243.75372314453125,
+     186.46926879882812,
+     275.3896789550781,
+     245.07742309570312
+    ],
+    "score": 0.7051588892936707,
+    "grounding_info": {
+     "query": "blue cylinder",
+     "fallback": false,
+     "latency_ms": 580.505981000897
+    },
+    "select_info": {
+     "n_candidates": 3,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:can",
+    "grasp": {
+     "center": [
+      -0.059974029541015626,
+      -0.22404859924316406,
+      0.03237514410823403
+     ],
+     "psi": 0.25177671419469094,
+     "width": 0.024035373844248885,
+     "long_axis": [
+      -0.999998849532233,
+      0.0015168830576166728,
+      0.0
+     ],
+     "aspect": 0.9982042324051982,
+     "n": 1246,
+     "grasp_z": 0.03237514410823403,
+     "median_z": 0.046754936193662694,
+     "max_z": 0.062375144108234026,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 7021,
+   "stratum": "langvar",
+   "lang_variant": "spatial",
+   "lighting": "degraded",
+   "command": "pick the yellow can on the left",
+   "target": "can_0",
+   "kind": "can",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.08285200601676479,
+    "capture": 10.231142994598486,
+    "grounding": 575.8821759955026,
+    "segmentation": 22.178118000738323,
+    "depth_fusion": 3.129807999357581,
+    "execute": 494.18610299471766,
+    "end_to_end": 1131.638982995355
+   },
+   "extra": {
+    "box": [
+     210.27432250976562,
+     194.93199157714844,
+     244.724853515625,
+     254.5773162841797
+    ],
+    "score": 0.6393004059791565,
+    "grounding_info": {
+     "query": "yellow can",
+     "fallback": false,
+     "latency_ms": 575.3995539998868
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": true,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:can",
+    "grasp": {
+     "center": [
+      -0.09071200561523438,
+      -0.23629222106933595,
+      0.03244022818499344
+     ],
+     "psi": -0.22704100767392577,
+     "width": 0.023906434668851236,
+     "long_axis": [
+      -0.9962363579929754,
+      -0.08667824994133459,
+      0.0
+     ],
+     "aspect": 1.0041715366806034,
+     "n": 1250,
+     "grasp_z": 0.03244022818499344,
+     "median_z": 0.04812127824313253,
+     "max_z": 0.06244022818499344,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 7022,
+   "stratum": "langvar",
+   "lang_variant": "spatial",
+   "lighting": "degraded",
+   "command": "pick the yellow screwdriver on the right",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.09734200284583494,
+    "capture": 13.811040997097734,
+    "grounding": 561.1792620038614,
+    "segmentation": 22.499687001982238,
+    "depth_fusion": 5.37997399806045,
+    "execute": 445.2177600032883,
+    "end_to_end": 1072.7696949979872
+   },
+   "extra": {
+    "box": [
+     279.53076171875,
+     198.71717834472656,
+     413.1234436035156,
+     283.7953796386719
+    ],
+    "score": 0.7538278698921204,
+    "grounding_info": {
+     "query": "yellow screwdriver",
+     "fallback": false,
+     "latency_ms": 560.8429729982163
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": true,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      0.007366214579688907,
+      -0.2525909773489729,
+      0.012078363695487307
+     ],
+     "psi": -2.157477150029755,
+     "width": 0.053272653350694005,
+     "long_axis": [
+      -0.8327827590844185,
+      0.5535999242880578,
+      0.0
+     ],
+     "aspect": 2.4535932163415533,
+     "n": 1785,
+     "grasp_z": 0.012078363695487307,
+     "median_z": 0.015290928007833715,
+     "max_z": 0.024156727390974613,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 7023,
+   "stratum": "langvar",
+   "lang_variant": "synonym",
+   "lighting": "nominal",
+   "command": "pick the yellow cylinder",
+   "target": "can_0",
+   "kind": "can",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.10683299478841946,
+    "capture": 9.256309996999335,
+    "grounding": 605.2912440063665,
+    "segmentation": 21.711057997890748,
+    "depth_fusion": 3.2402200013166294,
+    "execute": 512.323221002589,
+    "end_to_end": 1174.5868750003865
+   },
+   "extra": {
+    "box": [
+     254.25970458984375,
+     203.3506622314453,
+     285.5252380371094,
+     262.0476989746094
+    ],
+    "score": 0.7124056816101074,
+    "grounding_info": {
+     "query": "yellow cylinder",
+     "fallback": false,
+     "latency_ms": 604.862622996734
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:can",
+    "grasp": {
+     "center": [
+      -0.04831844329833984,
+      -0.24685414123535157,
+      0.032842518760501815
+     ],
+     "psi": 0.19947249670164346,
+     "width": 0.023976377893087458,
+     "long_axis": [
+      -0.9999704231454696,
+      -0.007691087977049466,
+      0.0
+     ],
+     "aspect": 1.0067656840311816,
+     "n": 1232,
+     "grasp_z": 0.032842518760501815,
+     "median_z": 0.04877342007675489,
+     "max_z": 0.06284251876050181,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 7024,
+   "stratum": "langvar",
+   "lang_variant": "attribute",
+   "lighting": "degraded",
+   "command": "pick the green object",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.12674300523940474,
+    "capture": 12.399526000081096,
+    "grounding": 596.4744239972788,
+    "segmentation": 25.874680999550037,
+    "depth_fusion": 7.057454997266177,
+    "execute": 488.6467350006569,
+    "end_to_end": 1155.7189150043996
+   },
+   "extra": {
+    "box": [
+     242.1204833984375,
+     193.38290405273438,
+     344.30694580078125,
+     303.5920104980469
+    ],
+    "score": 0.5896807312965393,
+    "grounding_info": {
+     "query": "object",
+     "fallback": false,
+     "latency_ms": 1200.0844259964651
+    },
+    "select_info": {
+     "n_candidates": 6,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      -0.0534243656389746,
+      -0.21605637986547882,
+      0.012107060236936279
+     ],
+     "psi": -2.4581510067365837,
+     "width": 0.01912579558825008,
+     "long_axis": [
+      -0.6314654254340404,
+      0.7754040343468729,
+      0.0
+     ],
+     "aspect": 7.314370834728806,
+     "n": 1663,
+     "grasp_z": 0.012107060236936279,
+     "median_z": 0.01954158729788774,
+     "max_z": 0.024214120473872558,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 7025,
+   "stratum": "langvar",
+   "lang_variant": "synonym",
+   "lighting": "nominal",
+   "command": "pick the blue cylinder",
+   "target": "can_0",
+   "kind": "can",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.094421993708238,
+    "capture": 15.22815699718194,
+    "grounding": 566.8819700003951,
+    "segmentation": 23.95913200598443,
+    "depth_fusion": 2.627994996146299,
+    "execute": 381.61728699924424,
+    "end_to_end": 1015.6971909964341
+   },
+   "extra": {
+    "box": [
+     374.93145751953125,
+     171.6070098876953,
+     406.52850341796875,
+     229.9307861328125
+    ],
+    "score": 0.7457049489021301,
+    "grounding_info": {
+     "query": "blue cylinder",
+     "fallback": false,
+     "latency_ms": 566.5237409994006
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:can",
+    "grasp": {
+     "center": [
+      0.0720047607421875,
+      -0.20553143310546876,
+      0.03273310358165374
+     ],
+     "psi": 0.08404243978406667,
+     "width": 0.023363671102038824,
+     "long_axis": [
+      -0.9570647977306082,
+      0.28987406393961906,
+      0.0
+     ],
+     "aspect": 1.0101205627067555,
+     "n": 1240,
+     "grasp_z": 0.03273310358165374,
+     "median_z": 0.04574856055987711,
+     "max_z": 0.06273310358165374,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 7026,
+   "stratum": "langvar",
+   "lang_variant": "attribute",
+   "lighting": "nominal",
+   "command": "grab the green one",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.3982900016126223,
+    "capture": 13.55201499973191,
+    "grounding": 585.9517329954542,
+    "segmentation": 24.10016700014239,
+    "depth_fusion": 3.482156003883574,
+    "execute": 424.5979599945713,
+    "end_to_end": 1070.4985869961092
+   },
+   "extra": {
+    "box": [
+     337.8971862792969,
+     207.8308868408203,
+     373.567138671875,
+     249.3954620361328
+    ],
+    "score": 0.5176960825920105,
+    "grounding_info": {
+     "query": "object",
+     "fallback": false,
+     "latency_ms": 1151.8830390050425
+    },
+    "select_info": {
+     "n_candidates": 5,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": true
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      0.03705614471435547,
+      -0.22573098754882812,
+      0.013992213079420168
+     ],
+     "psi": -0.5829041107020281,
+     "width": 0.025201823750177342,
+     "long_axis": [
+      -0.9760821033057521,
+      -0.21740222539389836,
+      0.0
+     ],
+     "aspect": 1.0729453064609291,
+     "n": 851,
+     "grasp_z": 0.013992213079420168,
+     "median_z": 0.023514481628615136,
+     "max_z": 0.027984426158840336,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 7027,
+   "stratum": "langvar",
+   "lang_variant": "spatial",
+   "lighting": "nominal",
+   "command": "pick the red screwdriver on the left",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.09513199620414525,
+    "capture": 9.251137998944614,
+    "grounding": 609.1284080030164,
+    "segmentation": 16.475517993967514,
+    "depth_fusion": 5.338682000001427,
+    "execute": 489.46608400001423,
+    "end_to_end": 1154.7754330022144
+   },
+   "extra": {
+    "box": [
+     177.5492706298828,
+     188.057373046875,
+     293.96075439453125,
+     300.12530517578125
+    ],
+    "score": 0.8281900882720947,
+    "grounding_info": {
+     "query": "red screwdriver",
+     "fallback": false,
+     "latency_ms": 608.7389379972592
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": true,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      -0.05629212954206821,
+      -0.2094128857654668,
+      0.012077209875616097
+     ],
+     "psi": 2.442810457101233,
+     "width": 0.01971634688003849,
+     "long_axis": [
+      0.643285782264566,
+      0.7656261505044518,
+      0.0
+     ],
+     "aspect": 6.915878219293682,
+     "n": 1597,
+     "grasp_z": 0.012077209875616097,
+     "median_z": 0.01943961223925106,
+     "max_z": 0.024154419751232194,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 7028,
+   "stratum": "langvar",
+   "lang_variant": "attribute",
+   "lighting": "degraded",
+   "command": "grab the blue one",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.10783199832076207,
+    "capture": 15.275416997610591,
+    "grounding": 581.2706479991903,
+    "segmentation": 20.10255700588459,
+    "depth_fusion": 5.46515599853592,
+    "execute": 464.19577000051504,
+    "end_to_end": 1106.5847400022903
+   },
+   "extra": {
+    "box": [
+     221.57992553710938,
+     178.90673828125,
+     304.35089111328125,
+     301.50048828125
+    ],
+    "score": 0.5866565704345703,
+    "grounding_info": {
+     "query": "object",
+     "fallback": false,
+     "latency_ms": 1189.1587950012763
+    },
+    "select_info": {
+     "n_candidates": 5,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": true
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      -0.03973000235538893,
+      -0.19809397844191823,
+      0.011989903556890655
+     ],
+     "psi": 2.698596307792169,
+     "width": 0.019656869061063724,
+     "long_axis": [
+      0.4286484977938619,
+      0.9034713417364525,
+      0.0
+     ],
+     "aspect": 7.605380820026588,
+     "n": 1609,
+     "grasp_z": 0.011989903556890655,
+     "median_z": 0.019681299055895274,
+     "max_z": 0.02397980711378131,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 7029,
+   "stratum": "langvar",
+   "lang_variant": "attribute",
+   "lighting": "nominal",
+   "command": "grab the blue one",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.10629300231812522,
+    "capture": 10.718325000198092,
+    "grounding": 544.2502410005545,
+    "segmentation": 34.22036599658895,
+    "depth_fusion": 5.376694003643934,
+    "execute": 592.8215739986626,
+    "end_to_end": 1207.8353059987421
+   },
+   "extra": {
+    "box": [
+     262.6382751464844,
+     194.44662475585938,
+     382.02349853515625,
+     286.70263671875
+    ],
+    "score": 0.5888160467147827,
+    "grounding_info": {
+     "query": "object",
+     "fallback": false,
+     "latency_ms": 1124.191595998127
+    },
+    "select_info": {
+     "n_candidates": 5,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": true
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      -0.023710234963465585,
+      -0.263524879661539,
+      0.012130965855332711
+     ],
+     "psi": -0.8132491072628558,
+     "width": 0.01918601787737117,
+     "long_axis": [
+      -0.7265236017576396,
+      -0.6871415109634308,
+      0.0
+     ],
+     "aspect": 4.980688805667383,
+     "n": 1533,
+     "grasp_z": 0.012130965855332711,
+     "median_z": 0.019624202428975113,
+     "max_z": 0.024261931710665423,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 7030,
+   "stratum": "langvar",
+   "lang_variant": "spatial",
+   "lighting": "degraded",
+   "command": "pick the yellow cube on the left",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.10139199730474502,
+    "capture": 15.017842000816017,
+    "grounding": 592.2525499991025,
+    "segmentation": 31.575252003676724,
+    "depth_fusion": 2.767917998426128,
+    "execute": 474.4039720026194,
+    "end_to_end": 1136.7485670052702
+   },
+   "extra": {
+    "box": [
+     287.6570129394531,
+     218.67730712890625,
+     323.92791748046875,
+     261.5923767089844
+    ],
+    "score": 0.8082906603813171,
+    "grounding_info": {
+     "query": "yellow cube",
+     "fallback": false,
+     "latency_ms": 591.8117679975694
+    },
+    "select_info": {
+     "n_candidates": 3,
+     "color_filtered": 0,
+     "spatial_used": true,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      -0.013333105087280273,
+      -0.24043231201171875,
+      0.014033574373468638
+     ],
+     "psi": -0.7400252221154959,
+     "width": 0.025243997841123116,
+     "long_axis": [
+      -0.9984369945031497,
+      -0.05588888983972746,
+      0.0
+     ],
+     "aspect": 1.0527925780060872,
+     "n": 875,
+     "grasp_z": 0.014033574373468638,
+     "median_z": 0.023497933283176342,
+     "max_z": 0.028067148746937276,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 7031,
+   "stratum": "langvar",
+   "lang_variant": "spatial",
+   "lighting": "nominal",
+   "command": "pick the yellow screwdriver on the left",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.09982199844671413,
+    "capture": 14.674263999040704,
+    "grounding": 638.8963630015496,
+    "segmentation": 24.901894998038188,
+    "depth_fusion": 5.37269299820764,
+    "execute": 460.1461999991443,
+    "end_to_end": 1171.9262059996254
+   },
+   "extra": {
+    "box": [
+     220.96292114257812,
+     191.1514892578125,
+     355.8948059082031,
+     278.576904296875
+    ],
+    "score": 0.7669014930725098,
+    "grounding_info": {
+     "query": "yellow screwdriver",
+     "fallback": false,
+     "latency_ms": 638.6126759971376
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": true,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      0.005487930315847652,
+      -0.20817779490512422,
+      0.012007733201499171
+     ],
+     "psi": -0.987193892570835,
+     "width": 0.018767750109235516,
+     "long_axis": [
+      -0.8344830063950897,
+      -0.5510336759562094,
+      0.0
+     ],
+     "aspect": 6.616613968145277,
+     "n": 1507,
+     "grasp_z": 0.012007733201499171,
+     "median_z": 0.01936088794416735,
+     "max_z": 0.024015466402998342,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 7032,
+   "stratum": "langvar",
+   "lang_variant": "synonym",
+   "lighting": "nominal",
+   "command": "pick the red cylinder",
+   "target": "can_0",
+   "kind": "can",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.13179300003685057,
+    "capture": 10.0416579953162,
+    "grounding": 611.3603429985233,
+    "segmentation": 23.367538997263182,
+    "depth_fusion": 3.1016069988254458,
+    "execute": 454.7327160034911,
+    "end_to_end": 1128.403418995731
+   },
+   "extra": {
+    "box": [
+     259.38055419921875,
+     200.08274841308594,
+     290.318603515625,
+     258.48956298828125
+    ],
+    "score": 0.8387475609779358,
+    "grounding_info": {
+     "query": "red cylinder",
+     "fallback": false,
+     "latency_ms": 611.0859359978349
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:can",
+    "grasp": {
+     "center": [
+      -0.043664649963378904,
+      -0.24278009033203124,
+      0.032860583461014586
+     ],
+     "psi": 0.07509874589525367,
+     "width": 0.023955686070724055,
+     "long_axis": [
+      -0.9993478365267481,
+      -0.036109578082666245,
+      0.0
+     ],
+     "aspect": 1.0147354078582087,
+     "n": 1245,
+     "grasp_z": 0.032860583461014586,
+     "median_z": 0.047773227944861996,
+     "max_z": 0.06286058346101459,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 7033,
+   "stratum": "langvar",
+   "lang_variant": "synonym",
+   "lighting": "degraded",
+   "command": "pick the red tool",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.09085200144909322,
+    "capture": 11.973045002378058,
+    "grounding": 583.9257030020235,
+    "segmentation": 20.821175996388774,
+    "depth_fusion": 4.900781998003367,
+    "execute": 435.4104070007452,
+    "end_to_end": 1082.480332996056
+   },
+   "extra": {
+    "box": [
+     219.3560028076172,
+     193.43960571289062,
+     361.83123779296875,
+     243.41897583007812
+    ],
+    "score": 0.7829061150550842,
+    "grounding_info": {
+     "query": "red tool",
+     "fallback": false,
+     "latency_ms": 583.6442470026668
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      0.008447985223328042,
+      -0.22130683048388425,
+      0.011989758663599557
+     ],
+     "psi": -1.9236391015654766,
+     "width": 0.018106181968602645,
+     "long_axis": [
+      -0.9383941372184638,
+      0.3455668433661062,
+      0.0
+     ],
+     "aspect": 5.754702460561161,
+     "n": 1503,
+     "grasp_z": 0.011989758663599557,
+     "median_z": 0.019323001023872854,
+     "max_z": 0.023979517327199114,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 7034,
+   "stratum": "langvar",
+   "lang_variant": "synonym",
+   "lighting": "nominal",
+   "command": "pick the green tool",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "green",
+   "grounding_correct": false,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.10437300079502165,
+    "capture": 9.158646993455477,
+    "grounding": 618.2349320006324,
+    "segmentation": 21.4222200011136,
+    "depth_fusion": 4.603014996973798,
+    "execute": 535.683608999534,
+    "end_to_end": 1215.0199339957908
+   },
+   "extra": {
+    "box": [
+     203.65087890625,
+     177.67332458496094,
+     338.21875,
+     247.2292938232422
+    ],
+    "score": 0.6327928304672241,
+    "grounding_info": {
+     "query": "green tool",
+     "fallback": false,
+     "latency_ms": 617.6134970010025
+    },
+    "select_info": {
+     "n_candidates": 4,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": true
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      -0.08455288507293131,
+      -0.21961620313476676,
+      0.012234073327374556
+     ],
+     "psi": -1.0131232870875437,
+     "width": 0.019283743746979463,
+     "long_axis": [
+      -0.8484888652546833,
+      -0.5292132325809893,
+      0.0
+     ],
+     "aspect": 4.783215455642103,
+     "n": 1425,
+     "grasp_z": 0.012234073327374556,
+     "median_z": 0.019169065868042012,
+     "max_z": 0.024468146654749112,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 7035,
+   "stratum": "langvar",
+   "lang_variant": "attribute",
+   "lighting": "nominal",
+   "command": "grab the red one",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": false,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.10738199489424005,
+    "capture": 14.9828499997966,
+    "grounding": 623.0291000028956,
+    "segmentation": 20.166309004707728,
+    "depth_fusion": 4.572714002279099,
+    "execute": 479.014927004755,
+    "end_to_end": 1168.8825019955402
+   },
+   "extra": {
+    "box": [
+     207.08636474609375,
+     170.1304931640625,
+     277.3666076660156,
+     286.116455078125
+    ],
+    "score": 0.6122947931289673,
+    "grounding_info": {
+     "query": "object",
+     "fallback": false,
+     "latency_ms": 1239.8507379984949
+    },
+    "select_info": {
+     "n_candidates": 5,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      -0.06580906120010122,
+      -0.2553071348543036,
+      0.012244574620681264
+     ],
+     "psi": -2.6912807323861365,
+     "width": 0.019647499424441682,
+     "long_axis": [
+      -0.4352463814907199,
+      0.9003113835775013,
+      0.0
+     ],
+     "aspect": 4.814838408864739,
+     "n": 1422,
+     "grasp_z": 0.012244574620681264,
+     "median_z": 0.019713880348996127,
+     "max_z": 0.02448914924136253,
+     "elongated": true
+    }
+   }
+  },
+  {
+   "seed": 7036,
+   "stratum": "langvar",
+   "lang_variant": "synonym",
+   "lighting": "nominal",
+   "command": "pick the red block",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.10446299711475149,
+    "capture": 15.176755005086306,
+    "grounding": 458.3497150015319,
+    "segmentation": 15.706569996837061,
+    "depth_fusion": 2.980463999847416,
+    "execute": 361.1910899999202,
+    "end_to_end": 872.5844079963281
+   },
+   "extra": {
+    "box": [
+     290.8854675292969,
+     179.849853515625,
+     325.2560119628906,
+     219.7718505859375
+    ],
+    "score": 0.8115460276603699,
+    "grounding_info": {
+     "query": "red block",
+     "fallback": false,
+     "latency_ms": 458.1331599983969
+    },
+    "select_info": {
+     "n_candidates": 1,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      -0.011862780570983887,
+      -0.1869572296142578,
+      0.013986212287703127
+     ],
+     "psi": -0.44351785451475223,
+     "width": 0.025154606904261804,
+     "long_axis": [
+      -0.9063813399600633,
+      -0.4224604911375739,
+      0.0
+     ],
+     "aspect": 1.0409655318316522,
+     "n": 803,
+     "grasp_z": 0.013986212287703127,
+     "median_z": 0.02335207532650302,
+     "max_z": 0.027972424575406253,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 7037,
+   "stratum": "langvar",
+   "lang_variant": "spatial",
+   "lighting": "nominal",
+   "command": "pick the green can on the left",
+   "target": "can_0",
+   "kind": "can",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.07899200136307627,
+    "capture": 7.832244999008253,
+    "grounding": 338.5153690032894,
+    "segmentation": 15.6638379994547,
+    "depth_fusion": 2.5947229951270856,
+    "execute": 409.72541099472437,
+    "end_to_end": 793.4342790031224
+   },
+   "extra": {
+    "box": [
+     281.0544128417969,
+     214.53904724121094,
+     311.395263671875,
+     273.9623718261719
+    ],
+    "score": 0.38181379437446594,
+    "grounding_info": {
+     "query": "green can",
+     "fallback": false,
+     "latency_ms": 338.27277299860725
+    },
+    "select_info": {
+     "n_candidates": 2,
+     "color_filtered": 0,
+     "spatial_used": true,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:can",
+    "grasp": {
+     "center": [
+      -0.022750740051269532,
+      -0.2604395751953125,
+      0.03270577671658029
+     ],
+     "psi": 0.01838579837563481,
+     "width": 0.02382849078093309,
+     "long_axis": [
+      -0.9882803003531142,
+      0.15265008330806262,
+      0.0
+     ],
+     "aspect": 0.9794494033402931,
+     "n": 1213,
+     "grasp_z": 0.03270577671658029,
+     "median_z": 0.05115786770065078,
+     "max_z": 0.06270577671658029,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 7038,
+   "stratum": "langvar",
+   "lang_variant": "synonym",
+   "lighting": "degraded",
+   "command": "pick the yellow block",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.08573199738748372,
+    "capture": 8.0723310020403,
+    "grounding": 331.602758000372,
+    "segmentation": 16.570120002143085,
+    "depth_fusion": 2.7118069992866367,
+    "execute": 383.6875679990044,
+    "end_to_end": 759.8771799966926
+   },
+   "extra": {
+    "box": [
+     257.24957275390625,
+     220.60975646972656,
+     289.4176025390625,
+     260.58673095703125
+    ],
+    "score": 0.798930823802948,
+    "grounding_info": {
+     "query": "yellow block",
+     "fallback": false,
+     "latency_ms": 331.2823300002492
+    },
+    "select_info": {
+     "n_candidates": 3,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:cube",
+    "grasp": {
+     "center": [
+      -0.047102783203125,
+      -0.24183615112304688,
+      0.014142007344308762
+     ],
+     "psi": 0.2741810894972003,
+     "width": 0.024170744536898707,
+     "long_axis": [
+      -0.3848391585273157,
+      0.9229836521109068,
+      0.0
+     ],
+     "aspect": 1.0710062594133998,
+     "n": 805,
+     "grasp_z": 0.014142007344308762,
+     "median_z": 0.023800807381026357,
+     "max_z": 0.028284014688617524,
+     "elongated": false
+    }
+   }
+  },
+  {
+   "seed": 7039,
+   "stratum": "langvar",
+   "lang_variant": "attribute",
+   "lighting": "degraded",
+   "command": "pick the green object",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "parse": 0.09709300502436236,
+    "capture": 8.97352299944032,
+    "grounding": 333.1127749988809,
+    "segmentation": 16.095828003017232,
+    "depth_fusion": 5.601089003903326,
+    "execute": 432.86014500336023,
+    "end_to_end": 813.6762420035666
+   },
+   "extra": {
+    "box": [
+     239.91656494140625,
+     171.85153198242188,
+     345.4388427734375,
+     272.31488037109375
+    ],
+    "score": 0.6129226088523865,
+    "grounding_info": {
+     "query": "object",
+     "fallback": false,
+     "latency_ms": 663.9715650017024
+    },
+    "select_info": {
+     "n_candidates": 5,
+     "color_filtered": 0,
+     "spatial_used": false,
+     "ambiguous": false
+    },
+    "mask_source": "yolo:screwdriver",
+    "grasp": {
+     "center": [
+      -0.04946378980927256,
+      -0.2440560626116626,
+      0.012115387861508068
+     ],
+     "psi": 2.467151543054732,
+     "width": 0.019563295711894184,
+     "long_axis": [
+      0.6244608902645638,
+      0.7810560777114463,
+      0.0
+     ],
+     "aspect": 4.745465829441686,
+     "n": 1448,
+     "grasp_z": 0.012115387861508068,
+     "median_z": 0.019516311427940636,
+     "max_z": 0.024230775723016136,
+     "elongated": true
+    }
+   }
+  }
+ ]
+}

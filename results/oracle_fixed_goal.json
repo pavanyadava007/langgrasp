@@ -1,0 +1,2373 @@
+{
+ "approach": "oracle_fixed_goal",
+ "notes": "scripted PickPlaceController with ground-truth grasp point on the fixed-goal scenes (upper bound for ACT)",
+ "hardware": "NVIDIA L4 (x86 EC2 host, x86_64), simulation only, not Jetson",
+ "n_per_stratum": {
+  "seen": 100
+ },
+ "fixed_goal": {
+  "target_kind": "cube",
+  "target_color": "red",
+  "task": "pick the red cube and place it in the tray",
+  "seeds": [
+   5000,
+   5099
+  ]
+ },
+ "minutes": 0.6769599318504333,
+ "summary": {
+  "n_trials": 100,
+  "strata": {
+   "all": {
+    "grasp": {
+     "k": 99,
+     "n": 100,
+     "p": 0.99,
+     "lo": 0.9455124752390653,
+     "hi": 0.9982326134344526
+    },
+    "place": {
+     "k": 100,
+     "n": 100,
+     "p": 1.0,
+     "lo": 0.9630051925239981,
+     "hi": 0.9999999999999999
+    },
+    "grounding": {
+     "k": 0,
+     "n": 0,
+     "p": NaN,
+     "lo": NaN,
+     "hi": NaN
+    }
+   },
+   "seen": {
+    "grasp": {
+     "k": 99,
+     "n": 100,
+     "p": 0.99,
+     "lo": 0.9455124752390653,
+     "hi": 0.9982326134344526
+    },
+    "place": {
+     "k": 100,
+     "n": 100,
+     "p": 1.0,
+     "lo": 0.9630051925239981,
+     "hi": 0.9999999999999999
+    },
+    "grounding": {
+     "k": 0,
+     "n": 0,
+     "p": NaN,
+     "lo": NaN,
+     "hi": NaN
+    }
+   }
+  },
+  "lang_variants": {
+   "plain": {
+    "grasp": {
+     "k": 99,
+     "n": 100,
+     "p": 0.99,
+     "lo": 0.9455124752390653,
+     "hi": 0.9982326134344526
+    },
+    "place": {
+     "k": 100,
+     "n": 100,
+     "p": 1.0,
+     "lo": 0.9630051925239981,
+     "hi": 0.9999999999999999
+    },
+    "grounding": {
+     "k": 0,
+     "n": 0,
+     "p": NaN,
+     "lo": NaN,
+     "hi": NaN
+    }
+   }
+  },
+  "lighting": {
+   "degraded": {
+    "grasp": {
+     "k": 28,
+     "n": 28,
+     "p": 1.0,
+     "lo": 0.8793527963418923,
+     "hi": 1.0
+    },
+    "place": {
+     "k": 28,
+     "n": 28,
+     "p": 1.0,
+     "lo": 0.8793527963418923,
+     "hi": 1.0
+    },
+    "grounding": {
+     "k": 0,
+     "n": 0,
+     "p": NaN,
+     "lo": NaN,
+     "hi": NaN
+    }
+   },
+   "nominal": {
+    "grasp": {
+     "k": 71,
+     "n": 72,
+     "p": 0.9861111111111112,
+     "lo": 0.9254321971571302,
+     "hi": 0.9975441113595678
+    },
+    "place": {
+     "k": 72,
+     "n": 72,
+     "p": 1.0,
+     "lo": 0.9493470601886036,
+     "hi": 1.0
+    },
+    "grounding": {
+     "k": 0,
+     "n": 0,
+     "p": NaN,
+     "lo": NaN,
+     "hi": NaN
+    }
+   }
+  },
+  "kinds": {
+   "cube": {
+    "grasp": {
+     "k": 99,
+     "n": 100,
+     "p": 0.99,
+     "lo": 0.9455124752390653,
+     "hi": 0.9982326134344526
+    },
+    "place": {
+     "k": 100,
+     "n": 100,
+     "p": 1.0,
+     "lo": 0.9630051925239981,
+     "hi": 0.9999999999999999
+    }
+   }
+  },
+  "aborts": {},
+  "latency_ms": {
+   "episode": {
+    "n": 99,
+    "median_ms": 357.6505029996042,
+    "p90_ms": 445.1121520047309,
+    "p99_ms": 536.698172641627,
+    "mean_ms": 367.38601018155214,
+    "max_ms": 539.9889460022678
+   }
+  }
+ },
+ "trials": [
+  {
+   "seed": 5000,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 380.0745980042848
+   },
+   "extra": {
+    "ticks": 60,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5001,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 330.98605499981204
+   },
+   "extra": {
+    "ticks": 54,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5002,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 361.799191996397
+   },
+   "extra": {
+    "ticks": 59,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5003,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 309.94109799939906
+   },
+   "extra": {
+    "ticks": 56,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5004,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 329.3710289945011
+   },
+   "extra": {
+    "ticks": 62,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5005,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 347.4212169967359
+   },
+   "extra": {
+    "ticks": 56,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5006,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 331.1583249960677
+   },
+   "extra": {
+    "ticks": 57,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5007,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 363.27927900129
+   },
+   "extra": {
+    "ticks": 62,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5008,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 303.1317089989898
+   },
+   "extra": {
+    "ticks": 57,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5009,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 336.1324360012077
+   },
+   "extra": {
+    "ticks": 60,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5010,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 299.0480180014856
+   },
+   "extra": {
+    "ticks": 54,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5011,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 324.84425800066674
+   },
+   "extra": {
+    "ticks": 58,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5012,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 466.80624399596127
+   },
+   "extra": {
+    "ticks": 58,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5013,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 369.82996000006096
+   },
+   "extra": {
+    "ticks": 60,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5014,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 317.44077400071546
+   },
+   "extra": {
+    "ticks": 55,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5015,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 279.6726989981835
+   },
+   "extra": {
+    "ticks": 54,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5016,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 293.94701099954545
+   },
+   "extra": {
+    "ticks": 54,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5017,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 354.7782189998543
+   },
+   "extra": {
+    "ticks": 57,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5018,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 393.4224559998256
+   },
+   "extra": {
+    "ticks": 60,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5019,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 340.36021099745994
+   },
+   "extra": {
+    "ticks": 62,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5020,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 294.9209750004229
+   },
+   "extra": {
+    "ticks": 55,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5021,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 326.5365089973784
+   },
+   "extra": {
+    "ticks": 58,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5022,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 296.7695309998817
+   },
+   "extra": {
+    "ticks": 54,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5023,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 292.060574000061
+   },
+   "extra": {
+    "ticks": 56,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5024,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 335.54009100043913
+   },
+   "extra": {
+    "ticks": 56,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5025,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 338.7098609964596
+   },
+   "extra": {
+    "ticks": 58,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5026,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 400.73908799968194
+   },
+   "extra": {
+    "ticks": 60,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5027,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 302.1468650040333
+   },
+   "extra": {
+    "ticks": 56,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5028,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 289.3203679996077
+   },
+   "extra": {
+    "ticks": 55,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5029,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 347.83606600103667
+   },
+   "extra": {
+    "ticks": 56,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5030,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 341.15606999694137
+   },
+   "extra": {
+    "ticks": 58,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5031,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 380.1308059992152
+   },
+   "extra": {
+    "ticks": 60,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5032,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 336.476895994565
+   },
+   "extra": {
+    "ticks": 58,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5033,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 335.6540250024409
+   },
+   "extra": {
+    "ticks": 56,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5034,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 311.08365600084653
+   },
+   "extra": {
+    "ticks": 57,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5035,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 336.47144499991555
+   },
+   "extra": {
+    "ticks": 61,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5036,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 350.9624639991671
+   },
+   "extra": {
+    "ticks": 57,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5037,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 373.9465230028145
+   },
+   "extra": {
+    "ticks": 54,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5038,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 346.8378120014677
+   },
+   "extra": {
+    "ticks": 61,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5039,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 375.0324919965351
+   },
+   "extra": {
+    "ticks": 61,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5040,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 294.6477000004961
+   },
+   "extra": {
+    "ticks": 55,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5041,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 332.0705070000258
+   },
+   "extra": {
+    "ticks": 56,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5042,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 310.848419998365
+   },
+   "extra": {
+    "ticks": 58,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5043,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 424.17949700029567
+   },
+   "extra": {
+    "ticks": 61,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5044,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 300.17992699868046
+   },
+   "extra": {
+    "ticks": 55,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5045,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 311.90530599997146
+   },
+   "extra": {
+    "ticks": 55,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5046,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 383.6284139979398
+   },
+   "extra": {
+    "ticks": 58,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5047,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 536.631014001614
+   },
+   "extra": {
+    "ticks": 62,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5048,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 465.72465899953386
+   },
+   "extra": {
+    "ticks": 62,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5049,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 398.2137870043516
+   },
+   "extra": {
+    "ticks": 56,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5050,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 395.0095389955095
+   },
+   "extra": {
+    "ticks": 55,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5051,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 382.198060004157
+   },
+   "extra": {
+    "ticks": 59,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5052,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 371.4480439957697
+   },
+   "extra": {
+    "ticks": 61,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5053,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 387.7270090015372
+   },
+   "extra": {
+    "ticks": 56,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5054,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 392.7968249990954
+   },
+   "extra": {
+    "ticks": 62,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5055,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 357.5523410036112
+   },
+   "extra": {
+    "ticks": 56,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5056,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 320.75359000009485
+   },
+   "extra": {
+    "ticks": 56,
+    "ik_ok": false
+   }
+  },
+  {
+   "seed": 5057,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 383.93887400161475
+   },
+   "extra": {
+    "ticks": 58,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5058,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 326.41291999607347
+   },
+   "extra": {
+    "ticks": 57,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5059,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 357.6505029996042
+   },
+   "extra": {
+    "ticks": 55,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5060,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 395.4593290036428
+   },
+   "extra": {
+    "ticks": 61,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5061,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 337.3191089995089
+   },
+   "extra": {
+    "ticks": 58,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5062,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 283.68353199766716
+   },
+   "extra": {
+    "ticks": 54,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5063,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 383.68912800069666
+   },
+   "extra": {
+    "ticks": 59,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5064,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 336.2812550039962
+   },
+   "extra": {
+    "ticks": 55,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5065,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 300.87366799853044
+   },
+   "extra": {
+    "ticks": 58,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5066,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 335.06749300431693
+   },
+   "extra": {
+    "ticks": 54,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5067,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 338.6049719993025
+   },
+   "extra": {
+    "ticks": 59,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5068,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 450.28296599775786
+   },
+   "extra": {
+    "ticks": 63,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5069,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 350.9834279975621
+   },
+   "extra": {
+    "ticks": 56,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5070,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 358.1629660038743
+   },
+   "extra": {
+    "ticks": 59,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5071,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 317.7142950007692
+   },
+   "extra": {
+    "ticks": 60,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5072,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 407.3643730007461
+   },
+   "extra": {
+    "ticks": 60,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5073,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 317.01126700500026
+   },
+   "extra": {
+    "ticks": 54,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5074,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 449.73296399984974
+   },
+   "extra": {
+    "ticks": 56,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5075,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 411.76865300076315
+   },
+   "extra": {
+    "ticks": 56,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5076,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 412.24049599986756
+   },
+   "extra": {
+    "ticks": 58,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5077,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 372.6718349935254
+   },
+   "extra": {
+    "ticks": 55,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5078,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 408.85714199976064
+   },
+   "extra": {
+    "ticks": 62,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5079,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 409.5591980003519
+   },
+   "extra": {
+    "ticks": 58,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5080,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 331.23659800185123
+   },
+   "extra": {
+    "ticks": 53,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5081,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 382.9165579954861
+   },
+   "extra": {
+    "ticks": 57,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5082,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 402.9189850043622
+   },
+   "extra": {
+    "ticks": 57,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5083,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 422.3018850025255
+   },
+   "extra": {
+    "ticks": 60,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5084,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 390.8228450018214
+   },
+   "extra": {
+    "ticks": 53,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5085,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 426.5868689981289
+   },
+   "extra": {
+    "ticks": 57,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5086,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 354.4836349974503
+   },
+   "extra": {
+    "ticks": 54,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5087,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 422.5116079978761
+   },
+   "extra": {
+    "ticks": 61,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5088,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 443.9569490059512
+   },
+   "extra": {
+    "ticks": 57,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5089,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 456.59535100276116
+   },
+   "extra": {
+    "ticks": 64,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5090,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 539.9889460022678
+   },
+   "extra": {
+    "ticks": 63,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5091,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 481.8495270010317
+   },
+   "extra": {
+    "ticks": 55,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5092,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 504.8016529981396
+   },
+   "extra": {
+    "ticks": 62,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5093,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 397.71129399741767
+   },
+   "extra": {
+    "ticks": 57,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5094,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 364.0384210011689
+   },
+   "extra": {
+    "ticks": 56,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5095,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 421.698166996066
+   },
+   "extra": {
+    "ticks": 58,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5096,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 460.8452960019349
+   },
+   "extra": {
+    "ticks": 62,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5097,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 421.2577269936446
+   },
+   "extra": {
+    "ticks": 55,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5098,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 391.0629589954624
+   },
+   "extra": {
+    "ticks": 57,
+    "ik_ok": true
+   }
+  },
+  {
+   "seed": 5099,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": false,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "episode": 377.08242300141137
+   },
+   "extra": {
+    "ticks": 56,
+    "ik_ok": true
+   }
+  }
+ ]
+}

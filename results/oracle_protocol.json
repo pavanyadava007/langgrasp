@@ -1,0 +1,2720 @@
+{
+ "approach": "oracle_scripted",
+ "notes": "ground-truth grasp point and jaw yaw from the simulator; no perception; upper bound for the executor",
+ "hardware": "NVIDIA L4 (x86 EC2 host, x86_64), simulation only, not Jetson",
+ "n_per_stratum": {
+  "seen": 40,
+  "unseen": 40,
+  "langvar": 40
+ },
+ "minutes": 0.750718895594279,
+ "summary": {
+  "n_trials": 120,
+  "strata": {
+   "all": {
+    "grasp": {
+     "k": 116,
+     "n": 120,
+     "p": 0.9666666666666667,
+     "lo": 0.9174184205147198,
+     "hi": 0.9869626598330794
+    },
+    "place": {
+     "k": 116,
+     "n": 120,
+     "p": 0.9666666666666667,
+     "lo": 0.9174184205147198,
+     "hi": 0.9869626598330794
+    },
+    "grounding": {
+     "k": 120,
+     "n": 120,
+     "p": 1.0,
+     "lo": 0.9689797289440706,
+     "hi": 1.0
+    }
+   },
+   "seen": {
+    "grasp": {
+     "k": 38,
+     "n": 40,
+     "p": 0.95,
+     "lo": 0.834958291820748,
+     "hi": 0.9861796228538989
+    },
+    "place": {
+     "k": 38,
+     "n": 40,
+     "p": 0.95,
+     "lo": 0.834958291820748,
+     "hi": 0.9861796228538989
+    },
+    "grounding": {
+     "k": 40,
+     "n": 40,
+     "p": 1.0,
+     "lo": 0.9123754607496077,
+     "hi": 1.0
+    }
+   },
+   "unseen": {
+    "grasp": {
+     "k": 40,
+     "n": 40,
+     "p": 1.0,
+     "lo": 0.9123754607496077,
+     "hi": 1.0
+    },
+    "place": {
+     "k": 40,
+     "n": 40,
+     "p": 1.0,
+     "lo": 0.9123754607496077,
+     "hi": 1.0
+    },
+    "grounding": {
+     "k": 40,
+     "n": 40,
+     "p": 1.0,
+     "lo": 0.9123754607496077,
+     "hi": 1.0
+    }
+   },
+   "langvar": {
+    "grasp": {
+     "k": 38,
+     "n": 40,
+     "p": 0.95,
+     "lo": 0.834958291820748,
+     "hi": 0.9861796228538989
+    },
+    "place": {
+     "k": 38,
+     "n": 40,
+     "p": 0.95,
+     "lo": 0.834958291820748,
+     "hi": 0.9861796228538989
+    },
+    "grounding": {
+     "k": 40,
+     "n": 40,
+     "p": 1.0,
+     "lo": 0.9123754607496077,
+     "hi": 1.0
+    }
+   }
+  },
+  "lang_variants": {
+   "attribute": {
+    "grasp": {
+     "k": 10,
+     "n": 11,
+     "p": 0.9090909090909091,
+     "lo": 0.6226353745137962,
+     "hi": 0.9837682477371741
+    },
+    "place": {
+     "k": 10,
+     "n": 11,
+     "p": 0.9090909090909091,
+     "lo": 0.6226353745137962,
+     "hi": 0.9837682477371741
+    },
+    "grounding": {
+     "k": 11,
+     "n": 11,
+     "p": 1.0,
+     "lo": 0.7411599827511859,
+     "hi": 1.0
+    }
+   },
+   "plain": {
+    "grasp": {
+     "k": 78,
+     "n": 80,
+     "p": 0.975,
+     "lo": 0.9133539994467789,
+     "hi": 0.9931172511018748
+    },
+    "place": {
+     "k": 78,
+     "n": 80,
+     "p": 0.975,
+     "lo": 0.9133539994467789,
+     "hi": 0.9931172511018748
+    },
+    "grounding": {
+     "k": 80,
+     "n": 80,
+     "p": 1.0,
+     "lo": 0.954180263735425,
+     "hi": 1.0
+    }
+   },
+   "spatial": {
+    "grasp": {
+     "k": 12,
+     "n": 13,
+     "p": 0.9230769230769231,
+     "lo": 0.6668546607175265,
+     "hi": 0.9862899336203037
+    },
+    "place": {
+     "k": 12,
+     "n": 13,
+     "p": 0.9230769230769231,
+     "lo": 0.6668546607175265,
+     "hi": 0.9862899336203037
+    },
+    "grounding": {
+     "k": 13,
+     "n": 13,
+     "p": 1.0,
+     "lo": 0.7718981569447083,
+     "hi": 1.0
+    }
+   },
+   "synonym": {
+    "grasp": {
+     "k": 16,
+     "n": 16,
+     "p": 1.0,
+     "lo": 0.8063865817272802,
+     "hi": 1.0
+    },
+    "place": {
+     "k": 16,
+     "n": 16,
+     "p": 1.0,
+     "lo": 0.8063865817272802,
+     "hi": 1.0
+    },
+    "grounding": {
+     "k": 16,
+     "n": 16,
+     "p": 1.0,
+     "lo": 0.8063865817272802,
+     "hi": 1.0
+    }
+   }
+  },
+  "lighting": {
+   "degraded": {
+    "grasp": {
+     "k": 30,
+     "n": 31,
+     "p": 0.967741935483871,
+     "lo": 0.8380554282383037,
+     "hi": 0.9942829259130554
+    },
+    "place": {
+     "k": 30,
+     "n": 31,
+     "p": 0.967741935483871,
+     "lo": 0.8380554282383037,
+     "hi": 0.9942829259130554
+    },
+    "grounding": {
+     "k": 31,
+     "n": 31,
+     "p": 1.0,
+     "lo": 0.889740999265246,
+     "hi": 0.9999999999999999
+    }
+   },
+   "nominal": {
+    "grasp": {
+     "k": 86,
+     "n": 89,
+     "p": 0.9662921348314607,
+     "lo": 0.9055248072121062,
+     "hi": 0.9884709877763475
+    },
+    "place": {
+     "k": 86,
+     "n": 89,
+     "p": 0.9662921348314607,
+     "lo": 0.9055248072121062,
+     "hi": 0.9884709877763475
+    },
+    "grounding": {
+     "k": 89,
+     "n": 89,
+     "p": 1.0,
+     "lo": 0.9586219970358116,
+     "hi": 1.0
+    }
+   }
+  },
+  "kinds": {
+   "bar": {
+    "grasp": {
+     "k": 21,
+     "n": 21,
+     "p": 1.0,
+     "lo": 0.8453561767357979,
+     "hi": 0.9999999999999999
+    },
+    "place": {
+     "k": 21,
+     "n": 21,
+     "p": 1.0,
+     "lo": 0.8453561767357979,
+     "hi": 0.9999999999999999
+    }
+   },
+   "can": {
+    "grasp": {
+     "k": 32,
+     "n": 32,
+     "p": 1.0,
+     "lo": 0.8928172849426366,
+     "hi": 1.0
+    },
+    "place": {
+     "k": 32,
+     "n": 32,
+     "p": 1.0,
+     "lo": 0.8928172849426366,
+     "hi": 1.0
+    }
+   },
+   "cube": {
+    "grasp": {
+     "k": 25,
+     "n": 26,
+     "p": 0.9615384615384616,
+     "lo": 0.811068230080416,
+     "hi": 0.9931781910230102
+    },
+    "place": {
+     "k": 25,
+     "n": 26,
+     "p": 0.9615384615384616,
+     "lo": 0.811068230080416,
+     "hi": 0.9931781910230102
+    }
+   },
+   "screwdriver": {
+    "grasp": {
+     "k": 38,
+     "n": 41,
+     "p": 0.926829268292683,
+     "lo": 0.8057225998278872,
+     "hi": 0.9748026267474359
+    },
+    "place": {
+     "k": 38,
+     "n": 41,
+     "p": 0.926829268292683,
+     "lo": 0.8057225998278872,
+     "hi": 0.9748026267474359
+    }
+   }
+  },
+  "aborts": {},
+  "latency_ms": {}
+ },
+ "trials": [
+  {
+   "seed": 5000,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the blue cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 60,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5001,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the blue cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 54,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5002,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 61,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5003,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the blue screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 55,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5004,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the green cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 62,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5005,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the blue cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 56,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5006,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 53,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5007,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the blue can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 58,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5008,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 57,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5009,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 60,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5010,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the blue screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 63,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5011,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the green screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 56,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5012,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the yellow can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 53,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5013,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the green can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 55,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5014,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the blue screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": false,
+   "placed": false,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 55,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5015,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the green cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 54,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5016,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the yellow can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 50,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5017,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 57,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5018,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the blue screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 59,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5019,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the yellow can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 58,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5020,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the yellow screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 57,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5021,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the yellow screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 59,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5022,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the green screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 58,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5023,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 53,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5024,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the green can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 53,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5025,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 55,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5026,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the blue screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 58,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5027,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 63,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5028,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the blue can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 51,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5029,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the blue cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 56,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5030,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the blue cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 58,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5031,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the green screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 61,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5032,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the blue can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 55,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5033,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the green cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 56,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5034,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the yellow screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 56,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5035,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the yellow screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 62,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5036,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the blue screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 59,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5037,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 51,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5038,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the blue can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 57,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 5039,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the yellow cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 61,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6000,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the purple screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "purple",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 59,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6001,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the pink can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "pink",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 57,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6002,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the purple screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "purple",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 57,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6003,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 59,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6004,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the purple cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "purple",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 57,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6005,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the blue bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 56,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6006,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the blue bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 60,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6007,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the yellow bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 59,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6008,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the blue bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 58,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6009,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the purple cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "purple",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 57,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6010,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the green bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 55,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6011,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the orange can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "orange",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 54,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6012,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the pink can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "pink",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 59,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6013,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the green bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 60,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6014,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the orange can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "orange",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 57,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6015,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the orange can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "orange",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 61,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6016,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the green bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 57,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6017,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the yellow bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 55,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6018,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the orange screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "orange",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 58,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6019,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 54,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6020,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the green bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 62,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6021,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the purple cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "purple",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 56,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6022,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the pink can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "pink",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 53,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6023,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the pink screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "pink",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 58,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6024,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 54,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6025,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the green bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 61,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6026,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 60,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6027,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the pink can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "pink",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 50,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6028,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the blue bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 61,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6029,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the blue bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 60,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6030,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the purple screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "purple",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 59,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6031,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the yellow bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 56,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6032,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the blue bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 62,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6033,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the pink can",
+   "target": "can_0",
+   "kind": "can",
+   "color": "pink",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 56,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6034,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the green bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 56,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6035,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the green bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 54,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6036,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the pink cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "pink",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 53,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6037,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the purple screwdriver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "purple",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 60,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6038,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the blue bar",
+   "target": "bar_0",
+   "kind": "bar",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 57,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 6039,
+   "stratum": "unseen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the pink cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "pink",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 58,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7000,
+   "stratum": "langvar",
+   "lang_variant": "spatial",
+   "lighting": "nominal",
+   "command": "pick the red screwdriver on the right",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 56,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7001,
+   "stratum": "langvar",
+   "lang_variant": "synonym",
+   "lighting": "nominal",
+   "command": "pick the yellow cylinder",
+   "target": "can_0",
+   "kind": "can",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 58,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7002,
+   "stratum": "langvar",
+   "lang_variant": "synonym",
+   "lighting": "nominal",
+   "command": "pick the yellow driver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 60,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7003,
+   "stratum": "langvar",
+   "lang_variant": "spatial",
+   "lighting": "degraded",
+   "command": "pick the red screwdriver on the right",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 55,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7004,
+   "stratum": "langvar",
+   "lang_variant": "spatial",
+   "lighting": "nominal",
+   "command": "pick the red can on the left",
+   "target": "can_0",
+   "kind": "can",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 53,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7005,
+   "stratum": "langvar",
+   "lang_variant": "attribute",
+   "lighting": "nominal",
+   "command": "pick the blue object",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 56,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7006,
+   "stratum": "langvar",
+   "lang_variant": "attribute",
+   "lighting": "nominal",
+   "command": "pick the green object",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 62,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7007,
+   "stratum": "langvar",
+   "lang_variant": "attribute",
+   "lighting": "nominal",
+   "command": "grab the green one",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 57,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7008,
+   "stratum": "langvar",
+   "lang_variant": "synonym",
+   "lighting": "nominal",
+   "command": "pick the green cylinder",
+   "target": "can_0",
+   "kind": "can",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 51,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7009,
+   "stratum": "langvar",
+   "lang_variant": "synonym",
+   "lighting": "nominal",
+   "command": "pick the green driver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 56,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7010,
+   "stratum": "langvar",
+   "lang_variant": "synonym",
+   "lighting": "nominal",
+   "command": "pick the blue block",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 62,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7011,
+   "stratum": "langvar",
+   "lang_variant": "attribute",
+   "lighting": "nominal",
+   "command": "grab the yellow one",
+   "target": "can_0",
+   "kind": "can",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 54,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7012,
+   "stratum": "langvar",
+   "lang_variant": "spatial",
+   "lighting": "nominal",
+   "command": "pick the red screwdriver on the left",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 63,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7013,
+   "stratum": "langvar",
+   "lang_variant": "spatial",
+   "lighting": "nominal",
+   "command": "pick the yellow screwdriver on the right",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 55,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7014,
+   "stratum": "langvar",
+   "lang_variant": "synonym",
+   "lighting": "nominal",
+   "command": "pick the blue driver",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 59,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7015,
+   "stratum": "langvar",
+   "lang_variant": "spatial",
+   "lighting": "nominal",
+   "command": "pick the red cube on the right",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 57,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7016,
+   "stratum": "langvar",
+   "lang_variant": "spatial",
+   "lighting": "nominal",
+   "command": "pick the red screwdriver on the left",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 57,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7017,
+   "stratum": "langvar",
+   "lang_variant": "synonym",
+   "lighting": "nominal",
+   "command": "pick the yellow tool",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 59,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7018,
+   "stratum": "langvar",
+   "lang_variant": "synonym",
+   "lighting": "nominal",
+   "command": "pick the yellow cylinder",
+   "target": "can_0",
+   "kind": "can",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 52,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7019,
+   "stratum": "langvar",
+   "lang_variant": "attribute",
+   "lighting": "nominal",
+   "command": "grab the blue one",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 59,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7020,
+   "stratum": "langvar",
+   "lang_variant": "synonym",
+   "lighting": "nominal",
+   "command": "pick the blue cylinder",
+   "target": "can_0",
+   "kind": "can",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 57,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7021,
+   "stratum": "langvar",
+   "lang_variant": "spatial",
+   "lighting": "degraded",
+   "command": "pick the yellow can on the left",
+   "target": "can_0",
+   "kind": "can",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 59,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7022,
+   "stratum": "langvar",
+   "lang_variant": "spatial",
+   "lighting": "degraded",
+   "command": "pick the yellow screwdriver on the right",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 57,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7023,
+   "stratum": "langvar",
+   "lang_variant": "synonym",
+   "lighting": "nominal",
+   "command": "pick the yellow cylinder",
+   "target": "can_0",
+   "kind": "can",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 57,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7024,
+   "stratum": "langvar",
+   "lang_variant": "attribute",
+   "lighting": "degraded",
+   "command": "pick the green object",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 60,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7025,
+   "stratum": "langvar",
+   "lang_variant": "synonym",
+   "lighting": "nominal",
+   "command": "pick the blue cylinder",
+   "target": "can_0",
+   "kind": "can",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 50,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7026,
+   "stratum": "langvar",
+   "lang_variant": "attribute",
+   "lighting": "nominal",
+   "command": "grab the green one",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 56,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7027,
+   "stratum": "langvar",
+   "lang_variant": "spatial",
+   "lighting": "nominal",
+   "command": "pick the red screwdriver on the left",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 61,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7028,
+   "stratum": "langvar",
+   "lang_variant": "attribute",
+   "lighting": "degraded",
+   "command": "grab the blue one",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 59,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7029,
+   "stratum": "langvar",
+   "lang_variant": "attribute",
+   "lighting": "nominal",
+   "command": "grab the blue one",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "blue",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 60,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7030,
+   "stratum": "langvar",
+   "lang_variant": "spatial",
+   "lighting": "degraded",
+   "command": "pick the yellow cube on the left",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 58,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7031,
+   "stratum": "langvar",
+   "lang_variant": "spatial",
+   "lighting": "nominal",
+   "command": "pick the yellow screwdriver on the left",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 57,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7032,
+   "stratum": "langvar",
+   "lang_variant": "synonym",
+   "lighting": "nominal",
+   "command": "pick the red cylinder",
+   "target": "can_0",
+   "kind": "can",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 56,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7033,
+   "stratum": "langvar",
+   "lang_variant": "synonym",
+   "lighting": "degraded",
+   "command": "pick the red tool",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 57,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7034,
+   "stratum": "langvar",
+   "lang_variant": "synonym",
+   "lighting": "nominal",
+   "command": "pick the green tool",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 59,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7035,
+   "stratum": "langvar",
+   "lang_variant": "attribute",
+   "lighting": "nominal",
+   "command": "grab the red one",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 59,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7036,
+   "stratum": "langvar",
+   "lang_variant": "synonym",
+   "lighting": "nominal",
+   "command": "pick the red block",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 57,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7037,
+   "stratum": "langvar",
+   "lang_variant": "spatial",
+   "lighting": "nominal",
+   "command": "pick the green can on the left",
+   "target": "can_0",
+   "kind": "can",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 58,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7038,
+   "stratum": "langvar",
+   "lang_variant": "synonym",
+   "lighting": "degraded",
+   "command": "pick the yellow block",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "yellow",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 59,
+    "rot_err": 0.0
+   }
+  },
+  {
+   "seed": 7039,
+   "stratum": "langvar",
+   "lang_variant": "attribute",
+   "lighting": "degraded",
+   "command": "pick the green object",
+   "target": "screwdriver_0",
+   "kind": "screwdriver",
+   "color": "green",
+   "grounding_correct": true,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {},
+   "extra": {
+    "steps": 62,
+    "rot_err": 0.0
+   }
+  }
+ ]
+}

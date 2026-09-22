@@ -1,0 +1,312 @@
+{
+ "label": "sim-to-sim gap, no real robot",
+ "note": "The 'shifted' rows are a deliberately perturbed simulator standing in for a real robot; there is no real robot in this project.",
+ "hardware": "NVIDIA L4 (x86 EC2 host)",
+ "episodes_per_cell": 200,
+ "deterministic_policy": true,
+ "eval_seed": 12345,
+ "conditions": {
+  "nominal": {
+   "enabled": false,
+   "q_noise_deg": 0.0,
+   "action_noise": 0.0,
+   "latency_prob": 0.0,
+   "latency_ticks": 1,
+   "mass_range": [
+    1.0,
+    1.0
+   ],
+   "friction_range": [
+    1.0,
+    1.0
+   ],
+   "kp_range": [
+    1.0,
+    1.0
+   ],
+   "q_offset_deg": 0.0
+  },
+  "shifted": {
+   "enabled": true,
+   "q_noise_deg": 5.0,
+   "action_noise": 0.0,
+   "latency_prob": 1.0,
+   "latency_ticks": 1,
+   "mass_range": [
+    1.3,
+    1.3
+   ],
+   "friction_range": [
+    0.7,
+    0.7
+   ],
+   "kp_range": [
+    0.8,
+    0.8
+   ],
+   "q_offset_deg": 1.5
+  },
+  "shifted_latency2": {
+   "enabled": true,
+   "q_noise_deg": 5.0,
+   "action_noise": 0.0,
+   "latency_prob": 1.0,
+   "latency_ticks": 2,
+   "mass_range": [
+    1.3,
+    1.3
+   ],
+   "friction_range": [
+    0.7,
+    0.7
+   ],
+   "kp_range": [
+    0.8,
+    0.8
+   ],
+   "q_offset_deg": 1.5
+  }
+ },
+ "rows": [
+  {
+   "checkpoint": "checkpoints/ppo_reach_nodr.pt",
+   "task": "reach",
+   "train_dr": false,
+   "condition": "nominal",
+   "shift": {
+    "enabled": false,
+    "q_noise_deg": 0.0,
+    "action_noise": 0.0,
+    "latency_prob": 0.0,
+    "latency_ticks": 1,
+    "mass_range": [
+     1.0,
+     1.0
+    ],
+    "friction_range": [
+     1.0,
+     1.0
+    ],
+    "kp_range": [
+     1.0,
+     1.0
+    ],
+    "q_offset_deg": 0.0
+   },
+   "seconds": 1.9734766483306885,
+   "n": 200,
+   "k": 200,
+   "success": 1.0,
+   "ci95": [
+    0.9811539940816791,
+    1.0
+   ],
+   "mean_return": 73.773579091361,
+   "hold": 1.0,
+   "hold_ci95": [
+    0.9811539940816791,
+    1.0
+   ]
+  },
+  {
+   "checkpoint": "checkpoints/ppo_reach_nodr.pt",
+   "task": "reach",
+   "train_dr": false,
+   "condition": "shifted",
+   "shift": {
+    "enabled": true,
+    "q_noise_deg": 5.0,
+    "action_noise": 0.0,
+    "latency_prob": 1.0,
+    "latency_ticks": 1,
+    "mass_range": [
+     1.3,
+     1.3
+    ],
+    "friction_range": [
+     0.7,
+     0.7
+    ],
+    "kp_range": [
+     0.8,
+     0.8
+    ],
+    "q_offset_deg": 1.5
+   },
+   "seconds": 1.8681585788726807,
+   "n": 200,
+   "k": 166,
+   "success": 0.83,
+   "ci95": [
+    0.7718399896049648,
+    0.8757216464889435
+   ],
+   "mean_return": 1.8455661514254336,
+   "hold": 0.02,
+   "hold_ci95": [
+    0.007804300176394188,
+    0.050287865505193874
+   ]
+  },
+  {
+   "checkpoint": "checkpoints/ppo_reach_nodr.pt",
+   "task": "reach",
+   "train_dr": false,
+   "condition": "shifted_latency2",
+   "shift": {
+    "enabled": true,
+    "q_noise_deg": 5.0,
+    "action_noise": 0.0,
+    "latency_prob": 1.0,
+    "latency_ticks": 2,
+    "mass_range": [
+     1.3,
+     1.3
+    ],
+    "friction_range": [
+     0.7,
+     0.7
+    ],
+    "kp_range": [
+     0.8,
+     0.8
+    ],
+    "q_offset_deg": 1.5
+   },
+   "seconds": 2.069089889526367,
+   "n": 200,
+   "k": 80,
+   "success": 0.4,
+   "ci95": [
+    0.3346046396837895,
+    0.46916456149987484
+   ],
+   "mean_return": -1.8336050748934678,
+   "hold": 0.01,
+   "hold_ci95": [
+    0.0027466006037749346,
+    0.03572248519617954
+   ]
+  },
+  {
+   "checkpoint": "checkpoints/ppo_reach_dr.pt",
+   "task": "reach",
+   "train_dr": true,
+   "condition": "nominal",
+   "shift": {
+    "enabled": false,
+    "q_noise_deg": 0.0,
+    "action_noise": 0.0,
+    "latency_prob": 0.0,
+    "latency_ticks": 1,
+    "mass_range": [
+     1.0,
+     1.0
+    ],
+    "friction_range": [
+     1.0,
+     1.0
+    ],
+    "kp_range": [
+     1.0,
+     1.0
+    ],
+    "q_offset_deg": 0.0
+   },
+   "seconds": 1.778838872909546,
+   "n": 200,
+   "k": 200,
+   "success": 1.0,
+   "ci95": [
+    0.9811539940816791,
+    1.0
+   ],
+   "mean_return": 73.29553193659201,
+   "hold": 1.0,
+   "hold_ci95": [
+    0.9811539940816791,
+    1.0
+   ]
+  },
+  {
+   "checkpoint": "checkpoints/ppo_reach_dr.pt",
+   "task": "reach",
+   "train_dr": true,
+   "condition": "shifted",
+   "shift": {
+    "enabled": true,
+    "q_noise_deg": 5.0,
+    "action_noise": 0.0,
+    "latency_prob": 1.0,
+    "latency_ticks": 1,
+    "mass_range": [
+     1.3,
+     1.3
+    ],
+    "friction_range": [
+     0.7,
+     0.7
+    ],
+    "kp_range": [
+     0.8,
+     0.8
+    ],
+    "q_offset_deg": 1.5
+   },
+   "seconds": 1.6526167392730713,
+   "n": 200,
+   "k": 195,
+   "success": 0.975,
+   "ci95": [
+    0.9428208558483829,
+    0.9892754385292123
+   ],
+   "mean_return": 10.108455693326304,
+   "hold": 0.16,
+   "hold_ci95": [
+    0.11567342208544587,
+    0.2171418619390124
+   ]
+  },
+  {
+   "checkpoint": "checkpoints/ppo_reach_dr.pt",
+   "task": "reach",
+   "train_dr": true,
+   "condition": "shifted_latency2",
+   "shift": {
+    "enabled": true,
+    "q_noise_deg": 5.0,
+    "action_noise": 0.0,
+    "latency_prob": 1.0,
+    "latency_ticks": 2,
+    "mass_range": [
+     1.3,
+     1.3
+    ],
+    "friction_range": [
+     0.7,
+     0.7
+    ],
+    "kp_range": [
+     0.8,
+     0.8
+    ],
+    "q_offset_deg": 1.5
+   },
+   "seconds": 1.9323680400848389,
+   "n": 200,
+   "k": 109,
+   "success": 0.545,
+   "ci95": [
+    0.4757848503696115,
+    0.6125190090977398
+   ],
+   "mean_return": -0.22940048231618937,
+   "hold": 0.01,
+   "hold_ci95": [
+    0.0027466006037749346,
+    0.03572248519617954
+   ]
+  }
+ ]
+}
