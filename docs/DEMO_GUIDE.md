@@ -34,7 +34,7 @@ The Grounding DINO tiny checkpoint (about 660 MB) is fetched from the Hugging Fa
 | Scripted demos -> LeRobotDataset | `python scripts/collect_demos.py` | data/lerobot/langgrasp_pick |
 | ACT training / eval | `python scripts/train_act.py`, `python scripts/eval_act.py` | results/act_*.json |
 | PPO reach (DR and no DR) + gap table | `python scripts/train_ppo.py --task reach --dr`, `python scripts/eval_ppo.py` | results/ppo_*.json |
-| Speech-to-text latency | `python -m langgrasp.language.stt --bench` | results/stt_latency_l4.json |
+| Speech-to-text latency | `python -m langgrasp.language.stt results/stt_latency_l4.json` | results/stt_latency_l4.json |
 | ROS 2 pipeline in Docker | see docs/ROS2.md | results/ros2_smoke.json |
 | Regenerate the results page | `make report` | docs/RESULTS.md |
 

@@ -95,6 +95,22 @@ def yolo_section() -> list[str]:
     return out
 
 
+def pipeline_bench_table(fname: str) -> list[str]:
+    d = _load(fname)
+    if d is None:
+        return ["not run"]
+    rows = [f"Hardware: {d.get('hardware')}. {d.get('note', '')}", "", "| Segmenter backend | parse | capture (render) | grounding (GDINO tiny) | segmentation | depth fusion | perception total | executor (sim compute) |", "|---|---|---|---|---|---|---|---|"]
+    for name, v in d.get("backends", {}).items():
+        if "error" in v:
+            rows.append(f"| {name} | error: {v['error'][:60]} | | | | | | |")
+            continue
+        cells = [_lat(v.get(k)) for k in ["parse", "capture", "grounding", "segmentation", "depth_fusion", "perception_total", "execute_sim"]]
+        rows.append(f"| {name} | " + " | ".join(cells) + " |")
+    rows.append("")
+    rows.append("Cells are median / p90 / p99 in ms.")
+    return rows
+
+
 def gap_table(fname: str, task: str) -> list[str]:
     d = _load(fname)
     if d is None:
@@ -140,7 +156,7 @@ def build() -> str:
         "ACT (LeRobot, scripted demos)": "act_eval.json",
     })
     lines.append("")
-    lines += ["## 3. Latency budget of the modular pipeline (per command, L4)", ""] + latency_table("modular_protocol.json") + [""]
+    lines += ["## 3. Latency budget of the modular pipeline (per command, L4)", "", "Clean benchmark (`scripts/bench_pipeline.py`, no other GPU job running):", ""] + pipeline_bench_table("pipeline_latency_l4.json") + ["", "Stage timings recorded during the protocol runs above (these ran while ACT/YOLO training shared the GPU, so they are upper bounds; `execute` is simulation compute for the motion, not robot motion time):", ""] + latency_table("modular_protocol.json") + [""]
     lines += ["## 4. Perception stack", ""] + yolo_section()
     lines += ["## 5. ACT", ""] + generic_json_section("act_train.json", "ACT training", ["steps", "batch", "minutes", "final_loss", "config", "hardware"]) + generic_json_section("demos_act.json", "Demo collection")
     lines += ["## 6. Reinforcement learning (PPO, state-based, sim-to-sim gap; no real robot)", ""] + gap_table("ppo_sim2sim_gap.json", "reach") + gap_table("ppo_sim2sim_gap_lift.json", "lift")
