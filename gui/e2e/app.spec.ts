@@ -48,7 +48,8 @@ async function runCurrentCommand(page: Page) {
 test.describe("Live Run", () => {
   test("the page states what it is before anything else", async ({ page }) => {
     await waitForWarm(page);
-    await expect(page.getByText("Simulation · NVIDIA L4 · x86 · not Jetson · not real hardware")).toBeVisible();
+    // the banner names whatever machine the worker found, and always says it is not real hardware
+    await expect(page.getByText(/^Simulation · .* · not real hardware$/)).toBeVisible();
     await expect(page.getByRole("navigation", { name: "Views" }).first()).toBeVisible();
     // the safety state is shown before a run, not after
     await expect(page.getByRole("complementary", { name: "Safety" })).toBeVisible();

@@ -142,7 +142,8 @@ export const useStore = create<State>((set, get) => ({
   connection: "connecting",
   connectionDetail: "",
   system: null,
-  banner: "Simulation · NVIDIA L4 · x86 · not Jetson · not real hardware",
+  // Replaced by whatever the server reports; until then it claims no particular machine.
+  banner: "Simulation · not real hardware",
 
   scene: null,
   examples: [],

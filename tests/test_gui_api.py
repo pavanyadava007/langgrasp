@@ -111,7 +111,8 @@ def test_system_reports_the_banner_versions_and_stages_without_inventing_any(cli
     r = client.get("/api/system")
     assert r.status_code == 200
     d = r.json()
-    assert d["banner"] == "Simulation · NVIDIA L4 · x86 · not Jetson · not real hardware"
+    # the banner names the machine the worker found; with a stub worker nothing has been detected yet
+    assert d["banner"].startswith("Simulation · ") and "not real hardware" in d["banner"]
     assert [s["name"] for s in d["stages"]] == list(STAGES)
     assert all(s["help"] for s in d["stages"])
     assert d["versions"]["mujoco"] and d["versions"]["fastapi"]
@@ -472,3 +473,13 @@ def test_the_machine_it_runs_on_does_not_flicker_back_to_unknown(client):
     _t.sleep(0.3)
     d = client.get("/api/system").json()
     assert d["gpu"] == "NVIDIA L4" and "not Jetson" in d["hardware_label"]
+
+
+def test_the_banner_never_claims_hardware_that_is_not_there(client):
+    """This app also runs CPU-only, where naming an L4 would be a lie."""
+    from langgrasp.gui.api import hardware_banner
+
+    assert hardware_banner("NVIDIA L4") == "Simulation · NVIDIA L4 · x86 · not Jetson · not real hardware"
+    assert hardware_banner("no GPU") == "Simulation · CPU only, no GPU · x86 · not Jetson · not real hardware"
+    assert "not detected yet" in hardware_banner(None)
+    assert all("not real hardware" in hardware_banner(g) for g in ("NVIDIA L4", "no GPU", None))

@@ -61,7 +61,7 @@ def main(argv: list[str] | None = None) -> int:
     )
     import uvicorn
 
-    print(f"LangGrasp GUI on http://{args.host}:{args.port}  (simulation, NVIDIA L4 class GPU, not Jetson, not real hardware)")
+    print(f"LangGrasp GUI on http://{args.host}:{args.port}  (MuJoCo simulation, not a robot, not a Jetson; the page names the machine it found)")
     print(f"forward it with:  ssh -L {args.port}:localhost:{args.port} <this host>")
     uvicorn.run(create_app(cfg=cfg), host=args.host, port=args.port, log_level=args.log_level, ws_ping_interval=20, ws_ping_timeout=20)
     return 0

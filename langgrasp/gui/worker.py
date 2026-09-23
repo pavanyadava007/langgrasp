@@ -281,7 +281,7 @@ class SimWorker:
         self._set_model(f"segmenter:{backend}", "loading", detail=path)
         try:
             t0 = time.perf_counter()
-            seg = Segmenter(path, backend="pt" if backend.startswith("pt") else backend, half=backend == "pt-fp16")
+            seg = Segmenter(path, backend="pt" if backend.startswith("pt") else backend, half=backend == "pt-fp16", device=self._torch_device())
             seg.warmup()
             self.segmenters[backend] = seg
             self._set_model(f"segmenter:{backend}", "warm", (time.perf_counter() - t0) * 1e3, detail=path)
@@ -290,6 +290,17 @@ class SimWorker:
         except Exception as e:  # noqa: BLE001 - a missing TensorRT engine must not kill the worker
             self._set_model(f"segmenter:{backend}", "error", detail=f"{type(e).__name__}: {e}")
             return None
+
+    @staticmethod
+    def _torch_device() -> str:
+        """The device the segmenter should use. Ultralytics defaults to cuda:0 and raises where there is none,
+        which is every CPU-only deployment of this GUI."""
+        try:
+            import torch
+
+            return "cuda:0" if torch.cuda.is_available() else "cpu"
+        except Exception:  # noqa: BLE001 - no torch at all means no segmenter either way
+            return "cpu"
 
     def seg_path(self, backend: str) -> str | None:
         base = self.cfg.seg_weights

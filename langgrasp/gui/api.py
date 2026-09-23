@@ -30,7 +30,13 @@ RESULTS_DIR = ROOT / "results"
 STATIC_DIR = Path(__file__).resolve().parent / "static"
 CHECKPOINTS = ROOT / "checkpoints"
 
-HARDWARE_BANNER = "Simulation · NVIDIA L4 · x86 · not Jetson · not real hardware"
+def hardware_banner(gpu: str | None) -> str:
+    """The banner that never leaves the screen. It names the machine the worker actually found, because this
+    app also runs on a CPU-only host where claiming an L4 would be a lie."""
+    if not gpu:
+        return "Simulation · hardware not detected yet · not real hardware"
+    machine = "CPU only, no GPU" if gpu.lower().startswith("no gpu") else gpu
+    return f"Simulation · {machine} · x86 · not Jetson · not real hardware"
 
 # How long a request waits for the worker to answer. The worker is single threaded and a command can land
 # while a 700 ms pick is running, so these are generous; they are module constants so tests can shorten them.
@@ -228,7 +234,7 @@ def create_app(worker=None, cfg: WorkerConfig | None = None, start_worker: bool 
     async def get_system() -> dict:
         safety = hub.last.get("safety")
         return {
-            "banner": HARDWARE_BANNER,
+            "banner": hardware_banner(hub.gpu),
             "hardware_label": hub.hardware_label,
             "gpu": hub.gpu,
             "worker": {"alive": handle.alive, "busy": handle.busy, "pid": getattr(getattr(handle, "proc", None), "pid", None)},
@@ -473,7 +479,7 @@ def create_app(worker=None, cfg: WorkerConfig | None = None, start_worker: bool 
 
         task = asyncio.ensure_future(reader())
         try:
-            await ws.send_json({"type": "hello", "banner": HARDWARE_BANNER, "stages": list(STAGES), "scene": hub.scene, "models": hub.models, "run_id": hub.run_id})
+            await ws.send_json({"type": "hello", "banner": hardware_banner(hub.gpu), "stages": list(STAGES), "scene": hub.scene, "models": hub.models, "run_id": hub.run_id})
             while True:
                 await channel.wake.wait()
                 js, frames = channel.take()
@@ -500,7 +506,7 @@ def create_app(worker=None, cfg: WorkerConfig | None = None, start_worker: bool 
                 "<!doctype html><html><head><title>LangGrasp GUI</title>"
                 '<style>body{font:16px/1.6 system-ui;margin:3rem auto;max-width:44rem;background:#0f1216;color:#e6e9ee}'
                 "code{background:#1f242c;padding:.1rem .3rem;border-radius:4px}</style></head><body>"
-                f"<p><strong>{HARDWARE_BANNER}</strong></p>"
+                f"<p><strong>{hardware_banner(hub.gpu)}</strong></p>"
                 "<h1>LangGrasp GUI: API is up, the frontend is not built yet</h1>"
                 "<p>The simulation worker and the API are running. The React app arrives in phase 3.</p>"
                 "<p>Meanwhile: <a href='/api/docs'>/api/docs</a>, <a href='/api/system'>/api/system</a>, "
