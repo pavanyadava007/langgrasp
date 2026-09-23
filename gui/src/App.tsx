@@ -6,6 +6,7 @@ import { Inspector } from "./views/Inspector";
 import { LiveRun } from "./views/LiveRun";
 import { Results } from "./views/Results";
 import { Safety } from "./views/Safety";
+import { STATIC_MODE } from "./lib/api";
 import { useStore, type ViewName } from "./store/store";
 
 const NAV: { id: ViewName; label: string; key: string }[] = [
@@ -164,6 +165,14 @@ export default function App() {
           <span className="rounded-s border border-warn px-2 py-0.5 text-xs text-warn" title={hardware ?? undefined}>
             {banner}
           </span>
+          {STATIC_MODE && (
+            <span
+              className="rounded-s border border-accent px-2 py-0.5 text-xs text-accent"
+              title="This page replays a run that was recorded on the GPU host and reads the measured results from file. Nothing here commands a simulator."
+            >
+              replay · no live control
+            </span>
+          )}
           <div className="ml-auto flex items-center gap-4">
             <ModelStatus />
             <Button variant="ghost" onClick={() => useStore.getState().setState({ shortcutsOpen: true })} title="Keyboard shortcuts (?)">
@@ -233,6 +242,13 @@ export default function App() {
       <footer className="px-4 pb-6 pt-2 text-xs text-fg-muted lg:pl-[14.5rem]">
         <Term term="monitor mode">Safety monitor in observe mode by default</Term>. MuJoCo simulation of an SO-ARM100, no robot, no Jetson, nothing here is a hardware
         measurement.
+        {STATIC_MODE && (
+          <>
+            {" "}
+            This is the static build: the Live Run view replays a command that was recorded on the NVIDIA L4, and the other views read the measured results from
+            file. Run <span className="num">make gui</span> from the repository for the interface that drives the simulator.
+          </>
+        )}
       </footer>
     </div>
   );

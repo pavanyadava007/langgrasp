@@ -41,6 +41,9 @@ make report                                                     # regenerate doc
 
 ## The web GUI
 
+**Try it without installing anything: https://huggingface.co/spaces/pavanyadava07/langgrasp** replays a
+recorded command through the real interface and serves the measured results from file.
+
 `make gui` starts the API, the simulation worker and the built frontend on one port, and binds the loopback
 interface only, because this interface can move the arm. Reach it through an SSH tunnel:
 
@@ -73,6 +76,10 @@ reported as ungraded rather than scored as a failure.
 Measured on this host through the browser: e-stop from click to the arm being held 3.2 ms median while
 moving, 10 fps on the front camera during a paced run, accessibility 100 in Lighthouse, and no axe-core
 violations across the five views in both themes.
+
+Two more ways to run it: `docker/Dockerfile.cpu-demo` runs everything on a CPU with software rendering, about
+23 s per command on two cores against 682 ms on the L4; and `scripts/export_static_gui.py` exports the
+interface as a static site that replays a recorded run, which is what the Space above serves.
 
 ## Results
 

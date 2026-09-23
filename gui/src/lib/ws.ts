@@ -55,6 +55,79 @@ function decodeEnvelope(buf: ArrayBuffer): { meta: FrameMetaEvent; jpeg: Blob } 
 
 export type ConnectionState = "connecting" | "open" | "closed";
 
+/** Replays a recorded run in the static build: the same events the worker emitted, in the order and at the
+ *  spacing they happened, with the frames loaded from the files the run recorded. It is a replay and the page
+ *  says so; nothing here pretends a simulator is running. */
+export class ReplayConnection {
+  private opts: LiveOptions;
+  private timers: number[] = [];
+  private stopped = false;
+
+  constructor(opts: LiveOptions) {
+    this.opts = opts;
+  }
+
+  async connect() {
+    this.stopped = false;
+    this.opts.onState("connecting");
+    try {
+      const manifest = (await (await fetch("data/replay.json")).json()) as { run_id: string; frames_url: string; hello: Record<string, unknown> };
+      const detail = (await (await fetch(`data/runs/${manifest.run_id}.json`)).json()) as { events: (WorkerEvent & { t: number })[] };
+      this.opts.onHello(manifest.hello);
+      this.opts.onState("open");
+      this.schedule(detail.events, manifest.frames_url);
+    } catch (e) {
+      this.opts.onState("closed", `the recorded run could not be loaded: ${e instanceof Error ? e.message : String(e)}`);
+    }
+  }
+
+  private schedule(events: (WorkerEvent & { t: number })[], framesUrl: string) {
+    if (!events.length) return;
+    const t0 = Math.min(...events.map((e) => e.t));
+    // Real spacing, but a run that takes six seconds should not make a visitor wait six seconds twice over.
+    const speed = 1;
+    for (const event of events) {
+      const delay = Math.max(0, ((event.t - t0) * 1000) / speed);
+      const id = window.setTimeout(() => {
+        if (this.stopped) return;
+        this.opts.onEvent(event);
+        if (event.type === "tick") void this.loadFrame(framesUrl, (event as { tick: number }).tick, event.run_id ?? null);
+      }, delay);
+      this.timers.push(id);
+    }
+  }
+
+  private async loadFrame(framesUrl: string, tick: number, runId: string | null) {
+    const url = `${framesUrl}/tick_${String(tick).padStart(5, "0")}_front.jpg`;
+    try {
+      const res = await fetch(url);
+      if (!res.ok) return;
+      const bitmap = await createImageBitmap(await res.blob());
+      frameStore.put(
+        { type: "frame", t: performance.now() / 1000, run_id: runId, camera: "front", kind: "rgb", tick, width: bitmap.width, height: bitmap.height, bytes: 0 },
+        bitmap,
+      );
+    } catch {
+      /* a missing frame is not worth an error: the canvas keeps the last one */
+    }
+  }
+
+  restart() {
+    this.close();
+    void this.connect();
+  }
+
+  subscribe() {
+    /* nothing to subscribe to in a replay */
+  }
+
+  close() {
+    this.stopped = true;
+    for (const id of this.timers) window.clearTimeout(id);
+    this.timers = [];
+  }
+}
+
 export interface LiveOptions {
   cameras: CameraName[];
   depth: boolean;

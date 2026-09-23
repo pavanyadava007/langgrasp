@@ -1,0 +1,63 @@
+# LangGrasp with no GPU at all: the whole stack on CPU, with MuJoCo rendering in software.
+#
+#   docker build -f docker/Dockerfile.cpu-demo -t langgrasp-cpu .
+#   docker run --rm -p 7860:7860 langgrasp-cpu      # then open http://localhost:7860
+#
+# Measured in this image on two cores: models warm in 50 s, a command takes about 23 s of which 16 s is
+# Grounding DINO, against 682 ms on the NVIDIA L4 the project is measured on. It exists so the interface can
+# be tried without a GPU, not to produce numbers.
+#
+# The project is developed and measured on an NVIDIA L4; this image exists so the interface can be tried
+# without one. Everything runs: MuJoCo physics, software rendering through OSMesa, Grounding DINO tiny and
+# YOLO11n-seg on the CPU. It is slower than the measured numbers by a large factor, and the app says so
+# rather than passing CPU timings off as the project's results.
+FROM python:3.10-slim
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    PIP_NO_CACHE_DIR=1 \
+    PYTHONUNBUFFERED=1 \
+    MUJOCO_GL=osmesa \
+    PYOPENGL_PLATFORM=osmesa \
+    HF_HOME=/data/hf \
+    MPLCONFIGDIR=/tmp/mpl
+
+# libosmesa6: MuJoCo's software renderer, since there is no GPU here.
+# libgl1 + libglib2.0-0: what opencv-python-headless still links against.
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        git ca-certificates libosmesa6 libgl1 libglib2.0-0 \
+    && rm -rf /var/lib/apt/lists/*
+
+# CPU wheels only: the CUDA build would be several gigabytes of no use here.
+# --extra-index-url, not --index-url: the CPU wheel index alone hides PyPI, and the build dependencies of
+# a couple of source distributions (flit_core) then cannot be found.
+RUN pip install --no-cache-dir torch==2.7.1 torchvision==0.22.1 \
+        --index-url https://download.pytorch.org/whl/cpu \
+        --extra-index-url https://pypi.org/simple
+
+RUN pip install --no-cache-dir \
+        "mujoco==3.8.1" "numpy>=1.26,<2" scipy pyyaml opencv-python-headless pillow \
+        "transformers==4.57.6" huggingface_hub "ultralytics>=8.3" \
+        "fastapi>=0.115" "uvicorn[standard]>=0.30" "python-multipart>=0.0.9"
+
+# The application, taken from the public repository so the Space and GitHub cannot drift apart.
+ARG LANGGRASP_REF=master
+RUN git clone --depth 1 --branch ${LANGGRASP_REF} https://github.com/pavanyadava007/langgrasp.git /app
+WORKDIR /app
+
+# The fine-tuned segmentation weights are not in the Git repository, so mount or copy them in:
+#   docker run -v $PWD/checkpoints:/app/checkpoints ...
+# Without them the pipeline falls back to box masks and says so in the Segment stage.
+
+# Hugging Face runs the container as a non-root user with a writable /data and /tmp only.
+RUN mkdir -p /data/hf /app/runs/gui && chmod -R 777 /data /app/runs
+
+ENV GUI_PORT=7860 \
+    LANGGRASP_GROUNDER=gdino \
+    LANGGRASP_STREAM_SIZE=320x240 \
+    ULTRALYTICS_CONFIG_DIR=/tmp/ultralytics
+EXPOSE 7860
+
+# --stream-size: software rendering makes a 640x480 frame cost about 170 ms on two cores, and the executor
+# renders one per tick. The stream is rendered at 320x240 so the motion stays watchable; the pipeline still
+# captures at 640x480, so what it grounds and segments is unchanged.
+CMD ["sh", "-c", "python -m langgrasp.gui --host 0.0.0.0 --port ${GUI_PORT} --grounder ${LANGGRASP_GROUNDER} --stream-size ${LANGGRASP_STREAM_SIZE} --log-level info"]

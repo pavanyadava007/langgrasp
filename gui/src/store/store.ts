@@ -2,8 +2,8 @@
 // Camera frames deliberately do NOT live here (see lib/ws.ts): they would re-render the tree 10 times a second.
 
 import { create } from "zustand";
-import { api, ApiError } from "../lib/api";
-import { frameStore, LiveConnection, type ConnectionState } from "../lib/ws";
+import { api, ApiError, STATIC_MODE, STATIC_NOTICE } from "../lib/api";
+import { frameStore, LiveConnection, ReplayConnection, type ConnectionState, type LiveOptions } from "../lib/ws";
 import { tickStore } from "../lib/ticks";
 import {
   STAGES,
@@ -133,7 +133,7 @@ interface State {
   refreshSystem: () => Promise<void>;
 }
 
-let live: LiveConnection | null = null;
+let live: LiveConnection | ReplayConnection | null = null;
 let noticeId = 1;
 
 const storedTheme = (): "dark" | "light" => (localStorage.getItem("langgrasp.theme") === "light" ? "light" : "dark");
@@ -206,18 +206,20 @@ export const useStore = create<State>((set, get) => ({
     } catch (e) {
       get().notify("error", e instanceof ApiError ? e.message : String(e));
     }
-    live = new LiveConnection({
+    const options: LiveOptions = {
       cameras: ["front"],
       depth: false,
       bodies: false,
-      onEvent: (event) => get().applyEvent(event),
-      onHello: (hello) => {
+      onEvent: (event: WorkerEvent) => get().applyEvent(event),
+      onHello: (hello: Record<string, unknown>) => {
         if (hello.banner) set({ banner: String(hello.banner) });
         if (hello.scene) set({ scene: hello.scene as Scenario });
       },
-      onState: (state, detail) => set({ connection: state, connectionDetail: detail ?? "" }),
-    });
-    live.connect();
+      onState: (state: ConnectionState, detail?: string) => set({ connection: state, connectionDetail: detail ?? "" }),
+    };
+    live = STATIC_MODE ? new ReplayConnection(options) : new LiveConnection(options);
+    void live.connect();
+    if (STATIC_MODE) get().notify("info", STATIC_NOTICE);
   },
 
   async refreshSystem() {
@@ -308,6 +310,10 @@ export const useStore = create<State>((set, get) => ({
   },
 
   async newScene() {
+    if (STATIC_MODE) {
+      get().notify("warn", STATIC_NOTICE);
+      return;
+    }
     const f = get().sceneForm;
     try {
       const { scene } = await api.newScene({
@@ -331,6 +337,14 @@ export const useStore = create<State>((set, get) => ({
   },
 
   async startRun(source = "typed", sttLatency = null) {
+    if (STATIC_MODE) {
+      frameStore.clear();
+      tickStore.clear();
+      set({ stages: emptyStages(), outcome: null, tickCount: 0, lastTick: null, gate: null, running: true });
+      (live as ReplayConnection | null)?.restart();
+      get().notify("info", "Replaying the recorded run. " + STATIC_NOTICE);
+      return;
+    }
     const { command, controller, config } = get();
     tickStore.clear();
     set({ stages: emptyStages(), outcome: null, tickCount: 0, lastTick: null, gate: null, running: true });
@@ -344,6 +358,10 @@ export const useStore = create<State>((set, get) => ({
   },
 
   async estop() {
+    if (STATIC_MODE) {
+      get().notify("warn", STATIC_NOTICE);
+      return;
+    }
     try {
       const r = await api.estop();
       set({ estopLatencyMs: r.estop_latency_ms ?? get().estopLatencyMs, running: false });
@@ -354,6 +372,10 @@ export const useStore = create<State>((set, get) => ({
   },
 
   async reset() {
+    if (STATIC_MODE) {
+      get().notify("warn", STATIC_NOTICE);
+      return;
+    }
     try {
       const r = await api.reset();
       get().notify("info", `E-stop reset. State is now ${r.state}.`);
@@ -363,6 +385,10 @@ export const useStore = create<State>((set, get) => ({
   },
 
   async togglePause() {
+    if (STATIC_MODE) {
+      get().notify("warn", STATIC_NOTICE);
+      return;
+    }
     const next = !get().paused;
     try {
       await api.pause({ paused: next });
@@ -373,6 +399,10 @@ export const useStore = create<State>((set, get) => ({
   },
 
   async stepOnce() {
+    if (STATIC_MODE) {
+      get().notify("warn", STATIC_NOTICE);
+      return;
+    }
     try {
       await api.pause({ step: true });
     } catch (e) {

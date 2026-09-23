@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Card, NotRun, Skeleton, Term } from "../../components/ui";
+import { api } from "../../lib/api";
 import { StatusIcon } from "../../components/Status";
 import { ago, ms, num } from "../../lib/format";
 import { useStore } from "../../store/store";
@@ -200,13 +201,11 @@ export function Safety() {
   const system = useStore((s) => s.system);
 
   useEffect(() => {
-    fetch("/api/fmea")
-      .then(async (r) => {
-        const body = await r.json();
-        if (!r.ok || !Array.isArray(body?.hazards)) {
-          throw new Error(body?.error?.message ?? `The hazard table could not be read (${r.status}). Is this server running the current build?`);
-        }
-        return body as Fmea;
+    api
+      .fmea()
+      .then((body) => {
+        if (!Array.isArray((body as { hazards?: unknown[] }).hazards)) throw new Error("The hazard table came back in a shape this page does not understand.");
+        return body as unknown as Fmea;
       })
       .then(setFmea)
       .catch((e) => setError(e instanceof Error ? e.message : String(e)));

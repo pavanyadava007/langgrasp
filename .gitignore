@@ -24,3 +24,4 @@ test-results/
 playwright-report/
 gui/tsconfig.tsbuildinfo
 gui/e2e-results.json
+dist-static/

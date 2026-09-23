@@ -3,6 +3,30 @@
 
 import type { ExampleCommand, RunConfig, Scenario, SystemInfo } from "./types";
 
+// A static build has no server behind it: it is the same interface reading files that were exported from a
+// real run, so a recruiter can open a link and see the thing rather than a screenshot. Reads are mapped onto
+// those files; anything that would move the arm says plainly that it cannot, here.
+export const STATIC_MODE = import.meta.env.VITE_STATIC === "1";
+export const STATIC_NOTICE =
+  "This is the static build: it replays a run recorded on the NVIDIA L4 and reads the measured results from file. Nothing here can command the simulator. Run `make gui` from the repository for the live one.";
+
+const STATIC_MAP: Record<string, string> = {
+  "/api/system": "data/system.json",
+  "/api/scene": "data/scene.json",
+  "/api/fmea": "data/fmea.json",
+  "/api/results": "data/results_index.json",
+  "/api/results/manifest": "data/results_manifest.json",
+  "/api/runs": "data/runs.json",
+};
+
+function staticPath(path: string): string {
+  const clean = path.split("?")[0];
+  if (STATIC_MAP[clean]) return STATIC_MAP[clean];
+  if (clean.startsWith("/api/results/")) return `data/results/${clean.slice("/api/results/".length)}`;
+  if (clean.startsWith("/api/runs/")) return `data/runs/${clean.slice("/api/runs/".length)}.json`;
+  throw new ApiError(501, "static_build", STATIC_NOTICE);
+}
+
 export class ApiError extends Error {
   code: string;
   status: number;
@@ -14,6 +38,12 @@ export class ApiError extends Error {
 }
 
 async function call<T>(path: string, init?: RequestInit): Promise<T> {
+  if (STATIC_MODE) {
+    if ((init?.method ?? "GET") !== "GET") throw new ApiError(501, "static_build", STATIC_NOTICE);
+    const res = await fetch(staticPath(path));
+    if (!res.ok) throw new ApiError(res.status, "not_exported", `${path} was not exported into this static build.`);
+    return (await res.json()) as T;
+  }
   let res: Response;
   try {
     res = await fetch(path, { headers: { "Content-Type": "application/json" }, ...init });
@@ -57,12 +87,14 @@ export const api = {
   manifest: () => call<{ sections: Record<string, ManifestSection> }>("/api/results/manifest"),
   resultsFile: <T = unknown,>(name: string) => call<T>(`/api/results/${name}`),
   runs: () => call<{ runs: RunRow[] }>("/api/runs"),
+  fmea: () => call<Record<string, unknown>>("/api/fmea"),
   newJob: (body: { controller: string; strata: Record<string, number>; config: RunConfig; fixed_goal: boolean; base_seed: number; out_path: string | null; overwrite: boolean }) =>
     post<{ job_id: string; out_path: string; total: number }>("/api/jobs", body),
   jobs: () => call<{ jobs: Record<string, unknown>[] }>("/api/jobs"),
   cancelJob: (id: string) => call<{ cancelling: string }>(`/api/jobs/${id}`, { method: "DELETE" }),
   runDetail: (id: string) => call<{ meta: Record<string, unknown>; events: unknown[]; frames_url: string }>(`/api/runs/${id}`),
   stt: async (blob: Blob, modelSize?: string) => {
+    if (STATIC_MODE) throw new ApiError(501, "static_build", STATIC_NOTICE);
     const form = new FormData();
     form.append("audio", blob, "clip.webm");
     const res = await fetch(`/api/stt${modelSize ? `?model_size=${modelSize}` : ""}`, { method: "POST", body: form });
