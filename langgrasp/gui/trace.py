@@ -222,6 +222,16 @@ class System(Event):
     note: str | None = None
 
 
+class Reply(Event):
+    """Answer to one command that the API is waiting on, correlated by ``reply_to``."""
+
+    type: Literal["reply"] = "reply"
+    reply_to: str
+    ok: bool = True
+    data: dict = Field(default_factory=dict)
+    error: str | None = None
+
+
 class Log(Event):
     type: Literal["log"] = "log"
     level: Literal["info", "warn", "error"] = "info"
@@ -238,6 +248,7 @@ EVENT_TYPES: dict[str, type[Event]] = {
     "outcome": Outcome,
     "gate_request": GateRequest,
     "job_progress": JobProgress,
+    "reply": Reply,
     "system": System,
     "log": Log,
 }

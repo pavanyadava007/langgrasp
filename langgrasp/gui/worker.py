@@ -38,6 +38,7 @@ from langgrasp.gui.trace import (
     Log,
     Outcome,
     PipelineHooks,
+    Reply,
     Safety,
     StageFinished,
     StageStarted,
@@ -239,6 +240,7 @@ class SimWorker:
         self.emit(System(models=self.models, hardware_label=self._hardware, note=f"{name}: {state}"))
 
     def _load_grounder(self) -> None:
+        self.heartbeat_sensors()
         if self.cfg.grounder == "oracle":
             from langgrasp.perception.grounding import OracleGrounder
 
@@ -252,6 +254,7 @@ class SimWorker:
         self.grounder = GroundingDINO()
         self.grounder.warmup()
         self._set_model("grounder", "warm", (time.perf_counter() - t0) * 1e3, detail=f"Grounding DINO tiny on {self.grounder.device}")
+        self.heartbeat_sensors()
 
     def _load_segmenter(self, backend: str):
         if backend in self.segmenters:
@@ -269,6 +272,7 @@ class SimWorker:
             seg.warmup()
             self.segmenters[backend] = seg
             self._set_model(f"segmenter:{backend}", "warm", (time.perf_counter() - t0) * 1e3, detail=path)
+            self.heartbeat_sensors()
             return seg
         except Exception as e:  # noqa: BLE001 - a missing TensorRT engine must not kill the worker
             self._set_model(f"segmenter:{backend}", "error", detail=f"{type(e).__name__}: {e}")
@@ -363,7 +367,11 @@ class SimWorker:
         samples both synchronously, so the staleness watchdogs measure the worker's own sampling gaps rather
         than a sensor fault. They still fire when the worker stalls, which is what they are for here; on
         hardware, where the publishers run on their own threads, they measure the real thing. Without this
-        the 200 ms joint-state timeout would trip during every 275 ms grounding call and hold the arm.
+        the 200 ms joint-state timeout would trip during every 275 ms grounding call, and loading Grounding
+        DINO (6 s) would latch an e-stop before the first command, reported as a camera fault that never
+        happened. Loading a model on the GPU is not a sensor gap, so the worker re-samples afterwards. What
+        the watchdogs still catch, which is what they are for here, is the sim or the render stalling while a
+        run is in flight, because then the per-tick samples stop.
         """
         now = time.monotonic()
         self.monitor.heartbeat("camera", now)
@@ -458,10 +466,13 @@ class SimWorker:
             )
         )
 
-    @staticmethod
-    def _plain_reason(state: str, reason: str) -> str:
+    def _plain_reason(self, state: str, reason: str) -> str:
+        """Turn a monitor message into something an operator can act on, without changing what it says."""
         if state == "HOLD" and "command stale" in reason:
-            return f"{reason}. Waiting for a command; sending one clears this hold."
+            timeout = self.monitor.cfg.staleness_s.get("command", 30.0)
+            if self.monitor._last_seen.get("command") is None:
+                return f"no command yet ({timeout:.0f} s command watchdog). Sending one clears this hold."
+            return f"{reason}. Sending a command clears this hold."
         return reason
 
     # ------------------------------------------------------------------ frames
@@ -535,6 +546,7 @@ class SimWorker:
         kw = {"target_kind": "cube", "target_color": "red"} if fixed_goal else {}
         sc = make_scenario(seed, stratum, n_distractors=n_distractors, lighting=lighting, **kw)
         self.scenario = sc
+        self.heartbeat_sensors()  # about to sample the camera; whatever blocked before this was not a fault
         self.env.reset(sc)
         self.publish_frames()
         d = sc.to_dict()
@@ -587,6 +599,8 @@ class SimWorker:
             self.log(f"run aborted: {e}", level="warn")
         except Exception as e:  # noqa: BLE001 - the worker must survive any single command
             self.log(f"{type(e).__name__}: {e}", level="error", traceback=traceback.format_exc()[-2000:])
+            if msg.get("reply_to"):
+                self.emit(Reply(reply_to=msg["reply_to"], ok=False, error=f"{type(e).__name__}: {e}"))
         finally:
             self.flags.busy.value = 0
 
@@ -631,14 +645,24 @@ class SimWorker:
             t0 = time.perf_counter()
             self.stt.load()
             self._set_model(f"stt:{size}", "warm", (time.perf_counter() - t0) * 1e3, detail=f"faster-whisper {size} on {self.stt.device}")
-        r = self.stt.transcribe(msg["path"])
+            self.heartbeat_sensors()
         from langgrasp.language.stt import normalize_command
 
+        r = self.stt.transcribe(msg["path"])
         self.emit(
-            Log(
-                level="info",
-                message="transcribed",
-                detail=jsonable({"reply_to": msg.get("reply_to"), "text": r["text"], "normalized": normalize_command(r["text"]), "latency_ms": r["latency_ms"], "language": r["language"], "model_size": size, "device": self.stt.device}),
+            Reply(
+                reply_to=msg["reply_to"],
+                data=jsonable(
+                    {
+                        "text": r["text"],
+                        "normalized": normalize_command(r["text"]),
+                        "latency_ms": r["latency_ms"],
+                        "language": r["language"],
+                        "model_size": size,
+                        "device": self.stt.device,
+                        "note": "speech to text only: the transcript is never executed without a person pressing Run",
+                    }
+                ),
             )
         )
 
@@ -718,6 +742,7 @@ class SimWorker:
         seg = self._load_segmenter(backend) if cfgd.get("use_yolo_mask", True) else None
         if self.monitor.cfg.require_human_confirm != bool(cfgd.get("require_human_confirm", False)):
             self.monitor.cfg.require_human_confirm = bool(cfgd.get("require_human_confirm", False))
+        self.heartbeat_sensors()
         self.env.reset(self.scenario)
         t0 = time.monotonic()
         pipe = ModularPipeline(
@@ -734,13 +759,14 @@ class SimWorker:
             res = pipe.run_command(command, self.scenario.target)
         finally:
             self._executing = False
-        self._emit_outcome(res.grounding_correct, res.grasped, res.lifted, res.placed, res.aborted, res.latency_ms, time.monotonic() - t0)
+        self._emit_outcome(res.grounding_correct, res.grasped, res.lifted, res.placed, res.aborted, res.latency_ms, time.monotonic() - t0, custom_command=self._is_custom(command))
 
     def _run_oracle(self, cfgd: dict) -> None:
         """The scripted upper bound: the grasp pose comes from the simulator, so stages 3 to 8 are skipped."""
         from langgrasp.eval.latency import LatencyTracer
         from langgrasp.sim.scene import OBJECT_KINDS
 
+        self.heartbeat_sensors()
         self.env.reset(self.scenario)
         for stage in ("capture", "grounding", "select", "gate", "segment", "fuse"):
             self.hooks.stage_finished(stage, status="skipped", message="Oracle controller: the grasp pose comes from the simulator, no perception runs.")
@@ -772,11 +798,30 @@ class SimWorker:
         )
         self._emit_outcome(True, r.grasped, r.lifted, r.placed, None, {"execute": tracer.samples["execute"][-1]}, time.monotonic() - t0)
 
-    def _emit_outcome(self, grounding, grasped, lifted, placed, aborted, latency_ms: dict, wall_s: float) -> None:
+    def _is_custom(self, command: str) -> bool:
+        """True when the operator typed something other than the scene's own command.
+
+        It matters for honesty, not for control: the simulator's ground truth only knows which object this
+        scene designated as the target. If the command asks for a different object, then grounding cannot be
+        scored (picking the object the operator asked for would count as a grounding error), so the GUI
+        reports the scoring as unavailable instead of reporting a failure that is not one.
+        """
+        scene_command = (self.scenario.command if self.scenario else "") or ""
+        return command.strip().lower() != scene_command.strip().lower()
+
+    def _emit_outcome(self, grounding, grasped, lifted, placed, aborted, latency_ms: dict, wall_s: float, custom_command: bool = False) -> None:
         msg = "Placed in the tray." if placed else ("Lifted but not placed." if lifted else (f"Aborted: {aborted}." if aborted else "Not lifted."))
+        if custom_command and self.scenario is not None:
+            grounding = None
+            msg += (
+                f" Not scored: this scene's own command is '{self.scenario.command}' and its ground-truth target is"
+                f" {self.scenario.target}, so a different command cannot be graded. The grasp and place flags refer"
+                f" to {self.scenario.target}."
+            )
         self.emit(
             Outcome(
                 run_id=self.run_id,
+                scored_by="none" if custom_command else "ground_truth",
                 grounding_correct=grounding,
                 grasped=bool(grasped),
                 lifted=bool(lifted),

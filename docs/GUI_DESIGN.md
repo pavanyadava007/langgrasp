@@ -496,6 +496,19 @@ The identity test therefore demands identical decisions and a numeric wobble no 
 rather than bit equality, and the UI never claims a live run reproduces a protocol number exactly. The
 oracle-grounder path is bit-exact and is the strict test.
 
+### 6.4c A command the scene did not ask for cannot be graded
+
+The simulator's ground truth knows which object this scene designated as the target, and nothing else. If the
+operator types a command for a different object, then grounding the object they asked for would be recorded as
+a grounding error, which would be a lie. So when the typed command differs from the scene's own command, the
+outcome card reports `scored_by: none`, leaves grounding unscored, and says in words which object the grasp
+and place flags refer to:
+
+> Not scored: this scene's own command is 'pick the red screwdriver' and its ground-truth target is
+> screwdriver_0, so a different command cannot be graded. The grasp and place flags refer to screwdriver_0.
+
+Typing the scene's own command, or pressing an example chip that matches it, restores full scoring.
+
 ### 6.5 Pacing and what "execute latency" means live
 
 The executor runs about 60 ticks in about 340 ms of compute. Live, the worker paces ticks to 100 ms of
@@ -557,6 +570,9 @@ class GateRequest(Event):    box: list[float]; score: float; top2: list[float]; 
                              ambiguous: bool; needs_confirmation: bool
 class JobProgress(Event):    job_id: str; done: int; total: int; last: dict; out_path: str
 class System(Event):         models: dict[str, {"state": str, "load_ms": float | None}]; gpu: str
+class Reply(Event):          reply_to: str; ok: bool; data: dict; error: str | None
+                             # answers one command the API is waiting on (today /api/stt), so a
+                             # request/response endpoint can sit on a fire-and-forget queue
 ```
 
 Stage names and payloads (the 9 stages):
@@ -588,14 +604,15 @@ with 4xx/5xx status. The message is the same sentence the UI shows.
 | POST `/api/run` | {command, controller: pipeline/oracle/act/ppo_reach/ppo_lift, config:{use_color_check, use_yolo_mask, depth_noise, seg_backend, grounding_threshold, require_human_confirm, safety_mode, speed}, act_checkpoint?, ppo_condition?} | {run_id} (202); 409 if a run or job is active; 423 if ESTOP is latched |
 | POST `/api/estop` | {client_ts_ms} | {state, worker_ts, estop_latency_ms} |
 | POST `/api/reset` | {confirm: true} | {state} |
-| POST `/api/pause` | {paused: bool} or {step: true} | {paused, tick} |
+| POST `/api/pause` | {paused: bool} or {step: true} | {paused, stepped} |
 | POST `/api/confirm` | {run_id, decision: confirm/reject} | {accepted} |
 | POST `/api/stt` | multipart audio (webm/opus or wav), model_size? | {text, normalized, language, latency_ms, model_size, device} |
 | GET `/api/results` | | [{file, size, mtime, approach, n_trials}] for every results/*.json that parses |
 | GET `/api/results/{file}` | | the JSON file verbatim, plus header `X-Source-Mtime` |
-| GET `/api/results/derived/protocol` | | the same tables the report builds (calls `langgrasp.eval.report` functions, not a copy) with file and mtime per row |
+| GET `/api/results/manifest` | | which results file each dashboard section needs, with present / parses / mtime per file. The browser never holds a filename of its own, so a renamed or missing file becomes a "not run" card instead of a silent gap. This replaced the planned `derived/protocol` endpoint: the dashboard reads the same JSON the report reads, rather than a second implementation of the tables. |
 | GET `/api/runs` | | recorded live runs [{id, seed, command, outcome, mtime}] |
 | GET `/api/runs/{id}` | | meta + events (frames by URL under `/runs/{id}/frames/...`) |
+| GET `/runs/{id}/frames/{name}` | | one recorded JPEG or PNG |
 | POST `/api/jobs` | {kind: protocol, controller, strata, n_per_stratum, config, out_path, overwrite: bool} | {job_id} (202); 409 if the file exists and overwrite is false |
 | GET `/api/jobs`, GET `/api/jobs/{id}` | | status, progress, per-trial results so far, out_path |
 | DELETE `/api/jobs/{id}` | | cancels (the worker stops after the current trial) |
@@ -631,7 +648,7 @@ checkout (Node is only needed to rebuild). This is a choice to confirm (section 
 
 | # | Risk or question | Proposal |
 |---|---|---|
-| R1 | Port 8000 is already bound on this VM by another user's process (also 8001 and 8080). `make gui` on :8000 will fail here. | `make gui` reads `GUI_PORT` (default 8000) and fails fast with the message "port 8000 in use, try GUI_PORT=8010 make gui". The acceptance criterion stays ":8000 by default". Confirm this is acceptable. |
+| R1 | Port 8000 is already bound on this VM by another user's process (also 8001 and 8080). `make gui` on :8000 will fail here. | Built and verified: the default is 8000, `GUI_PORT` or `--port` overrides it, and a busy port exits with "port 8010 on 127.0.0.1 is already in use. Pick another one, for example: GUI_PORT=8020 make gui" plus the matching ssh command. The server binds the loopback interface only, because this API can move the arm. All development here used port 8010. |
 | R2 | The GPU is shared with an Ollama server. Live latencies will be worse than the clean bench and vary. | Every live latency is labelled "live, shared GPU"; the clean bench number sits next to it with its file. No live number is ever written into results/. |
 | R3 | Velocity clipping in enforce mode could change trajectories. | Measured in Phase 1 and settled: it changes them a lot. See section 6.3. Monitor mode is the default. |
 | R4 | Human override of an ambiguous grounding is not in the current safety design (FMEA H6 says refuse). | Not implemented unless you say so. Confirm/Reject applies to `require_human_confirm`. |
@@ -651,7 +668,7 @@ checkout (Node is only needed to rebuild). This is a choice to confirm (section 
 |---|---|---|
 | 0 | this document | your review |
 | 1 | done: `langgrasp/gui/trace.py`, `langgrasp/gui/worker.py`, additive hooks in `modular.py` and `latency.py`, `scripts/audit_safety_clips.py`; `tests/test_gui_trace.py`, `tests/test_gui_hooks_identical.py` (10 seeds oracle grounder bit-exact, 3 seeds real Grounding DINO by decision), `tests/test_gui_worker.py` (spawned worker, nine stages, e-stop, reset, monitor mode) | `make gate`: 79 existing plus 22 new tests pass; e-stop measured at 10.4 ms |
-| 2 | `api.py`, WebSocket, results and runs endpoints, jobs; `tests/test_gui_api.py` with a stub worker (httpx ASGI client) | `make gate` |
+| 2 | done: `langgrasp/gui/api.py` (REST + WebSocket + static), `langgrasp/gui/hub.py` (fan-out, replay buffer, backpressure, command replies), `langgrasp/gui/__main__.py` (`python -m langgrasp.gui`, loopback only, refuses a busy port and says which one to use instead); `tests/test_gui_api.py` (21 tests against a stub worker), `tests/test_gui_api_integration.py` (3 tests against the real spawned worker, including a recorded run read back through the API) | `make gate`: 125 tests pass in 55 s; measurements in section 12 |
 | 3 | frontend shell, tokens, Live Run (stream, overlays, stepper, drawer, outcome, safety rail, e-stop, controllers, ablations) | manual on the tunnel + screenshots; e-stop latency logged |
 | 4 | Inspector + replay from `runs/gui` | manual + unit tests for the scrubber reducer |
 | 5 | Results (all cards from JSON), Batch Evaluate | unit tests for the JSON-to-widget mappers with a missing-file case ("not run") |
@@ -660,3 +677,27 @@ checkout (Node is only needed to rebuild). This is a choice to confirm (section 
 
 Each phase ends with one commit and a short report with measured numbers and anything that could not run
 on this VM.
+
+## 12. Measured on this host, phases 1 and 2
+
+NVIDIA L4, x86 EC2 host, MuJoCo simulation, GPU shared with an unrelated process. Everything below was
+measured through the real server on port 8010, not estimated.
+
+| What | Measured |
+|---|---|
+| Worker startup to all models warm | 6.8 s (MuJoCo scene 0.17 s, Grounding DINO tiny 6.0 s, YOLO11n-seg PyTorch 0.58 s) |
+| `POST /api/run` acknowledgement | 2 ms (202 with the run id; the run itself arrives on the event stream) |
+| Command to the first stage visible in the browser | parse at 24 ms, capture at 43 ms |
+| Command to the first camera frame of the run | 409 ms paced, 717 ms at max speed, because grounding runs first and owns the GPU |
+| Command to the first arm tick | 405 ms |
+| Grounding, one model call | 273 ms, which matches the 274 ms clean bench in `results/pipeline_latency_l4.json` |
+| Grounding when the colour fallback fires | 548 ms: two model calls, and the drawer says `fallback: true` |
+| A whole command at max speed, front camera only | 1.04 s wall, 256 ms of it simulator compute |
+| A whole command at 1x pacing | 6.4 s wall, 54 ticks at 98.6 ms per tick against the 100 ms target |
+| Front camera frame rate during a paced run | 10 fps, one frame per control tick; 5 fps while idle |
+| E-stop, API receipt to the arm held | 10.4 ms |
+| `POST /api/stt`, faster-whisper base, a 5.9 s clip | 758 ms including the first model load, 257 ms round trip afterwards, 253 ms of it transcription |
+
+Two things this table is not. It is not a hardware measurement. And it is not comparable to the protocol
+latencies in `docs/RESULTS.md`, which were measured with no GUI attached; the UI labels live numbers "live,
+shared GPU" and shows the clean bench beside them.
