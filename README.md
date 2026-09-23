@@ -40,8 +40,27 @@ make report                                                     # regenerate doc
 
 ## Results
 
-The current numbers are in [docs/RESULTS.md](docs/RESULTS.md). Per-track write-ups: `docs/PERCEPTION.md`,
-`docs/ACT.md`, `docs/RL.md`, `docs/FMEA.md`, `docs/ROS2.md`, `docs/DOCKER.md`.
+All numbers are from `docs/RESULTS.md` (generated from `results/*.json`; NVIDIA L4, MuJoCo simulation,
+Wilson 95% intervals). Highlights:
+
+| What | Measured |
+|---|---|
+| Oracle executor (ground-truth grasp point, no perception), 120 stratified trials | 116/120 placed (96.7%, CI 92-99); screwdrivers are the weak kind at 38/41 |
+| Modular language pipeline, same 120 trials | 109/120 placed (90.8%, CI 84-95); grounding correct 115/119 (96.6%); seen 36/40, unseen 38/40, language variation 35/40 |
+| Colour-check ablation (Grounding DINO ranking only) | 101/120; language-variation stratum drops from 35/40 to 30/40 and grounding accuracy from 96.6% to 89.2% |
+| Box-only mask ablation (no YOLO11-seg) | 102/120; spatial references drop from 11/13 to 8/13, no-grasp aborts rise from 1 to 7 |
+| Fixed-goal red cube, 100 identical scenes | oracle 100/100, modular 90/100, ACT (LeRobot, 120 scripted demos, 128 px, 20k steps) 6/100: a diagnosed negative result (open-loop tracking within 3 deg per joint, but a 1-3 cm lateral offset at the grasp that the fixed-jaw executor cannot absorb); a second attempt with 240 demos at 192 px is reported in `docs/ACT.md` |
+| YOLO11n-seg fine-tuned on 1602 rendered images | box mAP50 0.985, mask mAP50 0.984 (synthetic val); batch-1 inference median 7.0 ms PyTorch, 3.3 ms ONNX Runtime CUDA, 0.81 ms TensorRT FP16, 0.70 ms TensorRT INT8 (end to end with mask decode 10.7 / 5.1 / 4.6 / 4.5 ms) |
+| INT8 vs FP16 | INT8 saves 0.1 ms and costs about 1 point of box mAP50-95 (0.934 to 0.924) on this model: not worth it, as the plan predicted for small models |
+| Depth fusion vs ground truth (ground-truth masks, 314 objects) | cube 0.3 mm, can 0.6 mm, screwdriver 2.8 mm median centre error; yaw error under 5 deg (p95); screwdriver p95 16.6 mm from partially occluded handles |
+| PPO reach, sim-to-sim gap (200 episodes per cell) | no DR: 100% nominal, 83% shifted dynamics, 40% with 2-tick latency; with DR: 100% / 97.5% / 54.5% |
+| PPO lift | no DR: 94% nominal, 51% shifted, 33% with 2-tick latency; with DR: 0% after 5.6 M steps (documented negative result) |
+| faster-whisper on the L4 (read speech, not commands) | median 140 ms (tiny), 194 ms (base), 295 ms (small) per clip |
+| ROS 2 Humble pipeline in a `ros:humble` container (CPU only) | full pick executed through 7 nodes; camera frame to first safe joint command 57 ms end to end; safety node adds 1.0 ms median |
+| Grounding DINO tiny per command on the L4 | about 300 ms when the GPU is otherwise idle (see the clean latency bench in RESULTS.md section 3) |
+
+Per-track write-ups: `docs/PERCEPTION.md`, `docs/ACT.md`, `docs/RL.md`, `docs/FMEA.md`, `docs/ROS2.md`,
+`docs/DOCKER.md`.
 
 ## Honest scope
 
@@ -51,6 +70,11 @@ The current numbers are in [docs/RESULTS.md](docs/RESULTS.md). Per-track write-u
   Nano; TensorRT engines are device specific and must be rebuilt there.
 - The "sim-to-real" gap of the brief is reported as a sim-to-sim gap (nominal versus shifted dynamics).
 - SmolVLA, learned 6-DOF grasping and Isaac Lab / ManiSkill3 were not attempted (scope-cut order of the plan).
+- The executor's weak spot is lying cylinders (screwdriver handles roll when the moving finger sweeps in);
+  on the hardest screwdriver scenes even ground-truth grasp points place only about 5 of 8. This mirrors
+  the plan's top risk (SO-101 precision) and is left as a documented limitation.
+- PPO with the full domain-randomisation set never learned the lift within the 40-minute budget; the
+  reach task shows the intended DR effect (97.5% vs 83% under shifted dynamics).
 
 ## Mapping to the five focus areas of the target internship
 

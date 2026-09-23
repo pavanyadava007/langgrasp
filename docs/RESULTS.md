@@ -53,13 +53,21 @@ Aborts (modular): no_grasp: 1, safety:grounding confidence 0.265 < 0.30: 1
 |---|---|---|---|---|---|---|
 | Oracle executor | 100.0% [96-100] (n=100) | not run | not run | n/a | - | 100 |
 | Modular pipeline | 90.0% [83-94] (n=100) | not run | not run | 91.0% [84-95] (n=100) | 979 / 1029 / 1082 | 100 |
-| ACT (LeRobot, scripted demos) | not run | not run | not run | not run | - | 0 |
+| ACT (LeRobot, scripted demos) | 6.0% [3-12] (n=100) | not run | not run | n/a | - | 100 |
 
 ## 3. Latency budget of the modular pipeline (per command, L4)
 
 Clean benchmark (`scripts/bench_pipeline.py`, no other GPU job running):
 
-not run
+Hardware: NVIDIA L4 (x86 EC2 host, x86_64), simulation only, not Jetson. per-command latency, batch 1, 640x480 front camera, MuJoCo render included in capture; executor time is simulation compute (10 Hz ticks), not robot motion time
+
+| Segmenter backend | parse | capture (render) | grounding (GDINO tiny) | segmentation | depth fusion | perception total | executor (sim compute) |
+|---|---|---|---|---|---|---|---|
+| pt | 0 / 0 / 0 | 10 / 10 / 11 | 274 / 279 / 555 | 12 / 13 / 14 | 3 / 4 / 7 | 299 / 306 / 582 | 309 / 344 / 390 |
+| onnx | 0 / 0 / 0 | 7 / 8 / 9 | 276 / 289 / 555 | 8 / 9 / 10 | 3 / 4 / 7 | 296 / 308 / 575 | 331 / 375 / 399 |
+| engine | 0 / 0 / 0 | 9 / 10 / 11 | 275 / 283 / 555 | 6 / 6 / 7 | 4 / 5 / 7 | 294 / 303 / 576 | 313 / 352 / 384 |
+
+Cells are median / p90 / p99 in ms.
 
 Stage timings recorded during the protocol runs above (these ran while ACT/YOLO training shared the GPU, so they are upper bounds; `execute` is simulation compute for the motion, not robot motion time):
 
@@ -147,7 +155,75 @@ Stage timings recorded during the protocol runs above (these ran while ACT/YOLO 
 
 ## 5. ACT
 
-**ACT training**: not run
+**ACT training** (`results/act_train.json`)
+
+```
+{
+ "steps": 20000,
+ "batch": 32,
+ "minutes": 28.15,
+ "final_loss": 0.046,
+ "config": {
+  "type": "act",
+  "n_obs_steps": 1,
+  "chunk_size": 20,
+  "n_action_steps": 10,
+  "vision_backbone": "resnet18",
+  "pretrained_backbone_weights": "ResNet18_Weights.IMAGENET1K_V1",
+  "dim_model": 512,
+  "n_heads": 8,
+  "dim_feedforward": 3200,
+  "n_encoder_layers": 4,
+  "n_decoder_layers": 1,
+  "use_vae": true,
+  "latent_dim": 32,
+  "n_vae_encoder_layers": 4,
+  "dropout": 0.1,
+  "kl_weight": 10.0,
+  "optimizer_lr": 1e-05,
+  "optimizer_weight_decay": 0.0001,
+  "optimizer_lr_backbone": 1e-05,
+  "normalization_mapping": {
+   "VISUAL": "MEAN_STD",
+   "STATE": "MEAN_STD",
+   "ACTION": "MEAN_STD"
+  },
+  "input_features": {
+   "observation.images.front": {
+    "type": "VISUAL",
+    "shape": [
+     3,
+     128,
+     128
+    ]
+   },
+   "observation.images.wrist": {
+    "type": "VISUAL",
+    "shape": [
+     3,
+     128,
+     128
+    ]
+   },
+   "observation.state": {
+    "type": "STATE",
+    "shape": [
+     6
+    ]
+   }
+  },
+  "output_features": {
+   "action": {
+    "type": "ACTION",
+    "shape": [
+     6
+    ]
+   }
+  }
+ },
+ "hardware": "NVIDIA L4 (x86 EC2 host), shared with other jobs"
+}
+```
 
 **Demo collection** (`results/demos_act.json`)
 

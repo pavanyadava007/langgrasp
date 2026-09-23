@@ -39,10 +39,13 @@ def overlay(img: np.ndarray, lines: list[str], box=None, box_color=(0, 255, 0)) 
     img[8 : 8 + 120, img.shape[1] - 168 : img.shape[1] - 8] = wrist
     cv2.rectangle(img, (img.shape[1] - 168, 8), (img.shape[1] - 8, 128), (255, 255, 255), 1)
     cv2.putText(img, "wrist", (img.shape[1] - 164, 24), FONT, 0.45, (255, 255, 255), 1, cv2.LINE_AA)
+    # single text pass over a darkened band (OpenCV 5 renders a thick outline pass with different glyph spacing)
+    band_h = 12 + 22 * len(lines)
+    band = img[0:band_h, 0:450].astype(np.float32) * 0.35
+    img[0:band_h, 0:450] = band.astype(np.uint8)
     y = 22
     for i, line in enumerate(lines):
-        cv2.putText(img, line, (10, y), FONT, 0.5 if i else 0.6, (0, 0, 0), 3, cv2.LINE_AA)
-        cv2.putText(img, line, (10, y), FONT, 0.5 if i else 0.6, (255, 255, 255) if i else (80, 255, 120), 1, cv2.LINE_AA)
+        cv2.putText(img, line, (10, y), FONT, 0.5 if i else 0.6, (255, 255, 255) if i else (120, 255, 150), 1, cv2.LINE_AA)
         y += 22
     if box is not None:
         x1, y1, x2, y2 = [int(v) for v in box]
