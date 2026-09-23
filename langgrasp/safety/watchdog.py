@@ -42,7 +42,13 @@ LEVEL_STALE = 3
 class SafetyConfig:
     joint_lo: tuple = DEFAULT_JOINT_LO
     joint_hi: tuple = DEFAULT_JOINT_HI
-    max_joint_vel: float = 1.5  # rad/s per joint (the scripted controller peaks well below this at 10 Hz)
+    # rad/s per joint. Measured (results/safety_clip_audit.json, scripts/audit_safety_clips.py): the
+    # in-process scripted executor commands up to 21.8 rad/s on the first waypoint of a move, so this
+    # limit does bite. It is a limit, not a description of the executor: enforcing it changes the
+    # trajectory (oracle picks 120/120 observing versus 73/120 enforcing), which is why the in-process
+    # pipeline only reports what would be clipped and the ROS 2 safety node, whose executor commands
+    # smaller per-tick deltas, applies it.
+    max_joint_vel: float = 1.5
     # TCP geofence in world coordinates (metres). Covers workspace, tray and the observe pose with margin.
     geofence_lo: tuple = (-0.25, -0.34, 0.0)
     geofence_hi: tuple = (0.28, 0.02, 0.25)

@@ -439,9 +439,28 @@ The design therefore has two modes, shown in the safety rail:
 - **enforce**: the clipped target is what the arm receives, as in the ROS 2 node. Labelled in the rail and
   in the run record; outcomes from enforce mode are never written to the protocol result files.
 
-Phase 1 measures how often the protocol trajectories would be clipped at the default 1.5 rad/s; if the
-count is zero on all 120 seeds, enforce can become the default with no numeric change, and the doc will say
-which it is.
+Measured in Phase 1 with `scripts/audit_safety_clips.py` over the 120 protocol scenes, oracle grasp poses,
+results in `results/safety_clip_audit.json`:
+
+| Quantity | Measured |
+|---|---|
+| Peak per-joint speed the scripted executor commands at 10 Hz | 7.8 rad/s median per trial, 21.8 rad/s worst |
+| Monitor's default limit | 1.5 rad/s |
+| Ticks the monitor would clip | 35.3% of 7186 ticks; every one of the 120 trials has at least one |
+| Joint-limit clips | 0 |
+| Placed, observing (clip reported, controller's target applied) | 120/120, the same as the oracle row in `docs/RESULTS.md` |
+| Placed, enforcing (clipped target applied) | 73/120 |
+
+So enforcing is not free: it is a different trajectory and a worse one. Monitor mode is the default and is
+what the GUI uses for anything a person might compare against `results/`. Enforce mode stays available,
+labelled, for showing what a rate-limited arm does. The peak comes from the first waypoint of each Cartesian
+move, where the straight-line interpolation in task space implies a large joint step; the ROS 2 executor,
+which re-solves from the measured pose every tick, commands smaller deltas, which is why the Docker run
+recorded 51 clips and still succeeded.
+
+One documentation defect found by this measurement: the comment next to `max_joint_vel` in
+`langgrasp/safety/watchdog.py` said the scripted controller peaks well below 1.5 rad/s. It does not. The
+comment now carries the measured numbers and points at the audit. No constant and no behaviour changed.
 
 ### 6.4 Human confirmation and ambiguity
 
@@ -452,6 +471,30 @@ before delegating to the parent. Reject or timeout returns `(False, "rejected by
 pipeline's own abort path handles the rest. Ambiguity (top-2 margin) stays a hard refusal exactly as
 documented in FMEA H6; the GUI explains it and suggests a spatial word. Whether a human should be able to
 override an ambiguous result is an open question (section 10), not a design decision taken here.
+
+### 6.4a What the watchdogs measure in an in-process simulation
+
+`SafetyConfig.staleness_s` gives the camera 0.5 s and the joint bus 0.2 s. On hardware those topics have
+their own publishers. Here the worker samples both synchronously, and while it is inside a 275 ms grounding
+call it samples nothing, so a naive reading would latch an e-stop on every command. The worker therefore
+records a sensor sample at each point where it genuinely reads the simulator: every capture stage, every
+frame it publishes, every idle poll and immediately before motion starts. The watchdogs then measure the
+worker's own sampling gaps, which is the useful thing to measure here (they still fire if the worker stalls),
+and the Safety view says so in those words rather than implying a sensor-fault detector that this
+architecture cannot have.
+
+Two consequences visible in the GUI: the worker starts in HOLD with the reason "no command yet (30 s command
+watchdog)", which the first command clears, and the watchdog ages shown in the rail are ages of samples, not
+of frames from an independent camera node.
+
+### 6.4b Live runs are not bit-reproducible, and the GUI must not claim they are
+
+Measured while writing the Phase 1 tests: two identical uninstrumented runs of Grounding DINO tiny on this
+GPU return boxes that differ by about 0.002 px and scores by about 5e-4, because cuDNN may pick different
+kernels. Decisions (chosen candidate, colour filtering, mask source, grasp pose) were identical across runs.
+The identity test therefore demands identical decisions and a numeric wobble no larger than the GPU's own,
+rather than bit equality, and the UI never claims a live run reproduces a protocol number exactly. The
+oracle-grounder path is bit-exact and is the strict test.
 
 ### 6.5 Pacing and what "execute latency" means live
 
@@ -557,7 +600,7 @@ with 4xx/5xx status. The message is the same sentence the UI shows.
 | GET `/api/jobs`, GET `/api/jobs/{id}` | | status, progress, per-trial results so far, out_path |
 | DELETE `/api/jobs/{id}` | | cancels (the worker stops after the current trial) |
 | GET `/api/fmea` | | rows from `langgrasp/gui/fmea.yaml` with resolved test node ids and code links |
-| WS `/ws/live` | client sends {subscribe: [cameras], depth: bool} | server sends JSON events as text frames and JPEGs as binary frames: `[u8 magic][u8 camera][u8 kind][u32 tick][f64 t][jpeg...]` |
+| WS `/ws/live` | client sends {subscribe: [cameras], depth: bool, bodies: bool} | server sends JSON events as text frames and JPEGs as binary frames: `b"LGF1"` + `uint32` metadata length + metadata JSON + JPEG bytes (self describing, one message per frame; `langgrasp/gui/trace.py: pack_frame`) |
 
 Static: `/` serves `langgrasp/gui/static/` (the Vite build); `/assets/meshes/*.stl` serves the arm meshes
 for the 3D view; `/runs/...` serves recorded frames.
@@ -590,7 +633,7 @@ checkout (Node is only needed to rebuild). This is a choice to confirm (section 
 |---|---|---|
 | R1 | Port 8000 is already bound on this VM by another user's process (also 8001 and 8080). `make gui` on :8000 will fail here. | `make gui` reads `GUI_PORT` (default 8000) and fails fast with the message "port 8000 in use, try GUI_PORT=8010 make gui". The acceptance criterion stays ":8000 by default". Confirm this is acceptable. |
 | R2 | The GPU is shared with an Ollama server. Live latencies will be worse than the clean bench and vary. | Every live latency is labelled "live, shared GPU"; the clean bench number sits next to it with its file. No live number is ever written into results/. |
-| R3 | Velocity clipping in enforce mode could change trajectories. | Default is monitor mode (section 6.3); Phase 1 measures the clip count on the 120 protocol seeds and reports it. |
+| R3 | Velocity clipping in enforce mode could change trajectories. | Measured in Phase 1 and settled: it changes them a lot. See section 6.3. Monitor mode is the default. |
 | R4 | Human override of an ambiguous grounding is not in the current safety design (FMEA H6 says refuse). | Not implemented unless you say so. Confirm/Reject applies to `require_human_confirm`. |
 | R5 | Adding optional kwargs (`hooks`, `controller_factory`, `listener`) to `ModularPipeline`, `LatencyTracer` is an additive API change to existing modules. | Asking for approval here. Alternative is subclassing with a duplicated `run_command`, which I advise against. |
 | R6 | Batch jobs run inside the worker, so the live view is busy during a job. | Accepted: the Live Run view shows "batch job running" and streams the job's scenes; E-STOP cancels the job. Running a second model set in another process would double GPU memory and violate the single-owner rule. |
@@ -607,7 +650,7 @@ checkout (Node is only needed to rebuild). This is a choice to confirm (section 
 | Phase | Deliverable | Verification |
 |---|---|---|
 | 0 | this document | your review |
-| 1 | `langgrasp/gui/trace.py`, `worker.py` (env, models, safety, pacing, e-stop flags, recording), additive hooks in `modular.py`, `latency.py`; `tests/test_gui_trace.py` (schema), `tests/test_gui_hooks_identical.py` (10 seeds oracle grounder, 3 seeds real GDINO when CUDA); clip-count measurement report | `make gate` (79 + new tests) |
+| 1 | done: `langgrasp/gui/trace.py`, `langgrasp/gui/worker.py`, additive hooks in `modular.py` and `latency.py`, `scripts/audit_safety_clips.py`; `tests/test_gui_trace.py`, `tests/test_gui_hooks_identical.py` (10 seeds oracle grounder bit-exact, 3 seeds real Grounding DINO by decision), `tests/test_gui_worker.py` (spawned worker, nine stages, e-stop, reset, monitor mode) | `make gate`: 79 existing plus 22 new tests pass; e-stop measured at 10.4 ms |
 | 2 | `api.py`, WebSocket, results and runs endpoints, jobs; `tests/test_gui_api.py` with a stub worker (httpx ASGI client) | `make gate` |
 | 3 | frontend shell, tokens, Live Run (stream, overlays, stepper, drawer, outcome, safety rail, e-stop, controllers, ablations) | manual on the tunnel + screenshots; e-stop latency logged |
 | 4 | Inspector + replay from `runs/gui` | manual + unit tests for the scrubber reducer |
