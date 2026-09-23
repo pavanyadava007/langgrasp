@@ -1,0 +1,57 @@
+{
+ "task": "pick the red cube and place it in the tray",
+ "repo_id": "local/langgrasp_pick_v3",
+ "root": "data/lerobot/langgrasp_pick_v3",
+ "n_success": 700,
+ "n_attempted": 700,
+ "expert_success_rate": 1.0,
+ "failed_seeds": [],
+ "seed_range": [
+  20000,
+  20699
+ ],
+ "n_frames": 43917,
+ "episode_len": {
+  "min": 56,
+  "max": 71,
+  "mean": 62.738571428571426
+ },
+ "hold_ticks": 5,
+ "fps": 10,
+ "image_size": [
+  192,
+  192
+ ],
+ "cameras": [
+  "front",
+  "wrist"
+ ],
+ "storage": "video (libsvtav1)",
+ "dataset_mb": 155.5,
+ "sample_shapes": {
+  "observation.images.front": [
+   3,
+   192,
+   192
+  ],
+  "observation.images.wrist": [
+   3,
+   192,
+   192
+  ],
+  "observation.state": [
+   6
+  ],
+  "action": [
+   6
+  ],
+  "timestamp": [],
+  "frame_index": [],
+  "episode_index": [],
+  "index": [],
+  "task_index": []
+ },
+ "minutes": 29.71,
+ "expert": "scripted PickPlaceController with ground-truth grasp point (no human teleop)",
+ "hardware": "NVIDIA L4 (x86 EC2 host), MuJoCo simulation only"
+}

@@ -308,12 +308,15 @@ Stage timings recorded during the protocol runs above (these ran while ACT/YOLO 
 
 | Checkpoint | Condition | Success [95% CI] |
 |---|---|---|
-| ppo_lift_nodr.pt | nominal | 188/200 = 94.0% [90-97] |
-| ppo_lift_nodr.pt | shifted | 102/200 = 51.0% [44-58] |
-| ppo_lift_nodr.pt | shifted_latency2 | 66/200 = 33.0% [27-40] |
+| ppo_lift_nodr.pt | nominal | 56/200 = 28.0% [22-35] |
+| ppo_lift_nodr.pt | shifted | 44/200 = 22.0% [17-28] |
+| ppo_lift_nodr.pt | shifted_latency2 | 29/200 = 14.5% [10-20] |
 | ppo_lift_dr.pt | nominal | 0/200 = 0.0% [0-2] |
 | ppo_lift_dr.pt | shifted | 0/200 = 0.0% [0-2] |
 | ppo_lift_dr.pt | shifted_latency2 | 0/200 = 0.0% [0-2] |
+| ppo_lift_drcurriculum.pt | nominal | 166/200 = 83.0% [77-88] |
+| ppo_lift_drcurriculum.pt | shifted | 127/200 = 63.5% [57-70] |
+| ppo_lift_drcurriculum.pt | shifted_latency2 | 67/200 = 33.5% [27-40] |
 
 **PPO run ppo_reach_dr.json** (`results/ppo_reach_dr.json`)
 

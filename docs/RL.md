@@ -149,19 +149,30 @@ touch it), same PPO settings as reach, 64 envs, about 5.6-5.8 M env steps each (
 | Run | Train-env success at the end | Nominal eval (200 ep) | Shifted | Shifted + 2-tick latency |
 |---|---|---|---|---|
 | lift, no DR | 92.8% | 188/200 = 94.0% [89.8, 96.5] | 102/200 = 51.0% [44.1, 57.8] | 66/200 = 33.0% [26.9, 39.8] |
-| lift, DR | 0.0% | 0/200 | 0/200 | 0/200 |
+| lift, DR from scratch | 0.0% | 0/200 | 0/200 | 0/200 |
+| lift, DR curriculum (warm start from the no-DR policy, randomisation ramped 0 to 1 over the first 3 M of 6 M steps) | 61.9% | 166/200 = 83.0% [77.2, 87.6] | 127/200 = 63.5% [56.6, 69.9] | 67/200 = 33.5% [27.3, 40.3] |
 
 (`results/ppo_sim2sim_gap_lift.json`, Wilson 95% intervals, sim-to-sim gap, no real robot.)
 
 Without domain randomisation PPO learns the lift in about 30 minutes and its return keeps rising at the
 time box (0.39 at 1.9 M steps, 0.72 at 4.9 M, 0.94 at 5.8 M); its sim-to-sim gap is large (94% to 51%
-under the dynamics shift, 33% with two ticks of latency), which is the point of the exercise. With the
-Squint-style randomisation switched on, the same budget never produced a single lift: the return plateaus
-around 12-14 from 1 M steps onward with 0% success, i.e. the agent settles for the approach reward and
-never discovers the grasp-and-lift bonus under 5 deg joint noise and stochastic latency. This is a
-documented negative result (the DR policy is not tuned; likely fixes are a curriculum from no-DR to DR,
-a longer budget, or an off-policy method as in the Squint SO-101 paper where SAC transferred and PPO was
-the weaker baseline). We did not spend more than the 40-minute box on it.
+under the dynamics shift, 33% with two ticks of latency), which is the point of the exercise.
+
+With the Squint-style randomisation switched on from the start, the same budget never produced a single
+lift: the return plateaus around 12-14 from 1 M steps onward with 0% success, i.e. the agent settles for
+the approach reward and never discovers the grasp-and-lift bonus under 5 deg joint noise and stochastic
+latency. That negative result stays in the table.
+
+The curriculum fixes the discovery problem: initialising from the no-DR policy (67% in the first
+iteration) and ramping the randomisation from zero to full strength over the first half of a 6 M step,
+43 minute run (`scripts/train_ppo.py --task lift --dr --init-ckpt checkpoints/ppo_lift_nodr.pt --dr-ramp 0.5`)
+ends at 62% in the fully randomised training env. Evaluated deterministically it trades nominal success
+(94% to 83%) for robustness under the dynamics shift (51% to 63.5%), and does nothing for the two-tick
+latency case (33% either way): latency is not in the randomisation set beyond one tick, so the policy has
+never seen it. The honest summary is that randomisation helps against the perturbations it covers and
+costs nominal precision; a longer ramp or a final no-noise fine-tune would be the next thing to try, as
+would an off-policy method (the Squint SO-101 paper transferred with SAC and found PPO the weaker
+baseline).
 
 ## Limitations, stated plainly
 
