@@ -49,11 +49,12 @@ Aborts (modular): no_grasp: 1, safety:grounding confidence 0.265 < 0.30: 1
 
 ## 2. Fixed-goal comparison on identical scenes (red cube -> tray, 100 seeds)
 
-| Approach | Seen place | Unseen place | Lang-var place | Grounding acc. (all) | E2E latency med/p90/p99 ms | n |
-|---|---|---|---|---|---|---|
-| Oracle executor | 100.0% [96-100] (n=100) | not run | not run | n/a | - | 100 |
-| Modular pipeline | 90.0% [83-94] (n=100) | not run | not run | 91.0% [84-95] (n=100) | 979 / 1029 / 1082 | 100 |
-| ACT (LeRobot, scripted demos) | 6.0% [3-12] (n=100) | not run | not run | n/a | - | 100 |
+| Approach | Grasp (lifted) | Place | Grounding acc. | Per-command latency med ms | n |
+|---|---|---|---|---|---|
+| Oracle executor (ground-truth grasp point) | 99.0% [95-100] (n=100) | 100.0% [96-100] (n=100) | n/a | 358 (episode, sim compute) | 100 |
+| Modular pipeline | 90.0% [83-94] (n=100) | 90.0% [83-94] (n=100) | 91.0% [84-95] (n=100) | 979 (end_to_end) | 100 |
+| ACT attempt 1 (120 demos, 128 px, 20k steps) | 6.0% [3-12] (n=100) | 6.0% [3-12] (n=100) | n/a | 1 (policy_call) | 100 |
+| ACT attempt 2 (240 demos, 192 px, 25k steps) | not run | not run | - | - | 0 |
 
 ## 3. Latency budget of the modular pipeline (per command, L4)
 
