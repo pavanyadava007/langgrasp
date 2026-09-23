@@ -11,6 +11,7 @@ import {
   type ControllerName,
   type ExampleCommand,
   type GateRequestEvent,
+  type JobProgressEvent,
   type OutcomeEvent,
   type RunConfig,
   type SafetyEvent,
@@ -37,6 +38,16 @@ const emptyStage = (): StageView => ({ status: "pending", latency_ms: null, late
 const emptyStages = (): Record<StageName, StageView> => Object.fromEntries(STAGES.map((s) => [s, emptyStage()])) as Record<StageName, StageView>;
 
 export type ViewName = "live" | "inspector" | "results" | "batch" | "safety";
+
+export interface JobState {
+  job_id: string;
+  state: "queued" | "running" | "done" | "cancelled" | "error";
+  done: number;
+  total: number;
+  out_path: string | null;
+  message: string | null;
+  trials: Record<string, unknown>[];
+}
 
 export interface OverlayLayers {
   candidates: boolean;
@@ -84,6 +95,8 @@ interface State {
   safety: SafetyEvent | null;
   estopLatencyMs: number | null;
   paused: boolean;
+
+  jobs: Record<string, JobState>;
 
   // ui
   view: ViewName;
@@ -149,6 +162,7 @@ export const useStore = create<State>((set, get) => ({
   safety: null,
   estopLatencyMs: null,
   paused: false,
+  jobs: {},
 
   view: "live",
   theme: storedTheme(),
@@ -261,6 +275,26 @@ export const useStore = create<State>((set, get) => ({
         const e = event as SafetyEvent;
         set({ safety: e, estopLatencyMs: e.estop_latency_ms ?? get().estopLatencyMs });
         if (e.state === "ESTOP") set({ announce: `E-stop: ${e.reason}`, running: false });
+        break;
+      }
+      case "job_progress": {
+        const e = event as JobProgressEvent;
+        const prev = get().jobs[e.job_id];
+        const trials = prev?.trials ?? [];
+        const next: JobState = {
+          job_id: e.job_id,
+          state: e.state,
+          done: e.done,
+          total: e.total,
+          out_path: e.out_path,
+          message: e.message,
+          trials: e.last && e.state === "running" && "seed" in (e.last as Record<string, unknown>) ? [...trials, e.last as Record<string, unknown>] : trials,
+        };
+        set({ jobs: { ...get().jobs, [e.job_id]: next } });
+        if (e.state === "done" || e.state === "error" || e.state === "cancelled") {
+          get().notify(e.state === "done" ? "info" : "warn", e.message ?? `Job ${e.state}.`);
+          void get().refreshSystem(); // the simulator is free again, so the form stops saying it is busy
+        }
         break;
       }
       case "log": {

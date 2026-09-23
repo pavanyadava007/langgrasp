@@ -22,7 +22,7 @@ from fastapi.responses import FileResponse, HTMLResponse, JSONResponse
 from pydantic import BaseModel, Field
 
 from langgrasp.gui.hub import EventHub
-from langgrasp.gui.trace import STAGE_HELP, STAGE_TITLES, STAGES
+from langgrasp.gui.trace import STAGE_HELP, STAGE_TITLES, STAGES, jsonable
 from langgrasp.gui.worker import CAMERAS, RUNS_DIR, WorkerConfig, WorkerHandle
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -97,6 +97,17 @@ class RunRequest(BaseModel):
     config: RunConfig = Field(default_factory=RunConfig)
     source: Literal["typed", "stt", "chip"] = "typed"
     stt_latency_ms: float | None = None
+
+
+class JobRequest(BaseModel):
+    controller: Literal["pipeline", "oracle"] = "pipeline"
+    strata: dict[str, int] = Field(default_factory=lambda: {"seen": 10, "unseen": 10, "langvar": 10})
+    config: RunConfig = Field(default_factory=RunConfig)
+    fixed_goal: bool = False
+    base_seed: int = 5000
+    out_path: str | None = None
+    overwrite: bool = False
+    tag: str | None = None
 
 
 class EstopRequest(BaseModel):
@@ -229,6 +240,7 @@ def create_app(worker=None, cfg: WorkerConfig | None = None, start_worker: bool 
             "cameras": list(CAMERAS),
             "safety": safety,
             "safety_note": "The GUI observes the safety monitor by default: HOLD and ESTOP stop the arm, while joint and velocity clipping is reported but not applied, so a live run follows the same trajectory as the runs in results/. See results/safety_clip_audit.json.",
+            "watchdog_note": "The staleness timers measure how long ago this worker sampled each topic, not how long ago an independent publisher spoke: there is no separate camera node here. The pipeline captures one frame per command and then executes open loop, so while a command is being carried out the camera and command timers are refreshed each tick. They still fire if the worker itself stalls, and the command timer still holds the arm when the system has been sitting idle.",
             "hub": hub.stats(),
             "results_dir": str(RESULTS_DIR.relative_to(ROOT)),
         }
@@ -309,6 +321,49 @@ def create_app(worker=None, cfg: WorkerConfig | None = None, start_worker: bool 
                 os.unlink(path)
         return data
 
+    # ------------------------------------------------------------------ batch jobs
+    @app.post("/api/jobs", status_code=202)
+    async def post_job(req: JobRequest) -> dict:
+        require_idle()
+        strata = {k: v for k, v in req.strata.items() if k in ("seen", "unseen", "langvar") and v > 0}
+        if not strata:
+            raise HTTPException(status_code=400, detail={"code": "no_strata", "message": "Choose at least one stratum with a trial count above zero."})
+        tag = req.tag or ("oracle" if req.controller == "oracle" else "modular")
+        default_name = f"gui_{tag}_{time.strftime('%Y%m%d-%H%M%S')}.json"
+        out_path = RESULTS_DIR / (Path(req.out_path).name if req.out_path else default_name)
+        if not out_path.name.endswith(".json"):
+            raise HTTPException(status_code=400, detail={"code": "bad_filename", "message": "The output file must end in .json and live in results/."})
+        if out_path.exists() and not req.overwrite:
+            raise HTTPException(
+                status_code=409,
+                detail={
+                    "code": "file_exists",
+                    "message": f"results/{out_path.name} already exists, last written {time.strftime('%Y-%m-%d %H:%M', time.localtime(out_path.stat().st_mtime))}. Confirm the overwrite, or write to results/{default_name} instead.",
+                    "suggestion": default_name,
+                },
+            )
+        job_id = f"job_{time.strftime('%Y%m%d-%H%M%S')}"
+        handle.send(cmd="job", job_id=job_id, controller=req.controller, strata=strata, config=req.config.model_dump(), fixed_goal=req.fixed_goal, base_seed=req.base_seed, out_path=str(out_path), overwrite=req.overwrite, tag=tag)
+        return {"job_id": job_id, "out_path": f"results/{out_path.name}", "total": sum(strata.values())}
+
+    @app.get("/api/jobs")
+    async def get_jobs() -> dict:
+        return {"jobs": list(hub.jobs.values())}
+
+    @app.get("/api/jobs/{job_id}")
+    async def get_job(job_id: str) -> dict:
+        job = hub.jobs.get(job_id)
+        if job is None:
+            raise HTTPException(status_code=404, detail={"code": "no_such_job", "message": f"No job '{job_id}' in this session."})
+        return job
+
+    @app.delete("/api/jobs/{job_id}")
+    async def cancel_job(job_id: str) -> dict:
+        if job_id not in hub.jobs:
+            raise HTTPException(status_code=404, detail={"code": "no_such_job", "message": f"No job '{job_id}' in this session."})
+        handle.send(cmd="cancel_job", job_id=job_id)
+        return {"cancelling": job_id, "note": "The job stops before the next trial and writes no file."}
+
     # ------------------------------------------------------------------ results and runs
     @app.get("/api/results")
     async def get_results() -> dict:
@@ -327,9 +382,31 @@ def create_app(worker=None, cfg: WorkerConfig | None = None, start_worker: bool 
         return {"sections": sections}
 
     @app.get("/api/results/{name}")
-    async def get_results_file(name: str) -> Response:
+    async def get_results_file(name: str, raw: int = 0) -> Response:
+        """Serve a results file.
+
+        Python writes a rate of 0 successes in 0 trials as ``NaN``, which is legal for ``json.dump`` and
+        illegal for the browser's JSON parser: five of these files contain it, and a browser given them
+        verbatim sees a parse error and shows a measurement that exists as "not run". So the default response
+        replaces every non-finite number with null and says in a header that it did. ``?raw=1`` returns the
+        file's own bytes, for anyone checking provenance.
+        """
         p = _safe_results_path(name)
-        return Response(content=p.read_text(), media_type="application/json", headers={"X-Source-File": f"results/{name}", "X-Source-Mtime": str(p.stat().st_mtime)})
+        text = p.read_text()
+        headers = {"X-Source-File": f"results/{name}", "X-Source-Mtime": str(p.stat().st_mtime)}
+        if raw:
+            headers["X-Json-Sanitised"] = "false"
+            return Response(content=text, media_type="application/json", headers=headers)
+        had_nonfinite = "NaN" in text or "Infinity" in text
+        try:
+            body = json.dumps(jsonable(json.loads(text)))
+        except (json.JSONDecodeError, ValueError):
+            headers["X-Json-Sanitised"] = "false"
+            return Response(content=text, media_type="application/json", headers=headers)
+        headers["X-Json-Sanitised"] = "true" if had_nonfinite else "false"
+        if had_nonfinite:
+            headers["X-Json-Note"] = "non-finite numbers in the file (a rate over zero trials) were replaced with null; add ?raw=1 for the file itself"
+        return Response(content=body, media_type="application/json", headers=headers)
 
     @app.get("/api/runs")
     async def get_runs() -> dict:

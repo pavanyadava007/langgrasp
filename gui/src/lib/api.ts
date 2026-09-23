@@ -57,6 +57,10 @@ export const api = {
   manifest: () => call<{ sections: Record<string, ManifestSection> }>("/api/results/manifest"),
   resultsFile: <T = unknown,>(name: string) => call<T>(`/api/results/${name}`),
   runs: () => call<{ runs: RunRow[] }>("/api/runs"),
+  newJob: (body: { controller: string; strata: Record<string, number>; config: RunConfig; fixed_goal: boolean; base_seed: number; out_path: string | null; overwrite: boolean }) =>
+    post<{ job_id: string; out_path: string; total: number }>("/api/jobs", body),
+  jobs: () => call<{ jobs: Record<string, unknown>[] }>("/api/jobs"),
+  cancelJob: (id: string) => call<{ cancelling: string }>(`/api/jobs/${id}`, { method: "DELETE" }),
   runDetail: (id: string) => call<{ meta: Record<string, unknown>; events: unknown[]; frames_url: string }>(`/api/runs/${id}`),
   stt: async (blob: Blob, modelSize?: string) => {
     const form = new FormData();

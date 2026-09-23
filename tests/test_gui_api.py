@@ -373,3 +373,77 @@ def test_a_new_client_does_not_receive_a_finished_run_as_if_it_were_live(client)
         first = ws.receive_json()
         assert first["type"] == "safety", first
         assert first["state"] in ("RUN", "HOLD")
+
+
+def test_job_refuses_to_overwrite_a_results_file_without_being_told(client):
+    r = client.post("/api/jobs", json={"controller": "oracle", "strata": {"seen": 2}, "out_path": "oracle_protocol.json"})
+    assert r.status_code == 409
+    err = r.json()["error"]
+    assert err["code"] == "file_exists" and "already exists" in err["message"]
+    assert err["suggestion"].startswith("gui_oracle_") and err["suggestion"].endswith(".json")
+    # and nothing was sent to the worker
+    assert not any(m.get("cmd") == "job" for m in client.worker.sent)
+
+
+def test_job_writes_to_a_timestamped_file_by_default(client):
+    r = client.post("/api/jobs", json={"controller": "pipeline", "strata": {"seen": 3, "langvar": 2}})
+    assert r.status_code == 202
+    body = r.json()
+    assert body["total"] == 5 and body["out_path"].startswith("results/gui_modular_")
+    sent = client.worker.last("job")
+    assert sent["strata"] == {"seen": 3, "langvar": 2} and sent["overwrite"] is False
+    assert sent["config"]["use_yolo_mask"] is True
+
+
+def test_job_needs_at_least_one_stratum_and_a_json_name(client):
+    assert client.post("/api/jobs", json={"strata": {"seen": 0}}).status_code == 400
+    assert client.post("/api/jobs", json={"strata": {"seen": 2}, "out_path": "notes.txt"}).status_code == 400
+
+
+def test_job_progress_is_tracked_and_cancellable(client):
+    from langgrasp.gui.trace import JobProgress
+
+    w = client.worker
+    r = client.post("/api/jobs", json={"controller": "oracle", "strata": {"seen": 2}})
+    job_id = r.json()["job_id"]
+    w.emit(JobProgress(job_id=job_id, state="running", done=1, total=2, last={"seed": 5000, "stratum": "seen", "placed": True}))
+    w.emit(JobProgress(job_id=job_id, state="running", done=2, total=2, last={"seed": 5001, "stratum": "seen", "placed": False}))
+    import time as _t
+
+    _t.sleep(0.4)
+    jobs = client.get("/api/jobs").json()["jobs"]
+    assert len(jobs) == 1 and jobs[0]["done"] == 2
+    assert [t["seed"] for t in jobs[0]["trials"]] == [5000, 5001]
+    assert client.get(f"/api/jobs/{job_id}").json()["total"] == 2
+    assert client.get("/api/jobs/nope").status_code == 404
+    assert client.delete(f"/api/jobs/{job_id}").json()["cancelling"] == job_id
+    assert w.last("cancel_job")["job_id"] == job_id
+
+
+def test_a_job_is_refused_while_the_simulator_is_busy(client):
+    client.worker.flags.busy.value = 1
+    r = client.post("/api/jobs", json={"strata": {"seen": 2}})
+    assert r.status_code == 409 and r.json()["error"]["code"] == "busy"
+
+
+def test_results_with_non_finite_numbers_are_served_as_valid_json(client):
+    """Python writes a rate over zero trials as NaN, which the browser's parser rejects outright: a whole
+    measured file would then render as "not run". The default response replaces those with null and says so."""
+    r = client.get("/api/results/act_eval_192.json")
+    assert r.status_code == 200
+    assert r.headers["X-Json-Sanitised"] == "true"
+    assert "replaced with null" in r.headers["X-Json-Note"]
+    d = r.json()  # would raise if NaN were still in the body
+    grounding = d["summary"]["strata"]["all"]["grounding"]
+    assert grounding["n"] == 0 and grounding["p"] is None, "a rate over zero trials must be null, not zero"
+    assert d["summary"]["strata"]["all"]["place"]["n"] == 100
+
+    raw = client.get("/api/results/act_eval_192.json?raw=1")
+    assert raw.headers["X-Json-Sanitised"] == "false"
+    assert "NaN" in raw.text, "the raw response must be the file itself"
+
+
+def test_a_file_without_non_finite_numbers_is_untouched(client):
+    r = client.get("/api/results/modular_protocol.json")
+    assert r.headers["X-Json-Sanitised"] == "false"
+    assert r.json()["summary"]["n_trials"] == 120

@@ -35,6 +35,7 @@ import numpy as np
 from langgrasp.gui.trace import (
     FrameMeta,
     GateRequest,
+    JobProgress,
     Log,
     Outcome,
     PipelineHooks,
@@ -61,6 +62,10 @@ PACE_SLICE_S = 0.004  # the pacing sleep is cut into slices this long so an e-st
 
 class MotionAborted(RuntimeError):
     """Raised inside the control loop when the operator e-stops, to stop the executor immediately."""
+
+
+class JobCancelled(RuntimeError):
+    """Raised inside a batch job when the operator cancels it, so no partial results file is written."""
 
 
 # ---------------------------------------------------------------------------- shared flags
@@ -103,6 +108,7 @@ class WorkerConfig:
     jpeg_quality: int = 72
     gate_threshold: float = 0.30  # what scripts/eval_modular.py uses, not the SafetyConfig default of 0.35
     safety_mode: str = "monitor"
+    command_staleness_s: float = 30.0  # FMEA H6: a command older than this is a HOLD, not an e-stop
     idle_frame_period_s: float = 0.2
     record: bool = True
     seed: int = 0
@@ -181,6 +187,7 @@ class SimWorker:
         self._last_idle_frame = 0.0
         self._tick_frame_i = 0
         self._executing = False  # True only while a controller is driving the arm
+        self._command_active = False  # True from the moment a command is accepted until its motion ends
         self._events_fp = None
         self._hardware = "unknown"
 
@@ -223,6 +230,7 @@ class SimWorker:
                 joint_lo=tuple(self.env.kin.lo),
                 joint_hi=tuple(self.env.kin.hi),
                 grounding_conf_threshold=self.cfg.gate_threshold,
+                staleness_s={"camera": 0.5, "joint_states": 0.2, "command": self.cfg.command_staleness_s},
             ),
             self,
         )
@@ -313,6 +321,18 @@ class SimWorker:
             now = time.monotonic()
             self._check_control()
             reasons: list[str] = []
+            if self._command_active:
+                # A command being carried out is not a stale command. This covers every controller, including
+                # batch trials, which do not go through record_fn.
+                self.monitor.heartbeat("command", now)
+                # The camera is refreshed too, and the reason matters. This stack captures one frame per
+                # command and then executes open loop, so between the capture and the end of the motion
+                # nothing reads the camera by design. The 0.5 s timeout assumes an independent publisher, as
+                # there would be on hardware; here it only measures the worker's own sampling gap, and left
+                # alone it latches an e-stop in the middle of every command whose motion outlasts half a
+                # second, reported as a camera fault that did not happen. What still holds the arm is the
+                # tick-level check itself: if the worker stalls, these heartbeats stop with it.
+                self.monitor.heartbeat("camera", now)
             if q_arm is not None:
                 self.monitor.heartbeat("joint_states", now)
                 reasons += self.monitor.check_tcp(env.obs()["tcp_pos"])
@@ -410,7 +430,12 @@ class SimWorker:
         self._next_tick_t = now + period
 
     def record_fn(self, env, phase: str) -> dict:
-        """Passed to PickPlaceController(record=True, record_fn=...): called once per tick before env.step."""
+        """Passed to PickPlaceController(record=True, record_fn=...): called once per tick before env.step.
+
+        The command heartbeat is refreshed here because a command that is being carried out right now is not a
+        stale command. Without it the command watchdog can fire in the middle of a motion it asked for, which
+        stops the arm half way through a pick for no reason an operator would recognise.
+        """
         self._phase = phase
         self._check_control()
         self._pace()
@@ -651,6 +676,128 @@ class SimWorker:
             bits |= BODIES_BIT
         self.flags.cameras.value = bits or CAM_BITS["front"]
 
+    # ------------------------------------------------------------------ batch jobs
+    def cmd_job(self, msg: dict) -> None:
+        """Run the stratified protocol, or a subset of it, through the same harness the scripts use.
+
+        The harness is not reimplemented here: ``langgrasp.eval.harness.run_protocol`` builds the scenarios,
+        summarises the trials and writes the JSON, exactly as ``scripts/eval_modular.py`` does, so a file this
+        produces is the same shape as the files in results/. What this adds is a progress event per trial and
+        a cancel flag.
+
+        Batch trials are not paced and record no frames: pacing exists so a person can watch one command, and
+        applying it to 120 trials would turn 90 seconds into 12 minutes. The physics is identical either way.
+        """
+        from langgrasp.eval.harness import run_protocol
+        from langgrasp.policies.modular import ModularPipeline
+        from langgrasp.sim.controller import PickPlaceController
+        from langgrasp.sim.scenarios import make_scenario
+        from langgrasp.sim.scene import OBJECT_KINDS
+
+        job_id = msg["job_id"]
+        strata = {k: int(v) for k, v in (msg.get("strata") or {}).items() if int(v) > 0}
+        if not strata:
+            self.emit(JobProgress(job_id=job_id, state="error", message="No strata selected, so there is nothing to run."))
+            return
+        out_path = Path(msg["out_path"])
+        if out_path.exists() and not msg.get("overwrite"):
+            self.emit(JobProgress(job_id=job_id, state="error", out_path=str(out_path), message=f"{out_path.name} already exists and overwrite was not confirmed."))
+            return
+        controller = msg.get("controller", "pipeline")
+        cfgd = dict(msg.get("config") or {})
+        fixed_goal = bool(msg.get("fixed_goal"))
+        total = sum(strata.values())
+        self.flags.busy.value = 1
+        self.flags.cancel_job.value = 0
+        self.mode = cfgd.get("safety_mode", self.cfg.safety_mode)
+        self.run_id = job_id
+        self.run_dir = None  # no per-trial frame files: a 120-trial job would write about 250 MB
+        done = 0
+
+        seg = self._load_segmenter(cfgd.get("seg_backend", self.cfg.seg_backend)) if cfgd.get("use_yolo_mask", True) else None
+        pipe = ModularPipeline(self.env, self.grounder, seg, self._pipeline_config(cfgd), safety=self.monitor, seed=0, hooks=self.hooks)
+
+        def make(seed: int, stratum: str):
+            return make_scenario(seed, "seen", target_kind="cube", target_color="red") if fixed_goal else make_scenario(seed, stratum)
+
+        def run_one(sc) -> dict:
+            nonlocal done
+            if self.flags.cancel_job.value:
+                raise JobCancelled("cancelled by the operator")
+            if self.latch_estop_if_requested():
+                raise JobCancelled("e-stop latched")
+            # Each trial is a command. Without this the command watchdog, which will have put the monitor in
+            # HOLD while the operator was reading the results page, holds the arm for every trial of the job
+            # and every trial fails while the perception stages still look perfectly healthy.
+            self._command_active = True
+            self.monitor.heartbeat("command", time.monotonic())
+            self.monitor.check_staleness(time.monotonic())
+            self.heartbeat_sensors()
+            self.env.reset(sc)
+            self.publish_frames()
+            if controller == "oracle":
+                p, psi = self.env.grasp_point(sc.target)
+                r = PickPlaceController(self.env).run(np.asarray(p), float(psi), sc.target, width=float(OBJECT_KINDS[sc.target_obj.kind]["width"]))
+                out = {"grounding_correct": True, "grasped": r.grasped, "lifted": r.lifted, "placed": r.placed, "aborted": None, "latency_ms": {}, "extra": {"steps": r.steps, "rot_err": r.rot_err}}
+            else:
+                res = pipe.run_command(sc.command, sc.target)
+                d = res.to_dict()
+                out = {
+                    "grounding_correct": res.grounding_correct if res.grounding_correct is not None else (False if res.aborted == "no_candidate" else None),
+                    "grasped": res.grasped,
+                    "lifted": res.lifted,
+                    "placed": res.placed,
+                    "aborted": res.aborted,
+                    "latency_ms": res.latency_ms,
+                    "extra": {k: d[k] for k in ("box", "score", "grounding_info", "select_info", "mask_source", "grasp") if k in d},
+                }
+            done += 1
+            self.emit(
+                JobProgress(
+                    job_id=job_id,
+                    state="running",
+                    done=done,
+                    total=total,
+                    out_path=rel_out,
+                    last=jsonable({"seed": sc.seed, "stratum": sc.stratum, "command": sc.command, "kind": sc.target_obj.kind, "color": sc.target_obj.color, "lighting": sc.lighting, **{k: out[k] for k in ("grounding_correct", "lifted", "placed", "aborted")}}),
+                )
+            )
+            return out
+
+        notes = f"run from the GUI. controller={controller} color_check={cfgd.get('use_color_check', True)} yolo_mask={seg is not None} depth_noise={cfgd.get('depth_noise', True)} seg={cfgd.get('seg_backend')} safety_mode={self.mode} gate={self.monitor.cfg.grounding_conf_threshold}"
+        rel_out = str(out_path.relative_to(ROOT)) if out_path.is_absolute() and str(out_path).startswith(str(ROOT)) else str(out_path)
+        self.monitor.heartbeat("command", time.monotonic())
+        self.monitor.check_staleness(time.monotonic())
+        self._emit_safety(force=True)
+        self.emit(JobProgress(job_id=job_id, state="running", done=0, total=total, out_path=rel_out, message=f"{total} trials"))
+        t0 = time.monotonic()
+        try:
+            out_path.parent.mkdir(parents=True, exist_ok=True)
+            result = run_protocol(run_one, strata, msg.get("tag", controller), out_path, notes=notes, base_seed=int(msg.get("base_seed", 5000)), log_every=0, make=make)
+        except JobCancelled as e:
+            self.emit(JobProgress(job_id=job_id, state="cancelled", done=done, total=total, message=f"Cancelled after {done} of {total} trials: {e}. No file was written."))
+            return
+        finally:
+            self._command_active = False
+            self.flags.busy.value = 0
+            self.run_id = None
+            self._emit_safety(force=True)
+        summary = result["summary"]["strata"].get("all", {})
+        self.emit(
+            JobProgress(
+                job_id=job_id,
+                state="done",
+                done=done,
+                total=total,
+                out_path=rel_out,
+                message=f"{done} trials in {(time.monotonic() - t0) / 60:.1f} min, written to {rel_out}",
+                last=jsonable({"placed": summary.get("place"), "grounding": summary.get("grounding")}),
+            )
+        )
+
+    def cmd_cancel_job(self, msg: dict) -> None:
+        self.flags.cancel_job.value = 1
+
     def cmd_stt(self, msg: dict) -> None:
         from langgrasp.language.stt import SpeechToText
 
@@ -711,6 +858,7 @@ class SimWorker:
                 "started": time.strftime("%Y-%m-%d %H:%M:%S"),
             },
         )
+        self._command_active = True
         self.monitor.heartbeat("command", time.monotonic())
         self.monitor.check_staleness(time.monotonic())
         self._emit_safety(force=True)
@@ -729,6 +877,7 @@ class SimWorker:
             self.emit(Outcome(run_id=self.run_id, aborted="safety:estop", message=f"Run stopped: {e}.", wall_ms=(time.monotonic() - t0) * 1e3, sim_compute_ms=self._sim_compute_ms))
             self._emit_safety(force=True)
         finally:
+            self._command_active = False
             self.flags.busy.value = 0
             self._close_run()
 

@@ -1,9 +1,11 @@
 import { useEffect } from "react";
 import { Button, Kbd, Term } from "./components/ui";
 import { StatusIcon } from "./components/Status";
+import { Batch } from "./views/Batch";
 import { Inspector } from "./views/Inspector";
 import { LiveRun } from "./views/LiveRun";
 import { Placeholder } from "./views/Placeholder";
+import { Results } from "./views/Results";
 import { useStore, type ViewName } from "./store/store";
 
 const NAV: { id: ViewName; label: string; key: string }[] = [
@@ -217,22 +219,8 @@ export default function App() {
         <main id="main" className="min-w-0 flex-1 p-4">
         {view === "live" && <LiveRun />}
         {view === "inspector" && <Inspector />}
-        {view === "results" && (
-          <Placeholder
-            title="Results Dashboard"
-            phase="phase 5"
-            what="The measured protocol, its ablations and the per-object and per-lighting breakdowns, each widget linked to the JSON file it came from and that file's timestamp."
-            sources={["results/oracle_protocol.json", "results/modular_protocol.json", "results/modular_nocolor_protocol.json", "results/yolo_latency_l4.json", "results/ppo_sim2sim_gap.json"]}
-          />
-        )}
-        {view === "batch" && (
-          <Placeholder
-            title="Batch Evaluate"
-            phase="phase 5"
-            what="Run the protocol or a subset as a background job, with a live per-scene grid; clicking a cell replays that seed here in Live Run. It writes through the existing harness and never overwrites a results file without being told to."
-            sources={["langgrasp/eval/harness.py", "results/"]}
-          />
-        )}
+        {view === "results" && <Results />}
+        {view === "batch" && <Batch />}
         {view === "safety" && (
           <Placeholder
             title="Safety & System"

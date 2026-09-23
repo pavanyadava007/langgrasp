@@ -75,6 +75,7 @@ class EventHub:
         self.run_in_flight = False  # a client that connects mid-run gets that run; after it ends, nobody does
         self.scene: dict | None = None
         self.models: dict = {}
+        self.jobs: dict[str, dict] = {}  # job id -> its newest progress event, plus the trials seen so far
         self.waiters: list[tuple[Callable[[dict], bool], asyncio.Future]] = []
         self.counts: dict[str, int] = {}
         self._thread: threading.Thread | None = None
@@ -127,6 +128,11 @@ class EventHub:
                 self.run_in_flight = False
             if kind == "stage_finished":
                 self.stages[event["stage"]] = event
+            elif kind == "job_progress":
+                job = self.jobs.setdefault(event["job_id"], {"trials": []})
+                job.update({k: v for k, v in event.items() if k != "type"})
+                if event.get("last") and event.get("state") == "running" and "seed" in (event["last"] or {}):
+                    job["trials"].append(event["last"])
             elif kind == "system":
                 if event.get("scene"):
                     self.scene = event["scene"]

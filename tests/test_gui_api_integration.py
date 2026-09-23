@@ -17,6 +17,16 @@ from langgrasp.gui.trace import STAGES, unpack_frame
 from langgrasp.gui.worker import WorkerConfig
 
 
+def wait_idle(client, timeout: float = 120.0) -> None:
+    """Block until the worker has finished whatever it was doing. The simulator is a single resource."""
+    deadline = time.monotonic() + timeout
+    while time.monotonic() < deadline:
+        if not client.get("/api/system").json()["worker"]["busy"]:
+            return
+        time.sleep(0.2)
+    raise AssertionError("the worker stayed busy")
+
+
 @pytest.fixture(scope="module")
 def live():
     app = create_app(cfg=WorkerConfig(grounder="oracle", load_segmenter=False, record=True))
@@ -104,4 +114,53 @@ def test_estop_and_reset_through_http(live):
     back = live.post("/api/reset").json()
     assert back["state"] in ("RUN", "HOLD", "REDUCED_SPEED")
     # and the simulator is usable again
+    assert live.post("/api/run", json={"controller": "oracle", "config": {"speed": 0.0}}).status_code == 202
+    wait_idle(live)
+
+
+def test_a_batch_job_runs_through_the_real_harness_and_writes_a_results_file(live):
+    """The file a job writes must be the same shape as the files in results/, because it is the same harness."""
+    import json
+    from pathlib import Path
+
+    wait_idle(live)
+    r = live.post("/api/jobs", json={"controller": "oracle", "strata": {"seen": 2, "langvar": 1}, "config": {"speed": 0.0}})
+    assert r.status_code == 202, r.text
+    job_id = r.json()["job_id"]
+    out_path = Path(r.json()["out_path"])
+    assert r.json()["total"] == 3
+
+    deadline = time.monotonic() + 180
+    job = {}
+    while time.monotonic() < deadline:
+        job = live.get(f"/api/jobs/{job_id}").json()
+        if job.get("state") in ("done", "error", "cancelled"):
+            break
+        time.sleep(0.3)
+    assert job.get("state") == "done", job
+    assert job["done"] == 3 and len(job["trials"]) == 3
+    assert {t["stratum"] for t in job["trials"]} == {"seen", "langvar"}
+    assert all(t["seed"] >= 5000 for t in job["trials"])
+
+    written = Path(__file__).resolve().parents[1] / out_path
+    try:
+        assert written.exists(), f"{written} was not written"
+        d = json.loads(written.read_text())
+        assert d["summary"]["n_trials"] == 3
+        assert set(d["summary"]["strata"]) >= {"all", "seen", "langvar"}
+        assert d["summary"]["strata"]["all"]["place"]["n"] == 3
+        assert "simulation only" in d["hardware"] and "run from the GUI" in d["notes"]
+        assert len(d["trials"]) == 3 and "grounding_correct" in d["trials"][0]
+        # the file is listed like any other measurement, with its own timestamp
+        row = next(f for f in live.get("/api/results").json()["files"] if f["file"] == written.name)
+        assert row["n_trials"] == 3 and row["mtime"] > 0
+    finally:
+        written.unlink(missing_ok=True)
+
+
+def test_a_job_will_not_overwrite_a_protocol_file_and_the_simulator_stays_usable(live):
+    wait_idle(live)
+    r = live.post("/api/jobs", json={"controller": "oracle", "strata": {"seen": 1}, "out_path": "modular_protocol.json"})
+    assert r.status_code == 409
+    assert "already exists" in r.json()["error"]["message"]
     assert live.post("/api/run", json={"controller": "oracle", "config": {"speed": 0.0}}).status_code == 202
