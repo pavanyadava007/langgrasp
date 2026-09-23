@@ -46,6 +46,22 @@ def protocol_table(files: dict[str, str]) -> list[str]:
     return rows
 
 
+def fixed_goal_table(files: dict[str, str]) -> list[str]:
+    rows = ["| Approach | Grasp (lifted) | Place | Grounding acc. | Per-command latency med ms | n |", "|---|---|---|---|---|---|"]
+    for label, fname in files.items():
+        d = _load(fname)
+        if d is None:
+            rows.append(f"| {label} | not run | not run | - | - | 0 |")
+            continue
+        s = d["summary"]["strata"]["all"]
+        g = s.get("grounding")
+        lat = d["summary"].get("latency_ms", {})
+        l = lat.get("end_to_end") or lat.get("policy_call") or lat.get("episode")
+        lname = "end_to_end" if "end_to_end" in lat else ("policy_call" if "policy_call" in lat else ("episode (sim)" if "episode" in lat else ""))
+        rows.append(f"| {label} | {_ci(s.get('grasp'))} | {_ci(s.get('place'))} | {_ci(g) if g and g.get('n') else 'n/a'} | {(f"{l['median_ms']:.0f} ({lname})" if l else '-')} | {d['summary']['n_trials']} |")
+    return rows
+
+
 def breakdown_table(fname: str, key: str, title: str) -> list[str]:
     d = _load(fname)
     if d is None or not d["summary"].get(key):
@@ -150,10 +166,11 @@ def build() -> str:
     if d and d["summary"].get("aborts"):
         lines += ["Aborts (modular): " + ", ".join(f"{k}: {v}" for k, v in d["summary"]["aborts"].items()), ""]
     lines += ["## 2. Fixed-goal comparison on identical scenes (red cube -> tray, 100 seeds)", ""]
-    lines += protocol_table({
-        "Oracle executor": "oracle_fixed_goal.json",
+    lines += fixed_goal_table({
+        "Oracle executor (ground-truth grasp point)": "oracle_fixed_goal.json",
         "Modular pipeline": "modular_fixed_goal.json",
-        "ACT (LeRobot, scripted demos)": "act_eval.json",
+        "ACT attempt 1 (120 demos, 128 px, 20k steps)": "act_eval.json",
+        "ACT attempt 2 (240 demos, 192 px, 25k steps)": "act_eval_192.json",
     })
     lines.append("")
     lines += ["## 3. Latency budget of the modular pipeline (per command, L4)", "", "Clean benchmark (`scripts/bench_pipeline.py`, no other GPU job running):", ""] + pipeline_bench_table("pipeline_latency_l4.json") + ["", "Stage timings recorded during the protocol runs above (these ran while ACT/YOLO training shared the GPU, so they are upper bounds; `execute` is simulation compute for the motion, not robot motion time):", ""] + latency_table("modular_protocol.json") + [""]
