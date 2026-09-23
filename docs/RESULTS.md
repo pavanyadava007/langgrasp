@@ -55,6 +55,8 @@ Aborts (modular): no_grasp: 1, safety:grounding confidence 0.265 < 0.30: 1
 | Modular pipeline | 91.0% [84-95] (n=100) | 91.0% [84-95] (n=100) | 91.0% [84-95] (n=100) | 643 (end_to_end) | 100 |
 | ACT attempt 1 (120 demos, 128 px, 20k steps) | 6.0% [3-12] (n=100) | 6.0% [3-12] (n=100) | n/a | 1 (policy_call) | 100 |
 | ACT attempt 2 (240 demos, 192 px, 25k steps) | 54.0% [44-63] (n=100) | 55.0% [45-64] (n=100) | n/a | 1 (policy_call) | 100 |
+| ACT attempt 3 (700 demos, 192 px cropped, jitter, 30k steps) | 48.0% [38-58] (n=100) | 47.0% [38-57] (n=100) | n/a | 1 (policy_call) | 100 |
+| ACT attempt 3 resumed to 60k steps | not run | not run | - | - | 0 |
 
 ## 3. Latency budget of the modular pipeline (per command, L4)
 
@@ -308,15 +310,15 @@ Stage timings recorded during the protocol runs above (these ran while ACT/YOLO 
 
 | Checkpoint | Condition | Success [95% CI] |
 |---|---|---|
-| ppo_lift_nodr.pt | nominal | 56/200 = 28.0% [22-35] |
-| ppo_lift_nodr.pt | shifted | 44/200 = 22.0% [17-28] |
-| ppo_lift_nodr.pt | shifted_latency2 | 29/200 = 14.5% [10-20] |
+| ppo_lift_nodr.pt | nominal | 188/200 = 94.0% [90-97] |
+| ppo_lift_nodr.pt | shifted | 102/200 = 51.0% [44-58] |
+| ppo_lift_nodr.pt | shifted_latency2 | 66/200 = 33.0% [27-40] |
 | ppo_lift_dr.pt | nominal | 0/200 = 0.0% [0-2] |
 | ppo_lift_dr.pt | shifted | 0/200 = 0.0% [0-2] |
 | ppo_lift_dr.pt | shifted_latency2 | 0/200 = 0.0% [0-2] |
-| ppo_lift_drcurriculum.pt | nominal | 166/200 = 83.0% [77-88] |
-| ppo_lift_drcurriculum.pt | shifted | 127/200 = 63.5% [57-70] |
-| ppo_lift_drcurriculum.pt | shifted_latency2 | 67/200 = 33.5% [27-40] |
+| ppo_lift_drcurriculum.pt | nominal | 182/200 = 91.0% [86-94] |
+| ppo_lift_drcurriculum.pt | shifted | 92/200 = 46.0% [39-53] |
+| ppo_lift_drcurriculum.pt | shifted_latency2 | 43/200 = 21.5% [16-28] |
 
 **PPO run ppo_reach_dr.json** (`results/ppo_reach_dr.json`)
 

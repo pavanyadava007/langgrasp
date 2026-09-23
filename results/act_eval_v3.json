@@ -1,0 +1,2489 @@
+{
+ "approach": "act_fixed_goal",
+ "notes": "LeRobot 0.4.4 ACT, closed loop at 10 Hz, horizon 90 ticks, chunk 20, n_action_steps 10, images 192x192; no language input (fixed goal). attempt 3: 700 demos, 192 px cropped, jitter, 30k steps",
+ "hardware": "NVIDIA L4 (x86 EC2 host, x86_64), simulation only, not Jetson",
+ "n_per_stratum": {
+  "seen": 100
+ },
+ "fixed_goal": {
+  "target_kind": "cube",
+  "target_color": "red",
+  "task": "pick the red cube and place it in the tray",
+  "seeds": [
+   5000,
+   5099
+  ]
+ },
+ "minutes": 1.2086071252822876,
+ "summary": {
+  "n_trials": 100,
+  "strata": {
+   "all": {
+    "grasp": {
+     "k": 48,
+     "n": 100,
+     "p": 0.48,
+     "lo": 0.38464384320080547,
+     "hi": 0.5768359490982345
+    },
+    "place": {
+     "k": 47,
+     "n": 100,
+     "p": 0.47,
+     "lo": 0.3751065198210374,
+     "hi": 0.5671131686275227
+    },
+    "grounding": {
+     "k": 0,
+     "n": 0,
+     "p": NaN,
+     "lo": NaN,
+     "hi": NaN
+    }
+   },
+   "seen": {
+    "grasp": {
+     "k": 48,
+     "n": 100,
+     "p": 0.48,
+     "lo": 0.38464384320080547,
+     "hi": 0.5768359490982345
+    },
+    "place": {
+     "k": 47,
+     "n": 100,
+     "p": 0.47,
+     "lo": 0.3751065198210374,
+     "hi": 0.5671131686275227
+    },
+    "grounding": {
+     "k": 0,
+     "n": 0,
+     "p": NaN,
+     "lo": NaN,
+     "hi": NaN
+    }
+   }
+  },
+  "lang_variants": {
+   "plain": {
+    "grasp": {
+     "k": 48,
+     "n": 100,
+     "p": 0.48,
+     "lo": 0.38464384320080547,
+     "hi": 0.5768359490982345
+    },
+    "place": {
+     "k": 47,
+     "n": 100,
+     "p": 0.47,
+     "lo": 0.3751065198210374,
+     "hi": 0.5671131686275227
+    },
+    "grounding": {
+     "k": 0,
+     "n": 0,
+     "p": NaN,
+     "lo": NaN,
+     "hi": NaN
+    }
+   }
+  },
+  "lighting": {
+   "degraded": {
+    "grasp": {
+     "k": 13,
+     "n": 28,
+     "p": 0.4642857142857143,
+     "lo": 0.29531303739659587,
+     "hi": 0.6418760485789833
+    },
+    "place": {
+     "k": 13,
+     "n": 28,
+     "p": 0.4642857142857143,
+     "lo": 0.29531303739659587,
+     "hi": 0.6418760485789833
+    },
+    "grounding": {
+     "k": 0,
+     "n": 0,
+     "p": NaN,
+     "lo": NaN,
+     "hi": NaN
+    }
+   },
+   "nominal": {
+    "grasp": {
+     "k": 35,
+     "n": 72,
+     "p": 0.4861111111111111,
+     "lo": 0.3743248074300839,
+     "hi": 0.5993044408980104
+    },
+    "place": {
+     "k": 34,
+     "n": 72,
+     "p": 0.4722222222222222,
+     "lo": 0.3612631919907143,
+     "hi": 0.5859953046654743
+    },
+    "grounding": {
+     "k": 0,
+     "n": 0,
+     "p": NaN,
+     "lo": NaN,
+     "hi": NaN
+    }
+   }
+  },
+  "kinds": {
+   "cube": {
+    "grasp": {
+     "k": 48,
+     "n": 100,
+     "p": 0.48,
+     "lo": 0.38464384320080547,
+     "hi": 0.5768359490982345
+    },
+    "place": {
+     "k": 47,
+     "n": 100,
+     "p": 0.47,
+     "lo": 0.3751065198210374,
+     "hi": 0.5671131686275227
+    }
+   }
+  },
+  "aborts": {
+   "horizon": 53
+  },
+  "latency_ms": {
+   "policy_call": {
+    "n": 99,
+    "median_ms": 1.0870115002035163,
+    "p90_ms": 1.2456325988750905,
+    "p99_ms": 1.273283400805667,
+    "mean_ms": 1.1140481661329036,
+    "max_ms": 1.2932950048707426
+   }
+  }
+ },
+ "trials": [
+  {
+   "seed": 5000,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.116788000217639
+   },
+   "extra": {
+    "ticks": 58,
+    "policy_call_p90_ms": 11.043902301753407,
+    "final_height_m": 0.00396843929377861
+   }
+  },
+  {
+   "seed": 5001,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.0544710094109178
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 10.752989996399265,
+    "final_height_m": -3.156070622089245e-05
+   }
+  },
+  {
+   "seed": 5002,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.1498285020934418
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 13.398914104618616,
+    "final_height_m": -3.156070622089592e-05
+   }
+  },
+  {
+   "seed": 5003,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.048876001732424
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 10.75576019793516,
+    "final_height_m": 0.021960685948741916
+   }
+  },
+  {
+   "seed": 5004,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.0712319999583997
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 10.964772799343338,
+    "final_height_m": -3.156070622089592e-05
+   }
+  },
+  {
+   "seed": 5005,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.0834514978341758
+   },
+   "extra": {
+    "ticks": 52,
+    "policy_call_p90_ms": 11.204597998585086,
+    "final_height_m": 0.003968451353310247
+   }
+  },
+  {
+   "seed": 5006,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.1303780047455803
+   },
+   "extra": {
+    "ticks": 53,
+    "policy_call_p90_ms": 10.926758189452812,
+    "final_height_m": 0.0039683081474541325
+   }
+  },
+  {
+   "seed": 5007,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.055465494573582
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 10.869727206591051,
+    "final_height_m": -3.156070622089245e-05
+   }
+  },
+  {
+   "seed": 5008,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.0770359949674457
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 11.061515302571939,
+    "final_height_m": -3.1560706220904594e-05
+   }
+  },
+  {
+   "seed": 5009,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.0765214974526316
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 11.063926409406124,
+    "final_height_m": -3.156070622091674e-05
+   }
+  },
+  {
+   "seed": 5010,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.0730459980550222
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 11.125976302719211,
+    "final_height_m": -3.156070622087857e-05
+   }
+  },
+  {
+   "seed": 5011,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.0536259942455217
+   },
+   "extra": {
+    "ticks": 51,
+    "policy_call_p90_ms": 10.899719010922126,
+    "final_height_m": 0.005324747464515233
+   }
+  },
+  {
+   "seed": 5012,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.1007525026798248
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 10.65066519076936,
+    "final_height_m": -3.1560706220908064e-05
+   }
+  },
+  {
+   "seed": 5013,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.091821992304176
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 10.689437805558557,
+    "final_height_m": -3.156070622087337e-05
+   }
+  },
+  {
+   "seed": 5014,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.1036669893655926
+   },
+   "extra": {
+    "ticks": 55,
+    "policy_call_p90_ms": 12.242218395113015,
+    "final_height_m": 0.0039684392937771006
+   }
+  },
+  {
+   "seed": 5015,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.1153679952258244
+   },
+   "extra": {
+    "ticks": 47,
+    "policy_call_p90_ms": 10.608735206187703,
+    "final_height_m": 0.0039677731024296385
+   }
+  },
+  {
+   "seed": 5016,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.0967769921990111
+   },
+   "extra": {
+    "ticks": 47,
+    "policy_call_p90_ms": 10.944844802725129,
+    "final_height_m": 0.003968439293778776
+   }
+  },
+  {
+   "seed": 5017,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.1300880069029517
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 11.57868469308597,
+    "final_height_m": -3.156070622091327e-05
+   }
+  },
+  {
+   "seed": 5018,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.1834444958367385
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 11.73600411129883,
+    "final_height_m": -3.156070622089245e-05
+   }
+  },
+  {
+   "seed": 5019,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.0723209998104721
+   },
+   "extra": {
+    "ticks": 58,
+    "policy_call_p90_ms": 10.501735599245876,
+    "final_height_m": 0.0037838062673271923
+   }
+  },
+  {
+   "seed": 5020,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.0623859998304397
+   },
+   "extra": {
+    "ticks": 47,
+    "policy_call_p90_ms": 11.822239201865155,
+    "final_height_m": 0.0039116956687158914
+   }
+  },
+  {
+   "seed": 5021,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.2417909965733998
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 11.489188499399463,
+    "final_height_m": -3.1560706220871634e-05
+   }
+  },
+  {
+   "seed": 5022,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.0714414966059849
+   },
+   "extra": {
+    "ticks": 52,
+    "policy_call_p90_ms": 10.698544906335883,
+    "final_height_m": 0.003968439293778218
+   }
+  },
+  {
+   "seed": 5023,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.0998979996657
+   },
+   "extra": {
+    "ticks": 51,
+    "policy_call_p90_ms": 10.957300997688435,
+    "final_height_m": 0.006216788442699957
+   }
+  },
+  {
+   "seed": 5024,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.095706997148227
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 10.901998604822444,
+    "final_height_m": -3.1560706220908064e-05
+   }
+  },
+  {
+   "seed": 5025,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.0780719967442565
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 11.25652290647851,
+    "final_height_m": -3.156070622089939e-05
+   }
+  },
+  {
+   "seed": 5026,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.1852794996229932
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 12.95428189478118,
+    "final_height_m": -3.156070622088725e-05
+   }
+  },
+  {
+   "seed": 5027,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.2188900000182912
+   },
+   "extra": {
+    "ticks": 49,
+    "policy_call_p90_ms": 11.361488199327141,
+    "final_height_m": 0.003968439293777971
+   }
+  },
+  {
+   "seed": 5028,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.0432249982841313
+   },
+   "extra": {
+    "ticks": 49,
+    "policy_call_p90_ms": 10.546505398815498,
+    "final_height_m": 0.003968439293773315
+   }
+  },
+  {
+   "seed": 5029,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.0835124921868555
+   },
+   "extra": {
+    "ticks": 50,
+    "policy_call_p90_ms": 10.593593395606149,
+    "final_height_m": 0.003968428880715188
+   }
+  },
+  {
+   "seed": 5030,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.1315980009385385
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 10.563315398758279,
+    "final_height_m": 0.0035386317997786777
+   }
+  },
+  {
+   "seed": 5031,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.2162950006313622
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 11.404430105176289,
+    "final_height_m": -3.1560706220901125e-05
+   }
+  },
+  {
+   "seed": 5032,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.0870115002035163
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 11.503083599382082,
+    "final_height_m": -3.156070622089592e-05
+   }
+  },
+  {
+   "seed": 5033,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.2678690036409535
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 12.220564605377158,
+    "final_height_m": -3.156070622089245e-05
+   }
+  },
+  {
+   "seed": 5034,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.2932950048707426
+   },
+   "extra": {
+    "ticks": 51,
+    "policy_call_p90_ms": 12.91853899601847,
+    "final_height_m": 0.005647435171324416
+   }
+  },
+  {
+   "seed": 5035,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.0322029993403703
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 10.844038592767907,
+    "final_height_m": -3.1560706220901125e-05
+   }
+  },
+  {
+   "seed": 5036,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.050938997650519
+   },
+   "extra": {
+    "ticks": 55,
+    "policy_call_p90_ms": 10.802510005305521,
+    "final_height_m": 0.003962655512376456
+   }
+  },
+  {
+   "seed": 5037,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.0395580102340318
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 10.492315008013975,
+    "final_height_m": -3.156070622088551e-05
+   }
+  },
+  {
+   "seed": 5038,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.0688990005291998
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 10.453322406101508,
+    "final_height_m": -3.156070622089592e-05
+   }
+  },
+  {
+   "seed": 5039,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.0466279927641153
+   },
+   "extra": {
+    "ticks": 57,
+    "policy_call_p90_ms": 10.729618594632484,
+    "final_height_m": 0.003966407592114873
+   }
+  },
+  {
+   "seed": 5040,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.0126719935215078
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 10.411260201362893,
+    "final_height_m": -3.156070622088204e-05
+   }
+  },
+  {
+   "seed": 5041,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": false,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.0753339956863783
+   },
+   "extra": {
+    "ticks": 80,
+    "policy_call_p90_ms": 10.747229708067609,
+    "final_height_m": 0.0039684392937763685
+   }
+  },
+  {
+   "seed": 5042,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.0417779994895682
+   },
+   "extra": {
+    "ticks": 59,
+    "policy_call_p90_ms": 10.98856620374136,
+    "final_height_m": 0.003968439293778759
+   }
+  },
+  {
+   "seed": 5043,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.0907129981205799
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 11.430355005722959,
+    "final_height_m": -3.1560706220890716e-05
+   }
+  },
+  {
+   "seed": 5044,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.0842569899978116
+   },
+   "extra": {
+    "ticks": 47,
+    "policy_call_p90_ms": 10.706968393060379,
+    "final_height_m": 0.003968439293778155
+   }
+  },
+  {
+   "seed": 5045,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.0540105067775585
+   },
+   "extra": {
+    "ticks": 46,
+    "policy_call_p90_ms": 10.986034496454522,
+    "final_height_m": 0.004194440060151138
+   }
+  },
+  {
+   "seed": 5046,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.0806610007421114
+   },
+   "extra": {
+    "ticks": 56,
+    "policy_call_p90_ms": 11.209780008357484,
+    "final_height_m": 0.003968646344188455
+   }
+  },
+  {
+   "seed": 5047,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.0898119944613427
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 11.050600308226423,
+    "final_height_m": -3.156070622090286e-05
+   }
+  },
+  {
+   "seed": 5048,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.0770119988592342
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 10.569624995696358,
+    "final_height_m": -3.156070622090633e-05
+   }
+  },
+  {
+   "seed": 5049,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.2452404989744537
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 11.553258298954463,
+    "final_height_m": -3.1560706220915e-05
+   }
+  },
+  {
+   "seed": 5050,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.2321599933784455
+   },
+   "extra": {
+    "ticks": 49,
+    "policy_call_p90_ms": 14.449873799458153,
+    "final_height_m": 0.003968439293778863
+   }
+  },
+  {
+   "seed": 5051,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.1059374955948442
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 10.713293601293119,
+    "final_height_m": -3.1560706220908064e-05
+   }
+  },
+  {
+   "seed": 5052,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.0888219985645264
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 11.319070804165682,
+    "final_height_m": -3.156070622089939e-05
+   }
+  },
+  {
+   "seed": 5053,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.162368498626165
+   },
+   "extra": {
+    "ticks": 58,
+    "policy_call_p90_ms": 11.467648098187057,
+    "final_height_m": 0.003968313650191867
+   }
+  },
+  {
+   "seed": 5054,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.0614159982651472
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 11.068934794457167,
+    "final_height_m": -3.156070622089592e-05
+   }
+  },
+  {
+   "seed": 5055,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.1138200061395764
+   },
+   "extra": {
+    "ticks": 51,
+    "policy_call_p90_ms": 12.479805009206757,
+    "final_height_m": 0.004966346378442971
+   }
+  },
+  {
+   "seed": 5056,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.1188100033905357
+   },
+   "extra": {
+    "ticks": 49,
+    "policy_call_p90_ms": 10.627249197568744,
+    "final_height_m": 0.003928398155890193
+   }
+  },
+  {
+   "seed": 5057,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.1053100024582818
+   },
+   "extra": {
+    "ticks": 55,
+    "policy_call_p90_ms": 10.478259588126093,
+    "final_height_m": 0.003932326416683021
+   }
+  },
+  {
+   "seed": 5058,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.1192360034328885
+   },
+   "extra": {
+    "ticks": 52,
+    "policy_call_p90_ms": 12.670333603455218,
+    "final_height_m": 0.0039456775659477625
+   }
+  },
+  {
+   "seed": 5059,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.0841045004781336
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 11.306839705503082,
+    "final_height_m": -3.1560706220897655e-05
+   }
+  },
+  {
+   "seed": 5060,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.232093505677767
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 11.669150089437608,
+    "final_height_m": -3.156070622089592e-05
+   }
+  },
+  {
+   "seed": 5061,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.1099399998784065
+   },
+   "extra": {
+    "ticks": 50,
+    "policy_call_p90_ms": 11.199718198622577,
+    "final_height_m": 0.0038167027681850277
+   }
+  },
+  {
+   "seed": 5062,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.0797550057759508
+   },
+   "extra": {
+    "ticks": 50,
+    "policy_call_p90_ms": 12.069186304870538,
+    "final_height_m": 0.003968439293778332
+   }
+  },
+  {
+   "seed": 5063,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.0754695031209849
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 11.419470400142036,
+    "final_height_m": -3.156070622087857e-05
+   }
+  },
+  {
+   "seed": 5064,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.2630139972316101
+   },
+   "extra": {
+    "ticks": 48,
+    "policy_call_p90_ms": 11.815699606086127,
+    "final_height_m": 0.0039684392937775585
+   }
+  },
+  {
+   "seed": 5065,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.0635235012159683
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 10.588191401620863,
+    "final_height_m": -3.1560706220915e-05
+   }
+  },
+  {
+   "seed": 5066,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.1434460029704496
+   },
+   "extra": {
+    "ticks": 46,
+    "policy_call_p90_ms": 11.548570000741165,
+    "final_height_m": 0.004136657870042863
+   }
+  },
+  {
+   "seed": 5067,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.2728750007227063
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 12.350374211382595,
+    "final_height_m": -3.156070622091327e-05
+   }
+  },
+  {
+   "seed": 5068,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.0727629996836185
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 10.74815001047682,
+    "final_height_m": -3.156070622089939e-05
+   }
+  },
+  {
+   "seed": 5069,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.0324155009584501
+   },
+   "extra": {
+    "ticks": 50,
+    "policy_call_p90_ms": 10.849040692846756,
+    "final_height_m": 0.003968440027260149
+   }
+  },
+  {
+   "seed": 5070,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.023595490551088
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 11.04487200791483,
+    "final_height_m": -3.1560706220920207e-05
+   }
+  },
+  {
+   "seed": 5071,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.064186501025688
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 11.292171097011316,
+    "final_height_m": -3.156070622091327e-05
+   }
+  },
+  {
+   "seed": 5072,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.270420994842425
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 11.97563621099107,
+    "final_height_m": -3.1560706220908064e-05
+   }
+  },
+  {
+   "seed": 5073,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.2472009984776378
+   },
+   "extra": {
+    "ticks": 49,
+    "policy_call_p90_ms": 11.707544792443516,
+    "final_height_m": 0.003942880866095302
+   }
+  },
+  {
+   "seed": 5074,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.2439309939509258
+   },
+   "extra": {
+    "ticks": 53,
+    "policy_call_p90_ms": 11.50354179553688,
+    "final_height_m": 0.0039664825956209
+   }
+  },
+  {
+   "seed": 5075,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.2679610081249848
+   },
+   "extra": {
+    "ticks": 49,
+    "policy_call_p90_ms": 11.56340819434263,
+    "final_height_m": 0.003968439293770356
+   }
+  },
+  {
+   "seed": 5076,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.2412910000421107
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 11.514895204163622,
+    "final_height_m": -3.156070622091153e-05
+   }
+  },
+  {
+   "seed": 5077,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.269921507628169
+   },
+   "extra": {
+    "ticks": 46,
+    "policy_call_p90_ms": 11.647304003417958,
+    "final_height_m": 0.003968439067452614
+   }
+  },
+  {
+   "seed": 5078,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.1048779997508973
+   },
+   "extra": {
+    "ticks": 71,
+    "policy_call_p90_ms": 10.913402002188377,
+    "final_height_m": 0.003968439293778086
+   }
+  },
+  {
+   "seed": 5079,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.0957874983432703
+   },
+   "extra": {
+    "ticks": 56,
+    "policy_call_p90_ms": 11.172099999384955,
+    "final_height_m": 0.003831245826886962
+   }
+  },
+  {
+   "seed": 5080,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.0862030030693859
+   },
+   "extra": {
+    "ticks": 48,
+    "policy_call_p90_ms": 10.543720598798245,
+    "final_height_m": 0.003968439293777326
+   }
+  },
+  {
+   "seed": 5081,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.0750625006039627
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 12.336281007446821,
+    "final_height_m": -3.156070622091153e-05
+   }
+  },
+  {
+   "seed": 5082,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.0713324954849668
+   },
+   "extra": {
+    "ticks": 52,
+    "policy_call_p90_ms": 10.4533770980197,
+    "final_height_m": 0.00394672419317775
+   }
+  },
+  {
+   "seed": 5083,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.2501724995672703
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 11.039655297645375,
+    "final_height_m": -3.156070622089245e-05
+   }
+  },
+  {
+   "seed": 5084,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.1819755090982653
+   },
+   "extra": {
+    "ticks": 48,
+    "policy_call_p90_ms": 10.780913801863791,
+    "final_height_m": 0.003968388660385624
+   }
+  },
+  {
+   "seed": 5085,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.0893180005950853
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 10.508832994673867,
+    "final_height_m": -3.156070622089592e-05
+   }
+  },
+  {
+   "seed": 5086,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.0661870037438348
+   },
+   "extra": {
+    "ticks": 47,
+    "policy_call_p90_ms": 11.271295999176798,
+    "final_height_m": 0.0038367618594201403
+   }
+  },
+  {
+   "seed": 5087,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.0626520015648566
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 10.484743205597624,
+    "final_height_m": -3.1560706220920207e-05
+   }
+  },
+  {
+   "seed": 5088,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.0258559923386201
+   },
+   "extra": {
+    "ticks": 47,
+    "policy_call_p90_ms": 11.196992997429332,
+    "final_height_m": 0.00389369799229234
+   }
+  },
+  {
+   "seed": 5089,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.0524215031182393
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 10.41463410074357,
+    "final_height_m": -3.1560706220897655e-05
+   }
+  },
+  {
+   "seed": 5090,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.0745569961727597
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 10.834621504181998,
+    "final_height_m": -3.156070622089245e-05
+   }
+  },
+  {
+   "seed": 5091,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.0510669962968677
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 10.502724305843003,
+    "final_height_m": -3.156070622090633e-05
+   }
+  },
+  {
+   "seed": 5092,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.0615069913910702
+   },
+   "extra": {
+    "ticks": 59,
+    "policy_call_p90_ms": 10.502562797046266,
+    "final_height_m": 0.003937981371553861
+   }
+  },
+  {
+   "seed": 5093,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.0936979961115867
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 12.186138596734965,
+    "final_height_m": -3.156070622088725e-05
+   }
+  },
+  {
+   "seed": 5094,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.0817580041475594
+   },
+   "extra": {
+    "ticks": 49,
+    "policy_call_p90_ms": 10.898308196919974,
+    "final_height_m": 0.003802479711309037
+   }
+  },
+  {
+   "seed": 5095,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "degraded",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.07049699727213
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 10.677927099459339,
+    "final_height_m": -3.156070622089939e-05
+   }
+  },
+  {
+   "seed": 5096,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
+   "aborted": null,
+   "latency_ms": {
+    "policy_call": 1.0692625073716044
+   },
+   "extra": {
+    "ticks": 60,
+    "policy_call_p90_ms": 10.895326304307673,
+    "final_height_m": 0.003968436569012922
+   }
+  },
+  {
+   "seed": 5097,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.0885130031965673
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 10.636589895875659,
+    "final_height_m": -3.156070622089939e-05
+   }
+  },
+  {
+   "seed": 5098,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": false,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.0899180051637813
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 10.727584100095555,
+    "final_height_m": -3.156070622088204e-05
+   }
+  },
+  {
+   "seed": 5099,
+   "stratum": "seen",
+   "lang_variant": "plain",
+   "lighting": "nominal",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
+   "grounding_correct": null,
+   "grasped": true,
+   "lifted": false,
+   "placed": false,
+   "aborted": "horizon",
+   "latency_ms": {
+    "policy_call": 1.2481969970394857
+   },
+   "extra": {
+    "ticks": 90,
+    "policy_call_p90_ms": 11.968234494270293,
+    "final_height_m": -3.156070622090633e-05
+   }
+  }
+ ],
+ "policy_latency_ms": {
+  "n": 0
+ },
+ "policy_warmup_ms": {
+  "n": 3,
+  "median_ms": 1.737052996759303,
+  "p90_ms": 209.6339833951788,
+  "p99_ms": 256.4107927348232,
+  "mean_ms": 88.17899599671364,
+  "max_ms": 261.6082159947837
+ },
+ "checkpoint": "checkpoints/act_pick_v3",
+ "horizon_ticks": 90,
+ "device": "cuda"
+}

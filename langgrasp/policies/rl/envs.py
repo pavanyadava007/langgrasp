@@ -58,7 +58,7 @@ import mujoco
 import numpy as np
 
 from langgrasp.sim.env import CONTROL_HZ, PAD_GEOMS
-from langgrasp.sim.kinematics import ARM_JOINTS, JAW_CLOSED, JAW_JOINT, JAW_OPEN, ArmKinematics
+from langgrasp.sim.kinematics import ARM_JOINTS, JAW_CLOSED, JAW_JOINT, ArmKinematics
 from langgrasp.sim.scene import (
     ASSET_DIR,
     OBJECT_KINDS,
@@ -69,6 +69,11 @@ from langgrasp.sim.scene import (
     arm_xml_with_tcp,
     build_scene_xml,
 )
+
+# The RL task pins its own gripper opening so that trained checkpoints stay valid when the scripted executor's
+# pre-grasp opening is retuned (kinematics.JAW_OPEN went from 0.55 to 0.30 on 2026-09-23; the lift
+# checkpoints were trained at 0.55 and evaluated 94% -> 28% nominal when the shared constant changed).
+JAW_OPEN = 0.55
 
 TASKS = ("reach", "lift")
 CUBE = "cube_0"

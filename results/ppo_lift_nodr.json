@@ -19967,7 +19967,7 @@
   }
  ],
  "final_success_train_env": 0.928125,
- "final_success_nominal": 0.28,
+ "final_success_nominal": 0.94,
  "final_success_nominal_note": "filled by scripts/eval_ppo.py (200 deterministic episodes, no DR)",
  "throughput_steps_per_s": 2429.7603343626247,
  "env_only_steps_per_s": 2651.498508780418,
@@ -20000,8 +20000,8 @@
  "stopped_by": "time_box",
  "checkpoint": "./checkpoints/ppo_lift_nodr.pt",
  "final_success_nominal_ci95": [
-  0.22236792842635128,
-  0.34592431417771
+  0.8980673646931491,
+  0.9653481500987285
  ],
  "final_success_nominal_n": 200
 }

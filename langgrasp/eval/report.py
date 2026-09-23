@@ -174,6 +174,8 @@ def build() -> str:
         "Modular pipeline": "modular_fixed_goal.json",
         "ACT attempt 1 (120 demos, 128 px, 20k steps)": "act_eval.json",
         "ACT attempt 2 (240 demos, 192 px, 25k steps)": "act_eval_192.json",
+        "ACT attempt 3 (700 demos, 192 px cropped, jitter, 30k steps)": "act_eval_v3.json",
+        "ACT attempt 3 resumed to 60k steps": "act_eval_v3_60k.json",
     })
     lines.append("")
     lines += ["## 3. Latency budget of the modular pipeline (per command, L4)", "", "Clean benchmark (`scripts/bench_pipeline.py`, no other GPU job running):", ""] + pipeline_bench_table("pipeline_latency_l4.json") + ["", "Stage timings recorded during the protocol runs above (these ran while ACT/YOLO training shared the GPU, so they are upper bounds; `execute` is simulation compute for the motion, not robot motion time):", ""] + latency_table("modular_protocol.json") + [""]
