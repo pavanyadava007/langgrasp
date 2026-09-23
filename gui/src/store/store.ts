@@ -16,6 +16,7 @@ import {
   type SafetyEvent,
   type Scenario,
   type StageFinishedEvent,
+  type StageStartedEvent,
   type StageName,
   type StageStatus,
   type SystemInfo,
@@ -221,7 +222,13 @@ export const useStore = create<State>((set, get) => ({
         break;
       }
       case "stage_started": {
-        const stages = { ...get().stages, [event.stage]: { ...get().stages[event.stage], status: "running" as StageStatus } };
+        // The started payload carries what the stage was asked to do (the commanded grasp centre, the query),
+        // which the finished payload does not repeat, so it is merged rather than dropped.
+        const prev = get().stages[event.stage];
+        const stages = {
+          ...get().stages,
+          [event.stage]: { ...prev, status: "running" as StageStatus, payload: { ...prev.payload, ...(event as StageStartedEvent).payload } },
+        };
         set({ stages, runId: event.run_id ?? get().runId, running: true });
         break;
       }
@@ -229,7 +236,10 @@ export const useStore = create<State>((set, get) => ({
         const e = event as StageFinishedEvent;
         const prev = get().stages[e.stage];
         set({
-          stages: { ...get().stages, [e.stage]: { status: e.status, latency_ms: e.latency_ms, latency_kind: e.latency_kind, message: e.message, payload: e.payload, images: { ...prev.images, ...e.images } } },
+          stages: {
+            ...get().stages,
+            [e.stage]: { status: e.status, latency_ms: e.latency_ms, latency_kind: e.latency_kind, message: e.message, payload: { ...prev.payload, ...e.payload }, images: { ...prev.images, ...e.images } },
+          },
           announce: e.status === "ok" ? "" : `${e.stage}: ${e.status}${e.message ? `, ${e.message}` : ""}`,
         });
         break;

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Button, Kbd, Term } from "./components/ui";
 import { StatusIcon } from "./components/Status";
+import { Inspector } from "./views/Inspector";
 import { LiveRun } from "./views/LiveRun";
 import { Placeholder } from "./views/Placeholder";
 import { useStore, type ViewName } from "./store/store";
@@ -215,14 +216,7 @@ export default function App() {
 
         <main id="main" className="min-w-0 flex-1 p-4">
         {view === "live" && <LiveRun />}
-        {view === "inspector" && (
-          <Placeholder
-            title="Pipeline Inspector"
-            phase="phase 4"
-            what="Step through a finished run frame by frame at its 10 Hz ticks, with joint angles against their targets, the fingertip trajectory and a per-stage latency waterfall."
-            sources={["runs/gui/<timestamp>_<seed>/events.jsonl", "runs/gui/<timestamp>_<seed>/frames/"]}
-          />
-        )}
+        {view === "inspector" && <Inspector />}
         {view === "results" && (
           <Placeholder
             title="Results Dashboard"

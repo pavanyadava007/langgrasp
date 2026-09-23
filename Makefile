@@ -1,7 +1,7 @@
 PY ?= .venv/bin/python
 export MUJOCO_GL ?= egl
 
-.PHONY: gate lint test smoke report video gui gui-build
+.PHONY: gate lint test smoke report video gui gui-build gui-test
 
 gate: lint test
 
@@ -30,3 +30,7 @@ gui:
 # Rebuild the frontend into langgrasp/gui/static (needs Node; the build is committed so `make gui` does not).
 gui-build:
 	cd gui && npm install --no-audit --no-fund && npm run build
+
+# Frontend unit tests (projection maths, formatting, run indexing). Needs Node.
+gui-test:
+	cd gui && npm run test
