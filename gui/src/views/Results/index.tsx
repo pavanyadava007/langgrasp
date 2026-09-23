@@ -59,7 +59,7 @@ function ProtocolCard({ section }: { section: ManifestSection }) {
   const strata = ["seen", "unseen", "langvar"];
   const baseline = files["Modular: Grounding DINO + colour check + YOLO11-seg + depth fusion"];
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto" tabIndex={0} role="region" aria-label="Protocol by approach and stratum, scrolls sideways">
       <table className="w-full min-w-[54rem] text-sm">
         <thead>
           <tr className="text-left text-xs uppercase tracking-wide text-fg-muted">
@@ -139,7 +139,8 @@ function FixedGoalCard({ section }: { section: ManifestSection }) {
   }, [section]);
   if (!files) return <Skeleton h={140} />;
   return (
-    <table className="w-full text-sm">
+    <div className="overflow-x-auto" tabIndex={0} role="region" aria-label="Fixed-goal comparison, scrolls sideways">
+    <table className="w-full min-w-[34rem] text-sm">
       <thead>
         <tr className="text-left text-xs uppercase tracking-wide text-fg-muted">
           <th className="py-1 pr-3">approach</th>
@@ -170,6 +171,7 @@ function FixedGoalCard({ section }: { section: ManifestSection }) {
         })}
       </tbody>
     </table>
+    </div>
   );
 }
 
@@ -214,7 +216,7 @@ function PerceptionCard({ section }: { section: ManifestSection }) {
       )}
       <h3 className="mb-1 mt-4 text-xs font-medium uppercase tracking-wide text-fg-muted">Latency and accuracy by backend</h3>
       {backends.length ? (
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto" tabIndex={0} role="region" aria-label="YOLO backends, scrolls sideways">
           <table className="w-full min-w-[36rem] text-sm">
             <thead>
               <tr className="text-left text-xs uppercase tracking-wide text-fg-muted">
@@ -257,7 +259,7 @@ function DepthCard({ file, present }: { file?: string; present: boolean }) {
   if (!data) return <NotRun />;
   const kinds = Object.keys(data.clean.per_kind);
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto" tabIndex={0} role="region" aria-label="Depth fusion error by object, scrolls sideways">
       <table className="w-full min-w-[40rem] text-sm">
         <caption className="mb-2 text-left text-xs text-fg-muted">
           Grasp centre and yaw against the simulator's own pose, with ground-truth masks. Clean depth first, then the synthetic noise model.
@@ -306,7 +308,8 @@ function GapCard({ file, present, task }: { file?: string; present: boolean; tas
   if (!data) return <NotRun what={task} />;
   return (
     <div>
-      <table className="w-full text-sm">
+      <div className="overflow-x-auto" tabIndex={0} role="region" aria-label="PPO sim to sim gap, scrolls sideways">
+      <table className="w-full min-w-[26rem] text-sm">
         <thead>
           <tr className="text-left text-xs uppercase tracking-wide text-fg-muted">
             <th className="py-1 pr-3">checkpoint</th>
@@ -326,6 +329,7 @@ function GapCard({ file, present, task }: { file?: string; present: boolean; tas
           ))}
         </tbody>
       </table>
+      </div>
       <p className="mt-2 max-w-3xl text-xs text-fg-muted">{data.note}</p>
     </div>
   );
@@ -353,7 +357,7 @@ function LatencyCard({ section }: { section: ManifestSection }) {
           <h3 className="mb-1 text-xs font-medium uppercase tracking-wide text-fg-muted">Perception budget per command, clean bench, {backend} backend</h3>
           <LatencyBar stages={stagesOf(backend)} total={stagesOf(backend).reduce((a, s) => a + s.ms, 0)} />
           <p className="mt-2 max-w-3xl text-xs text-fg-muted">{bench.data.note}</p>
-          <div className="mt-3 overflow-x-auto">
+          <div className="mt-3 overflow-x-auto" tabIndex={0} role="region" aria-label="Latency by segmenter backend, scrolls sideways">
             <table className="w-full min-w-[32rem] text-sm">
               <thead>
                 <tr className="text-left text-xs uppercase tracking-wide text-fg-muted">
@@ -418,12 +422,13 @@ function SpeechRosSafetyCard({ section }: { section: ManifestSection }) {
   const ros = useFile<RosFile>(section.files["ROS 2 Humble pipeline smoke"]?.file, !!section.files["ROS 2 Humble pipeline smoke"]?.present);
   const clip = useFile<ClipAudit>(section.files["Safety clip audit"]?.file, !!section.files["Safety clip audit"]?.present);
   return (
-    <div className="grid gap-4 lg:grid-cols-3">
+    <div className="grid grid-cols-[minmax(0,1fr)] gap-4 lg:grid-cols-3">
       <div>
         <h3 className="mb-1 text-xs font-medium uppercase tracking-wide text-fg-muted">Speech to text</h3>
         {stt.data ? (
           <>
-            <table className="w-full text-sm">
+            <div className="overflow-x-auto" tabIndex={0} role="region" aria-label="Speech to text latency, scrolls sideways">
+            <table className="w-full min-w-[16rem] text-sm">
               <thead>
                 <tr className="text-left text-xs uppercase tracking-wide text-fg-muted">
                   <th className="py-1 pr-2">model</th>
@@ -441,6 +446,7 @@ function SpeechRosSafetyCard({ section }: { section: ManifestSection }) {
                 ))}
               </tbody>
             </table>
+            </div>
             <p className="mt-2 text-xs text-fg-muted">{stt.data.note}</p>
           </>
         ) : (
@@ -508,7 +514,7 @@ export function Results() {
   const mtimeOf = (section: ManifestSection) => Math.max(0, ...Object.values(section.files).map((f) => f.mtime ?? 0)) || null;
 
   return (
-    <div className="space-y-4">
+    <div className="min-w-0 space-y-4">
       <Card title="Measured results" subtitle="Everything below is read from results/*.json at the moment you opened this page. Nothing on this page is computed by the browser except differences between two measured rates.">
         <Glossary />
         <p className="mt-2 text-xs text-fg-muted">
@@ -524,7 +530,7 @@ export function Results() {
         <ProtocolCard section={s.protocol} />
       </Card>
 
-      <div className="grid gap-4 lg:grid-cols-3">
+      <div className="grid grid-cols-[minmax(0,1fr)] gap-4 lg:grid-cols-3">
         <Card title="By object kind" footer={<Source file="modular_protocol.json" />}>
           <BreakdownTable groups={protocolFile?.summary.kinds} caption="Modular pipeline, all strata." />
         </Card>
@@ -564,7 +570,7 @@ export function Results() {
         <DepthCard file={s.perception.files["Depth fusion vs ground truth"]?.file} present={!!s.perception.files["Depth fusion vs ground truth"]?.present} />
       </Card>
 
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className="grid grid-cols-[minmax(0,1fr)] gap-4 lg:grid-cols-2">
         <Card title="PPO reach, sim to sim" subtitle={<Term term="sim-to-sim gap">nominal against a deliberately shifted simulator</Term>} footer={<Source file={s.rl.files.Reach?.file ?? "ppo_sim2sim_gap.json"} />}>
           <GapCard file={s.rl.files.Reach?.file} present={!!s.rl.files.Reach?.present} task="PPO reach" />
         </Card>

@@ -18,6 +18,8 @@ export default {
         warn: "var(--warn)",
         fail: "var(--fail)",
         estop: "var(--estop)",
+        "danger-bg": "var(--danger-bg)",
+        "danger-fg": "var(--danger-fg)",
         running: "var(--running)",
         pending: "var(--pending)",
         gt: "var(--gt)",

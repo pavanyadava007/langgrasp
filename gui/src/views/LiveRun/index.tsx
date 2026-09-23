@@ -10,7 +10,7 @@ import { Viewport } from "./Viewport";
 // into a details element and the safety rail moves to a fixed bar, so nothing about safety is ever hidden.
 export function LiveRun() {
   return (
-    <div className="grid gap-4 xl:grid-cols-[280px_minmax(0,1fr)_280px]">
+    <div className="grid grid-cols-[minmax(0,1fr)] gap-4 xl:grid-cols-[280px_minmax(0,1fr)_280px]">
       <div className="hidden xl:block">
         <div className="sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto rounded-l border border-edge bg-surface p-3">
           <Controls />

@@ -321,6 +321,25 @@ def create_app(worker=None, cfg: WorkerConfig | None = None, start_worker: bool 
                 os.unlink(path)
         return data
 
+    # ------------------------------------------------------------------ safety
+    @app.get("/api/fmea")
+    async def get_fmea() -> dict:
+        """The hazard table of docs/FMEA.md, plus where each row's evidence lives.
+
+        tests/test_gui_fmea.py keeps this file in step with the analysis, the code and the test suite, so what
+        the Safety view shows is checked at every `make gate` rather than maintained by hand and hoped over.
+        """
+        import yaml
+
+        path = Path(__file__).resolve().parent / "fmea.yaml"
+        if not path.exists():
+            raise HTTPException(status_code=404, detail={"code": "no_fmea", "message": "langgrasp/gui/fmea.yaml is missing."})
+        data = yaml.safe_load(path.read_text())
+        data["source"] = "langgrasp/gui/fmea.yaml"
+        data["checked_by"] = "tests/test_gui_fmea.py"
+        data["mtime"] = path.stat().st_mtime
+        return data
+
     # ------------------------------------------------------------------ batch jobs
     @app.post("/api/jobs", status_code=202)
     async def post_job(req: JobRequest) -> dict:

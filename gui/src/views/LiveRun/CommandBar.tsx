@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Button, Kbd } from "../../components/ui";
+import { Microphone } from "./Microphone";
 import { useStore } from "../../store/store";
 
 // The command and the example chips. Chips come from /api/scene, which builds them from the scenario
@@ -46,6 +47,7 @@ export function CommandBar() {
           spellCheck={false}
           className="min-w-[16rem] flex-1 rounded-m border border-edge bg-surface-2 px-3 py-2 text-base"
         />
+        <Microphone />
         <Button type="submit" variant="primary" disabled={running || latched} title={latched ? "Reset the e-stop first" : "Run this command (Enter)"}>
           {running ? "Running" : "Run"} <Kbd>⏎</Kbd>
         </Button>

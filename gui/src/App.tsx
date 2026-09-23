@@ -4,8 +4,8 @@ import { StatusIcon } from "./components/Status";
 import { Batch } from "./views/Batch";
 import { Inspector } from "./views/Inspector";
 import { LiveRun } from "./views/LiveRun";
-import { Placeholder } from "./views/Placeholder";
 import { Results } from "./views/Results";
+import { Safety } from "./views/Safety";
 import { useStore, type ViewName } from "./store/store";
 
 const NAV: { id: ViewName; label: string; key: string }[] = [
@@ -221,15 +221,8 @@ export default function App() {
         {view === "inspector" && <Inspector />}
         {view === "results" && <Results />}
         {view === "batch" && <Batch />}
-        {view === "safety" && (
-          <Placeholder
-            title="Safety & System"
-            phase="phase 6"
-            what="The FMEA table, hazard by hazard, with the code that implements each mitigation, the test that exercises it, and whether it is tested in simulation or needs hardware. Plus versions, engine files and model load state."
-            sources={["docs/FMEA.md", "results/safety_clip_audit.json", "/api/system"]}
-          />
-        )}
-        </main>
+        {view === "safety" && <Safety />}
+      </main>
       </div>
 
       <div aria-live="polite" className="sr-only">

@@ -1,0 +1,198 @@
+# The hazard table of docs/FMEA.md in a form the GUI can render. This file does not restate the analysis: it
+# points at it. tests/test_gui_fmea.py checks that every hazard id here appears in docs/FMEA.md, that every
+# code reference resolves to something that exists, and that every test named here is a test pytest collects,
+# so the table cannot quietly drift from the code or from the analysis it summarises.
+scope: >-
+  The language-guided pick-and-place stack in this repository, running on a simulated SO-101 arm in MuJoCo,
+  with the safety monitor in langgrasp/safety/watchdog.py in the loop both in-process and as the ROS 2
+  safety node. A portfolio-scale analysis by one engineer, not a certified work product: no ASIL or
+  performance-level determination, no hardware qualification, no independent assessment.
+document: docs/FMEA.md
+scales:
+  severity: "S0 none, S1 light (pinch, dropped object), S2 moderate injury or fixture damage, S3 severe. The SO-101 is a low-torque hobby-class arm, so S2 is the ceiling in practice."
+  exposure: "E1 rare, E2 occasional, E3 frequent, E4 most operating time."
+  controllability: "C1 easily controllable by a bystander, C2 normally controllable, C3 hard to control."
+statuses:
+  sim: "Exercised in this simulation and covered by a test."
+  partial: "The software half is exercised here; the sensor or actuator it would react to does not exist."
+  hardware: "Needs a physical sensor or actuator. Not exercised, and not claimed to be."
+hazards:
+  - id: H1
+    title: Wrong-object grounding
+    standard: SOTIF (ISO 21448)
+    trigger: A distractor sharing colour or shape with the target, an unseen colour or kind, degraded lighting, or a phrase the open-vocabulary detector maps to the wrong box.
+    hazard: The arm picks and moves the wrong object, possibly a fragile or forbidden one.
+    sec: S1 / E3 / C2
+    mitigations:
+      - what: Confidence threshold on the grounding score, checked before any motion is commanded.
+        where: "langgrasp/safety/watchdog.py: SafetyMonitor.gate_grounding"
+      - what: Colour-fraction plausibility check on the chosen box, and a generic fallback query when no candidate matches the colour word.
+        where: "langgrasp/perception/grounding.py: select_target, color_fraction"
+    tests:
+      - "tests/test_safety.py::test_low_grounding_confidence_not_allowed"
+      - "tests/test_ros2_msgs.py::test_lexical_scores_and_oracle_ground"
+    status: sim
+    residual: A confident but wrong detection is not caught by any of this. It is only quantified, by the evaluation strata.
+    measured: "results/modular_protocol.json: grounding correct on 115 of 119 scored trials; without the colour check, 107 of 120."
+  - id: H2
+    title: Occlusion or missed detection
+    standard: SOTIF, plus ISO 26262 for a dead camera
+    trigger: The arm or another object occludes the target, the target is outside the field of view, or the camera stream stops.
+    hazard: The pipeline acts on a stale or empty detection and the arm descends onto nothing or onto the wrong thing.
+    sec: S1 / E2 / C2
+    mitigations:
+      - what: Staleness watchdog on the camera topic that latches an e-stop, because a blind arm must not move.
+        where: "langgrasp/safety/watchdog.py: SafetyMonitor.check_staleness, estop_on_stale"
+      - what: Every downstream message carries the capture stamp of the frame it came from, so an old detection is visibly old.
+        where: "ros2_ws/src/langgrasp_ros/langgrasp_ros/sim_driver_node.py"
+      - what: The observe pose is chosen so the arm does not occlude the workspace before grounding.
+        where: "langgrasp/sim/env.py: OBSERVE_Q"
+    tests:
+      - "tests/test_safety.py::test_stale_camera_topic_latches_estop"
+    status: partial
+    residual: Occlusion itself is exercised only through the evaluation scenes. There is no occlusion detector.
+    gui_note: In this GUI the camera timer measures how long ago the worker sampled the camera, not an independent publisher, and it is refreshed while a command is being carried out because the executor runs open loop between captures.
+  - id: H3
+    title: Depth dropout
+    standard: ISO 26262 sensor fault, SOTIF for structured-light limits
+    trigger: Dark, specular or thin surfaces produce holes on a RealSense-class sensor; the aligned depth frame stops or lags the colour frame.
+    hazard: The grasp height is computed from missing depth and the gripper is driven into the table or above the object.
+    sec: S1 / E2 / C2
+    mitigations:
+      - what: Invalid and non-finite depth pixels are dropped before the point cloud is fitted, and the grasp is refused if too few points remain.
+        where: "langgrasp/perception/depth_fusion.py: depth_to_points, segment_object_points"
+      - what: Table-plane prior clamps the commanded fingertip height above the table.
+        where: "langgrasp/sim/controller.py: MIN_TIP_Z"
+      - what: A non-finite joint target is refused by the monitor.
+        where: "langgrasp/safety/watchdog.py: SafetyMonitor.check_joint_command"
+    tests:
+      - "tests/test_safety.py::test_non_finite_command_holds"
+      - "tests/test_perception_depth.py::test_noise_model_and_outlier_removal"
+    status: partial
+    residual: Real structured-light dropout is hardware only. What is exercised here is a synthetic noise model.
+    measured: "results/depth_fusion_accuracy.json: centre error against the simulator's own poses, clean and with the synthetic noise model."
+  - id: H4
+    title: Servo overheat or overload
+    standard: ISO 26262 hardware fault
+    trigger: Pushing against a joint limit, the table or a jammed object; prolonged holding torque; ambient heat.
+    hazard: A servo enters thermal shutdown mid-motion and the arm drops, or the position loop winds up and slams when the obstruction clears.
+    sec: S1 / E2 / C1
+    mitigations:
+      - what: Software joint-limit clipping, so a target is never beyond the mechanical range.
+        where: "langgrasp/safety/watchdog.py: SafetyMonitor.check_joint_command"
+      - what: Per-tick velocity clipping bounds the commanded step.
+        where: "langgrasp/safety/watchdog.py: SafetyMonitor.check_joint_command"
+      - what: Staleness on joint_states latches an e-stop when the servo bus stops answering.
+        where: "langgrasp/safety/watchdog.py: SafetyMonitor.check_staleness"
+      - what: "Planned, hardware only: read Present_Temperature and Present_Load from the Feetech bus and call set_reduced_speed above a warm threshold, estop above a hot one."
+        where: "langgrasp/safety/watchdog.py: SafetyMonitor.set_reduced_speed, estop"
+        status: hardware
+    tests:
+      - "tests/test_safety.py::test_joint_limit_clip"
+      - "tests/test_safety.py::test_velocity_clip"
+    status: partial
+    residual: Temperature and load telemetry does not exist here, so the mechanism that would use it is untested.
+    measured: "results/safety_clip_audit.json: the scripted executor commands up to 21.8 rad/s per joint, above the 1.5 rad/s limit, so enforcing the clip changes the trajectory (120/120 placed observing against 73/120 enforcing)."
+  - id: H5
+    title: Unexpected human in the workspace
+    standard: ISO 26262 and ISO 10218 collaborative operation
+    trigger: A person reaches into the table area while the arm moves; a hand under the descending gripper.
+    hazard: Contact at speed, a pinch between jaw and object, or the arm continuing after contact.
+    sec: S2 / E2 / C1
+    mitigations:
+      - what: Velocity limit on every joint, which bounds kinetic energy.
+        where: "langgrasp/safety/watchdog.py: SafetyMonitor.check_joint_command"
+      - what: Reduced-speed mode that halves the allowed step when a presence signal is asserted.
+        where: "langgrasp/safety/watchdog.py: SafetyMonitor.set_reduced_speed"
+      - what: A tool-centre-point geofence that keeps the arm inside the taught volume.
+        where: "langgrasp/safety/watchdog.py: SafetyMonitor.check_tcp"
+      - what: Latched e-stop on operator request, reachable from every view of this GUI and from the keyboard.
+        where: "langgrasp/gui/worker.py: SimWorker.latch_estop_if_requested"
+      - what: "Planned, hardware only: the presence signal itself, and a hardware e-stop that cuts servo power, which software cannot replace."
+        where: "docs/HARDWARE_PLAN.md"
+        status: hardware
+    tests:
+      - "tests/test_safety.py::test_reduced_speed_scaling"
+      - "tests/test_safety.py::test_estop_latch_persists_until_reset"
+      - "tests/test_gui_worker.py::test_estop_stops_the_arm_and_reports_its_own_latency"
+    status: partial
+    residual: There is no person in the simulation and no presence sensor. The hooks exist and are tested; the detector does not.
+    measured: "Measured in this GUI: e-stop from the operator's click to the arm being held, 3.2 ms median while moving on this host."
+  - id: H6
+    title: Language ambiguity or a misheard command
+    standard: SOTIF
+    trigger: Two objects match the phrase, a speech-to-text mistake, a command outside the grammar, or a noisy room.
+    hazard: The arm acts on a guess, or acts on a stale command long after it was spoken.
+    sec: S1 / E3 / C2
+    mitigations:
+      - what: Ambiguity margin, refusing the command when the top two grounding scores are within 0.05.
+        where: "langgrasp/safety/watchdog.py: SafetyMonitor.gate_grounding"
+      - what: Command normalisation and a typed fallback, so speech is never the only path.
+        where: "langgrasp/language/stt.py: normalize_command, TextCommandSource"
+      - what: Command staleness puts the arm in HOLD, so an old command is not executed later.
+        where: "langgrasp/safety/watchdog.py: SafetyMonitor.check_staleness"
+      - what: Optional human confirmation before any motion, exposed in this GUI as a toggle and a Confirm or Reject decision.
+        where: "langgrasp/safety/watchdog.py: SafetyMonitor.confirm_human"
+    tests:
+      - "tests/test_safety.py::test_ambiguity_flag"
+      - "tests/test_safety.py::test_require_human_confirm"
+      - "tests/test_safety.py::test_stale_command_only_holds"
+      - "tests/test_stt.py::test_normalize_command_basic"
+      - "tests/test_gui_watchdog.py::test_a_run_and_a_job_still_move_the_arm_after_the_command_watchdog_has_fired"
+    status: sim
+    residual: Real microphone conditions are not exercised, and command-domain transcription accuracy is not measured; the speech numbers are read speech.
+    gui_note: "The transcript is shown in the command box and never executed on its own: a person has to press Run. On this code path the monitor receives a single score, so the top-2 margin cannot fire and the ambiguity flag comes from the selector; the gate drawer says so rather than implying coverage."
+  - id: H7
+    title: Policy out of distribution
+    standard: SOTIF, ISO/PAS 8800
+    trigger: A learned policy sees an object pose, colour, lighting or camera offset outside its training distribution.
+    hazard: Erratic joint targets, oscillation, or driving into the table.
+    sec: S1 / E2 / C2
+    mitigations:
+      - what: Policy confidence gate, below which the learned policy may not act and the caller falls back to the scripted pipeline or to HOLD.
+        where: "langgrasp/safety/watchdog.py: SafetyMonitor.gate_policy"
+      - what: Every policy output passes the same joint-limit, velocity and geofence checks as a scripted command.
+        where: "langgrasp/safety/watchdog.py: SafetyMonitor.check_joint_command, check_tcp"
+      - what: Seen, unseen and language-variation strata quantify the gap offline.
+        where: "langgrasp/sim/scenarios.py: make_scenario"
+    tests:
+      - "tests/test_safety.py::test_policy_gate"
+      - "tests/test_safety.py::test_geofence_violation_holds_and_recovers"
+    status: sim
+    residual: Neither ACT nor PPO produces an uncertainty estimate in this project, so the gate has nothing meaningful to read; the scripted pipeline is the default for that reason.
+  - id: H8
+    title: Collision with a fixture, or calibration drift
+    standard: ISO 26262 systematic fault, SOTIF
+    trigger: Camera-to-base extrinsics drift, a fixture in the planned path, an elbow-down IK solution, or growing servo tracking error.
+    hazard: The gripper strikes the tray rim, the table or the camera mount; repeated impacts damage the servos.
+    sec: S2 / E2 / C2
+    mitigations:
+      - what: Tool-centre-point geofence in world coordinates, checked from the measured pose every tick.
+        where: "langgrasp/safety/watchdog.py: SafetyMonitor.check_tcp"
+      - what: IK position-error monitoring, reported per run.
+        where: "langgrasp/sim/controller.py: RunResult.max_pos_err"
+      - what: "Planned, hardware only: a periodic calibration check against a fiducial on the tray, and servo load as a contact detector."
+        where: "docs/HARDWARE_PLAN.md"
+        status: hardware
+    tests:
+      - "tests/test_safety.py::test_geofence_violation_holds_and_recovers"
+      - "tests/test_safety.py::test_sim_pick_through_safety_monitor"
+    status: partial
+    residual: Calibration drift is not simulated, because the simulated camera is exact. Contact detection is hardware only.
+cross_cutting:
+  - what: State machine RUN, REDUCED_SPEED, HOLD, ESTOP, with the e-stop latched until a human resets it.
+    where: "langgrasp/safety/watchdog.py: SafetyMonitor.state, estop, reset_estop"
+    tests: ["tests/test_safety.py::test_estop_latch_persists_until_reset"]
+  - what: One enforcement point, so the driver obeys a single topic.
+    where: "ros2_ws/src/langgrasp_ros/langgrasp_ros/safety_node.py"
+    tests: ["tests/test_ros2_msgs.py::test_pick_executor_reproduces_controller_in_sim"]
+  - what: Diagnostics in the diagnostic_msgs shape, which this GUI renders directly.
+    where: "langgrasp/safety/watchdog.py: SafetyMonitor.diagnostics"
+    tests: ["tests/test_safety.py::test_diagnostics_format"]
+  - what: Capture-stamp propagation and per-stage latency.
+    where: "langgrasp/eval/latency.py: LatencyTracer"
+    tests: ["tests/test_pipeline.py::test_pipeline_with_oracle_grounder"]
+not_addressed:
+  - Cybersecurity of the ROS graph; there is no SROS2 here.
+  - Timing guarantees of the Python nodes; there is no real-time executor.
+  - Any formal argument about the learned components' training data, which is what the ISO/PAS 8800 lifecycle clauses ask for.

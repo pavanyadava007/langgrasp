@@ -8,7 +8,7 @@ export function RateBar({ rate, label }: { rate: Rate | undefined | null; label?
   if (!isRate(rate)) return <NotRun what={label} />;
   const pct = (v: number) => `${(100 * v).toFixed(0)}%`;
   return (
-    <div className="min-w-[9rem]">
+    <div className="min-w-[7.5rem]">
       <div className="num text-xs">
         {(100 * rate.p).toFixed(1)}% <span className="text-fg-muted">[{pct(rate.lo)}, {pct(rate.hi)}]</span> <span className="text-fg-muted">{rate.k}/{rate.n}</span>
       </div>
@@ -51,7 +51,8 @@ export function BreakdownTable({ groups, caption }: { groups: Record<string, Gro
   const entries = Object.entries(groups ?? {});
   if (!entries.length) return <NotRun />;
   return (
-    <table className="w-full text-sm">
+    <div className="overflow-x-auto" tabIndex={0} role="region" aria-label={`${caption} scrolls sideways`}>
+    <table className="w-full min-w-[26rem] text-sm">
       <caption className="mb-2 text-left text-xs text-fg-muted">{caption}</caption>
       <thead>
         <tr className="text-left text-xs uppercase tracking-wide text-fg-muted">
@@ -70,6 +71,7 @@ export function BreakdownTable({ groups, caption }: { groups: Record<string, Gro
         ))}
       </tbody>
     </table>
+    </div>
   );
 }
 
@@ -100,7 +102,8 @@ export function LatencyTable({ latency, keys }: { latency: Record<string, Latenc
   const rows = keys.filter((k) => latency[k]?.n);
   if (!rows.length) return <NotRun />;
   return (
-    <table className="w-full text-sm">
+    <div className="overflow-x-auto" tabIndex={0} role="region" aria-label="Latency by stage, scrolls sideways">
+    <table className="w-full min-w-[26rem] text-sm">
       <thead>
         <tr className="text-left text-xs uppercase tracking-wide text-fg-muted">
           <th className="py-1 pr-3">stage</th>
@@ -122,6 +125,7 @@ export function LatencyTable({ latency, keys }: { latency: Record<string, Latenc
         ))}
       </tbody>
     </table>
+    </div>
   );
 }
 

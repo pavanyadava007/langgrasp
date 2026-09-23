@@ -117,7 +117,7 @@ export function Batch() {
   }
 
   return (
-    <div className="grid gap-4 xl:grid-cols-[320px_minmax(0,1fr)]">
+    <div className="grid min-w-0 grid-cols-[minmax(0,1fr)] gap-4 xl:grid-cols-[320px_minmax(0,1fr)]">
       <Card title="Run the protocol" subtitle="The same harness the evaluation scripts use, so the file it writes has the same shape as the ones in results/.">
         <Field label="Approach" htmlFor="b-controller">
           <Select

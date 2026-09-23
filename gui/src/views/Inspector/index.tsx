@@ -8,7 +8,8 @@ import { frameUrlForTick, loadRun, waterfall, type LoadedRun } from "../../lib/r
 import { useStore } from "../../store/store";
 
 const JOINTS = ["Rotation", "Pitch", "Elbow", "Wrist_Pitch", "Wrist_Roll"];
-const JOINT_COLOURS = ["#5b96ff", "#4ade80", "#fbbf24", "#d0a3ff", "#ff7b72"];
+// CSS variables, so the chart follows the theme and the labels stay readable on both backgrounds.
+const JOINT_COLOURS = ["var(--series-1)", "var(--series-2)", "var(--series-3)", "var(--series-4)", "var(--series-5)"];
 
 function Waterfall({ run }: { run: LoadedRun }) {
   const rows = waterfall(run);
@@ -178,8 +179,8 @@ export function Inspector() {
   const tick = run?.ticks[index];
 
   return (
-    <div className="grid gap-4 xl:grid-cols-[260px_minmax(0,1fr)]">
-      <div>
+    <div className="grid grid-cols-[minmax(0,1fr)] gap-4 xl:grid-cols-[260px_minmax(0,1fr)]">
+      <div className="min-w-0">
         <Card
           title="Recorded runs"
           subtitle="Every live run is written to runs/gui, newest first."
@@ -241,13 +242,15 @@ export function Inspector() {
               }
               footer={run.meta.note}
             >
-              <div className="grid gap-4 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)]">
-                <div>
+              <div className="grid grid-cols-[minmax(0,1fr)] gap-4 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)]">
+                {/* min-w-0: a grid item's automatic minimum is its content's min-content width, and a 640 px
+                    frame would otherwise widen the whole page on a narrow screen however wide the box is. */}
+                <div className="min-w-0">
                   {tick ? (
                     <img
                       src={frameUrlForTick(run, tick.tick)}
                       alt={`Front camera at tick ${tick.tick}, phase ${tick.phase}`}
-                      className="w-full rounded-m border border-edge"
+                      className="w-full max-w-full rounded-m border border-edge"
                     />
                   ) : (
                     <p className="text-sm text-fg-muted">This run recorded no ticks.</p>
@@ -310,7 +313,7 @@ export function Inspector() {
               </div>
             </Card>
 
-            <div className="grid gap-4 lg:grid-cols-2">
+            <div className="grid grid-cols-[minmax(0,1fr)] gap-4 lg:grid-cols-2">
               <Card title="Joint angles against their targets" subtitle="Solid: measured. Dashed: the target commanded that tick. The gap is servo lag.">
                 <div className="mb-2 flex flex-wrap gap-3">
                   {JOINTS.map((name, i) => (
@@ -321,7 +324,8 @@ export function Inspector() {
                         onChange={(e) => setJoints((j) => j.map((v, k) => (k === i ? e.target.checked : v)))}
                         className="accent-[color:var(--accent)]"
                       />
-                      <span style={{ color: JOINT_COLOURS[i] }}>{name}</span>
+                      <span className="inline-block h-2.5 w-2.5 flex-none rounded-s" style={{ background: JOINT_COLOURS[i] }} aria-hidden="true" />
+                      <span>{name}</span>
                     </label>
                   ))}
                 </div>

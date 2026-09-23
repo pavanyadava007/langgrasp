@@ -28,6 +28,18 @@
   --warn: #fbbf24;
   --fail: #ff7b72;
   --estop: #ff5f56;
+  /* The e-stop button carries white text, so it needs its own darker red: #ff5f56 with white is 2.99:1.
+     #c62828 is 5.62:1, measured, and still reads as the alarming control it is. */
+  --danger-bg: #c62828;
+  --danger-fg: #ffffff;
+  /* Chart series. Separate from the status colours because these are also label text, which has to pass
+     contrast in both themes: the dark-theme values are 6 to 10:1 on the surface, the light ones 5.8 to 8.7:1
+     on white. */
+  --series-1: #5b96ff;
+  --series-2: #4ade80;
+  --series-3: #fbbf24;
+  --series-4: #d0a3ff;
+  --series-5: #ff7b72;
   --running: #7aaeff;
   --pending: #8b95a3;
   --gt: #d0a3ff;
@@ -48,6 +60,13 @@
   --warn: #8a5400;
   --fail: #b3261e;
   --estop: #a3120b;
+  --danger-bg: #a3120b;
+  --danger-fg: #ffffff;
+  --series-1: #1d5fd0;
+  --series-2: #04724d;
+  --series-3: #8a5400;
+  --series-4: #6b21a8;
+  --series-5: #b3261e;
   --running: #1d5fd0;
   --pending: #5b6472;
   --gt: #6b21a8;
@@ -79,8 +98,14 @@ button { font: inherit; color: inherit; }
 
 input, select, textarea { font: inherit; color: inherit; }
 
-/* Anything that reads a number belongs in the mono face so digits line up between updates. */
-.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+/* Anything that reads a number belongs in the mono face so digits line up between updates. This class also
+   carries file paths and test node ids, which have no spaces to break at: without overflow-wrap they set the
+   minimum width of their box and widen the whole page on a narrow screen. */
+.num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
 
 .skeleton {
   background: linear-gradient(90deg, var(--surface-2) 25%, var(--edge) 37%, var(--surface-2) 63%);

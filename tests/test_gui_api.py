@@ -447,3 +447,12 @@ def test_a_file_without_non_finite_numbers_is_untouched(client):
     r = client.get("/api/results/modular_protocol.json")
     assert r.headers["X-Json-Sanitised"] == "false"
     assert r.json()["summary"]["n_trials"] == 120
+
+
+def test_fmea_endpoint_serves_the_checked_table(client):
+    d = client.get("/api/fmea").json()
+    assert [h["id"] for h in d["hazards"]] == [f"H{i}" for i in range(1, 9)]
+    assert d["source"].endswith("fmea.yaml") and d["checked_by"].startswith("tests/")
+    h5 = next(h for h in d["hazards"] if h["id"] == "H5")
+    assert any(m.get("status") == "hardware" for m in h5["mitigations"]), "the hardware-only mitigations must stay marked"
+    assert d["not_addressed"] and d["scope"]

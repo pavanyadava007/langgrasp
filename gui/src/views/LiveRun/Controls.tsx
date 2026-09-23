@@ -95,11 +95,11 @@ export function Controls() {
         <div role="radiogroup" aria-label="Controller" className="space-y-1">
           {controllers.map((c) => (
             <div key={c.value}>
-              <label className={`flex items-start gap-2 text-sm ${c.disabled ? "text-fg-muted" : ""}`}>
+              <label className={`flex items-start gap-2 py-1.5 text-sm ${c.disabled ? "text-fg-muted" : ""}`}>
                 <input
                   type="radio"
                   name="controller"
-                  className="mt-1 accent-[color:var(--accent)]"
+                  className="mt-0.5 h-5 w-5 flex-none accent-[color:var(--accent)]"
                   checked={controller === c.value}
                   disabled={c.disabled}
                   onChange={() => setState({ controller: c.value })}

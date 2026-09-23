@@ -22,7 +22,7 @@ export function Button({
   const variants = {
     primary: "bg-accent text-[color:var(--accent-fg)] hover:brightness-110",
     subtle: "bg-surface-2 text-fg border border-edge hover:border-accent",
-    danger: "bg-estop text-white hover:brightness-110",
+    danger: "bg-danger-bg text-[color:var(--danger-fg)] hover:brightness-110",
     ghost: "text-fg-muted hover:text-fg",
   } as const;
   return (
@@ -34,7 +34,7 @@ export function Button({
 
 export function Card({ title, subtitle, children, right, footer }: { title?: ReactNode; subtitle?: ReactNode; children: ReactNode; right?: ReactNode; footer?: ReactNode }) {
   return (
-    <section className="rounded-l border border-edge bg-surface" style={{ boxShadow: "var(--shadow)" }}>
+    <section className="min-w-0 rounded-l border border-edge bg-surface" style={{ boxShadow: "var(--shadow)" }}>
       {(title || right) && (
         <header className="flex items-start justify-between gap-3 border-b border-edge px-4 py-3">
           <div>
@@ -44,7 +44,7 @@ export function Card({ title, subtitle, children, right, footer }: { title?: Rea
           {right}
         </header>
       )}
-      <div className="px-4 py-3">{children}</div>
+      <div className="min-w-0 px-4 py-3">{children}</div>
       {footer && <footer className="border-t border-edge px-4 py-2 text-xs text-fg-muted">{footer}</footer>}
     </section>
   );
