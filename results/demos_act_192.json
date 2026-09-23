@@ -1,0 +1,61 @@
+{
+ "task": "pick the red cube and place it in the tray",
+ "repo_id": "local/langgrasp_pick_192",
+ "root": "data/lerobot/langgrasp_pick_192",
+ "n_success": 240,
+ "n_attempted": 242,
+ "expert_success_rate": 0.9917355371900827,
+ "failed_seeds": [
+  20110,
+  20112
+ ],
+ "seed_range": [
+  20000,
+  20241
+ ],
+ "n_frames": 15035,
+ "episode_len": {
+  "min": 58,
+  "max": 70,
+  "mean": 62.645833333333336
+ },
+ "hold_ticks": 5,
+ "fps": 10,
+ "image_size": [
+  192,
+  192
+ ],
+ "cameras": [
+  "front",
+  "wrist"
+ ],
+ "storage": "video (libsvtav1)",
+ "dataset_mb": 58.8,
+ "sample_shapes": {
+  "observation.images.front": [
+   3,
+   128,
+   128
+  ],
+  "observation.images.wrist": [
+   3,
+   128,
+   128
+  ],
+  "observation.state": [
+   6
+  ],
+  "action": [
+   6
+  ],
+  "timestamp": [],
+  "frame_index": [],
+  "episode_index": [],
+  "index": [],
+  "task_index": []
+ },
+ "minutes": 8.12,
+ "expert": "scripted PickPlaceController with ground-truth grasp point (no human teleop)",
+ "hardware": "NVIDIA L4 (x86 EC2 host), MuJoCo simulation only",
+ "note": "summary written after collection from the dataset metadata and the collection log (the script's summary step failed on a relative --root path, since fixed)"
+}

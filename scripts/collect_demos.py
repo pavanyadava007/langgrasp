@@ -52,7 +52,7 @@ def main() -> None:
     from langgrasp.sim.scenarios import make_scenario
 
     assert args.fps == CONTROL_HZ, "the dataset fps must equal the 10 Hz control rate"
-    root = Path(args.root)
+    root = Path(args.root).resolve()
     if root.exists():
         if not args.overwrite:
             raise SystemExit(f"{root} exists; pass --overwrite to replace it")
