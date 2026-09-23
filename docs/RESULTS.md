@@ -56,7 +56,7 @@ Aborts (modular): no_grasp: 1, safety:grounding confidence 0.265 < 0.30: 1
 | ACT attempt 1 (120 demos, 128 px, 20k steps) | 6.0% [3-12] (n=100) | 6.0% [3-12] (n=100) | n/a | 1 (policy_call) | 100 |
 | ACT attempt 2 (240 demos, 192 px, 25k steps) | 54.0% [44-63] (n=100) | 55.0% [45-64] (n=100) | n/a | 1 (policy_call) | 100 |
 | ACT attempt 3 (700 demos, 192 px cropped, jitter, 30k steps) | 48.0% [38-58] (n=100) | 47.0% [38-57] (n=100) | n/a | 1 (policy_call) | 100 |
-| ACT attempt 3 resumed to 60k steps | not run | not run | - | - | 0 |
+| ACT attempt 3 resumed to 60k steps | 51.0% [41-61] (n=100) | 49.0% [39-59] (n=100) | n/a | 1 (policy_call) | 100 |
 
 ## 3. Latency budget of the modular pipeline (per command, L4)
 

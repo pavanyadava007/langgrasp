@@ -51,6 +51,7 @@ oracle executor are evaluated on. Everything is MuJoCo simulation on an NVIDIA L
 | Oracle executor (ground-truth grasp point) | 99/100 = 99% [95-100] | 100/100 = 100% [96-100] |
 | Modular pipeline (Grounding DINO + YOLO11-seg + depth fusion + executor) | 90/100 = 90% [83-94] | 90/100 = 90% [83-94] |
 | ACT, attempt 3 (700 demos, 192x192 cropped front view, start-pose jitter, 30k steps) | 48/100 = 48% [38-58] | 47/100 = 47% [38-57] |
+| ACT, attempt 3 resumed to 60k steps | 51/100 = 51% [41-61] | 49/100 = 49% [39-59] |
 | ACT, attempt 2 (240 demos, 192x192, 25k steps) | 54/100 = 54% [44-63] | 55/100 = 55% [45-64] |
 | ACT, attempt 1 (120 demos, 128x128, 20k steps) | 6/100 = 6% [3-12] | 6/100 = 6% [3-12] |
 
@@ -74,8 +75,9 @@ pixels on the objects, and a uniform +-0.15 rad start-pose jitter so the approac
 13/30 at 20k, 15/30 at 30k steps, so the last checkpoint was used. On the 100 scenes it places 47/100
 (47%, CI 38-57), not better than attempt 2 (55, CI 45-64) although the intervals overlap. With six times the
 frames it saw only 22 epochs versus 53, the loss was still falling (0.046 at the end) and the selection curve was still
-rising, so the result reads as under-training rather than as evidence against the extra data; a resumed run to 60k steps
-is recorded in `results/act_eval_v3_60k.json` when present. Note that attempts 1 and 2 were evaluated with the
+rising, so the result reads as under-training rather than as evidence against the extra data; resuming the same run to 60k steps
+(`lerobot-train --resume`) gave 49/100 (CI 39-59), so attempt 3 plateaued below attempt 2 and the extra demos, the crop and the
+jitter did not help at this budget; attempt 2 remains the reported ACT number. Note that attempts 1 and 2 were evaluated with the
 executor's 5.5 cm opening and attempt 3 with 4 cm; the demos of each attempt match the executor used to evaluate it.
 
 **Attempt 2** followed directly from that diagnosis: 240 demos (242 attempts, seeds 20000-20241) at 192x192, 15035 frames,
