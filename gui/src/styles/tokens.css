@@ -1,0 +1,112 @@
+/* Design tokens. Dark is the default; [data-theme="light"] redefines the same names, so every component reads
+   one vocabulary and nothing hardcodes a colour. Status is never carried by colour alone: each status token
+   has a matching icon and a word in the UI. Contrast of every foreground/background pair used for text was
+   checked against WCAG 2.2 AA (4.5:1 body text, 3:1 large text and UI parts). */
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --radius-s: 4px;
+  --radius-m: 8px;
+  --radius-l: 12px;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+
+  --bg: #0f1216;
+  --surface: #171b21;
+  --surface-2: #1f242c;
+  --edge: #333b46;
+  --fg: #e6e9ee;
+  --fg-muted: #a3adbb;
+  --accent: #5b96ff;
+  --accent-fg: #0b1220;
+  --focus: #ffd166;
+  --ok: #4ade80;
+  --warn: #fbbf24;
+  --fail: #ff7b72;
+  --estop: #ff5f56;
+  --running: #7aaeff;
+  --pending: #8b95a3;
+  --gt: #d0a3ff;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px rgb(0 0 0 / 0.3);
+}
+
+:root[data-theme="light"] {
+  --bg: #f5f6f8;
+  --surface: #ffffff;
+  --surface-2: #eceff3;
+  --edge: #c9cfd8;
+  --fg: #14181d;
+  --fg-muted: #50596a;
+  --accent: #1d5fd0;
+  --accent-fg: #ffffff;
+  --focus: #9a4a00;
+  --ok: #04724d;
+  --warn: #8a5400;
+  --fail: #b3261e;
+  --estop: #a3120b;
+  --running: #1d5fd0;
+  --pending: #5b6472;
+  --gt: #6b21a8;
+  --shadow: 0 1px 2px rgb(16 24 40 / 0.08), 0 8px 24px rgb(16 24 40 / 0.08);
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* One visible focus treatment everywhere, never removed. */
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-s);
+}
+
+button { font: inherit; color: inherit; }
+
+input, select, textarea { font: inherit; color: inherit; }
+
+/* Anything that reads a number belongs in the mono face so digits line up between updates. */
+.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+.skeleton {
+  background: linear-gradient(90deg, var(--surface-2) 25%, var(--edge) 37%, var(--surface-2) 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+  border-radius: var(--radius-s);
+}
+
+@keyframes shimmer { 0% { background-position: 100% 0; } 100% { background-position: 0 0; } }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.spin { animation: spin 1s linear infinite; }
+
+/* Respect a reduced-motion preference: the content still updates, the decoration stops. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  .skeleton { animation: none; background: var(--surface-2); }
+}
+
+/* Screen-reader-only text, for labels that would otherwise be carried by an icon alone. */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--edge); border-radius: 6px; }

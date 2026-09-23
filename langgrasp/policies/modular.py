@@ -108,6 +108,8 @@ class ModularPipeline:
                 size=[int(rgb.shape[0]), int(rgb.shape[1])],
                 depth_noise=self.cfg.depth_noise,
                 fx_px=float(K[0, 0]),
+                K=K.tolist(),
+                T_world_cam=T.tolist(),
                 depth_min_m=float(depth[finite].min()) if finite.any() else None,
                 depth_max_m=float(depth[finite].max()) if finite.any() else None,
                 depth_invalid_px=int((~finite).sum()),

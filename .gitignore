@@ -17,3 +17,8 @@ build/
 results/*.log
 media/frame_check.png
 *.cache
+gui/node_modules/
+gui/dist/
+gui/.vite/
+test-results/
+playwright-report/

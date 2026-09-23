@@ -55,6 +55,8 @@ DEPTH_BIT = 8
 BODIES_BIT = 16
 MAX_KEPT_RUNS = 50
 EVENT_QUEUE_HIGH_WATER = 60  # above this the worker drops frames, never stage or safety events
+IDLE_POLL_S = 0.02  # how often an idle worker looks at the command queue and the e-stop flag
+PACE_SLICE_S = 0.004  # the pacing sleep is cut into slices this long so an e-stop is seen inside a tick
 
 
 class MotionAborted(RuntimeError):
@@ -378,18 +380,32 @@ class SimWorker:
         self.monitor.heartbeat("joint_states", now)
 
     def _pace(self) -> None:
+        """Wait until this tick is due, in slices.
+
+        Sleeping the whole remainder in one call would mean an e-stop pressed just after a tick is not seen
+        until the next one, which measured 60 ms at 1x. Slicing the sleep costs a handful of wake-ups per tick
+        and brings it back to single-digit milliseconds. The physics is untouched either way: this only
+        decides when the next identical step is taken.
+        """
         speed = float(self.flags.speed.value)
         from langgrasp.sim.env import CONTROL_HZ
 
         if speed <= 0:
             self.paced = False
+            self._next_tick_t = None
             return
         self.paced = True
         period = (1.0 / CONTROL_HZ) / speed
         now = time.monotonic()
         nxt = self._next_tick_t if self._next_tick_t is not None else now
-        if now < nxt:
-            time.sleep(nxt - now)
+        while now < nxt:
+            if self.flags.estop.value:
+                self._check_control()  # raises MotionAborted
+            if self.flags.paused.value:
+                self._check_control()  # blocks until the operator resumes or steps
+                self._next_tick_t = None
+                return
+            time.sleep(min(PACE_SLICE_S, nxt - now))
             now = time.monotonic()
         self._next_tick_t = now + period
 
@@ -867,9 +883,12 @@ class SimWorker:
 
     def serve(self) -> None:
         self.build()
+        # Poll fast even when nothing is running: the e-stop flag is only read on this loop while the arm is
+        # idle, so the queue timeout is the idle e-stop latency. Frames are still published on their own
+        # slower timer inside idle().
         while not self._shutdown:
             try:
-                msg = self.cmd_q.get(timeout=self.cfg.idle_frame_period_s / 2)
+                msg = self.cmd_q.get(timeout=IDLE_POLL_S)
             except queue.Empty:
                 self.idle()
                 continue

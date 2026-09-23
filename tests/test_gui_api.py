@@ -314,10 +314,26 @@ def test_client_channel_drops_stale_frames_not_stage_events():
     assert js[-1]["latency_ms"] == float(CLIENT_JSON_BUFFER + 9), "the newest events are the ones kept"
 
 
-def test_placeholder_page_carries_the_banner_until_the_frontend_is_built(client):
+def test_root_serves_the_built_app(client):
+    from langgrasp.gui.api import STATIC_DIR
+
     r = client.get("/")
     assert r.status_code == 200
-    assert "not real hardware" in r.text
+    if (STATIC_DIR / "index.html").exists():
+        assert 'id="root"' in r.text and "LangGrasp" in r.text
+    else:
+        assert "not real hardware" in r.text
+
+
+def test_placeholder_page_carries_the_banner_when_the_frontend_is_not_built(monkeypatch, tmp_path):
+    import langgrasp.gui.api as api_mod
+
+    monkeypatch.setattr(api_mod, "STATIC_DIR", tmp_path)
+    app = api_mod.create_app(worker=StubWorker(), start_worker=False)
+    with TestClient(app) as c:
+        r = c.get("/")
+        assert r.status_code == 200
+        assert "not real hardware" in r.text and "/api/docs" in r.text
 
 
 def test_stt_failure_is_reported_as_such(client):
@@ -331,3 +347,29 @@ def test_openapi_documents_every_route(client):
     for p in ("/api/system", "/api/scene", "/api/run", "/api/estop", "/api/reset", "/api/pause", "/api/confirm", "/api/stt", "/api/results", "/api/results/manifest", "/api/runs"):
         assert p in paths, f"{p} is not in the OpenAPI document"
     assert json.dumps(spec)
+
+
+def test_a_new_client_does_not_receive_a_finished_run_as_if_it_were_live(client):
+    """Replaying a finished run to a page that has just opened would show stale boxes and a stale outcome."""
+    w = client.worker
+    from langgrasp.gui.trace import Outcome, StageStarted
+
+    w.emit(StageStarted(stage="parse", run_id="r1"))
+    w.emit(StageFinished(stage="parse", latency_ms=0.5, run_id="r1"))
+    w.emit(Safety(state="RUN", reason="ok"))
+    with client.websocket_connect("/ws/live") as ws:
+        ws.receive_json()  # hello
+        # mid-run: the client gets the run's events, however the replay and the live stream divide them up
+        seen = [ws.receive_json()["type"] for _ in range(3)]
+        assert set(seen) == {"stage_started", "stage_finished", "safety"}, seen
+    w.emit(Outcome(run_id="r1", placed=True, message="Placed in the tray."))
+    import time as _t
+
+    _t.sleep(0.3)
+    with client.websocket_connect("/ws/live") as ws:
+        ws.receive_json()  # hello
+        w.emit(Safety(state="HOLD", reason="command stale"))
+        # the first thing this client sees is state, never the finished run
+        first = ws.receive_json()
+        assert first["type"] == "safety", first
+        assert first["state"] in ("RUN", "HOLD")

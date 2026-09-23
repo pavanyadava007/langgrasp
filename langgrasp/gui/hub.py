@@ -72,6 +72,7 @@ class EventHub:
         self.last: dict[str, dict] = {}  # newest event per type, for /api/system and late joiners
         self.stages: dict[str, dict] = {}  # stage -> its newest stage_finished event, for the current run
         self.run_id: str | None = None
+        self.run_in_flight = False  # a client that connects mid-run gets that run; after it ends, nobody does
         self.scene: dict | None = None
         self.models: dict = {}
         self.waiters: list[tuple[Callable[[dict], bool], asyncio.Future]] = []
@@ -112,12 +113,18 @@ class EventHub:
         if kind == "frame":
             self.latest_frames[(event["camera"], event["kind"])] = (event, jpeg or b"")
         else:
-            self.replay.append(event)
-            self.last[kind] = event
             rid = event.get("run_id")
             if rid is not None and rid != self.run_id:
+                # A new run starts: drop the previous run's events from the replay before this one is added,
+                # or the first event of the new run would be purged along with them.
                 self.run_id = rid
                 self.stages = {}
+                self.replay = deque([e for e in self.replay if e.get("run_id") is None], maxlen=REPLAY)
+                self.run_in_flight = True
+            self.replay.append(event)
+            self.last[kind] = event
+            if kind == "outcome":
+                self.run_in_flight = False
             if kind == "stage_finished":
                 self.stages[event["stage"]] = event
             elif kind == "system":
@@ -169,8 +176,15 @@ class EventHub:
 
     # ------------------------------------------------------------------ clients
     def add_client(self, cameras: set[str], depth: bool) -> ClientChannel:
+        """A new browser gets the current state, and the current run only if it is still running.
+
+        Replaying a finished run to someone who has just opened the page would show them stale boxes and a
+        stale outcome as if they were live, so once the outcome lands those events stop being replayed.
+        """
         c = ClientChannel(cameras, depth)
         for event in self.replay:
+            if event.get("run_id") is not None and not self.run_in_flight:
+                continue
             c.offer(event)
         for meta, jpeg in self.latest_frames.values():
             c.offer(meta, jpeg)
