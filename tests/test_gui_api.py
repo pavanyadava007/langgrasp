@@ -456,3 +456,19 @@ def test_fmea_endpoint_serves_the_checked_table(client):
     h5 = next(h for h in d["hazards"] if h["id"] == "H5")
     assert any(m.get("status") == "hardware" for m in h5["mitigations"]), "the hardware-only mitigations must stay marked"
     assert d["not_addressed"] and d["scope"]
+
+
+def test_the_machine_it_runs_on_does_not_flicker_back_to_unknown(client):
+    """A later event that omits the GPU must not undo what an earlier one established."""
+    from langgrasp.gui.trace import System
+
+    w = client.worker
+    w.emit(System(gpu="NVIDIA L4", hardware_label="NVIDIA L4 (x86 EC2 host), simulation only, not Jetson", models={"simulation": {"state": "warm", "load_ms": 1.0, "detail": None}}, note="models warm"))
+    import time as _t
+
+    _t.sleep(0.3)
+    assert client.get("/api/system").json()["gpu"] == "NVIDIA L4"
+    w.emit(System(models={"simulation": {"state": "warm", "load_ms": 1.0, "detail": None}}, note="scene reset"))
+    _t.sleep(0.3)
+    d = client.get("/api/system").json()
+    assert d["gpu"] == "NVIDIA L4" and "not Jetson" in d["hardware_label"]

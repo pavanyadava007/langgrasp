@@ -243,11 +243,14 @@ class SimWorker:
         if self.cfg.load_segmenter:
             self._load_segmenter(self.cfg.seg_backend)
         self.reset_scene(seed=5000, stratum="seen")
-        self.emit(System(models=self.models, hardware_label=self._hardware, gpu=self._hardware.split(" (")[0], note="models warm"))
+        self.emit(System(models=self.models, hardware_label=self._hardware, gpu=self._gpu_name(), note="models warm"))
 
     def _set_model(self, name: str, state: str, load_ms: float | None = None, detail: str | None = None) -> None:
         self.models[name] = {"state": state, "load_ms": load_ms, "detail": detail}
-        self.emit(System(models=self.models, hardware_label=self._hardware, note=f"{name}: {state}"))
+        self.emit(System(models=self.models, hardware_label=self._hardware, gpu=self._gpu_name(), note=f"{name}: {state}"))
+
+    def _gpu_name(self) -> str:
+        return self._hardware.split(" (")[0]
 
     def _load_grounder(self) -> None:
         self.heartbeat_sensors()
@@ -463,8 +466,9 @@ class SimWorker:
         )
         self._tick_frame_i += 1
         every = 1 if self.paced else 5
-        if self._tick_frame_i % every == 0:
-            self.publish_frames(tick=int(obs["t"]))
+        # At speed the stream is thinned, but a recorded run still gets every frame, or the Inspector's
+        # scrubber would have holes at exactly the ticks someone wants to look at.
+        self.publish_frames(tick=int(obs["t"]), publish=self._tick_frame_i % every == 0)
         self._emit_safety(extra_reasons=reasons)
 
     def _body_poses(self) -> dict[str, list[float]]:
@@ -517,23 +521,28 @@ class SimWorker:
         return reason
 
     # ------------------------------------------------------------------ frames
-    def publish_frames(self, tick: int | None = None) -> None:
+    def publish_frames(self, tick: int | None = None, publish: bool = True) -> None:
+        """Render the subscribed cameras. With publish=False the front frame is still written to the run
+        directory but no event is sent: that is what keeps a recorded run scrubbable tick by tick even when
+        the stream is being thinned, which it is at speeds above real time.
+        """
         bits = self.flags.cameras.value
         for cam in CAMERAS:
-            if bits & CAM_BITS[cam]:
+            if bits & CAM_BITS[cam] and (publish or cam == "front"):
                 rgb = self.env.render(cam, self.cfg.image_size)
-                self._emit_frame(cam, "rgb", rgb, tick)
+                self._emit_frame(cam, "rgb", rgb, tick, publish=publish)
+        if not publish:
+            self.heartbeat_sensors()
+            return
         if bits & DEPTH_BIT:
             depth = self.env.render("front", self.cfg.image_size, depth=True).astype(np.float32)
-            self._emit_frame("front", "depth", self.colorize_depth(depth), tick, extra={"depth": True})
+            self._emit_frame("front", "depth", self.colorize_depth(depth), tick)
         self.heartbeat_sensors()
 
-    def _emit_frame(self, camera: str, kind: str, img: np.ndarray, tick: int | None, extra: dict | None = None) -> None:
+    def _emit_frame(self, camera: str, kind: str, img: np.ndarray, tick: int | None, publish: bool = True) -> None:
         jpeg = self.encode_jpeg(img)
-        meta = FrameMeta(run_id=self.run_id, camera=camera, kind=kind, tick=tick, width=int(img.shape[1]), height=int(img.shape[0]), bytes=len(jpeg))
-        if extra:
-            pass  # frame metadata stays fixed; per-kind extras live in the JSON events
-        self.emit(meta, jpeg=jpeg)
+        if publish:
+            self.emit(FrameMeta(run_id=self.run_id, camera=camera, kind=kind, tick=tick, width=int(img.shape[1]), height=int(img.shape[0]), bytes=len(jpeg)), jpeg=jpeg)
         if self.run_dir is not None and tick is not None and camera == "front" and kind == "rgb":
             (self.run_dir / "frames" / f"tick_{tick:05d}_{camera}.jpg").write_bytes(jpeg)
 
@@ -592,7 +601,7 @@ class SimWorker:
         self.publish_frames()
         d = sc.to_dict()
         d["fixed_goal"] = fixed_goal
-        self.emit(System(models=self.models, hardware_label=self._hardware, scene=jsonable(d), note="scene reset"))
+        self.emit(System(models=self.models, hardware_label=self._hardware, gpu=self._gpu_name(), scene=jsonable(d), note="scene reset"))
         return d
 
     def _open_run(self, run_id: str, meta: dict) -> None:

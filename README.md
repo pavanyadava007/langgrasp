@@ -32,11 +32,47 @@ on the physical system.
 See `docs/DEMO_GUIDE.md`. Short version:
 
 ```bash
-MUJOCO_GL=egl .venv/bin/python scripts/smoke_pick.py 20        # scripted picks, no perception
+make gui                                                        # the live web GUI on :8000
+MUJOCO_GL=egl .venv/bin/python scripts/smoke_pick.py 20         # scripted picks, no perception
 MUJOCO_GL=egl .venv/bin/python scripts/make_video.py --approach modular   # full pipeline demo video
-make gate                                                       # ruff + pytest
+make gate                                                       # ruff + pytest + frontend unit tests
 make report                                                     # regenerate docs/RESULTS.md
 ```
+
+## The web GUI
+
+`make gui` starts the API, the simulation worker and the built frontend on one port, and binds the loopback
+interface only, because this interface can move the arm. Reach it through an SSH tunnel:
+
+```bash
+ssh -L 8000:localhost:8000 <host>     # then open http://localhost:8000
+GUI_PORT=8010 make gui                # if 8000 is taken; forward that port instead
+```
+
+Five views, designed around three people: someone who has 60 seconds and wants to watch one pick, the
+engineer debugging a failure, and a safety reviewer.
+
+| View | What it is for |
+|---|---|
+| Live Run | Type or speak a command, watch the front, wrist, side or depth camera with the grounding candidates, the chosen box, the YOLO mask, the point cloud and the grasp pose drawn over it, follow the nine pipeline stages with their latencies, and read the outcome. The safety rail is always visible, with the monitor's state, its watchdog ages, the grounding gate against its threshold, and a latched E-STOP. |
+| Pipeline Inspector | Step a recorded run tick by tick at 10 Hz: the camera frame, joint angles against the targets commanded that tick, the fingertip height and its distance to the commanded grasp point, and a per-stage latency waterfall. |
+| Results | Every measured number in `results/*.json`, each card naming its file and that file's timestamp. Nothing is computed in the browser except differences between two measured rates. |
+| Batch Evaluate | Run the protocol or a subset through the same harness the scripts use, with a live per-scene grid; a cell opens that seed in Live Run. It writes to a timestamped file and will not overwrite a published one without being told twice. |
+| Safety & System | The FMEA hazard table, each row with the code that implements the mitigation, the test that exercises it, and whether it is tested here or needs hardware that does not exist in this project. Plus versions, model load state and the engines on disk. |
+
+![Live Run](media/gui/live-run.png)
+
+What the GUI does not do: it adds no behaviour to the pipeline. Stage events come from optional hooks at the
+boundaries that already existed, and a test runs the same ten seeds with the hooks on and off and demands
+identical results. The safety monitor observes by default rather than enforcing, because enforcing its
+velocity limit changes the trajectory, measured at 120/120 placements observing against 73/120 enforcing
+(`results/safety_clip_audit.json`). Speech is transcribed into the command box and never executed on its own.
+Ground-truth overlays are dashed, tagged, and off by default. A command the scene was not generated for is
+reported as ungraded rather than scored as a failure.
+
+Measured on this host through the browser: e-stop from click to the arm being held 3.2 ms median while
+moving, 10 fps on the front camera during a paced run, accessibility 100 in Lighthouse, and no axe-core
+violations across the five views in both themes.
 
 ## Results
 

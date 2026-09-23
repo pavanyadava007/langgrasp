@@ -14,6 +14,64 @@ curl -L -o checkpoints/yolo11n-seg.pt https://github.com/ultralytics/assets/rele
 
 The Grounding DINO tiny checkpoint (about 660 MB) is fetched from the Hugging Face Hub on first use.
 
+## The web GUI
+
+One command starts the API, the simulation worker and the built frontend on a single port:
+
+```bash
+make gui                      # http://localhost:8000
+GUI_PORT=8010 make gui        # when 8000 is taken, which it is on some hosts
+```
+
+It binds the loopback interface only, because the interface can move the arm, so reach it through a tunnel:
+
+```bash
+ssh -L 8000:localhost:8000 <host>
+```
+
+Then open `http://localhost:8000`. The microphone works over this tunnel because browsers treat `localhost`
+as a secure context; over a plain LAN address it does not, and the button says so.
+
+Startup takes about 7 seconds on this machine: MuJoCo 0.2 s, Grounding DINO tiny 6 s, YOLO11n-seg 0.6 s. The
+header says which models are warm. Add `--grounder oracle` to skip the 660 MB grounding checkpoint and use
+the simulator's label map instead, which the UI labels as ground truth.
+
+### The 60-second version
+
+1. Press an example command chip, or the chip that says "this scene", and press Run.
+2. Watch the nine stages fill in with their latencies, the candidate boxes appear with their scores and
+   colour fractions, the chosen box turn solid, the mask and the grasp marker appear, and the arm move at its
+   real 10 Hz.
+3. Read the outcome card: grounding correct, grasped and lifted, placed, each graded against the simulator's
+   own state, which the pipeline never sees.
+4. Press `E` at any point. The arm holds, the rail latches E-STOP and reports the measured latency from your
+   click. Press Reset to release it.
+
+Keyboard: `Enter` run, `Space` pause or step, `E` e-stop, `R` replay this seed, `1` to `5` switch view,
+`?` for the full list.
+
+### What each view answers
+
+| View | Question |
+|---|---|
+| Live Run | What does it do, right now, on this scene? |
+| Pipeline Inspector | What exactly happened, tick by tick, in a run that already finished? |
+| Results | What was measured, with what confidence, and from which file? |
+| Batch Evaluate | Run the protocol or a subset and get a file in `results/`. |
+| Safety & System | Which hazards are covered, by what code, tested by which test, and what needs hardware? |
+
+### Rebuilding and testing the GUI
+
+```bash
+make gui-build     # npm install + vite build into langgrasp/gui/static (the build is committed)
+make gui-test      # frontend unit tests: projection maths, formatting, run indexing
+make gui-e2e       # nine browser checks against a real worker, about two minutes
+make gui-audit     # axe-core accessibility and responsive audit of a running GUI
+```
+
+`make gate` runs ruff, the Python suite and the frontend unit tests, skipping the last with a message if
+`gui/node_modules` is absent.
+
 ## The 5-minute demo
 
 1. Scripted executor sanity check (no perception): `make smoke` prints per-seed grasp/lift/place flags.
@@ -38,7 +96,26 @@ The Grounding DINO tiny checkpoint (about 660 MB) is fetched from the Hugging Fa
 | ROS 2 pipeline in Docker | see docs/ROS2.md | results/ros2_smoke.json |
 | Regenerate the results page | `make report` | docs/RESULTS.md |
 
-`make gate` runs ruff and the full test suite (simulation tests included, under two minutes).
+`make gate` runs ruff, the full Python suite (simulation tests included) and the frontend unit tests, in
+about 80 seconds on this machine.
+
+## Screenshots
+
+![Live Run](../media/gui/live-run.png)
+
+A command mid-flight: the front camera with the grounding candidates, the chosen box, the mask and the grasp
+marker drawn over it, the nine stages with their latencies below, and the safety rail on the right with the
+monitor's state, the watchdog ages, the grounding gate against its threshold and what it would have clipped.
+
+![Pipeline Inspector](../media/gui/inspector.png)
+
+A finished run, stepped tick by tick: the recorded frame, joint angles against the targets commanded that
+tick, the fingertip height and its distance to the commanded grasp point, and where the time went.
+
+![Safety and System](../media/gui/safety.png)
+
+The hazard table, with the code implementing each mitigation, the test that exercises it, and a status that
+separates what was exercised here from what needs hardware this project does not have.
 
 ## Talking points for an interview
 

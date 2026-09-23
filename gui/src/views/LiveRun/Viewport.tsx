@@ -78,6 +78,7 @@ export function Viewport() {
       ctx.fillRect(0, 0, cssW, cssW * (H / W));
       if (frame) ctx.drawImage(frame.bitmap, 0, 0, cssW, cssW * (H / W));
 
+      const drawn: string[] = [];
       const stages = st.stages;
       // Boxes, mask and grasp were computed from the frame captured at the start of the command. Once the arm
       // moves, the live image no longer matches them, so they are dimmed and the caption says so: otherwise a
@@ -96,6 +97,7 @@ export function Viewport() {
         const winnerBox = stages.select.payload.box as number[] | undefined;
         ctx.lineWidth = 1.5;
         ctx.setLineDash([4, 3]);
+        if (cands.length) drawn.push(`candidates:${cands.length}`);
         for (const c of cands) {
           const isWinner = winnerBox && Math.abs(c.box[0] - winnerBox[0]) < 0.01;
           if (isWinner) continue;
@@ -116,6 +118,7 @@ export function Viewport() {
           ctx.strokeStyle = CSS("--accent");
           ctx.lineWidth = 2.5;
           ctx.strokeRect(box[0] * scale, box[1] * scale, (box[2] - box[0]) * scale, (box[3] - box[1]) * scale);
+          drawn.push("winner");
           const bits = [`${score?.toFixed(2) ?? "?"}`];
           if (colourFrac !== undefined) bits.push(`colour ${colourFrac.toFixed(2)}`);
           label(ctx, `chosen · ${bits.join(" · ")}`, box[0] * scale, box[1] * scale - 2, CSS("--accent"));
@@ -147,6 +150,7 @@ export function Viewport() {
             ctx.globalAlpha = 0.45 * perceptionAlpha;
             ctx.drawImage(tint, 0, 0, cssW, cssW * (H / W));
             ctx.restore();
+            drawn.push("mask");
           }
         }
       }
@@ -159,6 +163,7 @@ export function Viewport() {
           const q = worldToPixel(p, camMatrices!);
           if (q) ctx.fillRect(q.u * scale - 1, q.v * scale - 1, 2, 2);
         }
+        if (pts.length) drawn.push(`points:${pts.length}`);
       }
 
       // ---- grasp pose
@@ -187,6 +192,7 @@ export function Viewport() {
               ctx.lineWidth = 3;
               drawLine(ctx, pa, pb, scale);
               label(ctx, `grasp ${(width * 1000).toFixed(0)} mm · yaw ${wrapDeg(psiUsed).toFixed(0)}°`, c.u * scale + 14, c.v * scale + 26, ok);
+              drawn.push("grasp");
             }
             const [o, tip] = yawArrow(center, psiUsed);
             const po = worldToPixel(o, camMatrices!);
@@ -218,7 +224,10 @@ export function Viewport() {
             started = true;
           } else ctx.lineTo(q.u * scale, q.v * scale);
         }
-        if (started) ctx.stroke();
+        if (started) {
+          ctx.stroke();
+          drawn.push(`path:${trail.length}`);
+        }
       }
 
       // ---- geofence
@@ -233,6 +242,7 @@ export function Viewport() {
         }
         ctx.setLineDash([]);
         label(ctx, "TCP geofence (configuration, not a measurement)", 8, 18, CSS("--fail"));
+        drawn.push("geofence");
       }
 
       // ---- ground truth, always dashed, always tagged
@@ -249,10 +259,15 @@ export function Viewport() {
           ctx.arc(q.u * scale, q.v * scale, 12, 0, Math.PI * 2);
           ctx.stroke();
           label(ctx, `GT ${o.name === st.scene!.target ? "target " : ""}${o.color} ${o.kind}`, q.u * scale + 14, q.v * scale, gt);
+          drawn.push("groundTruth");
         }
         ctx.setLineDash([]);
       }
 
+      // What was actually painted, for the canvas description and for the end-to-end test, which otherwise
+      // could only check that a canvas exists.
+      canvas.dataset.overlays = drawn.join(",");
+      canvas.dataset.tick = String(frame?.meta.tick ?? "");
       const fps = frameStore.fps();
       const age = frame ? ((performance.now() - frame.received) / 1000).toFixed(1) : null;
       const overlayNote = moved && (st.layers.candidates || st.layers.winner || st.layers.mask || st.layers.grasp)
@@ -306,6 +321,7 @@ export function Viewport() {
         ref={canvasRef}
         className="w-full rounded-m border border-edge bg-surface-2"
         aria-label={`Live ${camera} camera view of the simulated workspace. ${caption}`}
+        data-overlays=""
         role="img"
       />
       <p className="num mt-1 text-xs text-fg-muted">{caption}</p>

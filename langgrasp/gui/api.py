@@ -229,8 +229,8 @@ def create_app(worker=None, cfg: WorkerConfig | None = None, start_worker: bool 
         safety = hub.last.get("safety")
         return {
             "banner": HARDWARE_BANNER,
-            "hardware_label": (hub.last.get("system") or {}).get("hardware_label"),
-            "gpu": (hub.last.get("system") or {}).get("gpu"),
+            "hardware_label": hub.hardware_label,
+            "gpu": hub.gpu,
             "worker": {"alive": handle.alive, "busy": handle.busy, "pid": getattr(getattr(handle, "proc", None), "pid", None)},
             "models": hub.models,
             "versions": _versions(),

@@ -1,9 +1,11 @@
 PY ?= .venv/bin/python
 export MUJOCO_GL ?= egl
 
-.PHONY: gate lint test smoke report video gui gui-build gui-test
+.PHONY: gate lint test smoke report video gui gui-build gui-test gui-test-if-available gui-e2e gui-audit
 
-gate: lint test
+# The gate: ruff, the Python suite, and the frontend unit tests when Node is available. The browser suite is
+# `make gui-e2e`: it starts a real worker and takes a couple of minutes.
+gate: lint test gui-test-if-available
 
 lint:
 	.venv/bin/ruff check langgrasp tests scripts
@@ -34,3 +36,20 @@ gui-build:
 # Frontend unit tests (projection maths, formatting, run indexing). Needs Node.
 gui-test:
 	cd gui && npm run test
+
+# The same, but a clean checkout without node_modules is not a failure: say so and carry on.
+gui-test-if-available:
+	@if [ -d gui/node_modules ]; then \
+		$(MAKE) --no-print-directory gui-test; \
+	else \
+		echo "frontend tests skipped: gui/node_modules is missing (run make gui-build first)"; \
+	fi
+
+# End to end in a real browser against a real worker: nine checks, including that a command runs through all
+# nine stages, that the overlays are painted, and that the e-stop stops the arm in under 100 ms.
+gui-e2e:
+	cd gui && npx playwright test
+
+# Accessibility and responsive audit of the running GUI (axe-core across five views and two themes).
+gui-audit:
+	cd gui && GUI_URL=http://127.0.0.1:$(GUI_PORT) node e2e/audit.mjs

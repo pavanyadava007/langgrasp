@@ -75,6 +75,10 @@ class EventHub:
         self.run_in_flight = False  # a client that connects mid-run gets that run; after it ends, nobody does
         self.scene: dict | None = None
         self.models: dict = {}
+        # Sticky: once the worker has said what machine it is on, a later event that omits the field must not
+        # turn it back into "unknown".
+        self.gpu: str | None = None
+        self.hardware_label: str | None = None
         self.jobs: dict[str, dict] = {}  # job id -> its newest progress event, plus the trials seen so far
         self.waiters: list[tuple[Callable[[dict], bool], asyncio.Future]] = []
         self.counts: dict[str, int] = {}
@@ -138,6 +142,10 @@ class EventHub:
                     self.scene = event["scene"]
                 if event.get("models"):
                     self.models = event["models"]
+                if event.get("gpu"):
+                    self.gpu = event["gpu"]
+                if event.get("hardware_label"):
+                    self.hardware_label = event["hardware_label"]
         for c in list(self.clients):
             c.offer(event, jpeg)
         self._resolve(event)
