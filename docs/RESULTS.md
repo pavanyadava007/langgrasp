@@ -54,7 +54,7 @@ Aborts (modular): no_grasp: 1, safety:grounding confidence 0.265 < 0.30: 1
 | Oracle executor (ground-truth grasp point) | 99.0% [95-100] (n=100) | 100.0% [96-100] (n=100) | n/a | 358 (episode, sim compute) | 100 |
 | Modular pipeline | 90.0% [83-94] (n=100) | 90.0% [83-94] (n=100) | 91.0% [84-95] (n=100) | 979 (end_to_end) | 100 |
 | ACT attempt 1 (120 demos, 128 px, 20k steps) | 6.0% [3-12] (n=100) | 6.0% [3-12] (n=100) | n/a | 1 (policy_call) | 100 |
-| ACT attempt 2 (240 demos, 192 px, 25k steps) | not run | not run | - | - | 0 |
+| ACT attempt 2 (240 demos, 192 px, 25k steps) | 54.0% [44-63] (n=100) | 55.0% [45-64] (n=100) | n/a | 1 (policy_call) | 100 |
 
 ## 3. Latency budget of the modular pipeline (per command, L4)
 

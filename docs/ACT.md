@@ -50,6 +50,7 @@ oracle executor are evaluated on. Everything is MuJoCo simulation on an NVIDIA L
 |---|---|---|
 | Oracle executor (ground-truth grasp point) | 99/100 = 99% [95-100] | 100/100 = 100% [96-100] |
 | Modular pipeline (Grounding DINO + YOLO11-seg + depth fusion + executor) | 90/100 = 90% [83-94] | 90/100 = 90% [83-94] |
+| ACT, attempt 2 (240 demos, 192x192, 25k steps) | 54/100 = 54% [44-63] | 55/100 = 55% [45-64] |
 | ACT, attempt 1 (120 demos, 128x128, 20k steps) | 6/100 = 6% [3-12] | 6/100 = 6% [3-12] |
 
 ACT attempt 1 is a negative result and was diagnosed rather than hidden:
@@ -65,8 +66,10 @@ ACT attempt 1 is a negative result and was diagnosed rather than hidden:
   120 low-variance scripted demos give it little to interpolate between.
 - Per-call policy latency on the L4: median 1.0 ms (9 of 10 ticks pop the action queue; a chunk prediction is about 10-40 ms).
 
-A second attempt with 240 demos at 192x192 and 25k steps is recorded in `results/act_eval_192.json` when
-present (see the table in `docs/RESULTS.md` section 2); the write-up below states which one is reported.
+**Attempt 2** followed directly from that diagnosis: 240 demos (242 attempts, seeds 20000-20241) at 192x192, 15035 frames,
+same ACT config, 25k steps (53 epochs) in 47 minutes on the otherwise idle L4 at 8.9 steps/s; loss step 100: 8.499, step 1000: 1.213, step 5000: 0.147, step 10000: 0.069, step 20000: 0.045, step 25000: 0.040.
+Closed loop on the same 100 scenes it places 55/100 (55%, CI 45-64) with median policy-call latency 1.0 ms (p90 1 ms, one chunk prediction every 10 ticks).
+The jump from 6% to 55% with doubled demos and 2.25x the pixels supports the localisation diagnosis; the gap to the modular pipeline (90%) and the oracle (100%) is the remaining precision at the grasp. Attempt 2 is the ACT number reported in `docs/RESULTS.md` and the README; attempt 1 stays in the table as the documented negative result. Untried next steps: 300+ demos, 224 px, a validation split for checkpoint selection, temporal ensembling, and a wider-clearance grasp in the demos so small offsets are tolerated.
 
 ## Limitations
 

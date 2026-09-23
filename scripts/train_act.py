@@ -72,7 +72,7 @@ def main() -> None:
     ap.add_argument("--tag", default="", help="free-text note stored in the result JSON")
     args = ap.parse_args()
 
-    run_dir = Path(args.run_dir)
+    run_dir = Path(args.run_dir).resolve()
     if run_dir.exists():
         shutil.rmtree(run_dir)  # lerobot-train refuses an existing output_dir without --resume
     run_dir.parent.mkdir(parents=True, exist_ok=True)
@@ -133,7 +133,7 @@ def main() -> None:
     src = run_dir / "checkpoints" / "last" / "pretrained_model"
     if not src.exists():
         raise SystemExit(f"no checkpoint at {src}")
-    dst = Path(args.ckpt_out)
+    dst = Path(args.ckpt_out).resolve()
     if dst.exists():
         shutil.rmtree(dst)
     shutil.copytree(src.resolve(), dst)
