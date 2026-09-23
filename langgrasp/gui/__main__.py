@@ -34,6 +34,11 @@ def build_parser() -> argparse.ArgumentParser:
     ap.add_argument("--safety-mode", default="monitor", choices=["monitor", "enforce"])
     ap.add_argument("--stt-model", default="base", choices=["tiny", "base", "small"])
     ap.add_argument("--no-record", action="store_true", help="do not write runs/gui/<timestamp>_<seed>/")
+    ap.add_argument(
+        "--stream-size",
+        default=None,
+        help="render the live stream at WxH instead of the pipeline's 640x480, for hosts with software rendering. It changes only the picture, never what the pipeline sees.",
+    )
     ap.add_argument("--log-level", default="info")
     return ap
 
@@ -49,7 +54,12 @@ def main(argv: list[str] | None = None) -> int:
             file=sys.stderr,
         )
         return 2
+    stream_size = None
+    if args.stream_size:
+        w, h = (int(v) for v in args.stream_size.lower().split("x"))
+        stream_size = (h, w)
     cfg = WorkerConfig(
+        stream_size=stream_size,
         grounder=args.grounder,
         seg_weights=args.seg_weights,
         seg_backend=args.seg_backend,

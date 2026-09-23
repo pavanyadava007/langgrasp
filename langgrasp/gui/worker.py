@@ -105,6 +105,10 @@ class WorkerConfig:
     load_segmenter: bool = True
     stt_model: str = "base"
     image_size: tuple[int, int] = (480, 640)
+    # What the live stream renders at. Defaults to the pipeline's own capture size; a smaller value only
+    # changes the picture a person watches, never what the pipeline sees, and is what makes this usable on a
+    # host with software rendering where a 640x480 frame costs 166 ms instead of 8 ms.
+    stream_size: tuple[int, int] | None = None
     jpeg_quality: int = 72
     gate_threshold: float = 0.30  # what scripts/eval_modular.py uses, not the SafetyConfig default of 0.35
     safety_mode: str = "monitor"
@@ -538,15 +542,16 @@ class SimWorker:
         the stream is being thinned, which it is at speeds above real time.
         """
         bits = self.flags.cameras.value
+        size = self.cfg.stream_size or self.cfg.image_size
         for cam in CAMERAS:
             if bits & CAM_BITS[cam] and (publish or cam == "front"):
-                rgb = self.env.render(cam, self.cfg.image_size)
+                rgb = self.env.render(cam, size)
                 self._emit_frame(cam, "rgb", rgb, tick, publish=publish)
         if not publish:
             self.heartbeat_sensors()
             return
         if bits & DEPTH_BIT:
-            depth = self.env.render("front", self.cfg.image_size, depth=True).astype(np.float32)
+            depth = self.env.render("front", size, depth=True).astype(np.float32)
             self._emit_frame("front", "depth", self.colorize_depth(depth), tick)
         self.heartbeat_sensors()
 

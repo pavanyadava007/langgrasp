@@ -153,3 +153,23 @@ def test_unknown_command_is_reported_not_swallowed(worker):
     warn = c.until(lambda e: e["type"] == "log" and e["level"] == "warn", timeout=20, label="the unknown-command warning")
     assert "unknown command" in warn["message"]
     assert h.alive
+
+
+def test_the_stream_can_render_smaller_than_the_pipeline_captures():
+    """On a host with software rendering a 640x480 frame costs 20 times what it costs on the GPU. The stream
+    may be rendered smaller so the motion stays watchable; the pipeline's own capture is untouched."""
+    h = WorkerHandle(WorkerConfig(grounder="oracle", load_segmenter=False, record=False, stream_size=(240, 320)))
+    h.start()
+    c = Collector(h)
+    try:
+        c.until(lambda e: e["type"] == "system" and e["note"] == "models warm", timeout=120, label="warm-up")
+        frame = c.until(lambda e: e["type"] == "frame", timeout=20, label="a streamed frame")
+        assert (frame["height"], frame["width"]) == (240, 320)
+        c.events.clear()
+        h.send(cmd="run", command="pick the blue cube", controller="pipeline", config={"use_yolo_mask": False, "speed": 0})
+        capture = c.until(lambda e: e["type"] == "stage_finished" and e["stage"] == "capture", timeout=90, label="the capture stage")
+        assert capture["payload"]["size"] == [480, 640], "the pipeline must still see the full frame"
+        out = c.until(lambda e: e["type"] == "outcome", timeout=90, label="the outcome")
+        assert out["placed"]
+    finally:
+        h.stop()
