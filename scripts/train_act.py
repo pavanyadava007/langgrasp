@@ -65,6 +65,7 @@ def main() -> None:
     ap.add_argument("--num-workers", type=int, default=8)
     ap.add_argument("--log-freq", type=int, default=100)
     ap.add_argument("--save-every", type=int, default=0, help="intermediate checkpoint period (0: final only)")
+    ap.add_argument("--temporal-ensemble", type=float, default=None, help="ACT temporal_ensemble_coeff (forces n_action_steps=1)")
     ap.add_argument("--seed", type=int, default=1000)
     ap.add_argument("--run-dir", default=str(ROOT / "runs/act/pick"))
     ap.add_argument("--ckpt-out", default=str(ROOT / "checkpoints/act_pick"))
@@ -94,9 +95,10 @@ def main() -> None:
         "--policy.device=cuda",
         "--policy.push_to_hub=false",
         f"--policy.chunk_size={args.chunk_size}",
-        f"--policy.n_action_steps={args.n_action_steps}",
+        f"--policy.n_action_steps={1 if args.temporal_ensemble is not None else args.n_action_steps}",
         f"--policy.dim_model={args.dim_model}",
         f"--policy.kl_weight={args.kl_weight}",
+        *([f"--policy.temporal_ensemble_coeff={args.temporal_ensemble}"] if args.temporal_ensemble is not None else []),
         f"--policy.optimizer_lr={args.lr}",
         f"--policy.optimizer_lr_backbone={args.lr}",
         "--wandb.enable=false",

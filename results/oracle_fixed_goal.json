@@ -14,17 +14,17 @@
    5099
   ]
  },
- "minutes": 0.6769599318504333,
+ "minutes": 0.5912874221801758,
  "summary": {
   "n_trials": 100,
   "strata": {
    "all": {
     "grasp": {
-     "k": 99,
+     "k": 100,
      "n": 100,
-     "p": 0.99,
-     "lo": 0.9455124752390653,
-     "hi": 0.9982326134344526
+     "p": 1.0,
+     "lo": 0.9630051925239981,
+     "hi": 0.9999999999999999
     },
     "place": {
      "k": 100,
@@ -43,11 +43,11 @@
    },
    "seen": {
     "grasp": {
-     "k": 99,
+     "k": 100,
      "n": 100,
-     "p": 0.99,
-     "lo": 0.9455124752390653,
-     "hi": 0.9982326134344526
+     "p": 1.0,
+     "lo": 0.9630051925239981,
+     "hi": 0.9999999999999999
     },
     "place": {
      "k": 100,
@@ -68,11 +68,11 @@
   "lang_variants": {
    "plain": {
     "grasp": {
-     "k": 99,
+     "k": 100,
      "n": 100,
-     "p": 0.99,
-     "lo": 0.9455124752390653,
-     "hi": 0.9982326134344526
+     "p": 1.0,
+     "lo": 0.9630051925239981,
+     "hi": 0.9999999999999999
     },
     "place": {
      "k": 100,
@@ -116,11 +116,11 @@
    },
    "nominal": {
     "grasp": {
-     "k": 71,
+     "k": 72,
      "n": 72,
-     "p": 0.9861111111111112,
-     "lo": 0.9254321971571302,
-     "hi": 0.9975441113595678
+     "p": 1.0,
+     "lo": 0.9493470601886036,
+     "hi": 1.0
     },
     "place": {
      "k": 72,
@@ -141,11 +141,11 @@
   "kinds": {
    "cube": {
     "grasp": {
-     "k": 99,
+     "k": 100,
      "n": 100,
-     "p": 0.99,
-     "lo": 0.9455124752390653,
-     "hi": 0.9982326134344526
+     "p": 1.0,
+     "lo": 0.9630051925239981,
+     "hi": 0.9999999999999999
     },
     "place": {
      "k": 100,
@@ -160,11 +160,11 @@
   "latency_ms": {
    "episode": {
     "n": 99,
-    "median_ms": 357.6505029996042,
-    "p90_ms": 445.1121520047309,
-    "p99_ms": 536.698172641627,
-    "mean_ms": 367.38601018155214,
-    "max_ms": 539.9889460022678
+    "median_ms": 316.79601498763077,
+    "p90_ms": 372.0012100005988,
+    "p99_ms": 417.9625654924889,
+    "mean_ms": 323.7133151522339,
+    "max_ms": 530.7259960100055
    }
   }
  },
@@ -184,7 +184,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 380.0745980042848
+    "episode": 311.86454300768673
    },
    "extra": {
     "ticks": 60,
@@ -206,7 +206,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 330.98605499981204
+    "episode": 279.4218990020454
    },
    "extra": {
     "ticks": 54,
@@ -228,10 +228,10 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 361.799191996397
+    "episode": 329.3675919994712
    },
    "extra": {
-    "ticks": 59,
+    "ticks": 60,
     "ik_ok": true
    }
   },
@@ -250,7 +250,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 309.94109799939906
+    "episode": 294.8023929930059
    },
    "extra": {
     "ticks": 56,
@@ -272,7 +272,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 329.3710289945011
+    "episode": 363.34074300248176
    },
    "extra": {
     "ticks": 62,
@@ -294,7 +294,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 347.4212169967359
+    "episode": 313.36496899893973
    },
    "extra": {
     "ticks": 56,
@@ -316,7 +316,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 331.1583249960677
+    "episode": 282.88728299958166
    },
    "extra": {
     "ticks": 57,
@@ -338,7 +338,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 363.27927900129
+    "episode": 313.485363003565
    },
    "extra": {
     "ticks": 62,
@@ -360,7 +360,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 303.1317089989898
+    "episode": 276.95160600706004
    },
    "extra": {
     "ticks": 57,
@@ -382,7 +382,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 336.1324360012077
+    "episode": 297.3164370050654
    },
    "extra": {
     "ticks": 60,
@@ -404,7 +404,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 299.0480180014856
+    "episode": 290.5941310018534
    },
    "extra": {
     "ticks": 54,
@@ -426,7 +426,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 324.84425800066674
+    "episode": 378.9931970095495
    },
    "extra": {
     "ticks": 58,
@@ -448,7 +448,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 466.80624399596127
+    "episode": 530.7259960100055
    },
    "extra": {
     "ticks": 58,
@@ -470,7 +470,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 369.82996000006096
+    "episode": 355.0933720107423
    },
    "extra": {
     "ticks": 60,
@@ -492,7 +492,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 317.44077400071546
+    "episode": 297.11227100051474
    },
    "extra": {
     "ticks": 55,
@@ -514,7 +514,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 279.6726989981835
+    "episode": 284.7508370032301
    },
    "extra": {
     "ticks": 54,
@@ -536,7 +536,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 293.94701099954545
+    "episode": 276.33296301064547
    },
    "extra": {
     "ticks": 54,
@@ -558,7 +558,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 354.7782189998543
+    "episode": 310.5670210061362
    },
    "extra": {
     "ticks": 57,
@@ -580,7 +580,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 393.4224559998256
+    "episode": 319.66362400271464
    },
    "extra": {
     "ticks": 60,
@@ -602,7 +602,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 340.36021099745994
+    "episode": 344.86144200491253
    },
    "extra": {
     "ticks": 62,
@@ -624,7 +624,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 294.9209750004229
+    "episode": 277.701803992386
    },
    "extra": {
     "ticks": 55,
@@ -646,7 +646,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 326.5365089973784
+    "episode": 321.5940009977203
    },
    "extra": {
     "ticks": 58,
@@ -668,7 +668,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 296.7695309998817
+    "episode": 282.94616399216466
    },
    "extra": {
     "ticks": 54,
@@ -690,7 +690,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 292.060574000061
+    "episode": 287.79349199612625
    },
    "extra": {
     "ticks": 56,
@@ -712,7 +712,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 335.54009100043913
+    "episode": 309.1483150055865
    },
    "extra": {
     "ticks": 56,
@@ -734,7 +734,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 338.7098609964596
+    "episode": 312.5391289941035
    },
    "extra": {
     "ticks": 58,
@@ -756,10 +756,10 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 400.73908799968194
+    "episode": 335.6065039988607
    },
    "extra": {
-    "ticks": 60,
+    "ticks": 61,
     "ik_ok": true
    }
   },
@@ -778,7 +778,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 302.1468650040333
+    "episode": 299.114791007014
    },
    "extra": {
     "ticks": 56,
@@ -800,7 +800,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 289.3203679996077
+    "episode": 267.5307360041188
    },
    "extra": {
     "ticks": 55,
@@ -822,7 +822,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 347.83606600103667
+    "episode": 275.42996099509764
    },
    "extra": {
     "ticks": 56,
@@ -844,7 +844,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 341.15606999694137
+    "episode": 315.9657529904507
    },
    "extra": {
     "ticks": 58,
@@ -866,7 +866,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 380.1308059992152
+    "episode": 361.5907110070111
    },
    "extra": {
     "ticks": 60,
@@ -888,7 +888,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 336.476895994565
+    "episode": 311.36915399110876
    },
    "extra": {
     "ticks": 58,
@@ -910,7 +910,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 335.6540250024409
+    "episode": 318.3036520058522
    },
    "extra": {
     "ticks": 56,
@@ -932,7 +932,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 311.08365600084653
+    "episode": 306.5585879958235
    },
    "extra": {
     "ticks": 57,
@@ -954,7 +954,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 336.47144499991555
+    "episode": 327.06076600879896
    },
    "extra": {
     "ticks": 61,
@@ -976,7 +976,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 350.9624639991671
+    "episode": 289.77340800338425
    },
    "extra": {
     "ticks": 57,
@@ -998,7 +998,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 373.9465230028145
+    "episode": 300.4502580006374
    },
    "extra": {
     "ticks": 54,
@@ -1020,7 +1020,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 346.8378120014677
+    "episode": 341.050538001582
    },
    "extra": {
     "ticks": 61,
@@ -1042,7 +1042,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 375.0324919965351
+    "episode": 377.8628449945245
    },
    "extra": {
     "ticks": 61,
@@ -1064,7 +1064,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 294.6477000004961
+    "episode": 306.6927010077052
    },
    "extra": {
     "ticks": 55,
@@ -1086,7 +1086,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 332.0705070000258
+    "episode": 306.8799150059931
    },
    "extra": {
     "ticks": 56,
@@ -1108,7 +1108,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 310.848419998365
+    "episode": 310.98529500013683
    },
    "extra": {
     "ticks": 58,
@@ -1130,7 +1130,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 424.17949700029567
+    "episode": 402.4969769961899
    },
    "extra": {
     "ticks": 61,
@@ -1152,7 +1152,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 300.17992699868046
+    "episode": 289.65909499675035
    },
    "extra": {
     "ticks": 55,
@@ -1174,7 +1174,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 311.90530599997146
+    "episode": 298.6085230077151
    },
    "extra": {
     "ticks": 55,
@@ -1196,7 +1196,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 383.6284139979398
+    "episode": 317.28776000090875
    },
    "extra": {
     "ticks": 58,
@@ -1218,7 +1218,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 536.631014001614
+    "episode": 374.7157900070306
    },
    "extra": {
     "ticks": 62,
@@ -1240,7 +1240,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 465.72465899953386
+    "episode": 335.2768470067531
    },
    "extra": {
     "ticks": 62,
@@ -1262,7 +1262,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 398.2137870043516
+    "episode": 334.63809099339414
    },
    "extra": {
     "ticks": 56,
@@ -1284,7 +1284,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 395.0095389955095
+    "episode": 320.4714659950696
    },
    "extra": {
     "ticks": 55,
@@ -1306,7 +1306,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 382.198060004157
+    "episode": 376.7726380028762
    },
    "extra": {
     "ticks": 59,
@@ -1328,7 +1328,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 371.4480439957697
+    "episode": 369.91306199342944
    },
    "extra": {
     "ticks": 61,
@@ -1350,7 +1350,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 387.7270090015372
+    "episode": 343.66447100182995
    },
    "extra": {
     "ticks": 56,
@@ -1372,7 +1372,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 392.7968249990954
+    "episode": 400.5084579985123
    },
    "extra": {
     "ticks": 62,
@@ -1394,7 +1394,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 357.5523410036112
+    "episode": 318.2129610067932
    },
    "extra": {
     "ticks": 56,
@@ -1416,7 +1416,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 320.75359000009485
+    "episode": 295.92045600293204
    },
    "extra": {
     "ticks": 56,
@@ -1438,7 +1438,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 383.93887400161475
+    "episode": 348.73992699431255
    },
    "extra": {
     "ticks": 58,
@@ -1460,7 +1460,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 326.41291999607347
+    "episode": 282.80923700367566
    },
    "extra": {
     "ticks": 57,
@@ -1482,7 +1482,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 357.6505029996042
+    "episode": 338.98125699488446
    },
    "extra": {
     "ticks": 55,
@@ -1504,7 +1504,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 395.4593290036428
+    "episode": 338.13582800212316
    },
    "extra": {
     "ticks": 61,
@@ -1526,7 +1526,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 337.3191089995089
+    "episode": 311.88923701120075
    },
    "extra": {
     "ticks": 58,
@@ -1548,7 +1548,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 283.68353199766716
+    "episode": 282.98037199419923
    },
    "extra": {
     "ticks": 54,
@@ -1570,7 +1570,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 383.68912800069666
+    "episode": 342.320858995663
    },
    "extra": {
     "ticks": 59,
@@ -1592,7 +1592,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 336.2812550039962
+    "episode": 295.7644429989159
    },
    "extra": {
     "ticks": 55,
@@ -1614,7 +1614,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 300.87366799853044
+    "episode": 294.80236099334434
    },
    "extra": {
     "ticks": 58,
@@ -1636,7 +1636,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 335.06749300431693
+    "episode": 322.4748649954563
    },
    "extra": {
     "ticks": 54,
@@ -1658,7 +1658,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 338.6049719993025
+    "episode": 302.4132959981216
    },
    "extra": {
     "ticks": 59,
@@ -1680,7 +1680,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 450.28296599775786
+    "episode": 387.7294070116477
    },
    "extra": {
     "ticks": 63,
@@ -1702,7 +1702,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 350.9834279975621
+    "episode": 330.34519699867815
    },
    "extra": {
     "ticks": 56,
@@ -1724,10 +1724,10 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 358.1629660038743
+    "episode": 309.62354100483935
    },
    "extra": {
-    "ticks": 59,
+    "ticks": 60,
     "ik_ok": true
    }
   },
@@ -1746,7 +1746,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 317.7142950007692
+    "episode": 333.5413060121937
    },
    "extra": {
     "ticks": 60,
@@ -1768,7 +1768,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 407.3643730007461
+    "episode": 371.32256499899086
    },
    "extra": {
     "ticks": 60,
@@ -1790,7 +1790,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 317.01126700500026
+    "episode": 278.4276899910765
    },
    "extra": {
     "ticks": 54,
@@ -1812,7 +1812,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 449.73296399984974
+    "episode": 356.7934029997559
    },
    "extra": {
     "ticks": 56,
@@ -1834,7 +1834,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 411.76865300076315
+    "episode": 328.96179299859796
    },
    "extra": {
     "ticks": 56,
@@ -1856,7 +1856,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 412.24049599986756
+    "episode": 323.4241280006245
    },
    "extra": {
     "ticks": 58,
@@ -1878,7 +1878,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 372.6718349935254
+    "episode": 288.84236500016414
    },
    "extra": {
     "ticks": 55,
@@ -1900,7 +1900,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 408.85714199976064
+    "episode": 325.9956800029613
    },
    "extra": {
     "ticks": 62,
@@ -1922,7 +1922,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 409.5591980003519
+    "episode": 355.1490320096491
    },
    "extra": {
     "ticks": 58,
@@ -1944,7 +1944,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 331.23659800185123
+    "episode": 273.43055099481717
    },
    "extra": {
     "ticks": 53,
@@ -1966,7 +1966,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 382.9165579954861
+    "episode": 303.0268370057456
    },
    "extra": {
     "ticks": 57,
@@ -1988,7 +1988,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 402.9189850043622
+    "episode": 308.1735640007537
    },
    "extra": {
     "ticks": 57,
@@ -2010,7 +2010,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 422.3018850025255
+    "episode": 334.8872990027303
    },
    "extra": {
     "ticks": 60,
@@ -2032,7 +2032,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 390.8228450018214
+    "episode": 284.05186100280844
    },
    "extra": {
     "ticks": 53,
@@ -2054,10 +2054,10 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 426.5868689981289
+    "episode": 294.73543299536686
    },
    "extra": {
-    "ticks": 57,
+    "ticks": 58,
     "ik_ok": true
    }
   },
@@ -2076,7 +2076,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 354.4836349974503
+    "episode": 279.80494700022973
    },
    "extra": {
     "ticks": 54,
@@ -2098,7 +2098,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 422.5116079978761
+    "episode": 317.7935589919798
    },
    "extra": {
     "ticks": 61,
@@ -2120,7 +2120,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 443.9569490059512
+    "episode": 360.78100399754476
    },
    "extra": {
     "ticks": 57,
@@ -2142,7 +2142,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 456.59535100276116
+    "episode": 354.86466900329106
    },
    "extra": {
     "ticks": 64,
@@ -2164,7 +2164,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 539.9889460022678
+    "episode": 415.6612709921319
    },
    "extra": {
     "ticks": 63,
@@ -2186,7 +2186,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 481.8495270010317
+    "episode": 370.8375209971564
    },
    "extra": {
     "ticks": 55,
@@ -2208,7 +2208,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 504.8016529981396
+    "episode": 387.37299700733274
    },
    "extra": {
     "ticks": 62,
@@ -2230,7 +2230,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 397.71129399741767
+    "episode": 316.79601498763077
    },
    "extra": {
     "ticks": 57,
@@ -2252,7 +2252,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 364.0384210011689
+    "episode": 308.0281899892725
    },
    "extra": {
     "ticks": 56,
@@ -2274,7 +2274,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 421.698166996066
+    "episode": 325.2632329968037
    },
    "extra": {
     "ticks": 58,
@@ -2296,7 +2296,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 460.8452960019349
+    "episode": 369.6044500102289
    },
    "extra": {
     "ticks": 62,
@@ -2318,7 +2318,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 421.2577269936446
+    "episode": 329.22489900374785
    },
    "extra": {
     "ticks": 55,
@@ -2340,7 +2340,7 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 391.0629589954624
+    "episode": 289.8964740015799
    },
    "extra": {
     "ticks": 57,
@@ -2358,14 +2358,14 @@
    "color": "red",
    "grounding_correct": null,
    "grasped": true,
-   "lifted": false,
+   "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "episode": 377.08242300141137
+    "episode": 310.1874220010359
    },
    "extra": {
-    "ticks": 56,
+    "ticks": 57,
     "ik_ok": true
    }
   }

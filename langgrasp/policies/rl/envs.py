@@ -119,6 +119,22 @@ class DomainRandomization:
         )
 
     @classmethod
+    def scaled(cls, f: float) -> DomainRandomization:
+        """The training randomisation scaled by f in [0, 1] (f=0: none, f=1: train()); used for curricula."""
+        f = float(min(max(f, 0.0), 1.0))
+        return cls(
+            enabled=f > 0.0,
+            q_noise_deg=5.0 * f,
+            action_noise=0.1 * f,
+            latency_prob=0.5 * f,
+            latency_ticks=1,
+            mass_range=(1.0 - 0.3 * f, 1.0 + 0.3 * f),
+            friction_range=(1.0 - 0.3 * f, 1.0 + 0.3 * f),
+            kp_range=(1.0 - 0.2 * f, 1.0 + 0.2 * f),
+            q_offset_deg=0.0,
+        )
+
+    @classmethod
     def shifted(cls, latency_ticks: int = 1) -> DomainRandomization:
         """Deliberately shifted sim standing in for a plausible real-robot mismatch (sim-to-sim gap, no real robot)."""
         return cls(

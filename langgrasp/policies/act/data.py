@@ -34,10 +34,22 @@ def make_features(h: int, w: int, use_videos: bool = True) -> dict:
     }
 
 
-def observe(env, size: tuple[int, int]) -> dict:
+# Front-camera crop (rows, cols of the 480x640 render) covering the workspace and the tray, so the policy's
+# pixels are not spent on the arm base and the empty table edges. Applied identically at collection and rollout.
+FRONT_CROP = (70, 440, 90, 590)
+
+
+def crop_front(img: np.ndarray, size: tuple[int, int]) -> np.ndarray:
+    import cv2
+
+    r0, r1, c0, c1 = FRONT_CROP
+    return cv2.resize(np.ascontiguousarray(img[r0:r1, c0:c1]), (size[1], size[0]), interpolation=cv2.INTER_AREA)
+
+
+def observe(env, size: tuple[int, int], crop: bool = True) -> dict:
     """Policy observation: front + wrist RGB (H, W, 3 uint8) and the 6-D joint state (5 arm + jaw)."""
     return {
-        FRONT_KEY: env.render("front", size=size),
+        FRONT_KEY: crop_front(env.render("front"), size) if crop else env.render("front", size=size),
         WRIST_KEY: env.render("wrist", size=size),
         STATE_KEY: np.concatenate([env.q_arm, [env.obs()["jaw"]]]).astype(np.float32),
     }
@@ -57,16 +69,23 @@ class EpisodeRecord:
         return len(self.frames)
 
 
-def collect_episode(env, scenario, size: tuple[int, int], hold_ticks: int = HOLD_TICKS) -> EpisodeRecord:
+def collect_episode(env, scenario, size: tuple[int, int], hold_ticks: int = HOLD_TICKS, jitter: float = 0.0, rng=None) -> EpisodeRecord:
     """Run the scripted expert on one scenario and return the recorded (obs, action) frames.
 
     The episode is appended with `hold_ticks` extra frames that repeat the last commanded target so the arm
-    comes to rest; the success flags are re-checked after the hold.
+    comes to rest; the success flags are re-checked after the hold. `jitter` > 0 perturbs the start pose
+    (uniform +-jitter rad on the arm joints) so demos start from varied configurations and the policy sees
+    approaches from more than one direction.
     """
     from langgrasp.sim.controller import PickPlaceController
 
     t0 = time.time()
     env.reset(scenario)
+    if jitter > 0:
+        rng = rng or np.random.default_rng(scenario.seed)
+        q = np.clip(env.observe_q + rng.uniform(-jitter, jitter, size=5), env.kin.lo, env.kin.hi)
+        for _ in range(4):
+            env.step(q, env.kin.jaw_range[0] + 0.1)
     kind = scenario.target_obj.kind
     ctl = PickPlaceController(env, record=True, record_fn=lambda e, phase: observe(e, size))
     grasp_xyz, psi = env.grasp_point(scenario.target)

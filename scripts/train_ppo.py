@@ -31,10 +31,12 @@ def main():
     ap.add_argument("--n-threads", type=int, default=8, help="physics threads")
     ap.add_argument("--tag", default="", help="optional suffix for output names")
     ap.add_argument("--out-dir", default=".")
+    ap.add_argument("--init-ckpt", default="", help="warm start from this checkpoint (curriculum)")
+    ap.add_argument("--dr-ramp", type=float, default=0.0, help="ramp the randomisation from 0 to 1 over this fraction of --steps")
     a = ap.parse_args()
     cfg = PPOConfig(
         task=a.task, dr=a.dr, n_envs=a.n_envs, n_steps=a.n_steps, total_steps=a.steps, max_minutes=a.max_minutes,
-        seed=a.seed, device=a.device, n_threads=a.n_threads,
+        seed=a.seed, device=a.device, n_threads=a.n_threads, init_ckpt=a.init_ckpt, dr_ramp_frac=a.dr_ramp,
     )
     name = f"ppo_{a.task}_{'dr' if a.dr else 'nodr'}{a.tag}"
     res = train(cfg, results_path=os.path.join(a.out_dir, "results", f"{name}.json"), ckpt_path=os.path.join(a.out_dir, "checkpoints", f"{name}.pt"))

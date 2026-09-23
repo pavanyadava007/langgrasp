@@ -44,6 +44,7 @@ def main() -> None:
     ap.add_argument("--png", action="store_true", help="store images as png instead of AV1 video")
     ap.add_argument("--out", default=str(ROOT / "results/demos_act.json"))
     ap.add_argument("--overwrite", action="store_true")
+    ap.add_argument("--jitter", type=float, default=0.0, help="start-pose jitter in rad (uniform per joint)")
     args = ap.parse_args()
 
     from lerobot.datasets.lerobot_dataset import LeRobotDataset
@@ -70,7 +71,7 @@ def main() -> None:
         seed = args.seed0 + n_att
         n_att += 1
         sc = make_scenario(seed, "seen", target_kind="cube", target_color="red")
-        rec = collect_episode(env, sc, size)
+        rec = collect_episode(env, sc, size, jitter=args.jitter)
         if not rec.placed:
             failed_seeds.append(seed)
             print(f"seed {seed}: expert failed (lifted={rec.lifted}), discarded", flush=True)

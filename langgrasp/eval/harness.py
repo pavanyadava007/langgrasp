@@ -94,13 +94,14 @@ def summarize(trials: list[Trial]) -> dict:
     return out
 
 
-def run_protocol(run_one, n_per_stratum: dict[str, int], approach: str, out_path: str | Path, notes: str = "", base_seed: int = 5000, log_every: int = 10) -> dict:
-    """run_one(scenario) -> dict with keys grounding_correct, grasped, lifted, placed, aborted, latency_ms, extra."""
+def run_protocol(run_one, n_per_stratum: dict[str, int], approach: str, out_path: str | Path, notes: str = "", base_seed: int = 5000, log_every: int = 10, make=None) -> dict:
+    """run_one(scenario) -> dict with keys grounding_correct, grasped, lifted, placed, aborted, latency_ms, extra.
+    make(seed, stratum) -> Scenario overrides the default scenario generator (e.g. fixed-goal scenes)."""
     trials: list[Trial] = []
     t0 = time.time()
     seeds = trial_seeds(n_per_stratum, base_seed)
     for i, (seed, stratum) in enumerate(seeds):
-        sc = make_scenario(seed, stratum)
+        sc = (make or make_scenario)(seed, stratum)
         r = run_one(sc)
         tobj = sc.target_obj
         trials.append(

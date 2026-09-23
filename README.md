@@ -45,10 +45,10 @@ Wilson 95% intervals). Highlights:
 
 | What | Measured |
 |---|---|
-| Oracle executor (ground-truth grasp point, no perception), 120 stratified trials | 116/120 placed (96.7%, CI 92-99); screwdrivers are the weak kind at 38/41 |
-| Modular language pipeline, same 120 trials | 109/120 placed (90.8%, CI 84-95); grounding correct 115/119 (96.6%); seen 36/40, unseen 38/40, language variation 35/40 |
-| Colour-check ablation (Grounding DINO ranking only) | 101/120; language-variation stratum drops from 35/40 to 30/40 and grounding accuracy from 96.6% to 89.2% |
-| Box-only mask ablation (no YOLO11-seg) | 102/120; spatial references drop from 11/13 to 8/13, no-grasp aborts rise from 1 to 7 |
+| Oracle executor (ground-truth grasp point, no perception), 120 stratified trials | 120/120 placed (CI 97-100) after the pre-grasp jaw opening was reduced to 4 cm (screwdrivers went from 38/41 to 41/41) |
+| Modular language pipeline, same 120 trials | 115/120 placed (95.8%, CI 91-98); grounding correct 115/119 (96.6%); seen 39/40, unseen 39/40, language variation 37/40; 4 of the 5 failures are wrong-object groundings, the fifth is the confidence gate refusing a 0.27-score match |
+| Colour-check ablation (Grounding DINO ranking only) | 106/120; language-variation stratum drops from 37/40 to 32/40 and grounding accuracy from 96.6% to 89.2% |
+| Box-only mask ablation (no YOLO11-seg) | 106/120; screwdrivers drop from 39/41 to 30/41 and no-grasp aborts rise from 1 to 7 |
 | Fixed-goal red cube, 100 identical scenes | oracle 100/100, modular 90/100, ACT (LeRobot, scripted demos) 55/100 with 240 demos at 192 px and 25k steps; the first attempt (120 demos, 128 px) placed 6/100 and was diagnosed as a 1-3 cm lateral offset at the grasp that the fixed-jaw executor cannot absorb, see `docs/ACT.md` |
 | YOLO11n-seg fine-tuned on 1602 rendered images | box mAP50 0.985, mask mAP50 0.984 (synthetic val); batch-1 inference median 7.0 ms PyTorch, 3.3 ms ONNX Runtime CUDA, 0.81 ms TensorRT FP16, 0.70 ms TensorRT INT8 (end to end with mask decode 10.7 / 5.1 / 4.6 / 4.5 ms) |
 | INT8 vs FP16 | INT8 saves 0.1 ms and costs about 1 point of box mAP50-95 (0.934 to 0.924) on this model: not worth it, as the plan predicted for small models |
@@ -70,9 +70,9 @@ Per-track write-ups: `docs/PERCEPTION.md`, `docs/ACT.md`, `docs/RL.md`, `docs/FM
   Nano; TensorRT engines are device specific and must be rebuilt there.
 - The "sim-to-real" gap of the brief is reported as a sim-to-sim gap (nominal versus shifted dynamics).
 - SmolVLA, learned 6-DOF grasping and Isaac Lab / ManiSkill3 were not attempted (scope-cut order of the plan).
-- The executor's weak spot is lying cylinders (screwdriver handles roll when the moving finger sweeps in);
-  on the hardest screwdriver scenes even ground-truth grasp points place only about 5 of 8. This mirrors
-  the plan's top risk (SO-101 precision) and is left as a documented limitation.
+- Lying cylinders were the executor's weak spot (screwdriver handles rolled when the moving finger swept
+  in from a wide opening); reducing the pre-grasp opening to 4 cm fixed it in simulation (60/60), but the
+  plan's top risk, SO-101 precision on a real arm, is untested here.
 - PPO with the full domain-randomisation set never learned the lift within the 40-minute budget; the
   reach task shows the intended DR effect (97.5% vs 83% under shifted dynamics).
 

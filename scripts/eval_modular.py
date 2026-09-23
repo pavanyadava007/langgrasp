@@ -54,9 +54,11 @@ if args.fixed_goal:
 out = args.out or f"results/{tag}_protocol.json".replace("modular_fixed_goal_protocol", "modular_fixed_goal")
 
 
+def make_fixed(seed, stratum):
+    return make_scenario(seed, "seen", target_kind="cube", target_color="red")
+
+
 def run_one(sc):
-    if args.fixed_goal:
-        sc = make_scenario(sc.seed, "seen", target_kind="cube", target_color="red")
     env.reset(sc)
     r = pipe.run_command(sc.command, sc.target)
     d = r.to_dict()
@@ -73,7 +75,7 @@ def run_one(sc):
 
 strata = {"seen": args.n} if args.fixed_goal else {"seen": args.n, "unseen": args.n, "langvar": args.n}
 notes = f"color_check={cfg.use_color_check} yolo_mask={segmenter is not None} depth_noise={cfg.depth_noise} seg={args.seg if segmenter else None} backend={args.seg_backend}"
-res = run_protocol(run_one, strata, tag, out, notes=notes)
+res = run_protocol(run_one, strata, tag, out, notes=notes, make=make_fixed if args.fixed_goal else None)
 for k, v in res["summary"]["strata"].items():
     print(k, "place", f"{v['place']['k']}/{v['place']['n']}", "grounding", f"{v['grounding']['k']}/{v['grounding']['n']}")
 print("lang variants", {k: f"{v['place']['k']}/{v['place']['n']}" for k, v in res["summary"]["lang_variants"].items()})

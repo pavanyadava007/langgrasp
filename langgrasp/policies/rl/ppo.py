@@ -122,6 +122,8 @@ class PPOConfig:
     device: str = "auto"
     n_threads: int = 8
     curve_every: int = 1  # log a curve point every k iterations
+    init_ckpt: str = ""  # warm start: load actor-critic weights and obs normaliser from this checkpoint
+    dr_ramp_frac: float = 0.0  # > 0: scale the training randomisation from 0 to 1 over this fraction of total_steps
     extra: dict = field(default_factory=dict)
 
 
@@ -210,10 +212,16 @@ def train(cfg: PPOConfig, results_path: str | None = None, ckpt_path: str | None
     np.random.seed(cfg.seed)
     device = resolve_device(cfg.device)
     dr = DomainRandomization.train() if cfg.dr else DomainRandomization.none()
+    if cfg.dr and cfg.dr_ramp_frac > 0:
+        dr = DomainRandomization.scaled(0.0)
     env = env or VecArmEnv(cfg.n_envs, cfg.task, seed=cfg.seed, dr=dr, n_threads=cfg.n_threads)
     model = ActorCritic(env.obs_dim, env.act_dim, cfg.hidden, cfg.log_std_init).to(device)
-    opt = torch.optim.Adam(model.parameters(), lr=cfg.lr, eps=1e-5)
     rms = RunningMeanStd((env.obs_dim,))
+    if cfg.init_ckpt:
+        m0, rms0, _ = load_checkpoint(cfg.init_ckpt, device)
+        model.load_state_dict(m0.state_dict())
+        rms.load_state_dict(rms0.state_dict())
+    opt = torch.optim.Adam(model.parameters(), lr=cfg.lr, eps=1e-5)
     gen = torch.Generator(device="cpu").manual_seed(cfg.seed)
     N, T = env.n, cfg.n_steps
     obs_buf = np.zeros((T, N, env.obs_dim), dtype=np.float32)
@@ -234,6 +242,8 @@ def train(cfg: PPOConfig, results_path: str | None = None, ckpt_path: str | None
     ep_success: list[bool] = []
     ep_hold: list[bool] = []
     while total < cfg.total_steps and (time.time() - t0) / 60.0 < cfg.max_minutes:
+        if cfg.dr and cfg.dr_ramp_frac > 0:
+            env.dr = DomainRandomization.scaled(total / (cfg.dr_ramp_frac * cfg.total_steps))
         it_returns: list[float] = []
         it_success: list[bool] = []
         it_hold: list[bool] = []

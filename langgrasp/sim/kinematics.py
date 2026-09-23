@@ -12,7 +12,7 @@ import numpy as np
 
 ARM_JOINTS = ["Rotation", "Pitch", "Elbow", "Wrist_Pitch", "Wrist_Roll"]
 JAW_JOINT = "Jaw"
-JAW_OPEN = 0.55  # pre-grasp opening about 5.5 cm: a wider opening lifts the moving finger tip 3 cm and rolls cylinders away (measured 60/60 vs 56/60 at 1.2)
+JAW_OPEN = 0.30  # pre-grasp opening about 4 cm: measured screwdriver 60/60 at 0.30 vs 50/60 at 0.55 (cubes, cans, bars 30/30 at both); a wider opening raises the moving finger tip and rolls cylinders
 JAW_CLOSED = -0.17
 
 

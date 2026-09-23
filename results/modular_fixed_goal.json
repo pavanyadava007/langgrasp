@@ -5,24 +5,24 @@
  "n_per_stratum": {
   "seen": 100
  },
- "minutes": 1.6725605964660644,
+ "minutes": 1.110932223002116,
  "summary": {
   "n_trials": 100,
   "strata": {
    "all": {
     "grasp": {
-     "k": 90,
+     "k": 91,
      "n": 100,
-     "p": 0.9,
-     "lo": 0.8256326956323347,
-     "hi": 0.9447714583868639
+     "p": 0.91,
+     "lo": 0.8377362530335634,
+     "hi": 0.9519280048361151
     },
     "place": {
-     "k": 90,
+     "k": 91,
      "n": 100,
-     "p": 0.9,
-     "lo": 0.8256326956323347,
-     "hi": 0.9447714583868639
+     "p": 0.91,
+     "lo": 0.8377362530335634,
+     "hi": 0.9519280048361151
     },
     "grounding": {
      "k": 91,
@@ -34,18 +34,18 @@
    },
    "seen": {
     "grasp": {
-     "k": 90,
+     "k": 91,
      "n": 100,
-     "p": 0.9,
-     "lo": 0.8256326956323347,
-     "hi": 0.9447714583868639
+     "p": 0.91,
+     "lo": 0.8377362530335634,
+     "hi": 0.9519280048361151
     },
     "place": {
-     "k": 90,
+     "k": 91,
      "n": 100,
-     "p": 0.9,
-     "lo": 0.8256326956323347,
-     "hi": 0.9447714583868639
+     "p": 0.91,
+     "lo": 0.8377362530335634,
+     "hi": 0.9519280048361151
     },
     "grounding": {
      "k": 91,
@@ -59,18 +59,18 @@
   "lang_variants": {
    "plain": {
     "grasp": {
-     "k": 90,
+     "k": 91,
      "n": 100,
-     "p": 0.9,
-     "lo": 0.8256326956323347,
-     "hi": 0.9447714583868639
+     "p": 0.91,
+     "lo": 0.8377362530335634,
+     "hi": 0.9519280048361151
     },
     "place": {
-     "k": 90,
+     "k": 91,
      "n": 100,
-     "p": 0.9,
-     "lo": 0.8256326956323347,
-     "hi": 0.9447714583868639
+     "p": 0.91,
+     "lo": 0.8377362530335634,
+     "hi": 0.9519280048361151
     },
     "grounding": {
      "k": 91,
@@ -84,18 +84,18 @@
   "lighting": {
    "degraded": {
     "grasp": {
-     "k": 25,
+     "k": 26,
      "n": 28,
-     "p": 0.8928571428571429,
-     "lo": 0.7280377463234293,
-     "hi": 0.9628823079452005
+     "p": 0.9285714285714286,
+     "lo": 0.7735426157408214,
+     "hi": 0.9801883525522292
     },
     "place": {
-     "k": 25,
+     "k": 26,
      "n": 28,
-     "p": 0.8928571428571429,
-     "lo": 0.7280377463234293,
-     "hi": 0.9628823079452005
+     "p": 0.9285714285714286,
+     "lo": 0.7735426157408214,
+     "hi": 0.9801883525522292
     },
     "grounding": {
      "k": 26,
@@ -130,52 +130,20 @@
    }
   },
   "kinds": {
-   "can": {
-    "grasp": {
-     "k": 30,
-     "n": 30,
-     "p": 1.0,
-     "lo": 0.8864829086095221,
-     "hi": 1.0
-    },
-    "place": {
-     "k": 30,
-     "n": 30,
-     "p": 1.0,
-     "lo": 0.8864829086095221,
-     "hi": 1.0
-    }
-   },
    "cube": {
     "grasp": {
-     "k": 31,
-     "n": 38,
-     "p": 0.8157894736842105,
-     "lo": 0.6658083165848865,
-     "hi": 0.907783515467425
+     "k": 91,
+     "n": 100,
+     "p": 0.91,
+     "lo": 0.8377362530335634,
+     "hi": 0.9519280048361151
     },
     "place": {
-     "k": 31,
-     "n": 38,
-     "p": 0.8157894736842105,
-     "lo": 0.6658083165848865,
-     "hi": 0.907783515467425
-    }
-   },
-   "screwdriver": {
-    "grasp": {
-     "k": 29,
-     "n": 32,
-     "p": 0.90625,
-     "lo": 0.7578150066422116,
-     "hi": 0.9675990373736805
-    },
-    "place": {
-     "k": 29,
-     "n": 32,
-     "p": 0.90625,
-     "lo": 0.7578150066422116,
-     "hi": 0.9675990373736805
+     "k": 91,
+     "n": 100,
+     "p": 0.91,
+     "lo": 0.8377362530335634,
+     "hi": 0.9519280048361151
     }
    }
   },
@@ -183,59 +151,59 @@
   "latency_ms": {
    "parse": {
     "n": 99,
-    "median_ms": 0.10753200331237167,
-    "p90_ms": 0.1269150001462549,
-    "p99_ms": 0.13690959982341144,
-    "mean_ms": 0.10650019167870697,
-    "max_ms": 0.16168399451998994
+    "median_ms": 0.08100199920590967,
+    "p90_ms": 0.1011999964248389,
+    "p99_ms": 0.12513279507402328,
+    "mean_ms": 0.08583823210122346,
+    "max_ms": 0.13247301103547215
    },
    "capture": {
     "n": 99,
-    "median_ms": 10.605760995531455,
-    "p90_ms": 14.462383197678719,
-    "p99_ms": 15.037867174833082,
-    "mean_ms": 11.25229894909114,
-    "max_ms": 15.166942001087591
+    "median_ms": 7.563745006336831,
+    "p90_ms": 8.794949398725294,
+    "p99_ms": 9.37711889971979,
+    "mean_ms": 7.835512091241062,
+    "max_ms": 9.54655600071419
    },
    "grounding": {
     "n": 99,
-    "median_ms": 560.1812550012255,
-    "p90_ms": 587.1521509980084,
-    "p99_ms": 594.6574701747159,
-    "mean_ms": 550.4339160305781,
-    "max_ms": 600.4853429985815
+    "median_ms": 293.0016099999193,
+    "p90_ms": 313.28010760771576,
+    "p99_ms": 322.18204979784787,
+    "mean_ms": 296.54644723264903,
+    "max_ms": 323.79364999360405
    },
    "segmentation": {
     "n": 99,
-    "median_ms": 20.178803999442607,
-    "p90_ms": 24.27669720054837,
-    "p99_ms": 31.22405494330451,
-    "mean_ms": 20.513716848470704,
-    "max_ms": 31.335772000602446
+    "median_ms": 12.871547995018773,
+    "p90_ms": 14.957969190436415,
+    "p99_ms": 17.236885210149918,
+    "mean_ms": 13.396215728881552,
+    "max_ms": 18.008693994488567
    },
    "depth_fusion": {
     "n": 99,
-    "median_ms": 2.7907080002478324,
-    "p90_ms": 3.1962247972842306,
-    "p99_ms": 3.4857349813682923,
-    "mean_ms": 2.7839653130745363,
-    "max_ms": 4.3661169984261505
+    "median_ms": 2.3125669977162033,
+    "p90_ms": 2.9070537944789976,
+    "p99_ms": 3.488251829694488,
+    "mean_ms": 2.4842223221015165,
+    "max_ms": 4.143717000260949
    },
    "execute": {
     "n": 99,
-    "median_ms": 365.5286139983218,
-    "p90_ms": 406.99795359832933,
-    "p99_ms": 439.2990958795417,
-    "mean_ms": 364.0369420104297,
-    "max_ms": 445.6177870015381
+    "median_ms": 309.4291669985978,
+    "p90_ms": 345.1447897881735,
+    "p99_ms": 386.71410263981664,
+    "mean_ms": 308.6145315239926,
+    "max_ms": 405.9017010004027
    },
    "end_to_end": {
     "n": 99,
-    "median_ms": 978.798199997982,
-    "p90_ms": 1029.1481026011752,
-    "p99_ms": 1082.1059693422285,
-    "mean_ms": 970.551325030542,
-    "max_ms": 1091.2455639991094
+    "median_ms": 643.2394439907512,
+    "p90_ms": 678.3994787983829,
+    "p99_ms": 737.5250079855323,
+    "mean_ms": 643.8553653846465,
+    "max_ms": 739.5395440107677
    }
   }
  },
@@ -245,36 +213,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the blue cube",
+   "command": "pick the red cube",
    "target": "cube_0",
    "kind": "cube",
-   "color": "blue",
+   "color": "red",
    "grounding_correct": false,
    "grasped": false,
    "lifted": false,
    "placed": false,
    "aborted": null,
    "latency_ms": {
-    "parse": 1.2824000004911795,
-    "capture": 187.94662700383924,
-    "grounding": 577.8833610020229,
-    "segmentation": 19.264845999714453,
-    "depth_fusion": 3.2197769978665747,
-    "execute": 473.0151889962144,
-    "end_to_end": 1290.5156559936586
+    "parse": 1.039244991261512,
+    "capture": 120.03492699295748,
+    "grounding": 291.53251300158445,
+    "segmentation": 13.71639801072888,
+    "depth_fusion": 2.9894939943915233,
+    "execute": 416.0773609910393,
+    "end_to_end": 859.5350380055606
    },
    "extra": {
     "box": [
-     362.0947570800781,
-     215.10708618164062,
-     394.2223815917969,
-     273.9981384277344
+     362.09515380859375,
+     215.10693359375,
+     394.2226867675781,
+     273.9969787597656
     ],
-    "score": 0.8369280099868774,
+    "score": 0.8363152146339417,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 576.6444420005428
+     "latency_ms": 290.848176999134
     },
     "select_info": {
      "n_candidates": 2,
@@ -311,36 +279,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the blue cube",
+   "command": "pick the red cube",
    "target": "cube_0",
    "kind": "cube",
-   "color": "blue",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.11708300007740036,
-    "capture": 9.524860004603397,
-    "grounding": 579.0867000032449,
-    "segmentation": 22.746459995687474,
-    "depth_fusion": 3.0756950000068173,
-    "execute": 338.9731919960468,
-    "end_to_end": 971.4932139977464
+    "parse": 0.08156200055964291,
+    "capture": 7.573687005788088,
+    "grounding": 286.24108199437615,
+    "segmentation": 12.91349800885655,
+    "depth_fusion": 2.311866992386058,
+    "execute": 272.1160340006463,
+    "end_to_end": 594.6912830113433
    },
    "extra": {
     "box": [
-     356.5909423828125,
-     196.3240966796875,
-     386.6142272949219,
-     232.71458435058594
+     356.58966064453125,
+     196.3235321044922,
+     386.61285400390625,
+     232.71432495117188
     ],
-    "score": 0.8160817623138428,
+    "score": 0.8161424994468689,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 578.3301429983112
+     "latency_ms": 285.69593900465406
     },
     "select_info": {
      "n_candidates": 2,
@@ -377,9 +345,9 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the red screwdriver",
-   "target": "screwdriver_0",
-   "kind": "screwdriver",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
    "color": "red",
    "grounding_correct": true,
    "grasped": true,
@@ -387,13 +355,13 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.1115929990191944,
-    "capture": 15.035232994705439,
-    "grounding": 558.5373939975398,
-    "segmentation": 21.175119996769354,
-    "depth_fusion": 2.432608998788055,
-    "execute": 403.9871029963251,
-    "end_to_end": 1020.622029005608
+    "parse": 0.11198299762327224,
+    "capture": 9.54655600071419,
+    "grounding": 291.95651299960446,
+    "segmentation": 15.29139700869564,
+    "depth_fusion": 2.941162994829938,
+    "execute": 322.5208969961386,
+    "end_to_end": 657.0296389982104
    },
    "extra": {
     "box": [
@@ -406,7 +374,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 557.5938819965813
+     "latency_ms": 291.2651960068615
     },
     "select_info": {
      "n_candidates": 3,
@@ -443,23 +411,23 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "degraded",
-   "command": "pick the blue screwdriver",
-   "target": "screwdriver_0",
-   "kind": "screwdriver",
-   "color": "blue",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.11752299906220287,
-    "capture": 10.390820003522094,
-    "grounding": 567.7513070040732,
-    "segmentation": 20.917354006087407,
-    "depth_fusion": 3.228807996492833,
-    "execute": 344.43228600139264,
-    "end_to_end": 967.5896389962872
+    "parse": 0.07952199666760862,
+    "capture": 8.797047004918568,
+    "grounding": 314.1689110052539,
+    "segmentation": 14.939688000595197,
+    "depth_fusion": 2.2472949931398034,
+    "execute": 282.41227800026536,
+    "end_to_end": 641.1325269873487
    },
    "extra": {
     "box": [
@@ -472,7 +440,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 566.7329520001658
+     "latency_ms": 313.2263779989444
     },
     "select_info": {
      "n_candidates": 3,
@@ -509,23 +477,23 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the green cube",
+   "command": "pick the red cube",
    "target": "cube_0",
    "kind": "cube",
-   "color": "green",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.1236829994013533,
-    "capture": 12.21668599464465,
-    "grounding": 565.188214997761,
-    "segmentation": 23.004716000286862,
-    "depth_fusion": 3.4015119963441975,
-    "execute": 396.2625359999947,
-    "end_to_end": 1019.4067409975105
+    "parse": 0.10148200090043247,
+    "capture": 8.786695994785987,
+    "grounding": 293.0016099999193,
+    "segmentation": 12.825136000174098,
+    "depth_fusion": 2.692087000468746,
+    "execute": 341.04085199942347,
+    "end_to_end": 672.2060519969091
    },
    "extra": {
     "box": [
@@ -538,7 +506,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 564.5114079961786
+     "latency_ms": 292.48216601263266
     },
     "select_info": {
      "n_candidates": 2,
@@ -575,36 +543,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the blue cube",
+   "command": "pick the red cube",
    "target": "cube_0",
    "kind": "cube",
-   "color": "blue",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.1099619985325262,
-    "capture": 13.230828997620847,
-    "grounding": 544.6572279979591,
-    "segmentation": 16.160898994712625,
-    "depth_fusion": 2.5326809991383925,
-    "execute": 326.1205439994228,
-    "end_to_end": 923.4873550012708
+    "parse": 0.07989199366420507,
+    "capture": 7.523926004068926,
+    "grounding": 289.0673619986046,
+    "segmentation": 14.733154006535187,
+    "depth_fusion": 2.836799991200678,
+    "execute": 308.6194639909081,
+    "end_to_end": 641.2324199918658
    },
    "extra": {
     "box": [
-     307.550537109375,
-     193.94252014160156,
-     343.3087463378906,
-     235.6822509765625
+     307.55010986328125,
+     193.94244384765625,
+     343.3088684082031,
+     235.6816864013672
     ],
-    "score": 0.80060875415802,
+    "score": 0.8002730011940002,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 543.9940029973513
+     "latency_ms": 288.4666379977716
     },
     "select_info": {
      "n_candidates": 2,
@@ -641,9 +609,9 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the red can",
-   "target": "can_0",
-   "kind": "can",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
    "color": "red",
    "grounding_correct": true,
    "grasped": true,
@@ -651,13 +619,13 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.11538300168467686,
-    "capture": 10.272317995259073,
-    "grounding": 573.2895309993182,
-    "segmentation": 16.62814099836396,
-    "depth_fusion": 2.6045139966299757,
-    "execute": 368.88177600485506,
-    "end_to_end": 992.6007329995628
+    "parse": 0.08217300637625158,
+    "capture": 7.635606991243549,
+    "grounding": 292.14068899455015,
+    "segmentation": 14.733353003975935,
+    "depth_fusion": 2.7757589996326715,
+    "execute": 303.15568900550716,
+    "end_to_end": 639.5148770097876
    },
    "extra": {
     "box": [
@@ -670,7 +638,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 572.6251640007831
+     "latency_ms": 291.47280199686065
     },
     "select_info": {
      "n_candidates": 2,
@@ -707,36 +675,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "degraded",
-   "command": "pick the blue can",
-   "target": "can_0",
-   "kind": "can",
-   "color": "blue",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.08928199531510472,
-    "capture": 13.89312500396045,
-    "grounding": 546.9509940012358,
-    "segmentation": 24.543701998481993,
-    "depth_fusion": 3.09648500115145,
-    "execute": 371.3803169957828,
-    "end_to_end": 978.798199997982
+    "parse": 0.0791019992902875,
+    "capture": 7.5042150128865615,
+    "grounding": 303.43220599752385,
+    "segmentation": 12.978629994904622,
+    "depth_fusion": 2.2859360033180565,
+    "execute": 323.26127399574034,
+    "end_to_end": 664.7793190059019
    },
    "extra": {
     "box": [
-     212.20852661132812,
-     177.937255859375,
-     249.07188415527344,
-     218.95643615722656
+     212.20877075195312,
+     177.9374237060547,
+     249.0726318359375,
+     218.9561309814453
     ],
-    "score": 0.7719094157218933,
+    "score": 0.7716890573501587,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 545.8161369970185
+     "latency_ms": 302.75798999355175
     },
     "select_info": {
      "n_candidates": 3,
@@ -773,9 +741,9 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "degraded",
-   "command": "pick the red screwdriver",
-   "target": "screwdriver_0",
-   "kind": "screwdriver",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
    "color": "red",
    "grounding_correct": false,
    "grasped": false,
@@ -783,13 +751,13 @@
    "placed": false,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.09217199840350077,
-    "capture": 8.594726998126134,
-    "grounding": 592.4234630001592,
-    "segmentation": 16.05882899457356,
-    "depth_fusion": 3.0288929992821068,
-    "execute": 445.6177870015381,
-    "end_to_end": 1091.2455639991094
+    "parse": 0.08099200204014778,
+    "capture": 7.605398001032881,
+    "grounding": 287.7765699959127,
+    "segmentation": 12.734593998175114,
+    "depth_fusion": 2.669895999133587,
+    "execute": 349.562232993776,
+    "end_to_end": 673.6584489990491
    },
    "extra": {
     "box": [
@@ -802,7 +770,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 591.3763170028687
+     "latency_ms": 286.9830909912707
     },
     "select_info": {
      "n_candidates": 3,
@@ -849,26 +817,26 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.1343529947916977,
-    "capture": 14.195240997651126,
-    "grounding": 593.0942400009371,
-    "segmentation": 20.528045999526512,
-    "depth_fusion": 3.053323001950048,
-    "execute": 365.5286139983218,
-    "end_to_end": 1024.7599180001998
+    "parse": 0.08100199920590967,
+    "capture": 7.575765994261019,
+    "grounding": 301.41604600066785,
+    "segmentation": 15.977023998857476,
+    "depth_fusion": 2.671106005436741,
+    "execute": 328.08478399238084,
+    "end_to_end": 670.0066890043672
    },
    "extra": {
     "box": [
-     283.59326171875,
-     229.22967529296875,
-     310.6423034667969,
-     265.38751220703125
+     283.5932312011719,
+     229.22879028320312,
+     310.6424560546875,
+     265.38885498046875
     ],
-    "score": 0.779037356376648,
+    "score": 0.7784250378608704,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 592.6519389977329
+     "latency_ms": 300.9997059998568
     },
     "select_info": {
      "n_candidates": 1,
@@ -905,23 +873,23 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "degraded",
-   "command": "pick the blue screwdriver",
-   "target": "screwdriver_0",
-   "kind": "screwdriver",
-   "color": "blue",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.12227299885125831,
-    "capture": 14.55289000296034,
-    "grounding": 594.2581070048618,
-    "segmentation": 16.442047999589704,
-    "depth_fusion": 2.5152910020551644,
-    "execute": 332.30252700013807,
-    "end_to_end": 978.1337079984951
+    "parse": 0.08163100574165583,
+    "capture": 7.543624989921227,
+    "grounding": 292.0526770030847,
+    "segmentation": 13.43900099163875,
+    "depth_fusion": 3.005545004270971,
+    "execute": 275.9815610043006,
+    "end_to_end": 606.3093789998675
    },
    "extra": {
     "box": [
@@ -934,7 +902,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 593.6079120001523
+     "latency_ms": 291.47279300377704
     },
     "select_info": {
      "n_candidates": 2,
@@ -971,23 +939,23 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the green screwdriver",
-   "target": "screwdriver_0",
-   "kind": "screwdriver",
-   "color": "green",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.10884299990721047,
-    "capture": 9.493110002949834,
-    "grounding": 571.6197049987386,
-    "segmentation": 15.370241999335121,
-    "depth_fusion": 2.1661529972334392,
-    "execute": 278.68568100529956,
-    "end_to_end": 894.5233759950497
+    "parse": 0.07994200859684497,
+    "capture": 7.519984996179119,
+    "grounding": 296.1959379899781,
+    "segmentation": 13.908843000535853,
+    "depth_fusion": 2.3809580015949905,
+    "execute": 289.3024680088274,
+    "end_to_end": 624.2127410077956
    },
    "extra": {
     "box": [
@@ -1000,7 +968,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 570.942288999504
+     "latency_ms": 295.6251840078039
     },
     "select_info": {
      "n_candidates": 2,
@@ -1037,36 +1005,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the yellow can",
-   "target": "can_0",
-   "kind": "can",
-   "color": "yellow",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.07343199831666425,
-    "capture": 11.94658900203649,
-    "grounding": 585.5145019959309,
-    "segmentation": 21.320206004020292,
-    "depth_fusion": 2.2524939995491877,
-    "execute": 297.21391900238814,
-    "end_to_end": 943.0813989965827
+    "parse": 0.08354199235327542,
+    "capture": 7.43029298610054,
+    "grounding": 285.3823720070068,
+    "segmentation": 14.734853990375996,
+    "depth_fusion": 2.911140996729955,
+    "execute": 323.40761899831705,
+    "end_to_end": 647.2962200059555
    },
    "extra": {
     "box": [
-     290.9997863769531,
-     204.31387329101562,
-     322.8732604980469,
-     243.526611328125
+     290.9991760253906,
+     204.31326293945312,
+     322.87286376953125,
+     243.5264129638672
     ],
-    "score": 0.826161801815033,
+    "score": 0.8261702656745911,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 584.8800870007835
+     "latency_ms": 284.846167996875
     },
     "select_info": {
      "n_candidates": 2,
@@ -1103,36 +1071,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the green can",
-   "target": "can_0",
-   "kind": "can",
-   "color": "green",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.08144199819071218,
-    "capture": 7.492760996683501,
-    "grounding": 296.7807380045997,
-    "segmentation": 15.255229001922999,
-    "depth_fusion": 3.029082996363286,
-    "execute": 393.9665799989598,
-    "end_to_end": 735.7092550009838
+    "parse": 0.1014320005197078,
+    "capture": 8.911019991501234,
+    "grounding": 288.6286709981505,
+    "segmentation": 12.568140009534545,
+    "depth_fusion": 2.3026660055620596,
+    "execute": 322.69909098977223,
+    "end_to_end": 649.1291240090504
    },
    "extra": {
     "box": [
-     282.2274475097656,
-     224.23350524902344,
-     319.5592956542969,
-     267.080078125
+     282.2286376953125,
+     224.2340087890625,
+     319.55914306640625,
+     267.07855224609375
     ],
-    "score": 0.8395171165466309,
+    "score": 0.8403933644294739,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 296.1073110054713
+     "latency_ms": 288.0938989983406
     },
     "select_info": {
      "n_candidates": 2,
@@ -1169,36 +1137,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the blue screwdriver",
-   "target": "screwdriver_0",
-   "kind": "screwdriver",
-   "color": "blue",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.09232199954567477,
-    "capture": 8.78493300115224,
-    "grounding": 495.6265670043649,
-    "segmentation": 18.589700004667975,
-    "depth_fusion": 2.946900996903423,
-    "execute": 351.99528300290694,
-    "end_to_end": 906.446903005417
+    "parse": 0.09698199573904276,
+    "capture": 8.806596990325488,
+    "grounding": 320.318910991773,
+    "segmentation": 13.41934100491926,
+    "depth_fusion": 2.2499149927170947,
+    "execute": 284.67469399038237,
+    "end_to_end": 648.3407330088085
    },
    "extra": {
     "box": [
-     340.662841796875,
-     176.1416015625,
-     374.8020935058594,
-     215.8087921142578
+     340.66265869140625,
+     176.14190673828125,
+     374.8013610839844,
+     215.80905151367188
     ],
-    "score": 0.8168689012527466,
+    "score": 0.8170088529586792,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 494.6916830012924
+     "latency_ms": 319.70535599975847
     },
     "select_info": {
      "n_candidates": 2,
@@ -1235,36 +1203,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "degraded",
-   "command": "pick the green cube",
+   "command": "pick the red cube",
    "target": "cube_0",
    "kind": "cube",
-   "color": "green",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.12676299957092851,
-    "capture": 9.820817998843268,
-    "grounding": 557.7249499983736,
-    "segmentation": 19.484570999338757,
-    "depth_fusion": 2.892529999371618,
-    "execute": 342.7187090055668,
-    "end_to_end": 957.6714619979612
+    "parse": 0.08027200237847865,
+    "capture": 7.497644997783937,
+    "grounding": 285.8816840016516,
+    "segmentation": 15.174454005318694,
+    "depth_fusion": 2.8274590004002675,
+    "execute": 277.9022570030065,
+    "end_to_end": 606.3307690055808
    },
    "extra": {
     "box": [
-     357.638427734375,
-     173.30850219726562,
-     386.4136962890625,
-     208.62255859375
+     357.6396179199219,
+     173.31031799316406,
+     386.41168212890625,
+     208.62188720703125
     ],
-    "score": 0.7731869220733643,
+    "score": 0.7727372646331787,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 556.7208449938335
+     "latency_ms": 285.33821100427303
     },
     "select_info": {
      "n_candidates": 2,
@@ -1301,23 +1269,23 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the yellow can",
-   "target": "can_0",
-   "kind": "can",
-   "color": "yellow",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.11408299906179309,
-    "capture": 8.833243999106344,
-    "grounding": 564.612545997079,
-    "segmentation": 20.333182001195382,
-    "depth_fusion": 3.260828998463694,
-    "execute": 322.5989819984534,
-    "end_to_end": 940.5253770019044
+    "parse": 0.0790920021245256,
+    "capture": 7.594597002025694,
+    "grounding": 303.54855000041425,
+    "segmentation": 12.660292006330565,
+    "depth_fusion": 2.209724989370443,
+    "execute": 262.5490380014526,
+    "end_to_end": 602.9516760027036
    },
    "extra": {
     "box": [
@@ -1330,7 +1298,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 563.2951540028444
+     "latency_ms": 302.5067530106753
     },
     "select_info": {
      "n_candidates": 4,
@@ -1377,13 +1345,13 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.10863300121854991,
-    "capture": 11.010096000973135,
-    "grounding": 562.3072489979677,
-    "segmentation": 23.516109002230223,
-    "depth_fusion": 2.432419001706876,
-    "execute": 340.93279499938944,
-    "end_to_end": 961.363282003731
+    "parse": 0.07841200567781925,
+    "capture": 7.647159000043757,
+    "grounding": 283.47254800610244,
+    "segmentation": 14.211109999450855,
+    "depth_fusion": 2.8527699905680493,
+    "execute": 287.4306970043108,
+    "end_to_end": 609.653128994978
    },
    "extra": {
     "box": [
@@ -1396,7 +1364,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 560.9670369958621
+     "latency_ms": 282.6617070095381
     },
     "select_info": {
      "n_candidates": 3,
@@ -1433,36 +1401,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the blue screwdriver",
-   "target": "screwdriver_0",
-   "kind": "screwdriver",
-   "color": "blue",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.0986419981927611,
-    "capture": 13.448495003103744,
-    "grounding": 592.4118979964987,
-    "segmentation": 17.366428997775074,
-    "depth_fusion": 2.436808994389139,
-    "execute": 391.0254169968539,
-    "end_to_end": 1034.421469004883
+    "parse": 0.07919200288597494,
+    "capture": 7.491544994991273,
+    "grounding": 313.2157110085245,
+    "segmentation": 12.5224990042625,
+    "depth_fusion": 2.3123870050767437,
+    "execute": 318.0896129924804,
+    "end_to_end": 667.0471240067855
    },
    "extra": {
     "box": [
-     244.6932830810547,
-     221.0811309814453,
-     277.23974609375,
-     261.36895751953125
+     244.69337463378906,
+     221.08119201660156,
+     277.23919677734375,
+     261.3688049316406
     ],
-    "score": 0.811556875705719,
+    "score": 0.8112494349479675,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 591.7594920028932
+     "latency_ms": 312.65091699606273
     },
     "select_info": {
      "n_candidates": 2,
@@ -1499,36 +1467,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "degraded",
-   "command": "pick the yellow can",
-   "target": "can_0",
-   "kind": "can",
-   "color": "yellow",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.09570300608174875,
-    "capture": 8.733980997931212,
-    "grounding": 579.2678899961174,
-    "segmentation": 18.436696998833213,
-    "depth_fusion": 3.2388079998781905,
-    "execute": 404.93272399908165,
-    "end_to_end": 1035.1701879990287
+    "parse": 0.10114199540112168,
+    "capture": 8.744065009523183,
+    "grounding": 299.62702600460034,
+    "segmentation": 12.605021009221673,
+    "depth_fusion": 2.472890992066823,
+    "execute": 327.1897669910686,
+    "end_to_end": 664.5753729972057
    },
    "extra": {
     "box": [
-     226.56005859375,
-     202.71241760253906,
-     263.43853759765625,
+     226.55911254882812,
+     202.71343994140625,
+     263.4371337890625,
      244.76034545898438
     ],
-    "score": 0.8380481600761414,
+    "score": 0.8375924229621887,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 578.6653059985838
+     "latency_ms": 299.07259200990666
     },
     "select_info": {
      "n_candidates": 2,
@@ -1565,23 +1533,23 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "degraded",
-   "command": "pick the yellow screwdriver",
-   "target": "screwdriver_0",
-   "kind": "screwdriver",
-   "color": "yellow",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.09432200022274628,
-    "capture": 8.795853005722165,
-    "grounding": 559.5602440007497,
-    "segmentation": 19.133092995616607,
-    "depth_fusion": 2.4375889988732524,
-    "execute": 314.2314910001005,
-    "end_to_end": 930.0647149939323
+    "parse": 0.08835199696477503,
+    "capture": 7.367012003669515,
+    "grounding": 283.46738700929563,
+    "segmentation": 12.884098003269173,
+    "depth_fusion": 2.3999400000320747,
+    "execute": 247.48341100348625,
+    "end_to_end": 567.6908149907831
    },
    "extra": {
     "box": [
@@ -1594,7 +1562,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 558.8733979966491
+     "latency_ms": 282.9374440043466
     },
     "select_info": {
      "n_candidates": 2,
@@ -1631,36 +1599,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the yellow screwdriver",
-   "target": "screwdriver_0",
-   "kind": "screwdriver",
-   "color": "yellow",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.08867200085660443,
-    "capture": 9.728935001476202,
-    "grounding": 575.2705240010982,
-    "segmentation": 19.672145004733466,
-    "depth_fusion": 2.9721920000156388,
-    "execute": 369.1149489968666,
-    "end_to_end": 996.8103300052462
+    "parse": 0.13247301103547215,
+    "capture": 9.148805009317584,
+    "grounding": 300.5606090009678,
+    "segmentation": 12.70474299963098,
+    "depth_fusion": 2.3585489980177954,
+    "execute": 289.8614759906195,
+    "end_to_end": 629.144021004322
    },
    "extra": {
     "box": [
-     280.7379455566406,
-     224.6967010498047,
-     317.5051574707031,
-     267.94671630859375
+     280.7375793457031,
+     224.69723510742188,
+     317.5055236816406,
+     267.946533203125
     ],
-    "score": 0.8424846529960632,
+    "score": 0.8424259424209595,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 574.6873699972639
+     "latency_ms": 300.0027149973903
     },
     "select_info": {
      "n_candidates": 2,
@@ -1697,36 +1665,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the green screwdriver",
-   "target": "screwdriver_0",
-   "kind": "screwdriver",
-   "color": "green",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.09030200453707948,
-    "capture": 14.069061006011907,
-    "grounding": 560.6788110017078,
-    "segmentation": 31.221775003359653,
-    "depth_fusion": 2.9134910000720993,
-    "execute": 337.0366219969583,
-    "end_to_end": 963.3845610005665
+    "parse": 0.07785200432408601,
+    "capture": 7.456623003236018,
+    "grounding": 314.61310500162654,
+    "segmentation": 12.736834003590047,
+    "depth_fusion": 2.2837869910290465,
+    "execute": 266.21001299645286,
+    "end_to_end": 619.25617599627
    },
    "extra": {
     "box": [
-     340.02789306640625,
-     186.48284912109375,
-     371.6714172363281,
-     224.40225219726562
+     340.02825927734375,
+     186.48243713378906,
+     371.6710205078125,
+     224.40380859375
     ],
-    "score": 0.8268047571182251,
+    "score": 0.8261654376983643,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 559.8063700017519
+     "latency_ms": 313.86760700843297
     },
     "select_info": {
      "n_candidates": 2,
@@ -1763,9 +1731,9 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the red can",
-   "target": "can_0",
-   "kind": "can",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
    "color": "red",
    "grounding_correct": true,
    "grasped": true,
@@ -1773,13 +1741,13 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.12704299297183752,
-    "capture": 11.276703000476118,
-    "grounding": 537.7786870012642,
-    "segmentation": 16.432686999905854,
-    "depth_fusion": 2.581192005891353,
-    "execute": 338.3208619998186,
-    "end_to_end": 926.2258410017239
+    "parse": 0.07622200064361095,
+    "capture": 7.607038001879118,
+    "grounding": 285.4958279931452,
+    "segmentation": 12.508858999353833,
+    "depth_fusion": 2.2693549981340766,
+    "execute": 273.23477700701915,
+    "end_to_end": 595.40560800815
    },
    "extra": {
     "box": [
@@ -1792,7 +1760,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 536.9878679994144
+     "latency_ms": 284.96954499860294
     },
     "select_info": {
      "n_candidates": 2,
@@ -1829,36 +1797,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the green can",
-   "target": "can_0",
-   "kind": "can",
-   "color": "green",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.113132999103982,
-    "capture": 13.387343999056611,
-    "grounding": 543.0039640050381,
-    "segmentation": 15.30893000017386,
-    "depth_fusion": 2.590771997347474,
-    "execute": 355.45795699727023,
-    "end_to_end": 947.9663469974184
+    "parse": 0.08191200322471559,
+    "capture": 7.497465005144477,
+    "grounding": 286.3409099954879,
+    "segmentation": 13.849661001586355,
+    "depth_fusion": 2.885530993808061,
+    "execute": 297.1109640056966,
+    "end_to_end": 622.3804539913544
    },
    "extra": {
     "box": [
-     366.22076416015625,
-     215.0572052001953,
-     399.68743896484375,
-     253.55360412597656
+     366.2197265625,
+     215.05618286132812,
+     399.68865966796875,
+     253.55429077148438
     ],
-    "score": 0.8167526721954346,
+    "score": 0.8173803687095642,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 542.364037995867
+     "latency_ms": 285.78619699692354
     },
     "select_info": {
      "n_candidates": 2,
@@ -1895,9 +1863,9 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the red can",
-   "target": "can_0",
-   "kind": "can",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
    "color": "red",
    "grounding_correct": true,
    "grasped": true,
@@ -1905,13 +1873,13 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.08933199569582939,
-    "capture": 13.386013997660484,
-    "grounding": 565.179220000573,
-    "segmentation": 15.610297996317968,
-    "depth_fusion": 2.479470000253059,
-    "execute": 401.14607099530986,
-    "end_to_end": 1012.8470260024187
+    "parse": 0.07773199467919767,
+    "capture": 7.530575996497646,
+    "grounding": 284.6173170109978,
+    "segmentation": 12.871547995018773,
+    "depth_fusion": 2.326488000107929,
+    "execute": 309.4291669985978,
+    "end_to_end": 631.0936670051888
    },
    "extra": {
     "box": [
@@ -1924,7 +1892,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 564.2916680008057
+     "latency_ms": 283.89806000632234
     },
     "select_info": {
      "n_candidates": 3,
@@ -1961,36 +1929,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "degraded",
-   "command": "pick the blue screwdriver",
-   "target": "screwdriver_0",
-   "kind": "screwdriver",
-   "color": "blue",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.11021200043614954,
-    "capture": 14.249653999286238,
-    "grounding": 547.9042120059603,
-    "segmentation": 24.209946001064964,
-    "depth_fusion": 2.5458809977862984,
-    "execute": 409.03008399618557,
-    "end_to_end": 1018.5316060014884
+    "parse": 0.07694200030528009,
+    "capture": 7.381622010143474,
+    "grounding": 308.3094110043021,
+    "segmentation": 12.234440000611357,
+    "depth_fusion": 2.2147050040075555,
+    "execute": 313.9115289959591,
+    "end_to_end": 657.5204200053122
    },
    "extra": {
     "box": [
-     226.4559783935547,
-     179.5684051513672,
-     259.84625244140625,
-     217.47853088378906
+     226.45582580566406,
+     179.5686798095703,
+     259.8462829589844,
+     217.47879028320312
     ],
-    "score": 0.8295116424560547,
+    "score": 0.8294826149940491,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 547.2798370028613
+     "latency_ms": 307.76350799715146
     },
     "select_info": {
      "n_candidates": 2,
@@ -2027,9 +1995,9 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the red screwdriver",
-   "target": "screwdriver_0",
-   "kind": "screwdriver",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
    "color": "red",
    "grounding_correct": true,
    "grasped": true,
@@ -2037,13 +2005,13 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.12026300100842491,
-    "capture": 9.154111001407728,
-    "grounding": 568.1480929997633,
-    "segmentation": 23.177672999736387,
-    "depth_fusion": 3.0685149977216497,
-    "execute": 373.4796280041337,
-    "end_to_end": 997.1557370008668
+    "parse": 0.07520199869759381,
+    "capture": 7.4758549890248105,
+    "grounding": 284.4807629880961,
+    "segmentation": 12.272231004317291,
+    "depth_fusion": 2.3058869992382824,
+    "execute": 285.8223169896519,
+    "end_to_end": 606.1707730113994
    },
    "extra": {
     "box": [
@@ -2056,7 +2024,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 566.9453930022428
+     "latency_ms": 283.5742410097737
     },
     "select_info": {
      "n_candidates": 4,
@@ -2093,23 +2061,23 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the blue can",
-   "target": "can_0",
-   "kind": "can",
-   "color": "blue",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.12946299830218777,
-    "capture": 10.18103699607309,
-    "grounding": 568.1553530012025,
-    "segmentation": 21.786887999041937,
-    "depth_fusion": 2.8799200008506887,
-    "execute": 306.8806509982096,
-    "end_to_end": 935.7419570005732
+    "parse": 0.07996200292836875,
+    "capture": 7.481834007194266,
+    "grounding": 298.91368000244256,
+    "segmentation": 13.177764005376957,
+    "depth_fusion": 2.2835259878775105,
+    "execute": 314.0306919958675,
+    "end_to_end": 653.907760992297
    },
    "extra": {
     "box": [
@@ -2122,7 +2090,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 567.494237999199
+     "latency_ms": 298.2327619974967
     },
     "select_info": {
      "n_candidates": 2,
@@ -2159,36 +2127,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the blue cube",
+   "command": "pick the red cube",
    "target": "cube_0",
    "kind": "cube",
-   "color": "blue",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.09113200212595984,
-    "capture": 14.427600995986722,
-    "grounding": 526.1756940017221,
-    "segmentation": 16.076881001936272,
-    "depth_fusion": 2.9345619986997917,
-    "execute": 377.6076069989358,
-    "end_to_end": 962.6985319991945
+    "parse": 0.1171429903479293,
+    "capture": 9.373660999699496,
+    "grounding": 315.24988100863993,
+    "segmentation": 13.359050004510209,
+    "depth_fusion": 2.429649990517646,
+    "execute": 362.03474599460606,
+    "end_to_end": 716.424301994266
    },
    "extra": {
     "box": [
-     356.10546875,
-     217.955810546875,
-     391.9369812011719,
-     260.0896301269531
+     356.10504150390625,
+     217.9564666748047,
+     391.9367980957031,
+     260.0890197753906
     ],
-    "score": 0.7892109155654907,
+    "score": 0.7889130711555481,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 525.6839020003099
+     "latency_ms": 314.85910099581815
     },
     "select_info": {
      "n_candidates": 1,
@@ -2225,23 +2193,23 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "degraded",
-   "command": "pick the blue cube",
+   "command": "pick the red cube",
    "target": "cube_0",
    "kind": "cube",
-   "color": "blue",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.1005629965220578,
-    "capture": 13.402306001808029,
-    "grounding": 594.538533994637,
-    "segmentation": 23.17731200309936,
-    "depth_fusion": 2.655933996720705,
-    "execute": 347.6101699998253,
-    "end_to_end": 1009.2978739994578
+    "parse": 0.08560199057683349,
+    "capture": 7.531305993325077,
+    "grounding": 288.2280640042154,
+    "segmentation": 15.16835400252603,
+    "depth_fusion": 2.4635209992993623,
+    "execute": 317.8361960017355,
+    "end_to_end": 646.0442969982978
    },
    "extra": {
     "box": [
@@ -2254,7 +2222,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 593.5279289988102
+     "latency_ms": 287.4537760071689
     },
     "select_info": {
      "n_candidates": 3,
@@ -2291,36 +2259,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the green screwdriver",
-   "target": "screwdriver_0",
-   "kind": "screwdriver",
-   "color": "green",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.09140199836110696,
-    "capture": 14.105551999819,
-    "grounding": 547.9210019984748,
-    "segmentation": 16.789248002169188,
-    "depth_fusion": 2.477759997418616,
-    "execute": 401.78542499779724,
-    "end_to_end": 1006.5878670066013
+    "parse": 0.08288199023809284,
+    "capture": 7.533826006692834,
+    "grounding": 284.7753300011391,
+    "segmentation": 12.606491000042297,
+    "depth_fusion": 2.2583460086025298,
+    "execute": 338.51129599497654,
+    "end_to_end": 659.8019950033631
    },
    "extra": {
     "box": [
-     231.3646240234375,
-     181.95706176757812,
-     267.2403259277344,
-     222.26744079589844
+     231.36541748046875,
+     181.95687866210938,
+     267.24114990234375,
+     222.2667236328125
     ],
-    "score": 0.7828128933906555,
+    "score": 0.7826266288757324,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 547.0333009943715
+     "latency_ms": 284.1233539948007
     },
     "select_info": {
      "n_candidates": 3,
@@ -2357,23 +2325,23 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the blue can",
-   "target": "can_0",
-   "kind": "can",
-   "color": "blue",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.11137300316477194,
-    "capture": 13.587430003099144,
-    "grounding": 547.2271950056893,
-    "segmentation": 19.669348002935294,
-    "depth_fusion": 2.713276000577025,
-    "execute": 394.0934380007093,
-    "end_to_end": 995.0871980036027
+    "parse": 0.08053099736571312,
+    "capture": 7.466773997293785,
+    "grounding": 305.4772400064394,
+    "segmentation": 12.701853003818542,
+    "depth_fusion": 2.314557001227513,
+    "execute": 310.5358259927016,
+    "end_to_end": 652.6668400038034
    },
    "extra": {
     "box": [
@@ -2386,7 +2354,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 546.3543239966384
+     "latency_ms": 304.73280198930297
     },
     "select_info": {
      "n_candidates": 3,
@@ -2423,23 +2391,23 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the green cube",
+   "command": "pick the red cube",
    "target": "cube_0",
    "kind": "cube",
-   "color": "green",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.11195299885002896,
-    "capture": 9.22669400461018,
-    "grounding": 572.6574919972336,
-    "segmentation": 15.9113059999072,
-    "depth_fusion": 2.687316002266016,
-    "execute": 335.5597059999127,
-    "end_to_end": 959.1650669972296
+    "parse": 0.09016299736686051,
+    "capture": 7.484254005248658,
+    "grounding": 295.4741040011868,
+    "segmentation": 12.662771987379529,
+    "depth_fusion": 2.277126011904329,
+    "execute": 266.6218139929697,
+    "end_to_end": 598.4362829913152
    },
    "extra": {
     "box": [
@@ -2452,7 +2420,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 571.6457480011741
+     "latency_ms": 294.6988140029134
     },
     "select_info": {
      "n_candidates": 4,
@@ -2489,23 +2457,23 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "degraded",
-   "command": "pick the yellow screwdriver",
-   "target": "screwdriver_0",
-   "kind": "screwdriver",
-   "color": "yellow",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.10708199988584965,
-    "capture": 14.917650994902942,
-    "grounding": 540.0059300009161,
-    "segmentation": 21.717226998589467,
-    "depth_fusion": 2.3096169970813207,
-    "execute": 354.5083360004355,
-    "end_to_end": 957.0928570028627
+    "parse": 0.07882200588937849,
+    "capture": 8.563301002141088,
+    "grounding": 284.30357700563036,
+    "segmentation": 12.27310299873352,
+    "depth_fusion": 2.1926539920968935,
+    "execute": 274.8809769982472,
+    "end_to_end": 596.2083580088802
    },
    "extra": {
     "box": [
@@ -2518,7 +2486,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 539.294712994888
+     "latency_ms": 283.7799450062448
     },
     "select_info": {
      "n_candidates": 2,
@@ -2555,23 +2523,23 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the yellow screwdriver",
-   "target": "screwdriver_0",
-   "kind": "screwdriver",
-   "color": "yellow",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.10564300464466214,
-    "capture": 13.283751999551896,
-    "grounding": 557.7070210056263,
-    "segmentation": 28.78835899900878,
-    "depth_fusion": 2.2674150022794493,
-    "execute": 315.88621999981115,
-    "end_to_end": 931.8465029937215
+    "parse": 0.08190299558918923,
+    "capture": 7.485134992748499,
+    "grounding": 289.87495500769,
+    "segmentation": 18.008693994488567,
+    "depth_fusion": 3.2974810019368306,
+    "execute": 318.3171979908366,
+    "end_to_end": 653.5507520020474
    },
    "extra": {
     "box": [
@@ -2584,7 +2552,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 556.9166909990599
+     "latency_ms": 289.08880600647535
     },
     "select_info": {
      "n_candidates": 3,
@@ -2621,36 +2589,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the blue screwdriver",
-   "target": "screwdriver_0",
-   "kind": "screwdriver",
-   "color": "blue",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.07175199425546452,
-    "capture": 9.589373003109358,
-    "grounding": 575.4861710011028,
-    "segmentation": 16.224813000007998,
-    "depth_fusion": 2.7290869984426536,
-    "execute": 301.747826000792,
-    "end_to_end": 922.9371269975672
+    "parse": 0.07363200711552054,
+    "capture": 7.518725004047155,
+    "grounding": 304.24397900060285,
+    "segmentation": 12.538758994196542,
+    "depth_fusion": 2.218775000073947,
+    "execute": 269.744631004869,
+    "end_to_end": 610.1007609977387
    },
    "extra": {
     "box": [
-     298.73492431640625,
-     178.49151611328125,
-     324.4656982421875,
-     213.24630737304688
+     298.7348327636719,
+     178.4916534423828,
+     324.46551513671875,
+     213.24627685546875
     ],
-    "score": 0.7681640386581421,
+    "score": 0.7681675553321838,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 574.9122269990039
+     "latency_ms": 303.7027759855846
     },
     "select_info": {
      "n_candidates": 2,
@@ -2687,9 +2655,9 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "degraded",
-   "command": "pick the red can",
-   "target": "can_0",
-   "kind": "can",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
    "color": "red",
    "grounding_correct": true,
    "grasped": true,
@@ -2697,26 +2665,26 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.07584099512314424,
-    "capture": 7.257075994857587,
-    "grounding": 288.2153569953516,
-    "segmentation": 17.484803996921983,
-    "depth_fusion": 2.952921000542119,
-    "execute": 394.0606480027782,
-    "end_to_end": 728.2833209974342
+    "parse": 0.08059199899435043,
+    "capture": 7.936786001664586,
+    "grounding": 285.85700600524433,
+    "segmentation": 12.361795001197606,
+    "depth_fusion": 2.2216950019355863,
+    "execute": 286.54260499752127,
+    "end_to_end": 608.805317999213
    },
    "extra": {
     "box": [
-     354.3206787109375,
-     180.03038024902344,
-     390.31524658203125,
-     221.42987060546875
+     354.32080078125,
+     180.03013610839844,
+     390.31451416015625,
+     221.4305419921875
     ],
-    "score": 0.7763238549232483,
+    "score": 0.7766318321228027,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 287.4371389989392
+     "latency_ms": 285.3139829967404
     },
     "select_info": {
      "n_candidates": 2,
@@ -2753,23 +2721,23 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the blue can",
-   "target": "can_0",
-   "kind": "can",
-   "color": "blue",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.10213299538008869,
-    "capture": 8.974197000497952,
-    "grounding": 543.3753519973834,
-    "segmentation": 17.69716000126209,
-    "depth_fusion": 3.4263230045326054,
-    "execute": 419.32841100060614,
-    "end_to_end": 1015.5786249961238
+    "parse": 0.07725199975538999,
+    "capture": 7.6491789950523525,
+    "grounding": 285.58184899156913,
+    "segmentation": 12.41877701249905,
+    "depth_fusion": 2.272556012030691,
+    "execute": 309.393818009994,
+    "end_to_end": 630.6247659958899
    },
    "extra": {
     "box": [
@@ -2782,7 +2750,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 542.6956049996079
+     "latency_ms": 285.029835999012
     },
     "select_info": {
      "n_candidates": 2,
@@ -2819,23 +2787,23 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the yellow cube",
+   "command": "pick the red cube",
    "target": "cube_0",
    "kind": "cube",
-   "color": "yellow",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.09597299504093826,
-    "capture": 10.513505003473256,
-    "grounding": 555.5362969971611,
-    "segmentation": 17.368590997648425,
-    "depth_fusion": 2.7683579974109307,
-    "execute": 357.4778590045753,
-    "end_to_end": 969.0255250025075
+    "parse": 0.11801300570368767,
+    "capture": 8.655522993649356,
+    "grounding": 297.0890430005966,
+    "segmentation": 12.79775500006508,
+    "depth_fusion": 2.387178989010863,
+    "execute": 294.37292700458784,
+    "end_to_end": 629.2036020022351
    },
    "extra": {
     "box": [
@@ -2848,7 +2816,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 554.6484959995723
+     "latency_ms": 296.4060759986751
     },
     "select_info": {
      "n_candidates": 3,
@@ -2885,36 +2853,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the yellow cube",
+   "command": "pick the red cube",
    "target": "cube_0",
    "kind": "cube",
-   "color": "yellow",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.09859199781203642,
-    "capture": 14.010761005920358,
-    "grounding": 539.1294489963911,
-    "segmentation": 23.635844001546502,
-    "depth_fusion": 3.0637249947176315,
-    "execute": 350.98438099521445,
-    "end_to_end": 949.6611560025485
+    "parse": 0.07698200352024287,
+    "capture": 7.709570010774769,
+    "grounding": 311.36750600126106,
+    "segmentation": 12.984740009414963,
+    "depth_fusion": 2.3477979993913323,
+    "execute": 267.4507640040247,
+    "end_to_end": 616.1172580032144
    },
    "extra": {
     "box": [
-     356.0377197265625,
-     216.25672912597656,
-     392.8805847167969,
-     258.7825927734375
+     356.0377502441406,
+     216.2561798095703,
+     392.8800048828125,
+     258.7820739746094
     ],
-    "score": 0.8333255052566528,
+    "score": 0.8341612219810486,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 538.4550419985317
+     "latency_ms": 310.82009100646246
     },
     "select_info": {
      "n_candidates": 2,
@@ -2961,13 +2929,13 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.09062200115295127,
-    "capture": 10.95975600037491,
-    "grounding": 532.9607399980887,
-    "segmentation": 24.11250500153983,
-    "depth_fusion": 2.690085006179288,
-    "execute": 366.61617099889554,
-    "end_to_end": 957.0071640046081
+    "parse": 0.0793530052760616,
+    "capture": 7.4991349974879995,
+    "grounding": 288.1309520016657,
+    "segmentation": 12.704793000011705,
+    "depth_fusion": 2.2901759948581457,
+    "execute": 292.1380329935346,
+    "end_to_end": 616.8536170007428
    },
    "extra": {
     "box": [
@@ -2980,7 +2948,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 531.7888510035118
+     "latency_ms": 287.44369599735364
     },
     "select_info": {
      "n_candidates": 3,
@@ -3017,36 +2985,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the green cube",
+   "command": "pick the red cube",
    "target": "cube_0",
    "kind": "cube",
-   "color": "green",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.09112200496019796,
-    "capture": 10.697869998693932,
-    "grounding": 576.3722930059885,
-    "segmentation": 17.68181899387855,
-    "depth_fusion": 2.933821000624448,
-    "execute": 360.48288099846104,
-    "end_to_end": 989.7605790029047
+    "parse": 0.07853300485294312,
+    "capture": 7.492363001802005,
+    "grounding": 282.8975360025652,
+    "segmentation": 16.358841996407136,
+    "depth_fusion": 3.2619240082567558,
+    "execute": 319.66321500658523,
+    "end_to_end": 643.7627020059153
    },
    "extra": {
     "box": [
-     284.2532653808594,
-     206.17063903808594,
-     311.9342346191406,
-     241.96080017089844
+     284.25299072265625,
+     206.1705322265625,
+     311.934326171875,
+     241.96109008789062
     ],
-    "score": 0.7512496113777161,
+    "score": 0.751315176486969,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 575.6277960026637
+     "latency_ms": 282.34514099312946
     },
     "select_info": {
      "n_candidates": 2,
@@ -3083,9 +3051,9 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the red screwdriver",
-   "target": "screwdriver_0",
-   "kind": "screwdriver",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
    "color": "red",
    "grounding_correct": false,
    "grasped": false,
@@ -3093,13 +3061,13 @@
    "placed": false,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.09286199929192662,
-    "capture": 13.918818003730848,
-    "grounding": 536.8913540005451,
-    "segmentation": 17.81245199526893,
-    "depth_fusion": 2.5214609995600767,
-    "execute": 344.0367540024454,
-    "end_to_end": 938.9627159980591
+    "parse": 0.09757299267221242,
+    "capture": 7.698209010413848,
+    "grounding": 298.0468260066118,
+    "segmentation": 17.22113401046954,
+    "depth_fusion": 3.472109994618222,
+    "execute": 284.2710409895517,
+    "end_to_end": 630.9257600078126
    },
    "extra": {
     "box": [
@@ -3112,7 +3080,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 535.9023909986718
+     "latency_ms": 296.98724899208173
     },
     "select_info": {
      "n_candidates": 3,
@@ -3149,36 +3117,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the blue cube",
+   "command": "pick the red cube",
    "target": "cube_0",
    "kind": "cube",
-   "color": "blue",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.10526300320634618,
-    "capture": 14.387819996045437,
-    "grounding": 533.7589330010815,
-    "segmentation": 19.241998001234606,
-    "depth_fusion": 2.2876160001032986,
-    "execute": 358.2613100006711,
-    "end_to_end": 948.059246999037
+    "parse": 0.08615199476480484,
+    "capture": 7.627327009686269,
+    "grounding": 300.6023719935911,
+    "segmentation": 12.823040000512265,
+    "depth_fusion": 2.3212599917314947,
+    "execute": 291.59823000372853,
+    "end_to_end": 629.3722599948524
    },
    "extra": {
     "box": [
-     367.3786926269531,
-     200.03048706054688,
-     400.121826171875,
-     239.57623291015625
+     367.37939453125,
+     200.03082275390625,
+     400.12237548828125,
+     239.57418823242188
     ],
-    "score": 0.820792019367218,
+    "score": 0.8210389018058777,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 532.9029819986317
+     "latency_ms": 300.0683680002112
     },
     "select_info": {
      "n_candidates": 2,
@@ -3220,31 +3188,31 @@
    "kind": "cube",
    "color": "red",
    "grounding_correct": true,
-   "grasped": false,
-   "lifted": false,
-   "placed": false,
+   "grasped": true,
+   "lifted": true,
+   "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.11041299876524135,
-    "capture": 13.42660599766532,
-    "grounding": 531.3197119976394,
-    "segmentation": 23.000998997304123,
-    "depth_fusion": 2.664425002876669,
-    "execute": 321.72889199864585,
-    "end_to_end": 912.7467470025294
+    "parse": 0.07630199252162129,
+    "capture": 7.315297989407554,
+    "grounding": 283.5801830078708,
+    "segmentation": 13.147680001566187,
+    "depth_fusion": 2.2516269964398816,
+    "execute": 258.4105130081298,
+    "end_to_end": 578.8795580010628
    },
    "extra": {
     "box": [
-     353.860107421875,
-     170.68310546875,
+     353.85980224609375,
+     170.68295288085938,
      387.54937744140625,
-     209.89187622070312
+     209.89208984375
     ],
-    "score": 0.8209794759750366,
+    "score": 0.8209198713302612,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 530.576283003029
+     "latency_ms": 283.046689000912
     },
     "select_info": {
      "n_candidates": 2,
@@ -3281,36 +3249,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the blue cube",
+   "command": "pick the red cube",
    "target": "cube_0",
    "kind": "cube",
-   "color": "blue",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.12959299783688039,
-    "capture": 10.125376997166313,
-    "grounding": 560.1812550012255,
-    "segmentation": 22.08830699964892,
-    "depth_fusion": 2.89859100303147,
-    "execute": 395.1904800051125,
-    "end_to_end": 1016.4104509967729
+    "parse": 0.08472199260722846,
+    "capture": 7.609647000208497,
+    "grounding": 319.8672189901117,
+    "segmentation": 16.90124601009302,
+    "depth_fusion": 2.658669007360004,
+    "execute": 333.6462019942701,
+    "end_to_end": 695.3917930077296
    },
    "extra": {
     "box": [
-     309.9018859863281,
-     229.4291534423828,
-     343.7264404296875,
-     270.1715393066406
+     309.9028015136719,
+     229.4284210205078,
+     343.72674560546875,
+     270.171142578125
     ],
-    "score": 0.804945170879364,
+    "score": 0.8050887584686279,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 559.5052580029005
+     "latency_ms": 319.15015999402385
     },
     "select_info": {
      "n_candidates": 2,
@@ -3347,36 +3315,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the blue cube",
+   "command": "pick the red cube",
    "target": "cube_0",
    "kind": "cube",
-   "color": "blue",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.10249200568068773,
-    "capture": 10.485734994290397,
-    "grounding": 544.5570239971858,
-    "segmentation": 27.530599996680394,
-    "depth_fusion": 2.4484899986418895,
-    "execute": 388.5469570013811,
-    "end_to_end": 992.8924359992379
+    "parse": 0.08377199992537498,
+    "capture": 7.372460007900372,
+    "grounding": 293.805916007841,
+    "segmentation": 14.506783001706935,
+    "depth_fusion": 2.7863110008183867,
+    "execute": 340.8044280076865,
+    "end_to_end": 677.5342909968458
    },
    "extra": {
     "box": [
-     211.36767578125,
-     177.7419891357422,
-     245.13290405273438,
-     217.22219848632812
+     211.36746215820312,
+     177.7420196533203,
+     245.1324462890625,
+     217.22193908691406
     ],
-    "score": 0.8270721435546875,
+    "score": 0.8267205953598022,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 543.9657789975172
+     "latency_ms": 293.1708200048888
     },
     "select_info": {
      "n_candidates": 2,
@@ -3413,36 +3381,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the blue cube",
+   "command": "pick the red cube",
    "target": "cube_0",
    "kind": "cube",
-   "color": "blue",
+   "color": "red",
    "grounding_correct": false,
    "grasped": false,
    "lifted": false,
    "placed": false,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.1305230034631677,
-    "capture": 9.946681995643303,
-    "grounding": 570.8671559987124,
-    "segmentation": 18.439088999002706,
-    "depth_fusion": 4.3661169984261505,
-    "execute": 357.8947909991257,
-    "end_to_end": 984.4273319977219
+    "parse": 0.08274200081359595,
+    "capture": 7.49311399704311,
+    "grounding": 284.7056809987407,
+    "segmentation": 12.909151992062107,
+    "depth_fusion": 4.143717000260949,
+    "execute": 324.7886749886675,
+    "end_to_end": 647.7105440135347
    },
    "extra": {
     "box": [
-     333.5643005371094,
-     196.7705078125,
-     397.2257080078125,
-     220.1415252685547
+     333.5650634765625,
+     196.76922607421875,
+     397.22601318359375,
+     220.1410369873047
     ],
-    "score": 0.6698228120803833,
+    "score": 0.6700619459152222,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 570.2170909935376
+     "latency_ms": 284.1446569946129
     },
     "select_info": {
      "n_candidates": 2,
@@ -3489,13 +3457,13 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.10753200331237167,
-    "capture": 14.464851999946404,
-    "grounding": 546.0643219994381,
-    "segmentation": 17.75260199792683,
-    "depth_fusion": 2.5566019976395182,
-    "execute": 390.6995889992686,
-    "end_to_end": 989.7466710026492
+    "parse": 0.08103200525511056,
+    "capture": 7.563745006336831,
+    "grounding": 302.4401489965385,
+    "segmentation": 13.713384003494866,
+    "depth_fusion": 2.2340380091918632,
+    "execute": 310.67641099798493,
+    "end_to_end": 655.4035610024584
    },
    "extra": {
     "box": [
@@ -3508,7 +3476,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 545.163250004407
+     "latency_ms": 301.7894030053867
     },
     "select_info": {
      "n_candidates": 2,
@@ -3545,23 +3513,23 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the blue screwdriver",
-   "target": "screwdriver_0",
-   "kind": "screwdriver",
-   "color": "blue",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.09579299512552097,
-    "capture": 10.65383999957703,
-    "grounding": 553.7701499997638,
-    "segmentation": 18.517359996621963,
-    "depth_fusion": 2.6129030011361465,
-    "execute": 393.1632790045114,
-    "end_to_end": 998.7059090053663
+    "parse": 0.07601200195495039,
+    "capture": 7.429862002027221,
+    "grounding": 296.5430479962379,
+    "segmentation": 12.895192005089484,
+    "depth_fusion": 2.3180699936347082,
+    "execute": 307.25169299694244,
+    "end_to_end": 640.9894389944384
    },
    "extra": {
     "box": [
@@ -3574,7 +3542,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 553.1523149984423
+     "latency_ms": 295.8735499996692
     },
     "select_info": {
      "n_candidates": 2,
@@ -3621,26 +3589,26 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.10679299884941429,
-    "capture": 8.635489997686818,
-    "grounding": 576.8125280010281,
-    "segmentation": 22.082048002630472,
-    "depth_fusion": 3.2670599975972436,
-    "execute": 372.8656659950502,
-    "end_to_end": 1004.596502003551
+    "parse": 0.07651200576219708,
+    "capture": 7.5977559899911284,
+    "grounding": 313.5376940044807,
+    "segmentation": 12.444445004803129,
+    "depth_fusion": 2.277256004163064,
+    "execute": 309.02711699309293,
+    "end_to_end": 658.8852440036135
    },
    "extra": {
     "box": [
-     310.0030822753906,
-     226.15451049804688,
-     345.1253967285156,
-     267.7834167480469
+     310.002197265625,
+     226.15443420410156,
+     345.1255798339844,
+     267.7841796875
     ],
-    "score": 0.8299276232719421,
+    "score": 0.8299487829208374,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 576.1945639969781
+     "latency_ms": 313.0013210029574
     },
     "select_info": {
      "n_candidates": 2,
@@ -3677,36 +3645,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the green can",
-   "target": "can_0",
-   "kind": "can",
-   "color": "green",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.08913199417293072,
-    "capture": 8.738433003600221,
-    "grounding": 586.5654770022957,
-    "segmentation": 17.867414993816055,
-    "depth_fusion": 3.007453000464011,
-    "execute": 385.016293002991,
-    "end_to_end": 1026.1664469944662
+    "parse": 0.11262299085501581,
+    "capture": 7.664577991818078,
+    "grounding": 285.6453410058748,
+    "segmentation": 12.738503006403334,
+    "depth_fusion": 2.2508450056193396,
+    "execute": 324.37601500714663,
+    "end_to_end": 646.1090540105943
    },
    "extra": {
     "box": [
-     212.86024475097656,
-     193.25657653808594,
-     248.80807495117188,
-     233.14645385742188
+     212.85951232910156,
+     193.2572021484375,
+     248.80796813964844,
+     233.14596557617188
     ],
-    "score": 0.7887529134750366,
+    "score": 0.7890658378601074,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 585.5974229998537
+     "latency_ms": 284.94688399950974
     },
     "select_info": {
      "n_candidates": 3,
@@ -3743,36 +3711,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the green can",
-   "target": "can_0",
-   "kind": "can",
-   "color": "green",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.12671299919020385,
-    "capture": 10.954796998703387,
-    "grounding": 555.8958200053894,
-    "segmentation": 24.160388005839195,
-    "depth_fusion": 2.9174410010455176,
-    "execute": 375.7322970050154,
-    "end_to_end": 995.7059959997423
+    "parse": 0.08553199586458504,
+    "capture": 7.464904003427364,
+    "grounding": 302.86578500817996,
+    "segmentation": 12.769105000188574,
+    "depth_fusion": 2.287486000568606,
+    "execute": 322.42251599382143,
+    "end_to_end": 661.6739169985522
    },
    "extra": {
     "box": [
-     305.3985595703125,
-     194.7629852294922,
-     341.0928955078125,
-     236.513427734375
+     305.3983154296875,
+     194.76365661621094,
+     341.09320068359375,
+     236.5133819580078
     ],
-    "score": 0.8212029933929443,
+    "score": 0.8206849098205566,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 555.1430709965643
+     "latency_ms": 302.3313209996559
     },
     "select_info": {
      "n_candidates": 2,
@@ -3809,23 +3777,23 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the blue screwdriver",
-   "target": "screwdriver_0",
-   "kind": "screwdriver",
-   "color": "blue",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.09271200542571023,
-    "capture": 8.90728699596366,
-    "grounding": 564.9339299998246,
-    "segmentation": 16.883561002032366,
-    "depth_fusion": 2.805627998895943,
-    "execute": 357.3613570042653,
-    "end_to_end": 968.1946440032334
+    "parse": 0.08057299419306219,
+    "capture": 7.520504004787654,
+    "grounding": 299.43929199362174,
+    "segmentation": 13.07369199639652,
+    "depth_fusion": 2.240854999399744,
+    "execute": 303.4278590057511,
+    "end_to_end": 643.15628100303
    },
    "extra": {
     "box": [
@@ -3838,7 +3806,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 563.960835999751
+     "latency_ms": 298.4678479988361
     },
     "select_info": {
      "n_candidates": 3,
@@ -3875,23 +3843,23 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the green cube",
+   "command": "pick the red cube",
    "target": "cube_0",
    "kind": "cube",
-   "color": "green",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.10180199751630425,
-    "capture": 14.469301997451112,
-    "grounding": 593.3755630030646,
-    "segmentation": 31.335772000602446,
-    "depth_fusion": 2.6641150034265593,
-    "execute": 385.71908000449184,
-    "end_to_end": 1054.9805279952125
+    "parse": 0.0828320044092834,
+    "capture": 7.803561995388009,
+    "grounding": 289.4327560061356,
+    "segmentation": 14.579510010662489,
+    "depth_fusion": 3.0465150048257783,
+    "execute": 336.2796869914746,
+    "end_to_end": 669.7983469930477
    },
    "extra": {
     "box": [
@@ -3904,7 +3872,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 592.1506520026014
+     "latency_ms": 288.51465199841186
     },
     "select_info": {
      "n_candidates": 3,
@@ -3941,36 +3909,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the blue cube",
+   "command": "pick the red cube",
    "target": "cube_0",
    "kind": "cube",
-   "color": "blue",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.11970300693064928,
-    "capture": 11.246483998547774,
-    "grounding": 551.1758850043407,
-    "segmentation": 18.306855999981053,
-    "depth_fusion": 2.764027005468961,
-    "execute": 383.2542480013217,
-    "end_to_end": 989.8332920056419
+    "parse": 0.07723199087195098,
+    "capture": 7.577595999464393,
+    "grounding": 285.0242059939774,
+    "segmentation": 12.630632001673803,
+    "depth_fusion": 2.364407991990447,
+    "execute": 312.73982900893316,
+    "end_to_end": 634.271742994315
    },
    "extra": {
     "box": [
-     318.2510986328125,
-     169.3329315185547,
-     352.43585205078125,
-     209.94383239746094
+     318.2514953613281,
+     169.33218383789062,
+     352.4363708496094,
+     209.94520568847656
     ],
-    "score": 0.799615204334259,
+    "score": 0.7992116808891296,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 550.2318520011613
+     "latency_ms": 284.4765720074065
     },
     "select_info": {
      "n_candidates": 2,
@@ -4007,36 +3975,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "degraded",
-   "command": "pick the green cube",
+   "command": "pick the red cube",
    "target": "cube_0",
    "kind": "cube",
-   "color": "green",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.08937199891079217,
-    "capture": 12.07938400330022,
-    "grounding": 583.6238670017337,
-    "segmentation": 22.13791900430806,
-    "depth_fusion": 2.3871680023148656,
-    "execute": 372.69567100156564,
-    "end_to_end": 1011.0003180016065
+    "parse": 0.12498299474827945,
+    "capture": 9.165945986751467,
+    "grounding": 298.84481499902904,
+    "segmentation": 12.571719009429216,
+    "depth_fusion": 2.299676008988172,
+    "execute": 289.0808459924301,
+    "end_to_end": 626.5218620101223
    },
    "extra": {
     "box": [
-     264.55926513671875,
-     185.7273406982422,
-     300.28851318359375,
-     227.1912841796875
+     264.5592956542969,
+     185.72695922851562,
+     300.2880554199219,
+     227.1905975341797
     ],
-    "score": 0.8137695789337158,
+    "score": 0.8138167262077332,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 583.0126919972827
+     "latency_ms": 298.27664099866524
     },
     "select_info": {
      "n_candidates": 2,
@@ -4073,23 +4041,23 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the green screwdriver",
-   "target": "screwdriver_0",
-   "kind": "screwdriver",
-   "color": "green",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.10323199967388064,
-    "capture": 9.348876999865752,
-    "grounding": 589.3404250018648,
-    "segmentation": 16.196394004509784,
-    "depth_fusion": 2.2499740007333457,
-    "execute": 299.91634000180056,
-    "end_to_end": 934.1489279977395
+    "parse": 0.10268201003782451,
+    "capture": 7.836433011107147,
+    "grounding": 310.81357099174056,
+    "segmentation": 14.985689995228313,
+    "depth_fusion": 2.50043100095354,
+    "execute": 290.0866199925076,
+    "end_to_end": 645.9078379994025
    },
    "extra": {
     "box": [
@@ -4102,7 +4070,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 588.5124260021257
+     "latency_ms": 310.040210999432
     },
     "select_info": {
      "n_candidates": 3,
@@ -4139,36 +4107,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the green can",
-   "target": "can_0",
-   "kind": "can",
-   "color": "green",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.07215199730126187,
-    "capture": 10.097995997057296,
-    "grounding": 554.9071770001319,
-    "segmentation": 22.82895499956794,
-    "depth_fusion": 2.213924002717249,
-    "execute": 276.27494300395483,
-    "end_to_end": 883.4198709955672
+    "parse": 0.09336200309917331,
+    "capture": 8.745104991248809,
+    "grounding": 287.51688700867817,
+    "segmentation": 12.696324003627524,
+    "depth_fusion": 2.2366250050254166,
+    "execute": 287.6971310033696,
+    "end_to_end": 612.8489340044325
    },
    "extra": {
     "box": [
-     312.63720703125,
-     174.18511962890625,
-     347.3497314453125,
-     214.5877685546875
+     312.63507080078125,
+     174.18597412109375,
+     347.3501281738281,
+     214.59214782714844
     ],
-    "score": 0.794294536113739,
+    "score": 0.7948648929595947,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 554.1250989990658
+     "latency_ms": 286.8475900031626
     },
     "select_info": {
      "n_candidates": 3,
@@ -4205,36 +4173,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the blue screwdriver",
-   "target": "screwdriver_0",
-   "kind": "screwdriver",
-   "color": "blue",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.07205200381577015,
-    "capture": 10.485917002370115,
-    "grounding": 339.468834004947,
-    "segmentation": 15.332875998865347,
-    "depth_fusion": 3.056595000089146,
-    "execute": 439.17014299950097,
-    "end_to_end": 822.0767699967837
+    "parse": 0.07782199827488512,
+    "capture": 7.450913995853625,
+    "grounding": 300.6095489981817,
+    "segmentation": 12.476068004616536,
+    "depth_fusion": 2.281246008351445,
+    "execute": 356.61747900303453,
+    "end_to_end": 693.5328120016493
    },
    "extra": {
     "box": [
-     217.03428649902344,
-     193.2400665283203,
-     252.4441680908203,
-     233.074951171875
+     217.0340576171875,
+     193.24012756347656,
+     252.44393920898438,
+     233.07423400878906
     ],
-    "score": 0.8276423811912537,
+    "score": 0.8276863098144531,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 338.94218000205
+     "latency_ms": 300.0905259978026
     },
     "select_info": {
      "n_candidates": 2,
@@ -4271,36 +4239,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the yellow cube",
+   "command": "pick the red cube",
    "target": "cube_0",
    "kind": "cube",
-   "color": "yellow",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.0959919998422265,
-    "capture": 8.61523200001102,
-    "grounding": 408.3455989966751,
-    "segmentation": 23.399761994369328,
-    "depth_fusion": 3.307730999949854,
-    "execute": 433.8786730004358,
-    "end_to_end": 903.6167539961752
+    "parse": 0.0783520081313327,
+    "capture": 7.604947997606359,
+    "grounding": 289.49296500650235,
+    "segmentation": 14.951038989238441,
+    "depth_fusion": 2.9158010001992807,
+    "execute": 322.77311400684994,
+    "end_to_end": 657.1929969941266
    },
    "extra": {
     "box": [
-     360.65997314453125,
-     234.69729614257812,
-     392.9693298339844,
-     273.2064208984375
+     360.6597595214844,
+     234.69766235351562,
+     392.9684753417969,
+     273.20703125
     ],
-    "score": 0.8029459714889526,
+    "score": 0.8037398457527161,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 407.417736001662
+     "latency_ms": 288.8744410010986
     },
     "select_info": {
      "n_candidates": 2,
@@ -4337,36 +4305,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the yellow screwdriver",
-   "target": "screwdriver_0",
-   "kind": "screwdriver",
-   "color": "yellow",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.10657300299499184,
-    "capture": 9.0892320004059,
-    "grounding": 559.905276997597,
-    "segmentation": 20.074740001291502,
-    "depth_fusion": 2.955721996841021,
-    "execute": 347.0130580026307,
-    "end_to_end": 963.7992749994737
+    "parse": 0.07486200775019825,
+    "capture": 7.490715011954308,
+    "grounding": 311.2080200080527,
+    "segmentation": 12.811285007046536,
+    "depth_fusion": 2.276075989357196,
+    "execute": 265.3151199920103,
+    "end_to_end": 613.5252819949528
    },
    "extra": {
     "box": [
-     356.1711120605469,
-     178.75540161132812,
+     356.1712646484375,
+     178.7552947998047,
      386.1924743652344,
-     216.48828125
+     216.48822021484375
     ],
-    "score": 0.7074132561683655,
+    "score": 0.7073186635971069,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 558.8217699987581
+     "latency_ms": 310.5149119946873
     },
     "select_info": {
      "n_candidates": 3,
@@ -4403,23 +4371,23 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "degraded",
-   "command": "pick the green can",
-   "target": "can_0",
-   "kind": "can",
-   "color": "green",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.09023200254887342,
-    "capture": 9.497671999270096,
-    "grounding": 555.7170730025973,
-    "segmentation": 20.605083998816554,
-    "depth_fusion": 2.540702000260353,
-    "execute": 355.10695700213546,
-    "end_to_end": 965.5586279986892
+    "parse": 0.09349299944005907,
+    "capture": 8.727225009351969,
+    "grounding": 296.8433969945181,
+    "segmentation": 12.958919993252493,
+    "depth_fusion": 2.2641260002274066,
+    "execute": 316.0416190075921,
+    "end_to_end": 650.7284679973964
    },
    "extra": {
     "box": [
@@ -4432,7 +4400,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 554.7555500015733
+     "latency_ms": 296.14720901008695
     },
     "select_info": {
      "n_candidates": 3,
@@ -4469,9 +4437,9 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "degraded",
-   "command": "pick the red can",
-   "target": "can_0",
-   "kind": "can",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
    "color": "red",
    "grounding_correct": true,
    "grasped": true,
@@ -4479,26 +4447,26 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.12586400407599285,
-    "capture": 15.166942001087591,
-    "grounding": 581.4202119945548,
-    "segmentation": 17.10853000258794,
-    "depth_fusion": 2.9237010021461174,
-    "execute": 344.8174739969545,
-    "end_to_end": 981.2169219949283
+    "parse": 0.08186200284399092,
+    "capture": 7.570626999950036,
+    "grounding": 284.95670499978587,
+    "segmentation": 13.33947799867019,
+    "depth_fusion": 2.2872169938636944,
+    "execute": 298.3113740046974,
+    "end_to_end": 621.1530000000494
    },
    "extra": {
     "box": [
-     352.1972961425781,
-     202.85366821289062,
-     381.1523742675781,
-     239.1123504638672
+     352.19671630859375,
+     202.85350036621094,
+     381.15264892578125,
+     239.1131591796875
     ],
-    "score": 0.8072208762168884,
+    "score": 0.8072231411933899,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 580.7867270050338
+     "latency_ms": 284.3940799939446
     },
     "select_info": {
      "n_candidates": 2,
@@ -4535,9 +4503,9 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the red can",
-   "target": "can_0",
-   "kind": "can",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
    "color": "red",
    "grounding_correct": true,
    "grasped": true,
@@ -4545,26 +4513,26 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.12688300193985924,
-    "capture": 9.078281997062732,
-    "grounding": 547.5196330007748,
-    "segmentation": 21.61971800524043,
-    "depth_fusion": 2.8303500002948567,
-    "execute": 388.1533359963214,
-    "end_to_end": 994.9952589959139
+    "parse": 0.08970301132649183,
+    "capture": 7.797981990734115,
+    "grounding": 313.78896298701875,
+    "segmentation": 12.60074001038447,
+    "depth_fusion": 2.4448600015603006,
+    "execute": 327.15877299779095,
+    "end_to_end": 679.2570100078592
    },
    "extra": {
     "box": [
-     318.3101806640625,
-     227.36309814453125,
-     353.87139892578125,
-     268.6947937011719
+     318.30804443359375,
+     227.36354064941406,
+     353.87060546875,
+     268.6951904296875
     ],
-    "score": 0.7777320146560669,
+    "score": 0.7775551676750183,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 546.7832740032463
+     "latency_ms": 313.1592779973289
     },
     "select_info": {
      "n_candidates": 2,
@@ -4601,23 +4569,23 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the blue screwdriver",
-   "target": "screwdriver_0",
-   "kind": "screwdriver",
-   "color": "blue",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.0967820014921017,
-    "capture": 8.669312999700196,
-    "grounding": 561.3571420035441,
-    "segmentation": 20.456140002352186,
-    "depth_fusion": 3.0631740009994246,
-    "execute": 333.1234989964287,
-    "end_to_end": 946.4402720041107
+    "parse": 0.0926220091059804,
+    "capture": 8.844708005199209,
+    "grounding": 292.11351099365856,
+    "segmentation": 12.500747994636185,
+    "depth_fusion": 2.2151250013848767,
+    "execute": 285.0913779984694,
+    "end_to_end": 614.6438310097437
    },
    "extra": {
     "box": [
@@ -4630,7 +4598,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 560.5387019968475
+     "latency_ms": 291.44543399161194
     },
     "select_info": {
      "n_candidates": 3,
@@ -4667,23 +4635,23 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the yellow can",
-   "target": "can_0",
-   "kind": "can",
-   "color": "yellow",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.09995199798140675,
-    "capture": 8.854395993694197,
-    "grounding": 550.9270460024709,
-    "segmentation": 19.203289004508406,
-    "depth_fusion": 2.3344770015683025,
-    "execute": 317.50732700311346,
-    "end_to_end": 924.5779870034312
+    "parse": 0.07933199231047183,
+    "capture": 7.518525002524257,
+    "grounding": 286.55542399792466,
+    "segmentation": 12.577167988638394,
+    "depth_fusion": 2.2453259880421683,
+    "execute": 294.25787398940884,
+    "end_to_end": 617.1443220082438
    },
    "extra": {
     "box": [
@@ -4696,7 +4664,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 550.1920990063809
+     "latency_ms": 286.0310920077609
     },
     "select_info": {
      "n_candidates": 2,
@@ -4733,23 +4701,23 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the blue screwdriver",
-   "target": "screwdriver_0",
-   "kind": "screwdriver",
-   "color": "blue",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.09315200441051275,
-    "capture": 10.804063000250608,
-    "grounding": 554.4943450004212,
-    "segmentation": 23.90981399366865,
-    "depth_fusion": 3.01462400238961,
-    "execute": 404.57983699889155,
-    "end_to_end": 1017.3108750022948
+    "parse": 0.09533201227895916,
+    "capture": 8.870837002177723,
+    "grounding": 285.0464880029904,
+    "segmentation": 12.448716996004805,
+    "depth_fusion": 2.2088149999035522,
+    "execute": 329.6308949938975,
+    "end_to_end": 652.8162899921881
    },
    "extra": {
     "box": [
@@ -4762,7 +4730,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 553.8532889986527
+     "latency_ms": 284.50998400512617
     },
     "select_info": {
      "n_candidates": 2,
@@ -4799,36 +4767,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "degraded",
-   "command": "pick the yellow screwdriver",
-   "target": "screwdriver_0",
-   "kind": "screwdriver",
-   "color": "yellow",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.11275299766566604,
-    "capture": 13.651604000187945,
-    "grounding": 561.2349980001454,
-    "segmentation": 28.42347499972675,
-    "depth_fusion": 2.4221899948315695,
-    "execute": 326.12400799553143,
-    "end_to_end": 947.9001569998218
+    "parse": 0.08433200127910823,
+    "capture": 7.720070003415458,
+    "grounding": 322.1491599979345,
+    "segmentation": 12.687812995864078,
+    "depth_fusion": 2.2631260071648285,
+    "execute": 274.3003109935671,
+    "end_to_end": 634.086218997254
    },
    "extra": {
     "box": [
-     318.4184265136719,
-     195.08538818359375,
-     353.7099609375,
-     236.46058654785156
+     318.4145812988281,
+     195.08518981933594,
+     353.7095947265625,
+     236.46141052246094
     ],
-    "score": 0.7829617857933044,
+    "score": 0.7811776399612427,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 560.7657969958382
+     "latency_ms": 321.7614909954136
     },
     "select_info": {
      "n_candidates": 1,
@@ -4865,36 +4833,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the green cube",
+   "command": "pick the red cube",
    "target": "cube_0",
    "kind": "cube",
-   "color": "green",
+   "color": "red",
    "grounding_correct": false,
    "grasped": false,
    "lifted": false,
    "placed": false,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.09511199459666386,
-    "capture": 11.683324999467004,
-    "grounding": 537.89338900242,
-    "segmentation": 19.86315599788213,
-    "depth_fusion": 2.7907080002478324,
-    "execute": 389.51239900052315,
-    "end_to_end": 983.6260519950883
+    "parse": 0.07823199848644435,
+    "capture": 7.3452310025459155,
+    "grounding": 303.2152530067833,
+    "segmentation": 12.69651300390251,
+    "depth_fusion": 2.613324992125854,
+    "execute": 347.9255540005397,
+    "end_to_end": 688.4723970142659
    },
    "extra": {
     "box": [
-     263.0448913574219,
-     157.16685485839844,
-     291.78778076171875,
-     214.73658752441406
+     263.0455322265625,
+     157.16732788085938,
+     291.7877502441406,
+     214.73660278320312
     ],
-    "score": 0.7912071943283081,
+    "score": 0.7910566926002502,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 536.8933839999954
+     "latency_ms": 302.5326060014777
     },
     "select_info": {
      "n_candidates": 3,
@@ -4931,36 +4899,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "degraded",
-   "command": "pick the yellow screwdriver",
-   "target": "screwdriver_0",
-   "kind": "screwdriver",
-   "color": "yellow",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.13175399362808093,
-    "capture": 9.235226003511343,
-    "grounding": 559.8016649964848,
-    "segmentation": 25.586067000404,
-    "depth_fusion": 2.568003001215402,
-    "execute": 423.24292300327215,
-    "end_to_end": 1040.6096650040126
+    "parse": 0.09663199307397008,
+    "capture": 8.83865800278727,
+    "grounding": 293.778512001154,
+    "segmentation": 12.688823000644334,
+    "depth_fusion": 2.273956997669302,
+    "execute": 405.9017010004027,
+    "end_to_end": 737.4838950054254
    },
    "extra": {
     "box": [
-     253.49427795410156,
-     211.04400634765625,
-     290.71783447265625,
-     254.0040740966797
+     253.49464416503906,
+     211.0434112548828,
+     290.71734619140625,
+     254.00341796875
     ],
-    "score": 0.8206284642219543,
+    "score": 0.8215406537055969,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 559.0355160020408
+     "latency_ms": 293.225308007095
     },
     "select_info": {
      "n_candidates": 2,
@@ -4997,23 +4965,23 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the yellow can",
-   "target": "can_0",
-   "kind": "can",
-   "color": "yellow",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.11328200343996286,
-    "capture": 10.314202001609374,
-    "grounding": 562.3559360028594,
-    "segmentation": 28.99368900398258,
-    "depth_fusion": 2.612233998661395,
-    "execute": 370.908793003764,
-    "end_to_end": 993.7183189977077
+    "parse": 0.10074299643747509,
+    "capture": 8.761805001995526,
+    "grounding": 290.24698499415535,
+    "segmentation": 12.689913011854514,
+    "depth_fusion": 2.1809439931530505,
+    "execute": 301.0224400059087,
+    "end_to_end": 629.3075419962406
    },
    "extra": {
     "box": [
@@ -5026,7 +4994,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 561.6390680006589
+     "latency_ms": 289.5233669987647
     },
     "select_info": {
      "n_candidates": 3,
@@ -5063,23 +5031,23 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "degraded",
-   "command": "pick the green cube",
+   "command": "pick the red cube",
    "target": "cube_0",
    "kind": "cube",
-   "color": "green",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.12341399997239932,
-    "capture": 8.7362039994332,
-    "grounding": 564.4878979946952,
-    "segmentation": 18.153812998207286,
-    "depth_fusion": 3.0129540027701296,
-    "execute": 337.8411049998249,
-    "end_to_end": 959.0948120021494
+    "parse": 0.09983200288843364,
+    "capture": 8.61081198672764,
+    "grounding": 304.3292310030665,
+    "segmentation": 14.635471001383848,
+    "depth_fusion": 2.8620700031751767,
+    "execute": 295.47253300552256,
+    "end_to_end": 640.0252649909817
    },
    "extra": {
     "box": [
@@ -5092,7 +5060,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 563.2618989984621
+     "latency_ms": 303.64322300010826
     },
     "select_info": {
      "n_candidates": 3,
@@ -5129,23 +5097,23 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the green can",
-   "target": "can_0",
-   "kind": "can",
-   "color": "green",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.09593200229573995,
-    "capture": 12.048156000673771,
-    "grounding": 551.6160240003956,
-    "segmentation": 17.346084001474082,
-    "depth_fusion": 2.568493000580929,
-    "execute": 410.0902810023399,
-    "end_to_end": 1011.7572500021197
+    "parse": 0.07854199793655425,
+    "capture": 7.509834991651587,
+    "grounding": 286.7863999999827,
+    "segmentation": 12.517367009422742,
+    "depth_fusion": 2.8453300037654117,
+    "execute": 376.75833399407566,
+    "end_to_end": 700.2527470031055
    },
    "extra": {
     "box": [
@@ -5158,7 +5126,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 550.8880869965651
+     "latency_ms": 286.23601599247195
     },
     "select_info": {
      "n_candidates": 2,
@@ -5195,23 +5163,23 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the blue screwdriver",
-   "target": "screwdriver_0",
-   "kind": "screwdriver",
-   "color": "blue",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.1258629999938421,
-    "capture": 13.545831003284547,
-    "grounding": 557.4184159995639,
-    "segmentation": 20.178803999442607,
-    "depth_fusion": 3.02087399904849,
-    "execute": 374.9345110045397,
-    "end_to_end": 996.1547380007687
+    "parse": 0.07731099321972579,
+    "capture": 7.435852996422909,
+    "grounding": 303.4245489980094,
+    "segmentation": 12.32158299535513,
+    "depth_fusion": 2.1990840032231063,
+    "execute": 328.8012940029148,
+    "end_to_end": 668.4762350050732
    },
    "extra": {
     "box": [
@@ -5224,7 +5192,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 556.2135660002241
+     "latency_ms": 302.506516003632
     },
     "select_info": {
      "n_candidates": 4,
@@ -5261,36 +5229,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the blue can",
-   "target": "can_0",
-   "kind": "can",
-   "color": "blue",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.11034400085918605,
-    "capture": 10.116852005012333,
-    "grounding": 581.1041339984513,
-    "segmentation": 18.768595000437927,
-    "depth_fusion": 3.024793004442472,
-    "execute": 389.3118720006896,
-    "end_to_end": 1028.1688390023191
+    "parse": 0.0859019928611815,
+    "capture": 7.691170001635328,
+    "grounding": 317.54146599269006,
+    "segmentation": 13.100082011078484,
+    "depth_fusion": 2.328736998606473,
+    "execute": 344.4635489868233,
+    "end_to_end": 699.673374008853
    },
    "extra": {
     "box": [
-     278.9989318847656,
-     175.68048095703125,
-     313.5350341796875,
-     215.99810791015625
+     278.9988708496094,
+     175.6800537109375,
+     313.53515625,
+     215.99813842773438
     ],
-    "score": 0.8333819508552551,
+    "score": 0.8335448503494263,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 580.3976999959559
+     "latency_ms": 316.99940300313756
     },
     "select_info": {
      "n_candidates": 2,
@@ -5327,36 +5295,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "degraded",
-   "command": "pick the green can",
-   "target": "can_0",
-   "kind": "can",
-   "color": "green",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.13640399993164465,
-    "capture": 9.109108003030997,
-    "grounding": 570.8288289970369,
-    "segmentation": 23.086970002623275,
-    "depth_fusion": 3.1137449986999854,
-    "execute": 345.0758360049804,
-    "end_to_end": 974.3514790025074
+    "parse": 0.08332300058100373,
+    "capture": 7.505885005230084,
+    "grounding": 292.36423700058367,
+    "segmentation": 12.660152002354153,
+    "depth_fusion": 2.2547060070792213,
+    "execute": 285.831255998346,
+    "end_to_end": 614.6434910042444
    },
    "extra": {
     "box": [
-     376.61346435546875,
-     213.8809814453125,
-     411.27862548828125,
-     253.43588256835938
+     376.61273193359375,
+     213.88095092773438,
+     411.2774353027344,
+     253.43621826171875
     ],
-    "score": 0.8242571353912354,
+    "score": 0.8241353034973145,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 569.9678289965959
+     "latency_ms": 291.831373993773
     },
     "select_info": {
      "n_candidates": 2,
@@ -5393,36 +5361,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the yellow cube",
+   "command": "pick the red cube",
    "target": "cube_0",
    "kind": "cube",
-   "color": "yellow",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.13303499872563407,
-    "capture": 10.904738999670371,
-    "grounding": 553.2892250048462,
-    "segmentation": 17.668858003162313,
-    "depth_fusion": 2.8804969988414086,
-    "execute": 385.7880919968011,
-    "end_to_end": 992.8688860018156
+    "parse": 0.07754200487397611,
+    "capture": 7.424962997902185,
+    "grounding": 286.27845700248145,
+    "segmentation": 13.027162000071257,
+    "depth_fusion": 2.8562710067490116,
+    "execute": 347.86975299357437,
+    "end_to_end": 671.9110499980161
    },
    "extra": {
     "box": [
-     215.3130340576172,
-     192.98118591308594,
-     252.9853057861328,
-     234.50518798828125
+     215.31317138671875,
+     192.98159790039062,
+     252.98536682128906,
+     234.50502014160156
     ],
-    "score": 0.8360064029693604,
+    "score": 0.8357982039451599,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 552.4537270030123
+     "latency_ms": 285.76476499438286
     },
     "select_info": {
      "n_candidates": 2,
@@ -5459,36 +5427,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the green screwdriver",
-   "target": "screwdriver_0",
-   "kind": "screwdriver",
-   "color": "green",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.11147299665026367,
-    "capture": 9.769611002411693,
-    "grounding": 555.0881770031992,
-    "segmentation": 22.15004599565873,
-    "depth_fusion": 3.012453998962883,
-    "execute": 355.59128200111445,
-    "end_to_end": 969.1415010020137
+    "parse": 0.07920200005173683,
+    "capture": 7.486495000193827,
+    "grounding": 285.91634800250176,
+    "segmentation": 12.653342011617497,
+    "depth_fusion": 2.291757002240047,
+    "execute": 310.5457450001268,
+    "end_to_end": 633.4782150079263
    },
    "extra": {
     "box": [
-     260.87384033203125,
-     171.541259765625,
-     295.29522705078125,
-     211.40286254882812
+     260.8733825683594,
+     171.54092407226562,
+     295.2951354980469,
+     211.4017333984375
     ],
-    "score": 0.7861509323120117,
+    "score": 0.786556601524353,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 554.4584020026377
+     "latency_ms": 285.39891600667033
     },
     "select_info": {
      "n_candidates": 2,
@@ -5535,26 +5503,26 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.12666299880947918,
-    "capture": 15.021049999631941,
-    "grounding": 586.6943779983558,
-    "segmentation": 17.790848003642168,
-    "depth_fusion": 2.819898996676784,
-    "execute": 309.27209200308425,
-    "end_to_end": 954.1424720009672
+    "parse": 0.09361200500279665,
+    "capture": 8.758615993428975,
+    "grounding": 312.12874299671967,
+    "segmentation": 13.762069007498212,
+    "depth_fusion": 2.2516049939440563,
+    "execute": 260.8439509931486,
+    "end_to_end": 612.3767239914741
    },
    "extra": {
     "box": [
-     371.3128662109375,
-     191.9337921142578,
-     399.008544921875,
-     227.3437957763672
+     371.31048583984375,
+     191.93301391601562,
+     399.0086364746094,
+     227.34478759765625
     ],
-    "score": 0.7418236136436462,
+    "score": 0.7413118481636047,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 585.9959599983995
+     "latency_ms": 311.6186309925979
     },
     "select_info": {
      "n_candidates": 2,
@@ -5591,36 +5559,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the blue can",
-   "target": "can_0",
-   "kind": "can",
-   "color": "blue",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.09746300202095881,
-    "capture": 10.562720999587327,
-    "grounding": 579.7003749976284,
-    "segmentation": 21.531520993448794,
-    "depth_fusion": 2.4163099951692857,
-    "execute": 318.196710999473,
-    "end_to_end": 955.0471039983677
+    "parse": 0.07545200060121715,
+    "capture": 7.486425005481578,
+    "grounding": 287.2351910045836,
+    "segmentation": 12.93900900054723,
+    "depth_fusion": 2.219774993136525,
+    "execute": 292.20861398789566,
+    "end_to_end": 616.2598899973091
    },
    "extra": {
     "box": [
-     311.9056396484375,
-     207.51502990722656,
-     339.2906494140625,
-     243.10108947753906
+     311.9038391113281,
+     207.5154571533203,
+     339.2911376953125,
+     243.10057067871094
     ],
-    "score": 0.701937735080719,
+    "score": 0.7026892900466919,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 579.1251300033764
+     "latency_ms": 286.82664000371005
     },
     "select_info": {
      "n_candidates": 1,
@@ -5657,23 +5625,23 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "degraded",
-   "command": "pick the green can",
-   "target": "can_0",
-   "kind": "can",
-   "color": "green",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.0851419972605072,
-    "capture": 7.722980997641571,
-    "grounding": 576.2404889974277,
-    "segmentation": 21.43600900308229,
-    "depth_fusion": 2.8272600029595196,
-    "execute": 310.80886800191365,
-    "end_to_end": 938.4559450045344
+    "parse": 0.084351995610632,
+    "capture": 7.671068990021013,
+    "grounding": 287.0399149978766,
+    "segmentation": 13.066472005448304,
+    "depth_fusion": 2.2583749960176647,
+    "execute": 316.81067899626214,
+    "end_to_end": 641.3374179974198
    },
    "extra": {
     "box": [
@@ -5686,7 +5654,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 575.2903249958763
+     "latency_ms": 286.30370799510274
     },
     "select_info": {
      "n_candidates": 3,
@@ -5723,36 +5691,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the yellow can",
-   "target": "can_0",
-   "kind": "can",
-   "color": "yellow",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.0736010042601265,
-    "capture": 10.605760995531455,
-    "grounding": 506.5925540038734,
-    "segmentation": 13.383830002567265,
-    "depth_fusion": 2.281196000694763,
-    "execute": 327.0248979970347,
-    "end_to_end": 874.7623169983854
+    "parse": 0.0804919982329011,
+    "capture": 7.452083998941816,
+    "grounding": 306.37125299836043,
+    "segmentation": 14.067465002881363,
+    "depth_fusion": 2.246425996418111,
+    "execute": 302.56250899401493,
+    "end_to_end": 651.9153090048349
    },
    "extra": {
     "box": [
-     242.84869384765625,
-     191.45896911621094,
-     272.0617980957031,
-     227.21563720703125
+     242.8219757080078,
+     191.458251953125,
+     272.0653991699219,
+     227.21669006347656
     ],
-    "score": 0.7028588652610779,
+    "score": 0.7033241391181946,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 505.74296199920354
+     "latency_ms": 305.45748000440653
     },
     "select_info": {
      "n_candidates": 3,
@@ -5799,13 +5767,13 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.12876300024800003,
-    "capture": 8.916439997847192,
-    "grounding": 308.7025370041374,
-    "segmentation": 17.600913997739553,
-    "depth_fusion": 2.485331002390012,
-    "execute": 346.57359099946916,
-    "end_to_end": 703.847984004824
+    "parse": 0.07520201324950904,
+    "capture": 7.640518000698648,
+    "grounding": 312.6878079929156,
+    "segmentation": 12.867126992205158,
+    "depth_fusion": 2.265286006149836,
+    "execute": 284.1681849968154,
+    "end_to_end": 636.1975409963634
    },
    "extra": {
     "box": [
@@ -5818,7 +5786,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 307.4278950007283
+     "latency_ms": 311.7824259970803
     },
     "select_info": {
      "n_candidates": 4,
@@ -5855,36 +5823,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "degraded",
-   "command": "pick the green cube",
+   "command": "pick the red cube",
    "target": "cube_0",
    "kind": "cube",
-   "color": "green",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.1159129969892092,
-    "capture": 14.777243995922618,
-    "grounding": 588.9832429966191,
-    "segmentation": 22.333300003083423,
-    "depth_fusion": 3.3052319995476864,
-    "execute": 376.9180979943485,
-    "end_to_end": 1033.0651569965994
+    "parse": 0.09237299673259258,
+    "capture": 8.758405994740315,
+    "grounding": 286.9079719966976,
+    "segmentation": 12.777095005731098,
+    "depth_fusion": 2.285075999679975,
+    "execute": 274.47521600697655,
+    "end_to_end": 599.6752819919493
    },
    "extra": {
     "box": [
-     290.6044616699219,
-     199.9241485595703,
-     320.686279296875,
-     237.67605590820312
+     290.6053466796875,
+     199.92381286621094,
+     320.6869812011719,
+     237.6758575439453
     ],
-    "score": 0.7324129343032837,
+    "score": 0.7328377962112427,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 587.9924890032271
+     "latency_ms": 286.35795900481753
     },
     "select_info": {
      "n_candidates": 2,
@@ -5921,23 +5889,23 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the blue screwdriver",
-   "target": "screwdriver_0",
-   "kind": "screwdriver",
-   "color": "blue",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.11007300054188818,
-    "capture": 13.847731999703683,
-    "grounding": 550.2994009948452,
-    "segmentation": 30.78510799969081,
-    "depth_fusion": 2.7383080014260486,
-    "execute": 362.3644589970354,
-    "end_to_end": 981.7017610039329
+    "parse": 0.08719199104234576,
+    "capture": 7.390772007056512,
+    "grounding": 283.88930900837295,
+    "segmentation": 12.692382995737717,
+    "depth_fusion": 2.281505992868915,
+    "execute": 322.7398839953821,
+    "end_to_end": 643.2394439907512
    },
    "extra": {
     "box": [
@@ -5950,7 +5918,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 549.1505630052416
+     "latency_ms": 283.1539309991058
     },
     "select_info": {
      "n_candidates": 3,
@@ -5987,36 +5955,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "degraded",
-   "command": "pick the green cube",
+   "command": "pick the red cube",
    "target": "cube_0",
    "kind": "cube",
-   "color": "green",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.10932300210697576,
-    "capture": 9.063082994543947,
-    "grounding": 576.8049729958875,
-    "segmentation": 22.191006995853968,
-    "depth_fusion": 2.3374480006168596,
-    "execute": 379.0910919997259,
-    "end_to_end": 1009.4905459991423
+    "parse": 0.07896199531387538,
+    "capture": 7.602887009852566,
+    "grounding": 288.25969599711243,
+    "segmentation": 14.383683999767527,
+    "depth_fusion": 2.2662550036329776,
+    "execute": 325.80806998885237,
+    "end_to_end": 656.561612006044
    },
    "extra": {
     "box": [
-     232.65464782714844,
-     185.76170349121094,
-     269.2794494628906,
-     227.4845733642578
+     232.65438842773438,
+     185.76190185546875,
+     269.2791442871094,
+     227.484375
     ],
-    "score": 0.8226220011711121,
+    "score": 0.8220472931861877,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 576.1986779980361
+     "latency_ms": 287.65764099080116
     },
     "select_info": {
      "n_candidates": 2,
@@ -6063,26 +6031,26 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.12305300333537161,
-    "capture": 9.582355996826664,
-    "grounding": 584.0839730008156,
-    "segmentation": 22.213197997189127,
-    "depth_fusion": 3.18807899748208,
-    "execute": 375.4346719942987,
-    "end_to_end": 1016.0229469984188
+    "parse": 0.07761199958622456,
+    "capture": 7.402132003335282,
+    "grounding": 323.79364999360405,
+    "segmentation": 12.765395003953017,
+    "depth_fusion": 2.593333992990665,
+    "execute": 314.6818660025019,
+    "end_to_end": 675.6948730035219
    },
    "extra": {
     "box": [
-     323.8238830566406,
-     218.73248291015625,
-     359.51458740234375,
+     323.82470703125,
+     218.73358154296875,
+     359.5133056640625,
      261.14483642578125
     ],
-    "score": 0.7897481322288513,
+    "score": 0.7903180718421936,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 583.4431770053925
+     "latency_ms": 323.24925700959284
     },
     "select_info": {
      "n_candidates": 2,
@@ -6119,36 +6087,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "degraded",
-   "command": "pick the blue cube",
+   "command": "pick the red cube",
    "target": "cube_0",
    "kind": "cube",
-   "color": "blue",
+   "color": "red",
    "grounding_correct": false,
    "grasped": false,
    "lifted": false,
    "placed": false,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.16168399451998994,
-    "capture": 12.643920999835245,
-    "grounding": 581.990261998726,
-    "segmentation": 22.957565997785423,
-    "depth_fusion": 2.9561129995272495,
-    "execute": 409.85237000131747,
-    "end_to_end": 1056.051553998259
+    "parse": 0.077011005487293,
+    "capture": 7.437353007844649,
+    "grounding": 286.91873300704174,
+    "segmentation": 13.663986988831311,
+    "depth_fusion": 2.905500994529575,
+    "execute": 334.282219002489,
+    "end_to_end": 659.3797609966714
    },
    "extra": {
     "box": [
-     255.2261199951172,
-     174.07177734375,
-     285.3353576660156,
-     232.54945373535156
+     255.2266845703125,
+     174.0715789794922,
+     285.3348388671875,
+     232.5495147705078
     ],
-    "score": 0.7879066467285156,
+    "score": 0.7883297801017761,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 581.2635550028062
+     "latency_ms": 286.35893898899667
     },
     "select_info": {
      "n_candidates": 2,
@@ -6185,36 +6153,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the blue cube",
+   "command": "pick the red cube",
    "target": "cube_0",
    "kind": "cube",
-   "color": "blue",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.08895199425751343,
-    "capture": 8.991372000309639,
-    "grounding": 549.6241829969222,
-    "segmentation": 22.79938200081233,
-    "depth_fusion": 3.020424999704119,
-    "execute": 391.3385539999581,
-    "end_to_end": 998.9707870045095
+    "parse": 0.0786620075814426,
+    "capture": 7.542085004388355,
+    "grounding": 292.4568409944186,
+    "segmentation": 16.68426999822259,
+    "depth_fusion": 2.45336999068968,
+    "execute": 310.4077629977837,
+    "end_to_end": 645.454299999983
    },
    "extra": {
     "box": [
-     218.280029296875,
-     229.7281951904297,
-     256.8281555175781,
-     273.7460021972656
+     218.2801055908203,
+     229.72811889648438,
+     256.828125,
+     273.7462158203125
     ],
-    "score": 0.8451953530311584,
+    "score": 0.8454289436340332,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 548.8483139997697
+     "latency_ms": 291.90302699862514
     },
     "select_info": {
      "n_candidates": 2,
@@ -6251,23 +6219,23 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the blue cube",
+   "command": "pick the red cube",
    "target": "cube_0",
    "kind": "cube",
-   "color": "blue",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.1045929966494441,
-    "capture": 9.176575993478764,
-    "grounding": 569.1197260020999,
-    "segmentation": 17.790926998713985,
-    "depth_fusion": 2.3209069986478426,
-    "execute": 329.8777390009491,
-    "end_to_end": 948.7040090025403
+    "parse": 0.09233198943547904,
+    "capture": 8.794424997176975,
+    "grounding": 296.33003800699953,
+    "segmentation": 14.4428740022704,
+    "depth_fusion": 2.8309299959801137,
+    "execute": 293.440207009553,
+    "end_to_end": 630.2526389918057
    },
    "extra": {
     "box": [
@@ -6280,7 +6248,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 568.5130399942864
+     "latency_ms": 295.76570400968194
     },
     "select_info": {
      "n_candidates": 2,
@@ -6317,23 +6285,23 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the blue cube",
+   "command": "pick the red cube",
    "target": "cube_0",
    "kind": "cube",
-   "color": "blue",
+   "color": "red",
    "grounding_correct": false,
    "grasped": false,
    "lifted": false,
    "placed": false,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.11859199730679393,
-    "capture": 8.7447539990535,
-    "grounding": 569.3796740015387,
-    "segmentation": 21.579808002570644,
-    "depth_fusion": 3.1441300016012974,
-    "execute": 378.2741940012784,
-    "end_to_end": 1006.6924810016644
+    "parse": 0.07875199662521482,
+    "capture": 7.471103992429562,
+    "grounding": 287.9480209958274,
+    "segmentation": 12.601589012774639,
+    "depth_fusion": 2.7106960042146966,
+    "execute": 351.9766239915043,
+    "end_to_end": 677.3353239987046
    },
    "extra": {
     "box": [
@@ -6346,7 +6314,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 568.5788740011049
+     "latency_ms": 287.3376959905727
     },
     "select_info": {
      "n_candidates": 2,
@@ -6383,36 +6351,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "degraded",
-   "command": "pick the blue can",
-   "target": "can_0",
-   "kind": "can",
-   "color": "blue",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.10783300240291283,
-    "capture": 9.157122993201483,
-    "grounding": 575.809134003066,
-    "segmentation": 23.102047001884785,
-    "depth_fusion": 2.557165003963746,
-    "execute": 353.80914300185395,
-    "end_to_end": 987.1658699994441
+    "parse": 0.07937199552543461,
+    "capture": 7.357990994933061,
+    "grounding": 288.13537600217387,
+    "segmentation": 12.67259000451304,
+    "depth_fusion": 2.2965370008023456,
+    "execute": 284.40173499984667,
+    "end_to_end": 608.640218997607
    },
    "extra": {
     "box": [
-     342.9144287109375,
-     211.90219116210938,
-     374.2520751953125,
-     249.92245483398438
+     342.9147033691406,
+     211.9013671875,
+     374.25335693359375,
+     249.9207763671875
     ],
-    "score": 0.8223574757575989,
+    "score": 0.8219677805900574,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 575.0873950019013
+     "latency_ms": 287.59305299900007
     },
     "select_info": {
      "n_candidates": 2,
@@ -6425,20 +6393,20 @@
      "center": [
       0.0391156005859375,
       -0.22898281860351563,
-      0.014059954661002834
+      0.014060449820415382
      ],
      "psi": 0.19507175615834216,
-     "width": 0.024060539211385398,
+     "width": 0.024051453010984984,
      "long_axis": [
-      -0.5319419264079308,
-      0.8467808376016901,
+      -0.5263565531226614,
+      0.8502639466570548,
       0.0
      ],
-     "aspect": 1.104103140250904,
-     "n": 828,
-     "grasp_z": 0.014059954661002834,
+     "aspect": 1.1044115527661085,
+     "n": 827,
+     "grasp_z": 0.014060449820415382,
      "median_z": 0.02337591164916497,
-     "max_z": 0.028119909322005667,
+     "max_z": 0.028120899640830765,
      "elongated": false,
      "fallback": false
     }
@@ -6449,9 +6417,9 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "degraded",
-   "command": "pick the red can",
-   "target": "can_0",
-   "kind": "can",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
    "color": "red",
    "grounding_correct": true,
    "grasped": true,
@@ -6459,13 +6427,13 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.10355200356571004,
-    "capture": 14.875537999614608,
-    "grounding": 561.0107680040528,
-    "segmentation": 30.64003799954662,
-    "depth_fusion": 2.5093430012930185,
-    "execute": 329.0311520031537,
-    "end_to_end": 956.2042629986536
+    "parse": 0.07930200081318617,
+    "capture": 7.4315430101705715,
+    "grounding": 301.5377459960291,
+    "segmentation": 12.815723996027373,
+    "depth_fusion": 2.3125669977162033,
+    "execute": 292.5999160070205,
+    "end_to_end": 631.6517529921839
    },
    "extra": {
     "box": [
@@ -6478,7 +6446,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 560.4406139973435
+     "latency_ms": 300.87731999810785
     },
     "select_info": {
      "n_candidates": 2,
@@ -6515,36 +6483,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "degraded",
-   "command": "pick the green can",
-   "target": "can_0",
-   "kind": "can",
-   "color": "green",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": true,
    "grasped": true,
    "lifted": true,
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.1082030066754669,
-    "capture": 14.626670999859925,
-    "grounding": 545.5700759994215,
-    "segmentation": 15.846873000555206,
-    "depth_fusion": 2.4250720016425475,
-    "execute": 362.5484740041429,
-    "end_to_end": 963.1885499984492
+    "parse": 0.0991629931377247,
+    "capture": 8.105660002911463,
+    "grounding": 311.6931249969639,
+    "segmentation": 12.95706900418736,
+    "depth_fusion": 2.316596990567632,
+    "execute": 328.2138110080268,
+    "end_to_end": 678.1850959960138
    },
    "extra": {
     "box": [
-     285.1920471191406,
-     225.91860961914062,
-     321.3061828613281,
-     268.51019287109375
+     285.1902770996094,
+     225.9178466796875,
+     321.3066101074219,
+     268.5115051269531
     ],
-    "score": 0.8286372423171997,
+    "score": 0.8286256194114685,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 544.5686310049496
+     "latency_ms": 311.1650020000525
     },
     "select_info": {
      "n_candidates": 2,
@@ -6581,9 +6549,9 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the red screwdriver",
-   "target": "screwdriver_0",
-   "kind": "screwdriver",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
    "color": "red",
    "grounding_correct": true,
    "grasped": true,
@@ -6591,13 +6559,13 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.12676299957092851,
-    "capture": 14.461765997111797,
-    "grounding": 600.4853429985815,
-    "segmentation": 17.362932005198672,
-    "depth_fusion": 2.831651996530127,
-    "execute": 406.4899209988653,
-    "end_to_end": 1071.2843159999466
+    "parse": 0.07703198934905231,
+    "capture": 7.3742810054682195,
+    "grounding": 305.82615100138355,
+    "segmentation": 13.129181999829598,
+    "depth_fusion": 2.34589799947571,
+    "execute": 318.9793140045367,
+    "end_to_end": 662.2823249927023
    },
    "extra": {
     "box": [
@@ -6610,7 +6578,7 @@
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 599.417686004017
+     "latency_ms": 305.1535749982577
     },
     "select_info": {
      "n_candidates": 3,
@@ -6647,36 +6615,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the yellow screwdriver",
-   "target": "screwdriver_0",
-   "kind": "screwdriver",
-   "color": "yellow",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
+   "color": "red",
    "grounding_correct": false,
    "grasped": false,
    "lifted": false,
    "placed": false,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.10880299669224769,
-    "capture": 13.418859998637345,
-    "grounding": 551.2991110008443,
-    "segmentation": 21.261941001284868,
-    "depth_fusion": 3.4677680014283396,
-    "execute": 426.08660900441464,
-    "end_to_end": 1035.717022998142
+    "parse": 0.10199299140367657,
+    "capture": 8.727595006348565,
+    "grounding": 292.3422590101836,
+    "segmentation": 12.841564996051602,
+    "depth_fusion": 2.906031993916258,
+    "execute": 375.4110410081921,
+    "end_to_end": 706.2296249932842
    },
    "extra": {
     "box": [
-     234.88623046875,
-     196.66714477539062,
-     267.335693359375,
-     255.2470245361328
+     234.88687133789062,
+     196.66763305664062,
+     267.336181640625,
+     255.24664306640625
     ],
-    "score": 0.8400890231132507,
+    "score": 0.8399839997291565,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 550.4952920018695
+     "latency_ms": 291.7998759949114
     },
     "select_info": {
      "n_candidates": 2,
@@ -6713,9 +6681,9 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the red screwdriver",
-   "target": "screwdriver_0",
-   "kind": "screwdriver",
+   "command": "pick the red cube",
+   "target": "cube_0",
+   "kind": "cube",
    "color": "red",
    "grounding_correct": true,
    "grasped": true,
@@ -6723,26 +6691,26 @@
    "placed": true,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.10904199734795839,
-    "capture": 14.285573997767642,
-    "grounding": 548.1701220051036,
-    "segmentation": 16.934261002461426,
-    "depth_fusion": 2.443782999762334,
-    "execute": 383.4070450029685,
-    "end_to_end": 985.3568430044106
+    "parse": 0.09265300468541682,
+    "capture": 7.47559400042519,
+    "grounding": 301.3171710044844,
+    "segmentation": 12.961379004991613,
+    "depth_fusion": 2.400999001110904,
+    "execute": 316.69088700436987,
+    "end_to_end": 655.0195570016513
    },
    "extra": {
     "box": [
-     300.2841796875,
-     210.81065368652344,
-     336.01849365234375,
-     252.6844024658203
+     300.2843017578125,
+     210.811279296875,
+     336.01812744140625,
+     252.68505859375
     ],
-    "score": 0.7547383308410645,
+    "score": 0.7543483376502991,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 547.4766139959684
+     "latency_ms": 300.75713600672316
     },
     "select_info": {
      "n_candidates": 2,
@@ -6779,36 +6747,36 @@
    "stratum": "seen",
    "lang_variant": "plain",
    "lighting": "nominal",
-   "command": "pick the yellow cube",
+   "command": "pick the red cube",
    "target": "cube_0",
    "kind": "cube",
-   "color": "yellow",
+   "color": "red",
    "grounding_correct": false,
    "grasped": false,
    "lifted": false,
    "placed": false,
    "aborted": null,
    "latency_ms": {
-    "parse": 0.12148300447734073,
-    "capture": 11.579394005821086,
-    "grounding": 589.9920759984525,
-    "segmentation": 22.437900996010285,
-    "depth_fusion": 3.1450700043933466,
-    "execute": 433.124057999521,
-    "end_to_end": 1081.9194470022921
+    "parse": 0.07945200195536017,
+    "capture": 7.560056008514948,
+    "grounding": 313.0468079907587,
+    "segmentation": 14.628828997956589,
+    "depth_fusion": 3.474874989478849,
+    "execute": 386.32251899980474,
+    "end_to_end": 739.5395440107677
    },
    "extra": {
     "box": [
-     381.3428955078125,
-     204.35545349121094,
-     414.89788818359375,
-     263.17388916015625
+     381.3407897949219,
+     204.35711669921875,
+     414.8990478515625,
+     263.1759948730469
     ],
-    "score": 0.8076410293579102,
+    "score": 0.8063257336616516,
     "grounding_info": {
      "query": "red cube",
      "fallback": false,
-     "latency_ms": 589.0042610044475
+     "latency_ms": 312.2880500013707
     },
     "select_info": {
      "n_candidates": 3,
