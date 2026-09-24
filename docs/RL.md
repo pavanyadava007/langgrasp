@@ -20,6 +20,13 @@ a deliberately shifted copy of the same simulator.
 | `results/ppo_reach_nodr.json`, `results/ppo_reach_dr.json` | training curves and throughput |
 | `results/ppo_sim2sim_gap.json` | the gap table, labelled "sim-to-sim gap, no real robot" |
 | `checkpoints/ppo_reach_nodr.pt`, `checkpoints/ppo_reach_dr.pt` | policies + observation normaliser (gitignored) |
+| `langgrasp/policies/rl/sb3_env.py` | `ArmReachGymEnv` (gymnasium) and `VecArmSB3` (SB3 VecEnv) adapters over `VecArmEnv` |
+| `langgrasp/policies/rl/sac.py`, `scripts/train_sac.py` | SAC (Stable Baselines 3 2.8.0) training with train-env and nominal-eval curves |
+| `langgrasp/policies/rl/model_based.py` | `OSCController` (Jacobian + mass matrix) and `MPPIController` (MPPI on the nominal MuJoCo model) |
+| `langgrasp/policies/rl/baseline_eval.py`, `scripts/eval_baselines.py` | the `eval_ppo.py` protocol for any controller; writes `results/{sac,osc,mpc}_sim2sim_gap.json` |
+| `scripts/tune_model_based.py` | OSC / MPC parameter choice on the nominal sim, tuning seed 777; `results/model_based_tuning.json` |
+| `scripts/ablate_shift_factors.py` | single-factor diagnostic of the shifted condition; `results/reach_shift_factors.json` |
+| `tests/test_sb3_baselines.py` | wrapper shapes, determinism, reward parity with `VecArmEnv`, one episode per controller, tiny SAC loop |
 
 ## Design
 
@@ -176,6 +183,129 @@ does not cover the shifts that hurt, so it buys no transfer robustness here. Nex
 a longer run at full randomisation, adding the two-tick latency and a joint offset to the training set,
 and an off-policy method (the Squint SO-101 paper transferred with SAC and found PPO the weaker baseline).
 
+## Reach baselines: SAC, operational-space control, MPC (sim-to-sim gap, no real robot)
+
+Three baselines on the same reach task, evaluated with exactly the protocol of `scripts/eval_ppo.py`: the
+same three conditions, 200 deterministic episodes per cell, 50 envs, eval seed 12345, Wilson 95 % intervals.
+No controller touches the env RNG, so every method sees the same start poses, targets and observation-noise
+draws. Hardware: NVIDIA L4 host / CPU, simulation (all three baselines ran on the CPU; the GPU was busy with
+another job). Every number below is in a JSON under `results/` written by a committed script; `docs/RESULTS.md`
+renders the same table from those JSONs.
+
+| Method | Nominal | Shifted (1-tick) | Shifted + 2-tick latency |
+| --- | --- | --- | --- |
+| PPO, no DR | 200/200 = 100.0% [98.1, 100.0] | 166/200 = 83.0% [77.2, 87.6] | 80/200 = 40.0% [33.5, 46.9] |
+| PPO, DR | 200/200 = 100.0% [98.1, 100.0] | 195/200 = 97.5% [94.3, 98.9] | 109/200 = 54.5% [47.6, 61.3] |
+| SAC (SB3), no DR | 200/200 = 100.0% [98.1, 100.0] | 175/200 = 87.5% [82.2, 91.4] | 95/200 = 47.5% [40.7, 54.4] |
+| SAC (SB3), DR | 196/200 = 98.0% [95.0, 99.2] | 199/200 = 99.5% [97.2, 99.9] | 137/200 = 68.5% [61.8, 74.5] |
+| OSC (Jacobian + mass matrix, no learning) | 200/200 = 100.0% [98.1, 100.0] | 180/200 = 90.0% [85.1, 93.4] | 77/200 = 38.5% [32.0, 45.4] |
+| MPC (MPPI, nominal model; nominal row privileged) | 200/200 = 100.0% [98.1, 100.0] | 85/200 = 42.5% [35.9, 49.4] | 85/200 = 42.5% [35.9, 49.4] |
+
+Sources: `results/ppo_sim2sim_gap.json`, `results/sac_sim2sim_gap.json`, `results/osc_sim2sim_gap.json`,
+`results/mpc_sim2sim_gap.json`. Final-tick hold rates (nominal / shifted / shifted + 2-tick): SAC no DR
+100 / 3.0 / 3.5 %, SAC DR 88.0 / 14.5 / 4.5 %, OSC 100 / 4.5 / 0.0 %, MPC 99.0 / 12.5 / 13.5 %.
+
+**SAC (Stable Baselines 3 2.8.0).** `VecArmSB3` is an SB3 `VecEnv` directly over a 16-env `VecArmEnv` (same
+14-D observation, [-1, 1]^5 action, reward, 40-tick horizon and any-tick success); `ArmReachGymEnv` is the
+single-env gymnasium view used for the checks. The only deliberate difference to PPO is that the horizon is
+a time-limit truncation (SAC bootstraps through it) instead of a terminal. The tests step both adapters and
+`VecArmEnv` with the same seed and actions and require bit-identical observations and rewards, with and
+without DR. SAC settings: SB3 defaults (2 x 256 ReLU, lr 3e-4, batch 256, buffer 1 M, tau 0.005, gamma 0.99,
+automatic entropy), `learning_starts` 5 000, 8 gradient steps per vectorised step of 16 transitions (update
+to data ratio 0.5), observation normalisation with `VecNormalize` (saved next to the checkpoint), seed 0,
+40-minute time box, CPU (4 torch threads, 2 physics threads). The two runs ran concurrently with each other
+and with the OSC / MPC tuning and evaluation, so their wall-clock is that of a loaded host.
+
+| | PPO no DR | PPO DR | SAC no DR | SAC DR |
+| --- | --- | --- | --- | --- |
+| env steps in the run | 1 503 232 | 1 503 232 | 324 048 | 321 552 |
+| gradient steps | 2 936 | 2 936 | 159 520 | 158 272 |
+| wall-clock of the run | 7.0 min | 7.1 min | 40.0 min (time box) | 40.0 min (time box) |
+| first 4096-step block with train-env success >= 0.9 | 167 936 steps, 1.1 min | 167 936, 1.1 min | 40 960, 4.5 min | 61 440, 7.9 min |
+| first block >= 0.99 (the PPO level) | 217 088 steps, 1.4 min | 229 376, 1.4 min | 40 960, 4.5 min | 131 072, 19.0 min |
+| first periodic nominal eval at 200/200 (every 20k steps, seed 999) | not measured during training | not measured | 40 000 steps, 4.4 min | never (best 196/200) |
+
+(`results/ppo_reach_*.json`, `results/sac_reach_*.json`; a "block" is 4096 env steps, one PPO iteration, and
+its success is that of the episodes finished in it with the stochastic policy in the training env.) Reading:
+SAC needs about 5x fewer env steps than PPO to reach the PPO success level without DR (41k vs 217k) and
+about 1.75x fewer with DR (131k vs 229k), but on this host it is slower in wall-clock: about 135 env steps/s
+end to end on the CPU against about 3 500 for PPO, because every env step pays half a gradient step of three
+MLPs. Under shift, SAC is at least as robust as PPO in every cell and the DR variant is the best learned policy
+in the table (99.5 % shifted, 68.5 % with the 2-tick latency it never saw, against 97.5 % and 54.5 % for PPO DR;
+the intervals do not overlap in the 2-tick row). This agrees in direction with the Squint SO-101 paper, which
+found SAC the better transfer baseline; it is one seed per variant here.
+
+What did not go well with SAC, stated plainly:
+- SAC DR never reached 200/200 in the nominal sim during training (best periodic eval 196/200) and scores
+  98.0 % nominal in the final evaluation, below its own 99.5 % in the shifted sim (the intervals overlap). Its
+  nominal hold rate is 88 %, i.e. the policy trained under 5 deg observation noise keeps moving near the target.
+- SAC no DR collapsed once during training and recovered: train-env success went 1.000 at 249 856 steps,
+  0.625 at 258 048, 0.062 at 262 144, back to 1.000 at 274 432; the periodic nominal eval at 260 000 steps
+  was 19/200. The final checkpoint (324 048 steps) is from after the recovery. No seed sweep was run, so it
+  is unknown how often this happens.
+- Installing SB3 required `stable-baselines3==2.8.0` (2.9 needs torch >= 2.8) and downgraded gymnasium from
+  1.3.0 to 1.2.3 (SB3 2.8 requires gymnasium < 1.3). gymnasium is otherwise only used by lerobot 0.4.4, whose
+  requirement (>= 1.1.1, < 2) is still met; torch stayed at 2.7.1.
+
+**OSC.** `OSCController` computes, at the *reported* joint angles and with the nominal model, the translational
+TCP Jacobian J (`mj_jacSite`) and the joint-space inertia M (`mj_fullM`), the task-space inertia
+Lambda = (J M^-1 J^T + 1e-4 I)^-1 and the dynamically consistent inverse Jbar = M^-1 J^T Lambda, and commands
+dq = Jbar k (target - tcp_reported) through the same action interface (action = dq / 0.12, clipped). This is
+operational-space control in its velocity-level form for position servos: the torque loop of classical OSC is
+the MuJoCo servo (kp 50), and because the env integrates actions into the servo target the loop has integral
+action, which removes the gravity sag without a gravity term. No torque-level variant was built. Gains were
+chosen on the nominal sim with tuning seed 777 only (`scripts/tune_model_based.py`: k in {0.5, 0.8, 1.0, 1.5},
+null-space posture gain in {0, 0.1}; all but one setting scored 100/100 there; chosen k = 1.0, no null-space
+term). Compute: 0.12 ms median per control tick for one env (p99 0.17 ms).
+
+OSC is as robust as the learned policies to the 1-tick shift (90.0 %) and slightly worse with the 2-tick
+latency (38.5 %). It needs no training at all, but it is also only possible because the task is pure
+kinematics with a known model and a given target.
+
+**MPC (MPPI).** `MPPIController` plans every 100 ms tick: 64 sampled action sequences of 4 ticks around the
+shifted previous plan (sigma 0.5), each rolled out on a copy of the nominal model through all 50 physics
+substeps per tick with `mujoco.rollout` (16 threads, 12 800 physics steps per tick per env), cost = the negative
+env reward summed over the horizon plus a small action-rate term, exponentially weighted mean (temperature 0.02),
+first action executed. The planning start state is the reported joint angles, the joint velocities of a shadow
+copy of the nominal model driven by the controller's own commands, and the servo target it believes it has
+set. Horizon and sigma were chosen on the nominal sim with seed 777 (grid 4 / 6 / 10 ticks x 0.3 / 0.5; the
+shortest horizon scored best there, longer horizons held the target less well). Compute: 25.6 ms median per
+tick for a single env (p90 35.2, p99 48.0 ms), within the 100 ms control period; the batched evaluation took
+about 1.15 s per tick for 50 envs, 561 s for the three conditions.
+
+The nominal MPC row is privileged: exact model and, without noise, exact state. In the shifted conditions it
+still plans with the nominal model, and it fails: 42.5 % in both shifted rows, the worst method under shift.
+The single-factor diagnostic below shows where: MPC is the only method that is fully robust to the 2-tick
+latency alone (100 % with 1 or 2 ticks, presumably because it re-plans from the observed state every tick; PPO DR
+also reaches 100 % with 1 tick) and it is unaffected by the dynamics shift,
+but it drops to 68.5 % with the 5 deg joint noise alone and to 68.0 % with the 1.5 deg calibration offset alone,
+where PPO, SAC no DR and OSC stay at 99.5 to 100 %. Two plausible causes, neither tested: the noisy reported
+angles are written straight into the planning start state, so the shadow model's velocity estimate is driven
+by the noise (no state filter); and the cost has a +2 bonus anywhere inside the 1.5 cm ball, so the planner has
+little reason to centre the TCP, which leaves no margin for the centimetre-scale TCP error of the offset (OSC
+drives the error to zero and keeps 97 % hold under the offset, MPC 6.5 %). A filtered state estimate and a
+cost without the flat bonus are the obvious next steps; they were not tried, because they would be designed
+after seeing the shifted results.
+
+**Single-factor diagnostic** (`scripts/ablate_shift_factors.py`, `results/reach_shift_factors.json`; each part
+of the shifted condition alone, same 200 episodes and seed; success, then final-tick hold):
+
+| Method | noise 5 deg | latency 1 tick | latency 2 ticks | mass 1.3, friction 0.7, kp 0.8 | offset 1.5 deg |
+| --- | --- | --- | --- | --- | --- |
+| PPO, no DR | 100.0 / 29.0 | 71.5 / 4.0 | 53.5 / 1.5 | 100.0 / 100.0 | 100.0 / 99.5 |
+| PPO, DR | 100.0 / 47.0 | 100.0 / 85.5 | 50.0 / 2.0 | 100.0 / 100.0 | 100.0 / 99.0 |
+| SAC, no DR | 100.0 / 33.5 | 80.0 / 7.0 | 48.5 / 3.0 | 100.0 / 100.0 | 99.5 / 88.0 |
+| SAC, DR | 100.0 / 43.5 | 95.5 / 62.5 | 61.5 / 4.0 | 99.0 / 90.0 | 86.5 / 64.0 |
+| OSC | 100.0 / 28.0 | 73.0 / 5.5 | 45.0 / 3.5 | 100.0 / 100.0 | 100.0 / 97.0 |
+| MPC | 68.5 / 24.5 | 100.0 / 97.0 | 100.0 / 97.0 | 100.0 / 100.0 | 68.0 / 6.5 |
+
+(percent; Wilson intervals are in the JSON and in `docs/RESULTS.md`.) For the reactive methods (PPO, SAC,
+OSC) latency is the factor that costs success, and training DR with a 1-tick latency is what buys the 1-tick
+robustness; the dynamics shift is harmless for reach. The diagnostic also qualifies the reading of the PPO gap
+table above: on its own the 1.5 deg offset leaves the PPO hold rate at 99 %, so the loss of holding in the
+shifted row comes mostly from noise and latency, not from the offset alone. Only the SAC DR policy is hurt by
+the offset alone (86.5 %).
+
 ## Limitations, stated plainly
 
 - No real robot. Every "transfer" number is nominal-sim versus shifted-sim of the same model.
@@ -201,5 +331,11 @@ MUJOCO_GL=egl .venv/bin/python scripts/train_ppo.py --task reach --no-dr --steps
 MUJOCO_GL=egl .venv/bin/python scripts/train_ppo.py --task reach --dr    --steps 1500000 --max-minutes 25 --seed 0
 MUJOCO_GL=egl .venv/bin/python scripts/eval_ppo.py --checkpoints checkpoints/ppo_reach_nodr.pt checkpoints/ppo_reach_dr.pt
 MUJOCO_GL=egl .venv/bin/python scripts/train_ppo.py --task lift --dr --steps 8000000 --max-minutes 40 --n-threads 6 --seed 0
-.venv/bin/ruff check langgrasp tests scripts && MUJOCO_GL=egl .venv/bin/python -m pytest -q tests/test_rl.py
+MUJOCO_GL=egl .venv/bin/python scripts/train_sac.py --no-dr --max-minutes 40 --seed 0   # the two SAC runs ran concurrently
+MUJOCO_GL=egl .venv/bin/python scripts/train_sac.py --dr    --max-minutes 40 --seed 0
+MUJOCO_GL=egl .venv/bin/python scripts/tune_model_based.py                              # OSC / MPC parameters, nominal sim, seed 777
+MUJOCO_GL=egl .venv/bin/python scripts/eval_baselines.py --methods sac osc mpc
+MUJOCO_GL=egl .venv/bin/python scripts/ablate_shift_factors.py
+.venv/bin/python -m langgrasp.eval.report                                               # regenerates docs/RESULTS.md
+.venv/bin/ruff check langgrasp tests scripts && MUJOCO_GL=egl .venv/bin/python -m pytest -q tests/test_rl.py tests/test_sb3_baselines.py
 ```

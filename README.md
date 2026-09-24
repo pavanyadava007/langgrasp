@@ -97,6 +97,7 @@ Wilson 95% intervals). Highlights:
 | INT8 vs FP16 | INT8 saves 0.1 ms and costs about 1 point of box mAP50-95 (0.934 to 0.924) on this model: not worth it, as the plan predicted for small models |
 | Depth fusion vs ground truth (ground-truth masks, 314 objects) | cube 0.3 mm, can 0.6 mm, screwdriver 2.8 mm median centre error; yaw error under 5 deg (p95); screwdriver p95 16.6 mm from partially occluded handles |
 | PPO reach, sim-to-sim gap (200 episodes per cell) | no DR: 100% nominal, 83% shifted dynamics, 40% with 2-tick latency; with DR: 100% / 97.5% / 54.5% |
+| Reach baselines, same protocol (200 episodes per cell, nominal / shifted / 2-tick) | SAC no DR 100 / 87.5 / 47.5%; SAC DR 98.0 / 99.5 / 68.5%; OSC (no learning) 100 / 90.0 / 38.5%; MPPI on the nominal model 100 (privileged) / 42.5 / 42.5% (`docs/RL.md`) |
 | PPO lift | no DR: 94% nominal, 51% shifted, 33% with 2-tick latency; with DR: 0% after 5.6 M steps (documented negative result) |
 | faster-whisper on the L4 (read speech, not commands) | median 140 ms (tiny), 194 ms (base), 295 ms (small) per clip |
 | ROS 2 Humble pipeline in a `ros:humble` container (CPU only) | full pick executed through 7 nodes; camera frame to first safe joint command 57 ms end to end; safety node adds 1.0 ms median |

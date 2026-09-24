@@ -320,6 +320,63 @@ Stage timings recorded during the protocol runs above (these ran while ACT/YOLO 
 | ppo_lift_drcurriculum.pt | shifted | 92/200 = 46.0% [39-53] |
 | ppo_lift_drcurriculum.pt | shifted_latency2 | 43/200 = 21.5% [16-28] |
 
+### Reach: PPO vs SAC vs OSC vs MPC (sim-to-sim gap, no real robot)
+
+All cells: successes/episodes = rate [Wilson 95% CI], 200 deterministic episodes per cell, eval seed 12345, same start poses, targets and noise draws for every method. Sim-to-sim gap, no real robot. Hardware: NVIDIA L4 host / CPU, simulation. MPC nominal is privileged (exact model and state).
+
+| Method | Nominal | Shifted (1-tick) | Shifted + 2-tick latency | Source |
+|---|---|---|---|---|
+| PPO, no DR | 200/200 = 100.0% [98.1, 100.0] | 166/200 = 83.0% [77.2, 87.6] | 80/200 = 40.0% [33.5, 46.9] | `results/ppo_sim2sim_gap.json` |
+| PPO, DR | 200/200 = 100.0% [98.1, 100.0] | 195/200 = 97.5% [94.3, 98.9] | 109/200 = 54.5% [47.6, 61.3] | `results/ppo_sim2sim_gap.json` |
+| SAC (SB3), no DR | 200/200 = 100.0% [98.1, 100.0] | 175/200 = 87.5% [82.2, 91.4] | 95/200 = 47.5% [40.7, 54.4] | `results/sac_sim2sim_gap.json` |
+| SAC (SB3), DR | 196/200 = 98.0% [95.0, 99.2] | 199/200 = 99.5% [97.2, 99.9] | 137/200 = 68.5% [61.8, 74.5] | `results/sac_sim2sim_gap.json` |
+| OSC (Jacobian + mass matrix, no learning) | 200/200 = 100.0% [98.1, 100.0] | 180/200 = 90.0% [85.1, 93.4] | 77/200 = 38.5% [32.0, 45.4] | `results/osc_sim2sim_gap.json` |
+| MPC (MPPI on the nominal MuJoCo model) | 200/200 = 100.0% [98.1, 100.0] | 85/200 = 42.5% [35.9, 49.4] | 85/200 = 42.5% [35.9, 49.4] | `results/mpc_sim2sim_gap.json` |
+
+Final-tick hold rate (true TCP within 1.5 cm at the last tick) in the same episodes:
+
+| Method | Hold nominal | Hold shifted | Hold shifted + 2-tick |
+|---|---|---|---|
+| PPO, no DR | 100.0% | 2.0% | 1.0% |
+| PPO, DR | 100.0% | 16.0% | 1.0% |
+| SAC (SB3), no DR | 100.0% | 3.0% | 3.5% |
+| SAC (SB3), DR | 88.0% | 14.5% | 4.5% |
+| OSC (Jacobian + mass matrix, no learning) | 100.0% | 4.5% | 0.0% |
+| MPC (MPPI on the nominal MuJoCo model) | 99.0% | 12.5% | 13.5% |
+
+**Training budget and time to the PPO success level (reach)**
+
+Train-env milestones: first block of 4096 env steps (one PPO iteration) whose finished episodes reach the success rate, stochastic policy, in the training env (DR on or off). Nominal-eval milestone: first periodic 200-episode deterministic evaluation in the nominal sim (seed 999, every 20k steps) at 200/200; SAC only, PPO was evaluated only at the end.
+
+| Method | Env steps (total) | Gradient steps | Wall min | Device | Train-env >= 0.5 | >= 0.9 | >= 0.99 | Nominal eval 200/200 | Source |
+|---|---|---|---|---|---|---|---|---|---|
+| PPO, no DR | 1,503,232 | 2,936 | 7.0 | cuda (update), CPU physics | 110,592 (0.7 min) | 167,936 (1.1 min) | 217,088 (1.4 min) | - | `results/ppo_reach_nodr.json` |
+| PPO, DR | 1,503,232 | 2,936 | 7.1 | cuda (update), CPU physics | 90,112 (0.6 min) | 167,936 (1.1 min) | 229,376 (1.4 min) | - | `results/ppo_reach_dr.json` |
+| SAC (SB3), no DR | 324,048 | 159,520 | 40.0 | cpu | 32,768 (3.2 min) | 40,960 (4.5 min) | 40,960 (4.5 min) | 40,000 (4.4 min) | `results/sac_reach_nodr.json` |
+| SAC (SB3), DR | 321,552 | 158,272 | 40.0 | cpu | 40,960 (4.5 min) | 61,440 (7.9 min) | 131,072 (19.0 min) | not reached | `results/sac_reach_dr.json` |
+
+**Per-step compute of the controllers (one act() call, control period 100 ms)**
+
+| Method | Single env, nominal: median / p90 / p99 ms | 50-env batch per call: median ms | Source |
+|---|---|---|---|
+| OSC | 0.12 / 0.14 / 0.17 | 5.8 | `results/osc_sim2sim_gap.json` |
+| MPC (MPPI) | 25.59 / 35.23 / 48.02 | 1147.4 | `results/mpc_sim2sim_gap.json` |
+| SAC policy (batch only) | - | 0.8 | `results/sac_sim2sim_gap.json` |
+
+MPC parameters: {"horizon": 4, "samples": 64, "sigma": 0.5, "temperature": 0.02, "iterations": 1}, 12,800 physics steps rolled out per control tick per env, 16 rollout threads; parameters chosen by `scripts/tune_model_based.py` on the nominal sim, tuning seed 777 (`results/model_based_tuning.json`).
+OSC parameters: {"k_task": 1.0, "k_null": 0.0}, chosen the same way.
+
+**Single-factor shift diagnostic (reach)** (`results/reach_shift_factors.json`): each part of the shifted condition alone, 200 episodes per cell, eval seed 12345; success rate [Wilson 95% CI] / final-tick hold. Not used to tune anything. Sim-to-sim gap, no real robot.
+
+| Method | q_noise_5deg | latency_1tick | latency_2tick | dynamics_mass1.3_fric0.7_kp0.8 | q_offset_1.5deg |
+|---|---|---|---|---|---|
+| ppo_nodr | 100.0% [98.1, 100.0] / 29.0% | 71.5% [64.9, 77.3] / 4.0% | 53.5% [46.6, 60.3] / 1.5% | 100.0% [98.1, 100.0] / 100.0% | 100.0% [98.1, 100.0] / 99.5% |
+| ppo_dr | 100.0% [98.1, 100.0] / 47.0% | 100.0% [98.1, 100.0] / 85.5% | 50.0% [43.1, 56.9] / 2.0% | 100.0% [98.1, 100.0] / 100.0% | 100.0% [98.1, 100.0] / 99.0% |
+| sac_nodr | 100.0% [98.1, 100.0] / 33.5% | 80.0% [73.9, 85.0] / 7.0% | 48.5% [41.7, 55.4] / 3.0% | 100.0% [98.1, 100.0] / 100.0% | 99.5% [97.2, 99.9] / 88.0% |
+| sac_dr | 100.0% [98.1, 100.0] / 43.5% | 95.5% [91.7, 97.6] / 62.5% | 61.5% [54.6, 68.0] / 4.0% | 99.0% [96.4, 99.7] / 90.0% | 86.5% [81.1, 90.6] / 64.0% |
+| osc | 100.0% [98.1, 100.0] / 28.0% | 73.0% [66.5, 78.7] / 5.5% | 45.0% [38.3, 51.9] / 3.5% | 100.0% [98.1, 100.0] / 100.0% | 100.0% [98.1, 100.0] / 97.0% |
+| mpc | 68.5% [61.8, 74.5] / 24.5% | 100.0% [98.1, 100.0] / 97.0% | 100.0% [98.1, 100.0] / 97.0% | 100.0% [98.1, 100.0] / 100.0% | 68.0% [61.2, 74.1] / 6.5% |
+
 **PPO run ppo_reach_dr.json** (`results/ppo_reach_dr.json`)
 
 ```

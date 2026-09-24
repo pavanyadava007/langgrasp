@@ -142,6 +142,126 @@ def gap_table(fname: str, task: str) -> list[str]:
     return rows
 
 
+def _cell(r: dict | None) -> str:
+    if r is None:
+        return "not run"
+    lo, hi = r["ci95"]
+    return f"{r['k']}/{r['n']} = {100 * r['success']:.1f}% [{100 * lo:.1f}, {100 * hi:.1f}]"
+
+
+def _hold(r: dict | None) -> str:
+    if r is None or "hold" not in r:
+        return "-"
+    return f"{100 * r['hold']:.1f}%"
+
+
+def _first(curve: list[dict], key: str, level: float) -> dict | None:
+    return next((p for p in curve if p[key] >= level), None)
+
+
+def _steps_min(p: dict | None) -> str:
+    return "not reached" if p is None else f"{p['steps']:,} ({p['minutes']:.1f} min)"
+
+
+REACH_METHODS = [
+    # label, gap json, row filter, training json
+    ("PPO, no DR", "ppo_sim2sim_gap.json", lambda r: r.get("task") == "reach" and not r.get("train_dr"), "ppo_reach_nodr.json"),
+    ("PPO, DR", "ppo_sim2sim_gap.json", lambda r: r.get("task") == "reach" and r.get("train_dr"), "ppo_reach_dr.json"),
+    ("SAC (SB3), no DR", "sac_sim2sim_gap.json", lambda r: not r.get("train_dr"), "sac_reach_nodr.json"),
+    ("SAC (SB3), DR", "sac_sim2sim_gap.json", lambda r: r.get("train_dr"), "sac_reach_dr.json"),
+    ("OSC (Jacobian + mass matrix, no learning)", "osc_sim2sim_gap.json", lambda r: True, None),
+    ("MPC (MPPI on the nominal MuJoCo model)", "mpc_sim2sim_gap.json", lambda r: True, None),
+]
+CONDS = ("nominal", "shifted", "shifted_latency2")
+
+
+def reach_comparison() -> list[str]:
+    """One table for all reach methods, read from the gap JSONs; missing files give 'not run' rows."""
+    out = ["All cells: successes/episodes = rate [Wilson 95% CI], 200 deterministic episodes per cell, eval seed 12345, "
+           "same start poses, targets and noise draws for every method. Sim-to-sim gap, no real robot. "
+           "Hardware: NVIDIA L4 host / CPU, simulation. MPC nominal is privileged (exact model and state).", "",
+           "| Method | Nominal | Shifted (1-tick) | Shifted + 2-tick latency | Source |", "|---|---|---|---|---|"]
+    holds = ["| Method | Hold nominal | Hold shifted | Hold shifted + 2-tick |", "|---|---|---|---|"]
+    for label, fname, keep, _ in REACH_METHODS:
+        d = _load(fname)
+        rows = {r["condition"]: r for r in d.get("rows", []) if keep(r)} if d else {}
+        out.append(f"| {label} | " + " | ".join(_cell(rows.get(c)) for c in CONDS) + f" | `results/{fname}`{'' if d else ' (not run)'} |")
+        holds.append(f"| {label} | " + " | ".join(_hold(rows.get(c)) for c in CONDS) + " |")
+    out += ["", "Final-tick hold rate (true TCP within 1.5 cm at the last tick) in the same episodes:", ""] + holds + [""]
+    # training budget and time to the PPO level
+    out += ["**Training budget and time to the PPO success level (reach)**", "",
+            "Train-env milestones: first block of 4096 env steps (one PPO iteration) whose finished episodes reach the "
+            "success rate, stochastic policy, in the training env (DR on or off). Nominal-eval milestone: first periodic "
+            "200-episode deterministic evaluation in the nominal sim (seed 999, every 20k steps) at 200/200; SAC only, "
+            "PPO was evaluated only at the end.", "",
+            "| Method | Env steps (total) | Gradient steps | Wall min | Device | Train-env >= 0.5 | >= 0.9 | >= 0.99 | Nominal eval 200/200 | Source |",
+            "|---|---|---|---|---|---|---|---|---|---|"]
+    for label, _, _, tname in REACH_METHODS:
+        if tname is None:
+            continue
+        t = _load(tname)
+        if t is None:
+            out.append(f"| {label} | not run | | | | | | | | `results/{tname}` |")
+            continue
+        if "curve_detail" in t:  # PPO
+            curve = t["curve_detail"]
+            grads = t["iterations"] * t["config"]["epochs"] * -(-t["n_envs"] * t["n_steps_per_env"] // t["config"]["minibatch"])
+            nominal = "-"
+            dev = f"{t.get('device')} (update), CPU physics"
+        else:
+            curve = t["train_curve"]
+            grads = t["gradient_steps"]
+            m = t["milestones"].get("nominal_eval_success_ge_1.0")
+            nominal = "not reached" if m is None else f"{m['steps']:,} ({m['minutes']:.1f} min)"
+            dev = t.get("device", "-")
+        ms = [_steps_min(_first(curve, "success_rate", lv)) for lv in (0.5, 0.9, 0.99)]
+        out.append(f"| {label} | {t['total_steps']:,} | {grads:,} | {t['minutes']:.1f} | {dev} | " + " | ".join(ms) + f" | {nominal} | `results/{tname}` |")
+    out.append("")
+    # control compute
+    out += ["**Per-step compute of the controllers (one act() call, control period 100 ms)**", "",
+            "| Method | Single env, nominal: median / p90 / p99 ms | 50-env batch per call: median ms | Source |", "|---|---|---|---|"]
+    for label, fname in (("OSC", "osc_sim2sim_gap.json"), ("MPC (MPPI)", "mpc_sim2sim_gap.json"), ("SAC policy (batch only)", "sac_sim2sim_gap.json")):
+        d = _load(fname)
+        if d is None:
+            out.append(f"| {label} | not run | not run | `results/{fname}` |")
+            continue
+        st = d.get("single_env_timing", {}).get("per_tick_ms")
+        single = f"{st['median']:.2f} / {st['p90']:.2f} / {st['p99']:.2f}" if st else "-"
+        nom = next((r for r in d["rows"] if r["condition"] == "nominal"), None)
+        batch = f"{nom['act_batch_ms']['median']:.1f}" if nom and "act_batch_ms" in nom else "-"
+        out.append(f"| {label} | {single} | {batch} | `results/{fname}` |")
+    mp = _load("mpc_sim2sim_gap.json")
+    if mp:
+        out += ["", f"MPC parameters: {json.dumps(mp.get('params'))}, {mp.get('physics_steps_per_tick'):,} physics steps rolled out per control tick per env, "
+                f"{mp.get('rollout_threads')} rollout threads; parameters chosen by `scripts/tune_model_based.py` on the nominal sim, tuning seed 777 (`results/model_based_tuning.json`)."]
+    oc = _load("osc_sim2sim_gap.json")
+    if oc:
+        out += [f"OSC parameters: {json.dumps(oc.get('params'))}, chosen the same way."]
+    out.append("")
+    return out
+
+
+def shift_factor_table(fname: str = "reach_shift_factors.json") -> list[str]:
+    d = _load(fname)
+    if d is None:
+        return ["**Single-factor shift diagnostic**: not run", ""]
+    factors = list(d["factors"])
+    methods = list(dict.fromkeys(r["method"] for r in d["rows"]))
+    cell = {(r["method"], r["condition"]): r for r in d["rows"]}
+    out = [f"**Single-factor shift diagnostic (reach)** (`results/{fname}`): each part of the shifted condition alone, "
+           f"{d.get('episodes_per_cell')} episodes per cell, eval seed {d.get('eval_seed')}; success rate [Wilson 95% CI] / final-tick hold. "
+           "Not used to tune anything. Sim-to-sim gap, no real robot.", "",
+           "| Method | " + " | ".join(factors) + " |", "|---|" + "---|" * len(factors)]
+    for m in methods:
+        cells = []
+        for f in factors:
+            r = cell.get((m, f))
+            cells.append("not run" if r is None else f"{100 * r['success']:.1f}% [{100 * r['ci95'][0]:.1f}, {100 * r['ci95'][1]:.1f}] / {100 * r['hold']:.1f}%")
+        out.append(f"| {m} | " + " | ".join(cells) + " |")
+    out.append("")
+    return out
+
+
 def generic_json_section(fname: str, title: str, keys: list[str] | None = None) -> list[str]:
     d = _load(fname)
     if d is None:
@@ -182,6 +302,7 @@ def build() -> str:
     lines += ["## 4. Perception stack", ""] + yolo_section()
     lines += ["## 5. ACT", ""] + generic_json_section("act_train.json", "ACT training", ["steps", "batch", "minutes", "final_loss", "config", "hardware"]) + generic_json_section("demos_act.json", "Demo collection")
     lines += ["## 6. Reinforcement learning (PPO, state-based, sim-to-sim gap; no real robot)", ""] + gap_table("ppo_sim2sim_gap.json", "reach") + gap_table("ppo_sim2sim_gap_lift.json", "lift")
+    lines += ["### Reach: PPO vs SAC vs OSC vs MPC (sim-to-sim gap, no real robot)", ""] + reach_comparison() + shift_factor_table()
     for f in ["ppo_reach_dr.json", "ppo_reach_nodr.json", "ppo_lift_dr.json"]:
         lines += generic_json_section(f, f"PPO run {f}", ["task", "dr", "n_envs", "total_steps", "minutes", "final_success_nominal", "hardware"])
     lines += ["## 7. Speech, ROS 2, safety", ""] + generic_json_section("stt_latency_l4.json", "faster-whisper latency") + generic_json_section("ros2_smoke.json", "ROS 2 Humble pipeline smoke (Docker)")
