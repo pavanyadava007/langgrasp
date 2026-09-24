@@ -17,7 +17,7 @@ dependencies = [
 
 [project.optional-dependencies]
 perception = ["ultralytics>=8.3", "transformers==4.57.6", "huggingface_hub", "onnx>=1.16", "onnxruntime-gpu>=1.18", "tensorrt-cu12>=10.3,<11"]
-learning = ["torch>=2.7", "torchvision", "lerobot==0.4.4", "gymnasium>=1.0", "datasets", "pyarrow", "pandas"]
+learning = ["torch>=2.7", "torchvision", "lerobot==0.4.4", "gymnasium>=1.0", "stable-baselines3==2.8.0", "datasets", "pyarrow", "pandas"]
 speech = ["faster-whisper>=1.0"]
 dev = ["pytest", "ruff"]
 gui = ["fastapi>=0.115", "uvicorn[standard]>=0.30", "python-multipart>=0.0.9"]

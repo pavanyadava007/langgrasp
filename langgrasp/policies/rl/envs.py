@@ -438,6 +438,9 @@ class VecArmEnv:
         info["done"] = done
         obs = self._observe()
         if done.any():
+            # the last observation of each finished episode, before the auto-reset overwrites it (off-policy
+            # learners bootstrap from it at the time limit; copying it draws no random numbers)
+            info["terminal_obs"] = obs.copy()
             idx = np.flatnonzero(done)
             for i in idx:
                 self._reset_env(i)
