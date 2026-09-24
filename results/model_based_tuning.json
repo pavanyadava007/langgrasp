@@ -1,0 +1,211 @@
+{
+ "label": "nominal sim only, tuning seed (not the evaluation seed)",
+ "tune_seed": 777,
+ "hardware": "NVIDIA L4 host / CPU, simulation",
+ "selection": "max (success, hold, mean_return)",
+ "osc": {
+  "rows": [
+   {
+    "k_task": 0.5,
+    "k_null": 0.0,
+    "n": 100,
+    "k": 100,
+    "success": 1.0,
+    "hold": 1.0,
+    "mean_return": 74.63259679176025,
+    "act_batch_ms_median": 5.096946493722498,
+    "seconds": 1.677565574645996
+   },
+   {
+    "k_task": 0.5,
+    "k_null": 0.1,
+    "n": 100,
+    "k": 98,
+    "success": 0.98,
+    "hold": 0.98,
+    "mean_return": 73.2261330294286,
+    "act_batch_ms_median": 4.857710518990643,
+    "seconds": 1.4658253192901611
+   },
+   {
+    "k_task": 0.8,
+    "k_null": 0.0,
+    "n": 100,
+    "k": 100,
+    "success": 1.0,
+    "hold": 1.0,
+    "mean_return": 75.66722904148487,
+    "act_batch_ms_median": 4.966208507539704,
+    "seconds": 1.527369499206543
+   },
+   {
+    "k_task": 0.8,
+    "k_null": 0.1,
+    "n": 100,
+    "k": 100,
+    "success": 1.0,
+    "hold": 1.0,
+    "mean_return": 75.50344738301017,
+    "act_batch_ms_median": 4.972352995537221,
+    "seconds": 1.6614995002746582
+   },
+   {
+    "k_task": 1.0,
+    "k_null": 0.0,
+    "n": 100,
+    "k": 100,
+    "success": 1.0,
+    "hold": 1.0,
+    "mean_return": 75.74796611961843,
+    "act_batch_ms_median": 4.8542695003561676,
+    "seconds": 1.5411581993103027
+   },
+   {
+    "k_task": 1.0,
+    "k_null": 0.1,
+    "n": 100,
+    "k": 100,
+    "success": 1.0,
+    "hold": 1.0,
+    "mean_return": 75.68649787967537,
+    "act_batch_ms_median": 4.855858991504647,
+    "seconds": 1.4562568664550781
+   },
+   {
+    "k_task": 1.5,
+    "k_null": 0.0,
+    "n": 100,
+    "k": 100,
+    "success": 1.0,
+    "hold": 1.0,
+    "mean_return": 75.62441865140705,
+    "act_batch_ms_median": 5.164837013580836,
+    "seconds": 1.5911016464233398
+   },
+   {
+    "k_task": 1.5,
+    "k_null": 0.1,
+    "n": 100,
+    "k": 100,
+    "success": 1.0,
+    "hold": 1.0,
+    "mean_return": 75.64812362813774,
+    "act_batch_ms_median": 5.013084999518469,
+    "seconds": 1.5249238014221191
+   }
+  ],
+  "chosen": {
+   "k_task": 1.0,
+   "k_null": 0.0,
+   "n": 100,
+   "k": 100,
+   "success": 1.0,
+   "hold": 1.0,
+   "mean_return": 75.74796611961843,
+   "act_batch_ms_median": 4.8542695003561676,
+   "seconds": 1.5411581993103027
+  }
+ },
+ "mpc": {
+  "rows": [
+   {
+    "horizon": 4,
+    "samples": 64,
+    "sigma": 0.3,
+    "temperature": 0.02,
+    "iterations": 1,
+    "n": 50,
+    "k": 50,
+    "success": 1.0,
+    "hold": 0.92,
+    "mean_return": 66.41731844155852,
+    "act_batch_ms_median": 1136.7590114969062,
+    "seconds": 46.60486626625061
+   },
+   {
+    "horizon": 4,
+    "samples": 64,
+    "sigma": 0.5,
+    "temperature": 0.02,
+    "iterations": 1,
+    "n": 50,
+    "k": 50,
+    "success": 1.0,
+    "hold": 1.0,
+    "mean_return": 72.44931976764684,
+    "act_batch_ms_median": 1110.0690139865037,
+    "seconds": 44.9836049079895
+   },
+   {
+    "horizon": 6,
+    "samples": 64,
+    "sigma": 0.3,
+    "temperature": 0.02,
+    "iterations": 1,
+    "n": 50,
+    "k": 50,
+    "success": 1.0,
+    "hold": 0.82,
+    "mean_return": 65.50204340136632,
+    "act_batch_ms_median": 1708.7393605033867,
+    "seconds": 68.98734664916992
+   },
+   {
+    "horizon": 6,
+    "samples": 64,
+    "sigma": 0.5,
+    "temperature": 0.02,
+    "iterations": 1,
+    "n": 50,
+    "k": 50,
+    "success": 1.0,
+    "hold": 0.96,
+    "mean_return": 70.50092854212927,
+    "act_batch_ms_median": 1671.5413849888137,
+    "seconds": 67.7587080001831
+   },
+   {
+    "horizon": 10,
+    "samples": 64,
+    "sigma": 0.3,
+    "temperature": 0.02,
+    "iterations": 1,
+    "n": 50,
+    "k": 50,
+    "success": 1.0,
+    "hold": 0.72,
+    "mean_return": 59.312184092080834,
+    "act_batch_ms_median": 2887.5146555074025,
+    "seconds": 116.80901646614075
+   },
+   {
+    "horizon": 10,
+    "samples": 64,
+    "sigma": 0.5,
+    "temperature": 0.02,
+    "iterations": 1,
+    "n": 50,
+    "k": 50,
+    "success": 1.0,
+    "hold": 0.82,
+    "mean_return": 60.700179692243616,
+    "act_batch_ms_median": 2745.816611990449,
+    "seconds": 112.05792903900146
+   }
+  ],
+  "chosen": {
+   "horizon": 4,
+   "samples": 64,
+   "sigma": 0.5,
+   "temperature": 0.02,
+   "iterations": 1,
+   "n": 50,
+   "k": 50,
+   "success": 1.0,
+   "hold": 1.0,
+   "mean_return": 72.44931976764684,
+   "act_batch_ms_median": 1110.0690139865037,
+   "seconds": 44.9836049079895
+  }
+ }
+}

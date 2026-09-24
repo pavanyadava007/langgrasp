@@ -1,0 +1,1491 @@
+{
+ "label": "sim-to-sim gap, no real robot",
+ "hardware": "NVIDIA L4 host / CPU, simulation",
+ "note": "single-factor diagnostic of the shifted condition; not used for tuning",
+ "episodes_per_cell": 200,
+ "eval_seed": 12345,
+ "factors": {
+  "q_noise_5deg": {
+   "enabled": true,
+   "q_noise_deg": 5.0,
+   "action_noise": 0.0,
+   "latency_prob": 0.0,
+   "latency_ticks": 1,
+   "mass_range": [
+    1.0,
+    1.0
+   ],
+   "friction_range": [
+    1.0,
+    1.0
+   ],
+   "kp_range": [
+    1.0,
+    1.0
+   ],
+   "q_offset_deg": 0.0
+  },
+  "latency_1tick": {
+   "enabled": true,
+   "q_noise_deg": 0.0,
+   "action_noise": 0.0,
+   "latency_prob": 1.0,
+   "latency_ticks": 1,
+   "mass_range": [
+    1.0,
+    1.0
+   ],
+   "friction_range": [
+    1.0,
+    1.0
+   ],
+   "kp_range": [
+    1.0,
+    1.0
+   ],
+   "q_offset_deg": 0.0
+  },
+  "latency_2tick": {
+   "enabled": true,
+   "q_noise_deg": 0.0,
+   "action_noise": 0.0,
+   "latency_prob": 1.0,
+   "latency_ticks": 2,
+   "mass_range": [
+    1.0,
+    1.0
+   ],
+   "friction_range": [
+    1.0,
+    1.0
+   ],
+   "kp_range": [
+    1.0,
+    1.0
+   ],
+   "q_offset_deg": 0.0
+  },
+  "dynamics_mass1.3_fric0.7_kp0.8": {
+   "enabled": true,
+   "q_noise_deg": 0.0,
+   "action_noise": 0.0,
+   "latency_prob": 0.0,
+   "latency_ticks": 1,
+   "mass_range": [
+    1.3,
+    1.3
+   ],
+   "friction_range": [
+    0.7,
+    0.7
+   ],
+   "kp_range": [
+    0.8,
+    0.8
+   ],
+   "q_offset_deg": 0.0
+  },
+  "q_offset_1.5deg": {
+   "enabled": true,
+   "q_noise_deg": 0.0,
+   "action_noise": 0.0,
+   "latency_prob": 0.0,
+   "latency_ticks": 1,
+   "mass_range": [
+    1.0,
+    1.0
+   ],
+   "friction_range": [
+    1.0,
+    1.0
+   ],
+   "kp_range": [
+    1.0,
+    1.0
+   ],
+   "q_offset_deg": 1.5
+  }
+ },
+ "rows": [
+  {
+   "method": "ppo_nodr",
+   "task": "reach",
+   "condition": "q_noise_5deg",
+   "shift": {
+    "enabled": true,
+    "q_noise_deg": 5.0,
+    "action_noise": 0.0,
+    "latency_prob": 0.0,
+    "latency_ticks": 1,
+    "mass_range": [
+     1.0,
+     1.0
+    ],
+    "friction_range": [
+     1.0,
+     1.0
+    ],
+    "kp_range": [
+     1.0,
+     1.0
+    ],
+    "q_offset_deg": 0.0
+   },
+   "seconds": 1.6859831809997559,
+   "n": 200,
+   "k": 200,
+   "success": 1.0,
+   "ci95": [
+    0.9811539940816791,
+    1.0
+   ],
+   "mean_return": 17.54599237893105,
+   "hold": 0.29,
+   "hold_ci95": [
+    0.2315392689125782,
+    0.3563760535731166
+   ],
+   "act_batch_ms": {
+    "median": 0.7345084886765108,
+    "p90": 0.9765279974089935,
+    "p99": 1.6284479637397442,
+    "n_calls": 160,
+    "batch": 50
+   }
+  },
+  {
+   "method": "ppo_nodr",
+   "task": "reach",
+   "condition": "latency_1tick",
+   "shift": {
+    "enabled": true,
+    "q_noise_deg": 0.0,
+    "action_noise": 0.0,
+    "latency_prob": 1.0,
+    "latency_ticks": 1,
+    "mass_range": [
+     1.0,
+     1.0
+    ],
+    "friction_range": [
+     1.0,
+     1.0
+    ],
+    "kp_range": [
+     1.0,
+     1.0
+    ],
+    "q_offset_deg": 0.0
+   },
+   "seconds": 1.8245878219604492,
+   "n": 200,
+   "k": 143,
+   "success": 0.715,
+   "ci95": [
+    0.648845269187895,
+    0.773050948267227
+   ],
+   "mean_return": 2.6163115267288277,
+   "hold": 0.04,
+   "hold_ci95": [
+    0.02040538715065641,
+    0.07693293829419882
+   ],
+   "act_batch_ms": {
+    "median": 0.7375980057986453,
+    "p90": 1.0373820958193392,
+    "p99": 3.1168380510643994,
+    "n_calls": 160,
+    "batch": 50
+   }
+  },
+  {
+   "method": "ppo_nodr",
+   "task": "reach",
+   "condition": "latency_2tick",
+   "shift": {
+    "enabled": true,
+    "q_noise_deg": 0.0,
+    "action_noise": 0.0,
+    "latency_prob": 1.0,
+    "latency_ticks": 2,
+    "mass_range": [
+     1.0,
+     1.0
+    ],
+    "friction_range": [
+     1.0,
+     1.0
+    ],
+    "kp_range": [
+     1.0,
+     1.0
+    ],
+    "q_offset_deg": 0.0
+   },
+   "seconds": 1.8149783611297607,
+   "n": 200,
+   "k": 107,
+   "success": 0.535,
+   "ci95": [
+    0.46586521028994954,
+    0.6028155692957681
+   ],
+   "mean_return": -0.5540190718222419,
+   "hold": 0.015,
+   "hold_ci95": [
+    0.005114145184492387,
+    0.043166480556278884
+   ],
+   "act_batch_ms": {
+    "median": 0.7688639889238402,
+    "p90": 1.0394359938800335,
+    "p99": 4.197118223819416,
+    "n_calls": 160,
+    "batch": 50
+   }
+  },
+  {
+   "method": "ppo_nodr",
+   "task": "reach",
+   "condition": "dynamics_mass1.3_fric0.7_kp0.8",
+   "shift": {
+    "enabled": true,
+    "q_noise_deg": 0.0,
+    "action_noise": 0.0,
+    "latency_prob": 0.0,
+    "latency_ticks": 1,
+    "mass_range": [
+     1.3,
+     1.3
+    ],
+    "friction_range": [
+     0.7,
+     0.7
+    ],
+    "kp_range": [
+     0.8,
+     0.8
+    ],
+    "q_offset_deg": 0.0
+   },
+   "seconds": 1.7449910640716553,
+   "n": 200,
+   "k": 200,
+   "success": 1.0,
+   "ci95": [
+    0.9811539940816791,
+    1.0
+   ],
+   "mean_return": 72.91729106195672,
+   "hold": 1.0,
+   "hold_ci95": [
+    0.9811539940816791,
+    1.0
+   ],
+   "act_batch_ms": {
+    "median": 0.6696760101476684,
+    "p90": 0.8630479918792844,
+    "p99": 1.941467859141992,
+    "n_calls": 160,
+    "batch": 50
+   }
+  },
+  {
+   "method": "ppo_nodr",
+   "task": "reach",
+   "condition": "q_offset_1.5deg",
+   "shift": {
+    "enabled": true,
+    "q_noise_deg": 0.0,
+    "action_noise": 0.0,
+    "latency_prob": 0.0,
+    "latency_ticks": 1,
+    "mass_range": [
+     1.0,
+     1.0
+    ],
+    "friction_range": [
+     1.0,
+     1.0
+    ],
+    "kp_range": [
+     1.0,
+     1.0
+    ],
+    "q_offset_deg": 1.5
+   },
+   "seconds": 1.817708969116211,
+   "n": 200,
+   "k": 200,
+   "success": 1.0,
+   "ci95": [
+    0.9811539940816791,
+    1.0
+   ],
+   "mean_return": 67.9310302527261,
+   "hold": 0.995,
+   "hold_ci95": [
+    0.9722256001302286,
+    0.999116854010634
+   ],
+   "act_batch_ms": {
+    "median": 0.7429230026900768,
+    "p90": 0.988607993349433,
+    "p99": 2.725387500249778,
+    "n_calls": 160,
+    "batch": 50
+   }
+  },
+  {
+   "method": "ppo_dr",
+   "task": "reach",
+   "condition": "q_noise_5deg",
+   "shift": {
+    "enabled": true,
+    "q_noise_deg": 5.0,
+    "action_noise": 0.0,
+    "latency_prob": 0.0,
+    "latency_ticks": 1,
+    "mass_range": [
+     1.0,
+     1.0
+    ],
+    "friction_range": [
+     1.0,
+     1.0
+    ],
+    "kp_range": [
+     1.0,
+     1.0
+    ],
+    "q_offset_deg": 0.0
+   },
+   "seconds": 1.7389321327209473,
+   "n": 200,
+   "k": 200,
+   "success": 1.0,
+   "ci95": [
+    0.9811539940816791,
+    1.0
+   ],
+   "mean_return": 33.453741841507174,
+   "hold": 0.47,
+   "hold_ci95": [
+    0.4020463337087108,
+    0.5390844266463886
+   ],
+   "act_batch_ms": {
+    "median": 0.6716909992974252,
+    "p90": 1.0022719972766934,
+    "p99": 5.1227704258053475,
+    "n_calls": 160,
+    "batch": 50
+   }
+  },
+  {
+   "method": "ppo_dr",
+   "task": "reach",
+   "condition": "latency_1tick",
+   "shift": {
+    "enabled": true,
+    "q_noise_deg": 0.0,
+    "action_noise": 0.0,
+    "latency_prob": 1.0,
+    "latency_ticks": 1,
+    "mass_range": [
+     1.0,
+     1.0
+    ],
+    "friction_range": [
+     1.0,
+     1.0
+    ],
+    "kp_range": [
+     1.0,
+     1.0
+    ],
+    "q_offset_deg": 0.0
+   },
+   "seconds": 1.8559577465057373,
+   "n": 200,
+   "k": 200,
+   "success": 1.0,
+   "ci95": [
+    0.9811539940816791,
+    1.0
+   ],
+   "mean_return": 40.93032048152995,
+   "hold": 0.855,
+   "hold_ci95": [
+    0.7995121871510563,
+    0.8971071486469359
+   ],
+   "act_batch_ms": {
+    "median": 0.8479659882141277,
+    "p90": 1.0926850169198588,
+    "p99": 4.6026695394539265,
+    "n_calls": 160,
+    "batch": 50
+   }
+  },
+  {
+   "method": "ppo_dr",
+   "task": "reach",
+   "condition": "latency_2tick",
+   "shift": {
+    "enabled": true,
+    "q_noise_deg": 0.0,
+    "action_noise": 0.0,
+    "latency_prob": 1.0,
+    "latency_ticks": 2,
+    "mass_range": [
+     1.0,
+     1.0
+    ],
+    "friction_range": [
+     1.0,
+     1.0
+    ],
+    "kp_range": [
+     1.0,
+     1.0
+    ],
+    "q_offset_deg": 0.0
+   },
+   "seconds": 1.7323119640350342,
+   "n": 200,
+   "k": 100,
+   "success": 0.5,
+   "ci95": [
+    0.43135962209034523,
+    0.5686403779096547
+   ],
+   "mean_return": 0.505022283257231,
+   "hold": 0.02,
+   "hold_ci95": [
+    0.007804300176394188,
+    0.050287865505193874
+   ],
+   "act_batch_ms": {
+    "median": 0.7151324971346185,
+    "p90": 1.0217130882665515,
+    "p99": 4.430466669437009,
+    "n_calls": 160,
+    "batch": 50
+   }
+  },
+  {
+   "method": "ppo_dr",
+   "task": "reach",
+   "condition": "dynamics_mass1.3_fric0.7_kp0.8",
+   "shift": {
+    "enabled": true,
+    "q_noise_deg": 0.0,
+    "action_noise": 0.0,
+    "latency_prob": 0.0,
+    "latency_ticks": 1,
+    "mass_range": [
+     1.3,
+     1.3
+    ],
+    "friction_range": [
+     0.7,
+     0.7
+    ],
+    "kp_range": [
+     0.8,
+     0.8
+    ],
+    "q_offset_deg": 0.0
+   },
+   "seconds": 1.8459858894348145,
+   "n": 200,
+   "k": 200,
+   "success": 1.0,
+   "ci95": [
+    0.9811539940816791,
+    1.0
+   ],
+   "mean_return": 72.2252242959443,
+   "hold": 1.0,
+   "hold_ci95": [
+    0.9811539940816791,
+    1.0
+   ],
+   "act_batch_ms": {
+    "median": 0.7516240002587438,
+    "p90": 0.9924069949192925,
+    "p99": 3.488093173073134,
+    "n_calls": 160,
+    "batch": 50
+   }
+  },
+  {
+   "method": "ppo_dr",
+   "task": "reach",
+   "condition": "q_offset_1.5deg",
+   "shift": {
+    "enabled": true,
+    "q_noise_deg": 0.0,
+    "action_noise": 0.0,
+    "latency_prob": 0.0,
+    "latency_ticks": 1,
+    "mass_range": [
+     1.0,
+     1.0
+    ],
+    "friction_range": [
+     1.0,
+     1.0
+    ],
+    "kp_range": [
+     1.0,
+     1.0
+    ],
+    "q_offset_deg": 1.5
+   },
+   "seconds": 1.7948997020721436,
+   "n": 200,
+   "k": 200,
+   "success": 1.0,
+   "ci95": [
+    0.9811539940816791,
+    1.0
+   ],
+   "mean_return": 72.85124062638509,
+   "hold": 0.99,
+   "hold_ci95": [
+    0.9642775148038205,
+    0.9972533993962251
+   ],
+   "act_batch_ms": {
+    "median": 0.7455485028913245,
+    "p90": 1.0340390988858414,
+    "p99": 6.613090123573784,
+    "n_calls": 160,
+    "batch": 50
+   }
+  },
+  {
+   "method": "sac_nodr",
+   "task": "reach",
+   "condition": "q_noise_5deg",
+   "shift": {
+    "enabled": true,
+    "q_noise_deg": 5.0,
+    "action_noise": 0.0,
+    "latency_prob": 0.0,
+    "latency_ticks": 1,
+    "mass_range": [
+     1.0,
+     1.0
+    ],
+    "friction_range": [
+     1.0,
+     1.0
+    ],
+    "kp_range": [
+     1.0,
+     1.0
+    ],
+    "q_offset_deg": 0.0
+   },
+   "seconds": 1.683593988418579,
+   "n": 200,
+   "k": 200,
+   "success": 1.0,
+   "ci95": [
+    0.9811539940816791,
+    1.0
+   ],
+   "mean_return": 19.7912160934858,
+   "hold": 0.335,
+   "hold_ci95": [
+    0.2732398096874265,
+    0.4029793722656195
+   ],
+   "act_batch_ms": {
+    "median": 0.624245498329401,
+    "p90": 0.9921829914674163,
+    "p99": 2.4789649384911168,
+    "n_calls": 160,
+    "batch": 50
+   }
+  },
+  {
+   "method": "sac_nodr",
+   "task": "reach",
+   "condition": "latency_1tick",
+   "shift": {
+    "enabled": true,
+    "q_noise_deg": 0.0,
+    "action_noise": 0.0,
+    "latency_prob": 1.0,
+    "latency_ticks": 1,
+    "mass_range": [
+     1.0,
+     1.0
+    ],
+    "friction_range": [
+     1.0,
+     1.0
+    ],
+    "kp_range": [
+     1.0,
+     1.0
+    ],
+    "q_offset_deg": 0.0
+   },
+   "seconds": 1.7165844440460205,
+   "n": 200,
+   "k": 160,
+   "success": 0.8,
+   "ci95": [
+    0.7391436038882958,
+    0.8495487925607118
+   ],
+   "mean_return": 3.6275030329047993,
+   "hold": 0.07,
+   "hold_ci95": [
+    0.04215178292291873,
+    0.11405578216683726
+   ],
+   "act_batch_ms": {
+    "median": 0.6260805093916133,
+    "p90": 0.8773339970503002,
+    "p99": 3.363794870674605,
+    "n_calls": 160,
+    "batch": 50
+   }
+  },
+  {
+   "method": "sac_nodr",
+   "task": "reach",
+   "condition": "latency_2tick",
+   "shift": {
+    "enabled": true,
+    "q_noise_deg": 0.0,
+    "action_noise": 0.0,
+    "latency_prob": 1.0,
+    "latency_ticks": 2,
+    "mass_range": [
+     1.0,
+     1.0
+    ],
+    "friction_range": [
+     1.0,
+     1.0
+    ],
+    "kp_range": [
+     1.0,
+     1.0
+    ],
+    "q_offset_deg": 0.0
+   },
+   "seconds": 1.8103673458099365,
+   "n": 200,
+   "k": 97,
+   "success": 0.485,
+   "ci95": [
+    0.4166726249238525,
+    0.5538927552536972
+   ],
+   "mean_return": -1.0950095192607519,
+   "hold": 0.03,
+   "hold_ci95": [
+    0.013820125830748327,
+    0.06389511973247333
+   ],
+   "act_batch_ms": {
+    "median": 0.8355504978680983,
+    "p90": 1.132889979635365,
+    "p99": 4.72138543758774,
+    "n_calls": 160,
+    "batch": 50
+   }
+  },
+  {
+   "method": "sac_nodr",
+   "task": "reach",
+   "condition": "dynamics_mass1.3_fric0.7_kp0.8",
+   "shift": {
+    "enabled": true,
+    "q_noise_deg": 0.0,
+    "action_noise": 0.0,
+    "latency_prob": 0.0,
+    "latency_ticks": 1,
+    "mass_range": [
+     1.3,
+     1.3
+    ],
+    "friction_range": [
+     0.7,
+     0.7
+    ],
+    "kp_range": [
+     0.8,
+     0.8
+    ],
+    "q_offset_deg": 0.0
+   },
+   "seconds": 1.791215419769287,
+   "n": 200,
+   "k": 200,
+   "success": 1.0,
+   "ci95": [
+    0.9811539940816791,
+    1.0
+   ],
+   "mean_return": 74.90597961739296,
+   "hold": 1.0,
+   "hold_ci95": [
+    0.9811539940816791,
+    1.0
+   ],
+   "act_batch_ms": {
+    "median": 0.7982300012372434,
+    "p90": 0.9939269948517904,
+    "p99": 1.3589773038984274,
+    "n_calls": 160,
+    "batch": 50
+   }
+  },
+  {
+   "method": "sac_nodr",
+   "task": "reach",
+   "condition": "q_offset_1.5deg",
+   "shift": {
+    "enabled": true,
+    "q_noise_deg": 0.0,
+    "action_noise": 0.0,
+    "latency_prob": 0.0,
+    "latency_ticks": 1,
+    "mass_range": [
+     1.0,
+     1.0
+    ],
+    "friction_range": [
+     1.0,
+     1.0
+    ],
+    "kp_range": [
+     1.0,
+     1.0
+    ],
+    "q_offset_deg": 1.5
+   },
+   "seconds": 1.6561646461486816,
+   "n": 200,
+   "k": 199,
+   "success": 0.995,
+   "ci95": [
+    0.9722256001302286,
+    0.999116854010634
+   ],
+   "mean_return": 62.45733313928054,
+   "hold": 0.88,
+   "hold_ci95": [
+    0.8276563857409517,
+    0.9180206497611246
+   ],
+   "act_batch_ms": {
+    "median": 0.5809789872728288,
+    "p90": 0.7372099993517622,
+    "p99": 3.708237650571386,
+    "n_calls": 160,
+    "batch": 50
+   }
+  },
+  {
+   "method": "sac_dr",
+   "task": "reach",
+   "condition": "q_noise_5deg",
+   "shift": {
+    "enabled": true,
+    "q_noise_deg": 5.0,
+    "action_noise": 0.0,
+    "latency_prob": 0.0,
+    "latency_ticks": 1,
+    "mass_range": [
+     1.0,
+     1.0
+    ],
+    "friction_range": [
+     1.0,
+     1.0
+    ],
+    "kp_range": [
+     1.0,
+     1.0
+    ],
+    "q_offset_deg": 0.0
+   },
+   "seconds": 1.7888829708099365,
+   "n": 200,
+   "k": 200,
+   "success": 1.0,
+   "ci95": [
+    0.9811539940816791,
+    1.0
+   ],
+   "mean_return": 32.40244194063231,
+   "hold": 0.435,
+   "hold_ci95": [
+    0.368156071588974,
+    0.5042939091804078
+   ],
+   "act_batch_ms": {
+    "median": 0.6864820024929941,
+    "p90": 1.004305001697503,
+    "p99": 3.4317387247574445,
+    "n_calls": 160,
+    "batch": 50
+   }
+  },
+  {
+   "method": "sac_dr",
+   "task": "reach",
+   "condition": "latency_1tick",
+   "shift": {
+    "enabled": true,
+    "q_noise_deg": 0.0,
+    "action_noise": 0.0,
+    "latency_prob": 1.0,
+    "latency_ticks": 1,
+    "mass_range": [
+     1.0,
+     1.0
+    ],
+    "friction_range": [
+     1.0,
+     1.0
+    ],
+    "kp_range": [
+     1.0,
+     1.0
+    ],
+    "q_offset_deg": 0.0
+   },
+   "seconds": 1.80403470993042,
+   "n": 200,
+   "k": 191,
+   "success": 0.955,
+   "ci95": [
+    0.9167024063390322,
+    0.9761477282752958
+   ],
+   "mean_return": 32.9287729306016,
+   "hold": 0.625,
+   "hold_ci95": [
+    0.5561417515728713,
+    0.6891467469475485
+   ],
+   "act_batch_ms": {
+    "median": 0.7706439937464893,
+    "p90": 1.0243340191664174,
+    "p99": 2.6921368943294506,
+    "n_calls": 160,
+    "batch": 50
+   }
+  },
+  {
+   "method": "sac_dr",
+   "task": "reach",
+   "condition": "latency_2tick",
+   "shift": {
+    "enabled": true,
+    "q_noise_deg": 0.0,
+    "action_noise": 0.0,
+    "latency_prob": 1.0,
+    "latency_ticks": 2,
+    "mass_range": [
+     1.0,
+     1.0
+    ],
+    "friction_range": [
+     1.0,
+     1.0
+    ],
+    "kp_range": [
+     1.0,
+     1.0
+    ],
+    "q_offset_deg": 0.0
+   },
+   "seconds": 1.794271469116211,
+   "n": 200,
+   "k": 123,
+   "success": 0.615,
+   "ci95": [
+    0.5459973878179245,
+    0.6796680308208618
+   ],
+   "mean_return": 1.3408878743587485,
+   "hold": 0.04,
+   "hold_ci95": [
+    0.02040538715065641,
+    0.07693293829419882
+   ],
+   "act_batch_ms": {
+    "median": 0.7108224963303655,
+    "p90": 1.0075670084916055,
+    "p99": 2.1203400558442786,
+    "n_calls": 160,
+    "batch": 50
+   }
+  },
+  {
+   "method": "sac_dr",
+   "task": "reach",
+   "condition": "dynamics_mass1.3_fric0.7_kp0.8",
+   "shift": {
+    "enabled": true,
+    "q_noise_deg": 0.0,
+    "action_noise": 0.0,
+    "latency_prob": 0.0,
+    "latency_ticks": 1,
+    "mass_range": [
+     1.3,
+     1.3
+    ],
+    "friction_range": [
+     0.7,
+     0.7
+    ],
+    "kp_range": [
+     0.8,
+     0.8
+    ],
+    "q_offset_deg": 0.0
+   },
+   "seconds": 1.8963673114776611,
+   "n": 200,
+   "k": 198,
+   "success": 0.99,
+   "ci95": [
+    0.9642775148038205,
+    0.9972533993962251
+   ],
+   "mean_return": 66.41021687079099,
+   "hold": 0.9,
+   "hold_ci95": [
+    0.8505931364369146,
+    0.9343300588284289
+   ],
+   "act_batch_ms": {
+    "median": 0.8725564985070378,
+    "p90": 1.4695511141326278,
+    "p99": 5.688421282684425,
+    "n_calls": 160,
+    "batch": 50
+   }
+  },
+  {
+   "method": "sac_dr",
+   "task": "reach",
+   "condition": "q_offset_1.5deg",
+   "shift": {
+    "enabled": true,
+    "q_noise_deg": 0.0,
+    "action_noise": 0.0,
+    "latency_prob": 0.0,
+    "latency_ticks": 1,
+    "mass_range": [
+     1.0,
+     1.0
+    ],
+    "friction_range": [
+     1.0,
+     1.0
+    ],
+    "kp_range": [
+     1.0,
+     1.0
+    ],
+    "q_offset_deg": 1.5
+   },
+   "seconds": 1.7838928699493408,
+   "n": 200,
+   "k": 173,
+   "success": 0.865,
+   "ci95": [
+    0.8107074954488287,
+    0.9055349202307972
+   ],
+   "mean_return": 46.8301226730549,
+   "hold": 0.64,
+   "hold_ci95": [
+    0.5714139956562682,
+    0.7033091226866021
+   ],
+   "act_batch_ms": {
+    "median": 0.6889369979035109,
+    "p90": 1.0188989748712627,
+    "p99": 3.1333902862388627,
+    "n_calls": 160,
+    "batch": 50
+   }
+  },
+  {
+   "method": "osc",
+   "task": "reach",
+   "condition": "q_noise_5deg",
+   "shift": {
+    "enabled": true,
+    "q_noise_deg": 5.0,
+    "action_noise": 0.0,
+    "latency_prob": 0.0,
+    "latency_ticks": 1,
+    "mass_range": [
+     1.0,
+     1.0
+    ],
+    "friction_range": [
+     1.0,
+     1.0
+    ],
+    "kp_range": [
+     1.0,
+     1.0
+    ],
+    "q_offset_deg": 0.0
+   },
+   "seconds": 2.134233236312866,
+   "n": 200,
+   "k": 200,
+   "success": 1.0,
+   "ci95": [
+    0.9811539940816791,
+    1.0
+   ],
+   "mean_return": 21.273270560301253,
+   "hold": 0.28,
+   "hold_ci95": [
+    0.22236792842635128,
+    0.34592431417771
+   ],
+   "act_batch_ms": {
+    "median": 4.9488579970784485,
+    "p90": 5.799811199540272,
+    "p99": 6.032779960951301,
+    "n_calls": 160,
+    "batch": 50
+   }
+  },
+  {
+   "method": "osc",
+   "task": "reach",
+   "condition": "latency_1tick",
+   "shift": {
+    "enabled": true,
+    "q_noise_deg": 0.0,
+    "action_noise": 0.0,
+    "latency_prob": 1.0,
+    "latency_ticks": 1,
+    "mass_range": [
+     1.0,
+     1.0
+    ],
+    "friction_range": [
+     1.0,
+     1.0
+    ],
+    "kp_range": [
+     1.0,
+     1.0
+    ],
+    "q_offset_deg": 0.0
+   },
+   "seconds": 2.3062994480133057,
+   "n": 200,
+   "k": 146,
+   "success": 0.73,
+   "ci95": [
+    0.664564384587978,
+    0.7867664526895944
+   ],
+   "mean_return": 9.01769670491741,
+   "hold": 0.055,
+   "hold_ci95": [
+    0.030985020801370097,
+    0.0957879244659355
+   ],
+   "act_batch_ms": {
+    "median": 4.8682609922252595,
+    "p90": 5.7883638801286,
+    "p99": 5.985623913584277,
+    "n_calls": 160,
+    "batch": 50
+   }
+  },
+  {
+   "method": "osc",
+   "task": "reach",
+   "condition": "latency_2tick",
+   "shift": {
+    "enabled": true,
+    "q_noise_deg": 0.0,
+    "action_noise": 0.0,
+    "latency_prob": 1.0,
+    "latency_ticks": 2,
+    "mass_range": [
+     1.0,
+     1.0
+    ],
+    "friction_range": [
+     1.0,
+     1.0
+    ],
+    "kp_range": [
+     1.0,
+     1.0
+    ],
+    "q_offset_deg": 0.0
+   },
+   "seconds": 2.3951363563537598,
+   "n": 200,
+   "k": 90,
+   "success": 0.45,
+   "ci95": [
+    0.38263948633754313,
+    0.519245114254289
+   ],
+   "mean_return": 0.004953758827101327,
+   "hold": 0.035,
+   "hold_ci95": [
+    0.017055324637357105,
+    0.07047146086668134
+   ],
+   "act_batch_ms": {
+    "median": 4.894272016827017,
+    "p90": 5.793975785491057,
+    "p99": 6.167625823873094,
+    "n_calls": 160,
+    "batch": 50
+   }
+  },
+  {
+   "method": "osc",
+   "task": "reach",
+   "condition": "dynamics_mass1.3_fric0.7_kp0.8",
+   "shift": {
+    "enabled": true,
+    "q_noise_deg": 0.0,
+    "action_noise": 0.0,
+    "latency_prob": 0.0,
+    "latency_ticks": 1,
+    "mass_range": [
+     1.3,
+     1.3
+    ],
+    "friction_range": [
+     0.7,
+     0.7
+    ],
+    "kp_range": [
+     0.8,
+     0.8
+    ],
+    "q_offset_deg": 0.0
+   },
+   "seconds": 2.3023834228515625,
+   "n": 200,
+   "k": 200,
+   "success": 1.0,
+   "ci95": [
+    0.9811539940816791,
+    1.0
+   ],
+   "mean_return": 75.0142167506961,
+   "hold": 1.0,
+   "hold_ci95": [
+    0.9811539940816791,
+    1.0
+   ],
+   "act_batch_ms": {
+    "median": 4.879391985014081,
+    "p90": 5.927689984673634,
+    "p99": 6.709837113157844,
+    "n_calls": 160,
+    "batch": 50
+   }
+  },
+  {
+   "method": "osc",
+   "task": "reach",
+   "condition": "q_offset_1.5deg",
+   "shift": {
+    "enabled": true,
+    "q_noise_deg": 0.0,
+    "action_noise": 0.0,
+    "latency_prob": 0.0,
+    "latency_ticks": 1,
+    "mass_range": [
+     1.0,
+     1.0
+    ],
+    "friction_range": [
+     1.0,
+     1.0
+    ],
+    "kp_range": [
+     1.0,
+     1.0
+    ],
+    "q_offset_deg": 1.5
+   },
+   "seconds": 2.200660467147827,
+   "n": 200,
+   "k": 200,
+   "success": 1.0,
+   "ci95": [
+    0.9811539940816791,
+    1.0
+   ],
+   "mean_return": 69.09665511855069,
+   "hold": 0.97,
+   "hold_ci95": [
+    0.9361048802675267,
+    0.9861798741692518
+   ],
+   "act_batch_ms": {
+    "median": 4.820665504666977,
+    "p90": 5.751586987753399,
+    "p99": 5.946057903638575,
+    "n_calls": 160,
+    "batch": 50
+   }
+  },
+  {
+   "method": "mpc",
+   "task": "reach",
+   "condition": "q_noise_5deg",
+   "shift": {
+    "enabled": true,
+    "q_noise_deg": 5.0,
+    "action_noise": 0.0,
+    "latency_prob": 0.0,
+    "latency_ticks": 1,
+    "mass_range": [
+     1.0,
+     1.0
+    ],
+    "friction_range": [
+     1.0,
+     1.0
+    ],
+    "kp_range": [
+     1.0,
+     1.0
+    ],
+    "q_offset_deg": 0.0
+   },
+   "seconds": 153.27144408226013,
+   "n": 200,
+   "k": 137,
+   "success": 0.685,
+   "ci95": [
+    0.617649158589664,
+    0.7453778192205573
+   ],
+   "mean_return": 17.791694773460364,
+   "hold": 0.245,
+   "hold_ci95": [
+    0.19056777914685893,
+    0.3090436838714848
+   ],
+   "act_batch_ms": {
+    "median": 964.8024740017718,
+    "p90": 1039.4372985116206,
+    "p99": 1102.0551101583987,
+    "n_calls": 160,
+    "batch": 50
+   }
+  },
+  {
+   "method": "mpc",
+   "task": "reach",
+   "condition": "latency_1tick",
+   "shift": {
+    "enabled": true,
+    "q_noise_deg": 0.0,
+    "action_noise": 0.0,
+    "latency_prob": 1.0,
+    "latency_ticks": 1,
+    "mass_range": [
+     1.0,
+     1.0
+    ],
+    "friction_range": [
+     1.0,
+     1.0
+    ],
+    "kp_range": [
+     1.0,
+     1.0
+    ],
+    "q_offset_deg": 0.0
+   },
+   "seconds": 148.87007808685303,
+   "n": 200,
+   "k": 200,
+   "success": 1.0,
+   "ci95": [
+    0.9811539940816791,
+    1.0
+   ],
+   "mean_return": 69.2319566876506,
+   "hold": 0.97,
+   "hold_ci95": [
+    0.9361048802675267,
+    0.9861798741692518
+   ],
+   "act_batch_ms": {
+    "median": 899.6790575038176,
+    "p90": 989.3552187946625,
+    "p99": 1221.0410545775082,
+    "n_calls": 160,
+    "batch": 50
+   }
+  },
+  {
+   "method": "mpc",
+   "task": "reach",
+   "condition": "latency_2tick",
+   "shift": {
+    "enabled": true,
+    "q_noise_deg": 0.0,
+    "action_noise": 0.0,
+    "latency_prob": 1.0,
+    "latency_ticks": 2,
+    "mass_range": [
+     1.0,
+     1.0
+    ],
+    "friction_range": [
+     1.0,
+     1.0
+    ],
+    "kp_range": [
+     1.0,
+     1.0
+    ],
+    "q_offset_deg": 0.0
+   },
+   "seconds": 142.36310386657715,
+   "n": 200,
+   "k": 200,
+   "success": 1.0,
+   "ci95": [
+    0.9811539940816791,
+    1.0
+   ],
+   "mean_return": 67.08704018709031,
+   "hold": 0.97,
+   "hold_ci95": [
+    0.9361048802675267,
+    0.9861798741692518
+   ],
+   "act_batch_ms": {
+    "median": 870.2505829860456,
+    "p90": 936.9283830950735,
+    "p99": 1039.6189166777185,
+    "n_calls": 160,
+    "batch": 50
+   }
+  },
+  {
+   "method": "mpc",
+   "task": "reach",
+   "condition": "dynamics_mass1.3_fric0.7_kp0.8",
+   "shift": {
+    "enabled": true,
+    "q_noise_deg": 0.0,
+    "action_noise": 0.0,
+    "latency_prob": 0.0,
+    "latency_ticks": 1,
+    "mass_range": [
+     1.3,
+     1.3
+    ],
+    "friction_range": [
+     0.7,
+     0.7
+    ],
+    "kp_range": [
+     0.8,
+     0.8
+    ],
+    "q_offset_deg": 0.0
+   },
+   "seconds": 140.47031784057617,
+   "n": 200,
+   "k": 200,
+   "success": 1.0,
+   "ci95": [
+    0.9811539940816791,
+    1.0
+   ],
+   "mean_return": 72.50179697990876,
+   "hold": 1.0,
+   "hold_ci95": [
+    0.9811539940816791,
+    1.0
+   ],
+   "act_batch_ms": {
+    "median": 862.8370140068,
+    "p90": 909.9802951881429,
+    "p99": 958.0793786174034,
+    "n_calls": 160,
+    "batch": 50
+   }
+  },
+  {
+   "method": "mpc",
+   "task": "reach",
+   "condition": "q_offset_1.5deg",
+   "shift": {
+    "enabled": true,
+    "q_noise_deg": 0.0,
+    "action_noise": 0.0,
+    "latency_prob": 0.0,
+    "latency_ticks": 1,
+    "mass_range": [
+     1.0,
+     1.0
+    ],
+    "friction_range": [
+     1.0,
+     1.0
+    ],
+    "kp_range": [
+     1.0,
+     1.0
+    ],
+    "q_offset_deg": 1.5
+   },
+   "seconds": 135.26134276390076,
+   "n": 200,
+   "k": 136,
+   "success": 0.68,
+   "ci95": [
+    0.612479733946457,
+    0.7407357039229475
+   ],
+   "mean_return": 2.5912780553937282,
+   "hold": 0.065,
+   "hold_ci95": [
+    0.03837598764975976,
+    0.10802003749917945
+   ],
+   "act_batch_ms": {
+    "median": 831.5011255035643,
+    "p90": 863.2115806947695,
+    "p99": 888.8069792519673,
+    "n_calls": 160,
+    "batch": 50
+   }
+  }
+ ]
+}
